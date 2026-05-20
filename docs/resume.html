@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Resume | Benson Fung</title>
+    <meta name="description" content="Professional experience and skills of Benson Fung, systems builder and engineering leader.">
+    
+    <!-- Declare supported color schemes for browser rendering and FOUC prevention -->
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- Inline script to apply saved theme preference immediately -->
+    <script>
+      {
+        const savedTheme = localStorage.getItem("color-scheme");
+        if (savedTheme) {
+          document.querySelector('meta[name="color-scheme"]').content = savedTheme;
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      }
+    </script>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-container">
+        <a href="/" class="brand" id="brand-logo">Benson Fung</a>
+        <nav class="site-nav" aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li><a href="/" >Home</a></li>
+            <li><a href="/resume.html" class="active" aria-current="page">Resume</a></li>
+          </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle theme">
+          <!-- SVG for Sun Icon (visible in Dark Mode) -->
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <!-- SVG for Moon Icon (visible in Light Mode) -->
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content" class="content-wrapper">
+      
+<a href="/" class="back-link print-hide">
+  <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" style="vertical-align: middle; margin-right: 4px;">
+    <line x1="19" y1="12" x2="5" y2="12"></line>
+    <polyline points="12 19 5 12 12 5"></polyline>
+  </svg>
+  Back to Home
+</a>
+
+<div class="resume-container">
+  <header class="resume-header">
+    <div>
+      <h1 style="margin-bottom: 4px;">Benson Fung</h1>
+      <p style="font-size: 1.1rem; font-weight: 500; color: var(--color-accent); margin-bottom: 8px;">
+        Software Systems &amp; People Team Builder
+      </p>
+      <p style="font-size: 0.95rem; line-height: 1.4; max-width: 550px;">
+        A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification. Focused on Remote or Irvine, CA roles.
+      </p>
+    </div>
+    <div class="resume-contact">
+      <span>Irvine, CA 92618</span>
+      <span>(408) 528-4017</span>
+      <span><a href="mailto:fung.benson@gmail.com">fung.benson@gmail.com</a></span>
+      <span><a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">linkedin.com/in/bensonfung</a></span>
+      <span><a href="https://github.com/bfung" target="_blank" rel="noopener">github.com/bfung</a></span>
+    </div>
+  </header>
+
+  <div class="resume-layout">
+    <!-- Left Column: Main content -->
+    <div class="resume-main">
+      <h2 class="resume-section-title">Experience</h2>
+      <div class="timeline">
+        
+        <!-- Job 1 -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <h3 class="timeline-title">Director of Data Platform</h3>
+            <span class="timeline-date">Sep 2021 &ndash; Aug 2022</span>
+          </div>
+          <div class="timeline-subtitle">
+            <span class="timeline-company"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a></span> &bull; Remote
+          </div>
+          <div class="timeline-content">
+            <ul>
+              <li>Streamlined software engineering interview process resulting in consistent hiring criteria and high quality of hires.</li>
+              <li>Provided non-technical stakeholders with a predictable and easy to understand feature delivery and launch plan.</li>
+              <li>Forecasted Engineering budget and controlled infrastructure costs (AWS), saving 10% on a $2.0m budget.</li>
+            </ul>
+            <div class="tech-pills">
+              <span class="tech-pill">Management</span>
+              <span class="tech-pill">AWS</span>
+              <span class="tech-pill">FinOps</span>
+              <span class="tech-pill">Data Platform</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 2 -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <h3 class="timeline-title">Principal DevOps Engineer &amp; Manager</h3>
+            <span class="timeline-date">Jan 2020 &ndash; Sep 2021</span>
+          </div>
+          <div class="timeline-subtitle">
+            <span class="timeline-company"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a></span> &bull; Remote
+          </div>
+          <div class="timeline-content">
+            <ul>
+              <li>Evaluated and selected core technologies, balancing build vs. buy. In buy scenarios, tools saved several headcounts in operational overhead.</li>
+              <li>Partnered with the InfoSec organization to craft secure SDLC practices integrated into the CI/CD pipeline.</li>
+              <li>Led and supported development and operations of Kubernetes-based microservices and data pipelines.</li>
+            </ul>
+            <div class="tech-pills">
+              <span class="tech-pill">Kubernetes</span>
+              <span class="tech-pill">DevOps</span>
+              <span class="tech-pill">CI/CD</span>
+              <span class="tech-pill">InfoSec</span>
+              <span class="tech-pill">Terraform</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 3 -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <h3 class="timeline-title">Sr. Staff DevOps Engineer &amp; Manager</h3>
+            <span class="timeline-date">Jan 2019 &ndash; Jan 2020</span>
+          </div>
+          <div class="timeline-subtitle">
+            <span class="timeline-company"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a></span> &bull; Remote
+          </div>
+          <div class="timeline-content">
+            <ul>
+              <li>Designed and optimized centralized logging and metrics using Datadog for cloud services, reducing SaaS costs and time-to-debug.</li>
+              <li>Implemented secure Over-The-Air (OTA) firmware updates for IoT systems (Raspberry Pi SoCs) for the Eatsa Spotlight Pickup System, removing operational friction for customer staff.</li>
+            </ul>
+            <div class="tech-pills">
+              <span class="tech-pill">Datadog</span>
+              <span class="tech-pill">IoT</span>
+              <span class="tech-pill">Firmware</span>
+              <span class="tech-pill">Ansible</span>
+              <span class="tech-pill">Linux</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 4 -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <h3 class="timeline-title">Engineering Manager (Core Platform)</h3>
+            <span class="timeline-date">Nov 2014 &ndash; Jul 2016</span>
+          </div>
+          <div class="timeline-subtitle">
+            <span class="timeline-company"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a></span> (Acq. by Oracle) &bull; San Francisco, CA
+          </div>
+          <div class="timeline-content">
+            <ul>
+              <li>Led the Core Platform team of 4 engineers supporting 70+ developers in build tooling, deployment processes, and automated cloud operations.</li>
+            </ul>
+            <div class="tech-pills">
+              <span class="tech-pill">Leadership</span>
+              <span class="tech-pill">Developer Tooling</span>
+              <span class="tech-pill">Infrastructure</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 5 -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <h3 class="timeline-title">Senior Software Engineer</h3>
+            <span class="timeline-date">Aug 2011 &ndash; Jul 2014</span>
+          </div>
+          <div class="timeline-subtitle">
+            <span class="timeline-company"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a></span> &bull; San Francisco, CA
+          </div>
+          <div class="timeline-content">
+            <ul>
+              <li>Architected and implemented the authentication/authorization service and API gateway for Opower's microservice ecosystem.</li>
+              <li>Developed core framework libraries adopted company-wide to standardize and accelerate microservice deployment and observability.</li>
+            </ul>
+            <div class="tech-pills">
+              <span class="tech-pill">Java</span>
+              <span class="tech-pill">API Gateway</span>
+              <span class="tech-pill">Microservices</span>
+              <span class="tech-pill">OAuth2</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Job 6 -->
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <h3 class="timeline-title">Software Engineer</h3>
+            <span class="timeline-date">Oct 2004 &ndash; Dec 2010</span>
+          </div>
+          <div class="timeline-subtitle">
+            <span class="timeline-company">Incisent Technologies</span> &bull; Chicago, IL
+          </div>
+          <div class="timeline-content">
+            <ul>
+              <li>Designed and developed backend services and batch jobs processing statistical data for used car valuations using Java, C#, and Ruby on Rails.</li>
+              <li>Designed, implemented, and operated the Data Warehouse using Microsoft SSIS and SSAS, optimizing report query times for real-time dealership lookups.</li>
+            </ul>
+            <div class="tech-pills">
+              <span class="tech-pill">Ruby on Rails</span>
+              <span class="tech-pill">Java</span>
+              <span class="tech-pill">SQL Server</span>
+              <span class="tech-pill">Data Warehouse</span>
+              <span class="tech-pill">SSIS / SSAS</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <h2 class="resume-section-title" style="margin-top: var(--space-xxl);">Education</h2>
+      <div class="timeline">
+        <div class="timeline-item">
+          <div class="timeline-header">
+            <h3 class="timeline-title">University of Illinois Urbana-Champaign</h3>
+            <span class="timeline-date">Aug 1999 &ndash; May 2003</span>
+          </div>
+          <div class="timeline-subtitle">
+            B.S. in Computer Science &bull; Software Engineering Certification Program
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Right Column: Sidebar / Skills & Tech -->
+    <div class="resume-sidebar">
+      <h2 class="resume-section-title">Skills</h2>
+      <div class="skills-block">
+        <h3 class="skills-category">Core Expertise</h3>
+        <ul class="skills-list">
+          <li class="skill-badge">Data Stack Design</li>
+          <li class="skill-badge">Distributed Systems</li>
+          <li class="skill-badge">DevOps &amp; GitOps</li>
+          <li class="skill-badge">Engineering Leadership</li>
+          <li class="skill-badge">Cost Optimization</li>
+          <li class="skill-badge">Cloud Operations</li>
+        </ul>
+      </div>
+
+      <h2 class="resume-section-title">Technologies</h2>
+      
+      <div class="skills-block">
+        <h3 class="skills-category">Languages</h3>
+        <ul class="skills-list">
+          <li class="skill-badge">Python</li>
+          <li class="skill-badge">Java</li>
+          <li class="skill-badge">Ruby</li>
+          <li class="skill-badge">SQL</li>
+          <li class="skill-badge">Bash</li>
+        </ul>
+      </div>
+
+      <div class="skills-block">
+        <h3 class="skills-category">Infra &amp; Orchestration</h3>
+        <ul class="skills-list">
+          <li class="skill-badge">Kubernetes</li>
+          <li class="skill-badge">Terraform</li>
+          <li class="skill-badge">Ansible</li>
+          <li class="skill-badge">Docker</li>
+          <li class="skill-badge">HashiCorp Vault</li>
+          <li class="skill-badge">Chef / Puppet</li>
+        </ul>
+      </div>
+
+      <div class="skills-block">
+        <h3 class="skills-category">Data Platforms</h3>
+        <ul class="skills-list">
+          <li class="skill-badge">Databricks</li>
+          <li class="skill-badge">Delta Lake</li>
+          <li class="skill-badge">Airflow</li>
+          <li class="skill-badge">Snowflake</li>
+          <li class="skill-badge">AWS EMR</li>
+        </ul>
+      </div>
+
+      <div class="skills-block">
+        <h3 class="skills-category">AWS Cloud</h3>
+        <ul class="skills-list">
+          <li class="skill-badge">EKS</li>
+          <li class="skill-badge">RDS</li>
+          <li class="skill-badge">S3</li>
+          <li class="skill-badge">IAM</li>
+          <li class="skill-badge">EC2 / ELB</li>
+          <li class="skill-badge">CloudWatch</li>
+        </ul>
+      </div>
+
+      <div class="skills-block">
+        <h3 class="skills-category">CI/CD &amp; Observability</h3>
+        <ul class="skills-list">
+          <li class="skill-badge">Datadog</li>
+          <li class="skill-badge">CircleCI</li>
+          <li class="skill-badge">Jenkins</li>
+          <li class="skill-badge">Loggly</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</div>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <p>&copy; 2026 Benson Fung. All rights reserved.</p>
+        <p class="footer-meta">Built with <a href="https://www.11ty.dev/" target="_blank" rel="noopener">Eleventy</a> &bull; Blazing fast, build-time static HTML.</p>
+      </div>
+    </footer>
+
+    <!-- Client-side JS -->
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>
