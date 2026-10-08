@@ -368,6 +368,15 @@
     line-height: 1.5;
   }
 
+  .hero-sub {
+    color: var(--color-text-muted);
+    font-size: 0.95rem;
+    max-width: 600px;
+    /* Pull the sub up under the tagline so the pair reads as one block */
+    margin-top: calc(-1 * var(--space-lg) + var(--space-sm));
+    margin-bottom: 0;
+  }
+
   .hero-buttons {
     display: flex;
     gap: var(--space-md);
