@@ -1,17 +1,17 @@
 <!DOCTYPE html>
 <html lang="en">
   <head>
-    {% set pageTitle = title or "Benson Fung | Software Systems & People Team Builder" %}
-    {% set pageDescription = description or "Portfolio and Resume of Benson Fung, a product-focused generalist software systems and engineering leader." %}
-    {% set pageUrl = site.url + page.url %}
+    
+    
+    
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     
     <!-- SEO Meta Tags -->
-    <title>{{ pageTitle }}</title>
-    <meta name="description" content="{{ pageDescription }}">
-    <link rel="canonical" href="{{ pageUrl }}">
+    <title>Page Not Found | Benson Fung</title>
+    <meta name="description" content="The page you&#39;re looking for doesn&#39;t exist on Benson Fung&#39;s website.">
+    <link rel="canonical" href="https://bfung.github.io/404.html">
     
     <!-- Favicon -->
     <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
@@ -19,15 +19,15 @@
     <!-- Open Graph -->
     <meta property="og:type" content="website">
     <meta property="og:site_name" content="Benson Fung">
-    <meta property="og:title" content="{{ pageTitle }}">
-    <meta property="og:description" content="{{ pageDescription }}">
-    <meta property="og:url" content="{{ pageUrl }}">
+    <meta property="og:title" content="Page Not Found | Benson Fung">
+    <meta property="og:description" content="The page you&#39;re looking for doesn&#39;t exist on Benson Fung&#39;s website.">
+    <meta property="og:url" content="https://bfung.github.io/404.html">
     <meta property="og:image" content="https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400">
     
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary">
-    <meta name="twitter:title" content="{{ pageTitle }}">
-    <meta name="twitter:description" content="{{ pageDescription }}">
+    <meta name="twitter:title" content="Page Not Found | Benson Fung">
+    <meta name="twitter:description" content="The page you&#39;re looking for doesn&#39;t exist on Benson Fung&#39;s website.">
     <meta name="twitter:image" content="https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400">
     
     <!-- Structured Data -->
@@ -36,7 +36,7 @@
       "@context": "https://schema.org",
       "@type": "Person",
       "name": "Benson Fung",
-      "url": "{{ site.url }}/",
+      "url": "https://bfung.github.io/",
       "image": "https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400",
       "jobTitle": "Software Systems & People Team Builder",
       "address": {
@@ -83,8 +83,8 @@
         <a href="/" class="brand" id="brand-logo">Benson Fung</a>
         <nav class="site-nav" aria-label="Main Navigation">
           <ul class="nav-links">
-            <li><a href="/" {% if page.url == "/" %}class="active" aria-current="page"{% endif %}>Home</a></li>
-            <li><a href="/resume.html" {% if page.url == "/resume.html" %}class="active" aria-current="page"{% endif %}>Resume</a></li>
+            <li><a href="/" >Home</a></li>
+            <li><a href="/resume.html" >Resume</a></li>
           </ul>
         </nav>
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle theme">
@@ -102,7 +102,22 @@
     </header>
 
     <main id="main-content" class="content-wrapper">
-      {{ content | safe }}
+      
+<section class="hero-section" style="text-align: center;">
+  <h1>404</h1>
+  <p class="hero-tagline">
+    That page doesn't exist.
+  </p>
+  <p style="color: var(--color-text-muted); max-width: 600px; margin: 0 auto; font-size: 0.95rem;">
+    The link you followed may be broken, or the page may have moved.
+  </p>
+  <div class="hero-buttons" style="justify-content: center;">
+    <a href="/" class="btn btn-primary">
+      Back to Home
+    </a>
+  </div>
+</section>
+
     </main>
 
     <footer class="site-footer">
