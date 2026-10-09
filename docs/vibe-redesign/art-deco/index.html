@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benson Fung — Art Deco | VibeRedesign</title>
+<meta name="description" content="Benson Fung's portfolio in modern Art Deco style: black glass, brass hairlines, sunburst fans, and perfect symmetry.">
+<link rel="canonical" href="https://bfung.github.io/vibe-redesign/art-deco/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benson Fung">
+<meta property="og:title" content="Benson Fung — Art Deco | VibeRedesign">
+<meta property="og:description" content="Modern Art Deco portfolio: black glass, brass hairlines, and perfect symmetry.">
+<meta property="og:url" content="https://bfung.github.io/vibe-redesign/art-deco/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Benson Fung — Art Deco | VibeRedesign">
+<meta name="twitter:description" content="Modern Art Deco portfolio: black glass, brass hairlines, and perfect symmetry.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --noir:#0E1512;
+  --panel:#16241F;
+  --emerald:#0F3B3A;
+  --gold:#D4AF37;
+  --gold-bright:#E3C66A;
+  --antique:#8A6F2A;
+  --champagne:#F2EFE6;
+  --smoked:#B9B2A4;
+  --bronze:#3A3322;
+  --ink:#1A1A1A;
+  --display:Didot,"Bodoni MT","Cochin","Palatino Linotype","Book Antiqua",Palatino,serif;
+  --caps:Copperplate,"Copperplate Gothic Light","Copperplate Gothic Bold",Futura,"Century Gothic","Trebuchet MS",sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+  --maxw:1080px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--noir);
+  color:var(--champagne);
+  font-family:var(--sans);
+  font-size:1.0625rem;
+  line-height:1.7;
+  -webkit-font-smoothing:antialiased;
+  text-align:center;
+}
+::selection{background:var(--gold);color:#000}
+a{color:var(--gold)}
+:focus-visible{outline:2px solid var(--gold);outline-offset:3px}
+h1,h2,h3{font-family:var(--display);font-weight:400;text-transform:uppercase;letter-spacing:.16em;line-height:1.2}
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.skip{
+  position:fixed;top:-60px;left:50%;transform:translateX(-50%);z-index:999;
+  background:var(--gold);color:#000;font-family:var(--caps);font-size:.75rem;letter-spacing:.2em;
+  padding:.8rem 1.4rem;text-decoration:none;transition:top .2s;
+}
+.skip:focus{top:12px}
+
+/* ============ MOTIFS ============ */
+.deco-frame{position:relative;border:1px solid var(--antique)}
+.deco-frame::before{content:"";position:absolute;inset:6px;border:1px solid var(--antique);pointer-events:none}
+.diamond-rule{display:flex;align-items:center;justify-content:center;gap:14px;margin:1.6rem auto}
+.diamond-rule::before,.diamond-rule::after{content:"";height:1px;width:72px;background:var(--antique)}
+.diamond-rule i{width:9px;height:9px;background:var(--gold);transform:rotate(45deg);flex:none}
+.sunburst-fan{
+  border-radius:999px 999px 0 0;overflow:hidden;pointer-events:none;
+  background:repeating-conic-gradient(from -90deg, rgba(212,175,55,.5) 0deg 1.5deg, transparent 1.5deg 9deg);
+}
+.ziggurat{
+  height:64px;background:var(--antique);
+  clip-path:polygon(0 100%,0 62%,12% 62%,12% 38%,25% 38%,25% 16%,38% 16%,38% 0,62% 0,62% 16%,75% 16%,75% 38%,88% 38%,88% 62%,100% 62%,100% 100%);
+}
+.lattice-band{
+  height:14px;
+  background:
+    repeating-linear-gradient(135deg, transparent 0 10px, var(--antique) 10px 11px),
+    repeating-linear-gradient(45deg, transparent 0 10px, var(--antique) 10px 11px);
+  opacity:.7;
+}
+.fluted{background-image:repeating-linear-gradient(90deg, transparent 0 10px, rgba(212,175,55,.05) 10px 11px)}
+.eyebrow{
+  font-family:var(--caps);font-size:.75rem;letter-spacing:.3em;text-transform:uppercase;color:var(--gold);
+  margin-bottom:1.4rem;
+}
+
+/* corner brackets */
+.corner{position:absolute;width:22px;height:22px;border:0 solid var(--gold);z-index:2}
+.corner.tl{top:10px;left:10px;border-top-width:2px;border-left-width:2px}
+.corner.tr{top:10px;right:10px;border-top-width:2px;border-right-width:2px}
+.corner.bl{bottom:10px;left:10px;border-bottom-width:2px;border-left-width:2px}
+.corner.br{bottom:10px;right:10px;border-bottom-width:2px;border-right-width:2px}
+
+/* ============ NAV ============ */
+.site-nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(14,21,18,.96);
+  border-top:1px solid var(--antique);
+  border-bottom:1px solid var(--bronze);
+}
+.site-nav .wrap{display:flex;align-items:center;justify-content:center;gap:2rem;height:64px}
+.nav-mono{
+  width:34px;height:34px;flex:none;border:1px solid var(--gold);transform:rotate(45deg);
+  display:flex;align-items:center;justify-content:center;
+}
+.nav-mono span{transform:rotate(-45deg);font-family:var(--display);font-size:.8rem;color:var(--gold);letter-spacing:0}
+.nav-links{display:flex;gap:2rem;list-style:none;overflow-x:auto;scrollbar-width:none;max-width:100%}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links li{flex:none}
+.nav-links a{
+  font-family:var(--caps);font-size:.72rem;letter-spacing:.24em;text-transform:uppercase;
+  color:var(--smoked);text-decoration:none;position:relative;padding:6px 2px;transition:color .3s;
+}
+.nav-links a:hover{color:var(--gold)}
+.nav-links a::after{
+  content:"";position:absolute;left:0;right:0;bottom:0;height:1px;background:var(--gold);
+  transform:scaleX(0);transition:transform .35s var(--ease);
+}
+.nav-links a:hover::after{transform:scaleX(1)}
+.nav-links a.back{color:var(--gold)}
+
+/* ============ REVEAL ============ */
+.js .reveal{opacity:0;transform:translateY(28px);transition:opacity .8s var(--ease),transform .8s var(--ease);transition-delay:calc(var(--i,0)*110ms)}
+.js .reveal.is-visible{opacity:1;transform:none}
+.js .draw{transform:scaleX(0);transition:transform 1s var(--ease)}
+.js .draw.is-visible{transform:scaleX(1)}
+
+/* ============ HERO ============ */
+.hero{padding:150px 0 0;position:relative;overflow:hidden}
+.hero-panel{padding:72px 40px 64px;max-width:860px;margin:0 auto;position:relative;background:var(--panel)}
+.hero-panel .fan{position:absolute;left:50%;bottom:0;width:640px;max-width:120%;height:320px;transform:translateX(-50%);opacity:0}
+.js .hero-panel .fan{animation:fandraw 1.6s var(--ease) .2s forwards}
+@keyframes fandraw{from{opacity:0;transform:translateX(-50%) rotate(-8deg)}to{opacity:.42;transform:translateX(-50%) rotate(0)}}
+.hero-panel > *:not(.fan):not(.corner){position:relative;z-index:1}
+.hero h1{font-size:clamp(2.6rem,8vw,5.6rem);color:var(--champagne)}
+.hero h1 .gold{color:var(--gold)}
+.hero .tagline{font-family:var(--display);font-style:italic;font-size:clamp(1.2rem,2.6vw,1.6rem);color:var(--champagne);text-transform:none;letter-spacing:.04em}
+.hero .subline{font-family:var(--caps);font-size:.78rem;letter-spacing:.32em;color:var(--gold);margin-top:.9rem}
+.hero-ctas{display:flex;gap:1.1rem;justify-content:center;flex-wrap:wrap;margin-top:2.4rem}
+.btn{
+  position:relative;overflow:hidden;
+  font-family:var(--caps);font-size:.74rem;letter-spacing:.24em;text-transform:uppercase;text-decoration:none;
+  padding:1rem 2.2rem;display:inline-block;transition:color .35s,border-color .35s;
+}
+.btn-solid{background:var(--gold);color:#000;border:1px solid var(--gold)}
+.btn-solid:hover{color:#000}
+.btn-line{border:1px solid var(--gold);color:var(--gold);background:transparent}
+.btn-line:hover{color:var(--gold-bright);border-color:var(--gold-bright)}
+.btn::after{ /* gold sheen sweep */
+  content:"";position:absolute;top:0;bottom:0;width:250%;left:-75%;
+  background:linear-gradient(105deg, transparent 40%, rgba(242,239,230,.35) 50%, transparent 60%);
+  background-size:250% 100%;background-position:120% 0;
+  transition:background-position .9s var(--ease);pointer-events:none;
+}
+.btn:hover::after{background-position:-20% 0}
+.hero .ziggurat{max-width:860px;margin:0 auto}
+
+/* ============ PROJECTS (champagne band) ============ */
+.band-light{background:var(--champagne);color:var(--ink);padding:90px 0}
+.band-light .eyebrow{color:var(--antique)}
+.band-light h2{font-size:clamp(1.7rem,3.6vw,2.6rem);color:var(--ink)}
+.band-light .lede{color:#5a5a5a;max-width:56ch;margin:0 auto 3.5rem}
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.proj{
+  background:var(--champagne);border:1px solid var(--antique);position:relative;
+  padding:0 0 2rem;transition:transform .4s var(--ease),border-color .4s var(--ease);
+}
+.proj::before{content:"";position:absolute;inset:6px;border:1px solid var(--antique);pointer-events:none;z-index:3}
+.proj:hover{transform:translateY(-4px);border-color:var(--gold)}
+.proj .arch{height:120px;position:relative;overflow:hidden;border-bottom:1px solid var(--antique)}
+.proj .arch .sunburst-fan{position:absolute;left:50%;bottom:0;width:220px;height:110px;transform:translateX(-50%);opacity:.28;transition:opacity .4s}
+.proj:hover .arch .sunburst-fan{opacity:.55}
+.proj h3{font-size:1.25rem;color:var(--ink);margin:1.6rem 1.4rem .8rem;letter-spacing:.1em}
+.proj p{font-size:.95rem;color:#3a3a3a;margin:0 1.6rem 1.4rem}
+.proj .plink{
+  font-family:var(--caps);font-size:.7rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--antique);text-decoration:none;border-bottom:1px solid var(--antique);padding-bottom:3px;margin:0 .5rem;
+  transition:color .3s,border-color .3s;
+}
+.proj .plink:hover{color:var(--gold);border-color:var(--gold)}
+@media(max-width:900px){.proj-grid{grid-template-columns:1fr;max-width:480px;margin:0 auto}}
+
+/* ============ CONTACT (emerald band) ============ */
+.band-emerald{background:var(--emerald);padding:90px 0 0;position:relative}
+.band-emerald h2{font-size:clamp(1.7rem,3.6vw,2.6rem);color:var(--champagne)}
+.band-emerald .lede{color:var(--smoked);max-width:52ch;margin:0 auto 2.6rem}
+.cbtns{display:flex;flex-wrap:wrap;gap:12px;justify-content:center;max-width:760px;margin:0 auto 4rem}
+.cbtn{
+  font-family:var(--caps);font-size:.72rem;letter-spacing:.22em;text-transform:uppercase;
+  color:var(--gold);text-decoration:none;border:1px solid var(--gold);padding:.85rem 1.7rem;
+  transition:background .35s,color .35s;position:relative;overflow:hidden;
+}
+.cbtn::after{
+  content:"";position:absolute;top:0;bottom:0;width:250%;left:-75%;
+  background:linear-gradient(105deg, transparent 40%, rgba(14,21,18,.25) 50%, transparent 60%);
+  background-size:250% 100%;background-position:120% 0;
+  transition:background-position .9s var(--ease);pointer-events:none;
+}
+.cbtn:hover{background:var(--gold);color:#000}
+.cbtn:hover::after{background-position:-20% 0}
+
+/* ============ FOOTER ============ */
+.colophon{background:var(--noir);padding:3rem 0 2.5rem;border-top:1px solid var(--bronze)}
+.foot-mono{
+  width:44px;height:44px;margin:0 auto 1.2rem;border:1px solid var(--gold);transform:rotate(45deg);
+  display:flex;align-items:center;justify-content:center;
+}
+.foot-mono span{transform:rotate(-45deg);font-family:var(--display);color:var(--gold)}
+.colophon p{font-family:var(--caps);font-size:.68rem;letter-spacing:.24em;color:var(--smoked);margin-bottom:.6rem}
+.colophon a{color:var(--gold);text-decoration:none}
+.colophon a:hover{text-decoration:underline;text-underline-offset:4px}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none}
+  .js .draw{transform:none}
+  .js .hero-panel .fan{opacity:.42}
+}
+</style>
+<noscript><style>.hero-panel .fan{opacity:.42}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="site-nav" aria-label="Page">
+  <div class="wrap">
+    <a class="nav-mono" href="/vibe-redesign/art-deco/" aria-label="Art Deco home"><span>BF</span></a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Correspond</a></li>
+      <li><a class="back" href="/vibe-redesign/art-deco/resume/">Resume &rarr;</a></li>
+      <li><a class="back" href="/vibe-redesign/">&larr; All Vibes</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap">
+    <div class="hero-panel deco-frame fluted reveal">
+      <span class="corner tl" aria-hidden="true"></span><span class="corner tr" aria-hidden="true"></span>
+      <span class="corner bl" aria-hidden="true"></span><span class="corner br" aria-hidden="true"></span>
+      <div class="fan sunburst-fan" aria-hidden="true"></div>
+      <p class="eyebrow">Portfolio &mdash; Est. MMIV</p>
+      <h1>Benson <span class="gold">Fung</span></h1>
+      <div class="diamond-rule" aria-hidden="true"><i></i></div>
+      <p class="tagline">build better, be better, boba.</p>
+      <p class="subline">Family &middot; Friends &middot; Food &middot; Fun</p>
+      <div class="hero-ctas">
+        <a class="btn btn-solid" href="/vibe-redesign/art-deco/resume/">View Resume</a>
+        <a class="btn btn-line" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a>
+      </div>
+    </div>
+    <div class="ziggurat" aria-hidden="true"></div>
+  </div>
+</header>
+
+<main id="main">
+  <div style="padding:70px 0 0"><div class="wrap"><div class="diamond-rule draw" aria-hidden="true"><i></i></div></div></div>
+
+  <section class="band-light" id="projects" aria-label="Featured projects" style="scroll-margin-top:70px">
+    <div class="wrap">
+      <p class="eyebrow reveal">Selected Work</p>
+      <h2 class="reveal" style="--i:1">Featured Projects</h2>
+      <div class="diamond-rule reveal" style="--i:2" aria-hidden="true"><i></i></div>
+      <p class="lede reveal" style="--i:2">Three constructions in code — each framed, each finished, each open for inspection.</p>
+      <div class="proj-grid">
+        <article class="proj reveal" style="--i:0">
+          <div class="arch" aria-hidden="true"><div class="sunburst-fan"></div></div>
+          <h3>HNanalytics</h3>
+          <p>A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
+          <a class="plink" href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">View Code</a>
+        </article>
+        <article class="proj reveal" style="--i:1">
+          <div class="arch" aria-hidden="true"><div class="sunburst-fan"></div></div>
+          <h3>Luggage Pack</h3>
+          <p>A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
+          <a class="plink" href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Live Site</a>
+          <a class="plink" href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">Code</a>
+        </article>
+        <article class="proj reveal" style="--i:2">
+          <div class="arch" aria-hidden="true"><div class="sunburst-fan"></div></div>
+          <h3>uMatrix Rule Generalizer</h3>
+          <p>A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
+          <a class="plink" href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">Live Site</a>
+          <a class="plink" href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">Code</a>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="band-emerald" id="contact" aria-label="Contact" style="scroll-margin-top:70px">
+    <div class="wrap">
+      <p class="eyebrow reveal">Correspondence</p>
+      <h2 class="reveal" style="--i:1">Correspond</h2>
+      <div class="diamond-rule reveal" style="--i:2" aria-hidden="true"><i></i></div>
+      <p class="lede reveal" style="--i:2">Irvine, California &mdash; remote-friendly. Choose your stationery.</p>
+      <div class="cbtns reveal" style="--i:3">
+        <a class="cbtn" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="cbtn" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a>
+        <a class="cbtn" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener">StackOverflow</a>
+        <a class="cbtn" href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener">Hacker News</a>
+        <a class="cbtn" href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener">Guides</a>
+        <a class="cbtn" href="https://twitter.com/fungbenson" target="_blank" rel="noopener">Twitter</a>
+      </div>
+    </div>
+    <div class="lattice-band draw" aria-hidden="true"></div>
+  </section>
+</main>
+
+<footer class="colophon">
+  <div class="wrap">
+    <div class="foot-mono" aria-hidden="true"><span>BF</span></div>
+    <p>&copy; 2026 Benson Fung &mdash; Art Deco Vibe</p>
+    <p><a href="/vibe-redesign/">&larr; Back to VibeRedesign</a></p>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var els = document.querySelectorAll('.reveal, .draw');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.15, rootMargin: '0px 0px -40px 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
+</body>
+</html>
