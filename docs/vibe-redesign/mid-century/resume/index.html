@@ -1,0 +1,439 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Mid-Century Modern | VibeRedesign</title>
+<meta name="description" content="Resume of Benson Fung in modern mid-century style: atomic-age geometry, warm neutrals, starburst timelines.">
+<link rel="canonical" href="https://bfung.github.io/vibe-redesign/mid-century/resume/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benson Fung">
+<meta property="og:title" content="Resume — Mid-Century Modern | VibeRedesign">
+<meta property="og:description" content="Atomic-age optimism applied to a resume: geometric motifs, strong grids, warm neutrals.">
+<meta property="og:url" content="https://bfung.github.io/vibe-redesign/mid-century/resume/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Resume — Mid-Century Modern | VibeRedesign">
+<meta name="twitter:description" content="Atomic-age optimism applied to a resume.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --oat:#F5EEDF;
+  --ink:#232323;
+  --graphite:#2B2B2F;
+  --taupe:#7A756C;
+  --hairline:#D8CFBB;
+  --persimmon:#D96C2C;
+  --teal:#2F6F6A;
+  --mustard:#D9A62E;
+  --porcelain:#FBF8F1;
+  --display:"Futura","Century Gothic","Trebuchet MS","Segoe UI",Verdana,sans-serif;
+  --body:Georgia,"Palatino Linotype","Book Antiqua",Palatino,"Times New Roman",serif;
+  --ease:cubic-bezier(0.22,1,0.36,1);
+  --maxw:1120px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--oat);
+  color:var(--graphite);
+  font-family:var(--body);
+  font-size:1.0625rem;
+  line-height:1.65;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--persimmon);color:var(--porcelain)}
+a{color:var(--teal)}
+h1,h2,h3{font-family:var(--display);line-height:1.08;font-weight:700;letter-spacing:-0.01em}
+
+/* ============ UTILITIES ============ */
+.wrap{max-width:var(--maxw);margin:0 auto;padding:0 24px}
+.eyebrow{
+  font-family:var(--display);font-weight:700;font-size:.75rem;
+  letter-spacing:.22em;text-transform:uppercase;color:var(--taupe);
+  display:flex;align-items:center;gap:12px;margin-bottom:1rem;
+}
+.eyebrow::after{content:"";width:48px;height:2px;background:var(--hairline)}
+.eyebrow .tick{width:8px;height:8px;background:var(--mustard);flex:none}
+#progress{position:fixed;top:0;left:0;height:4px;width:0;background:var(--persimmon);z-index:200}
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .7s var(--ease),transform .7s var(--ease);transition-delay:calc(var(--i,0)*90ms)}
+.js .reveal.is-visible{opacity:1;transform:none}
+
+/* ============ NAV ============ */
+.site-nav{
+  position:fixed;top:0;left:0;right:0;z-index:100;
+  background:rgba(245,238,223,.94);
+  border-bottom:1px solid var(--hairline);
+}
+.site-nav .wrap{display:flex;align-items:center;justify-content:space-between;height:60px;gap:16px}
+.brand{font-family:var(--display);font-weight:700;letter-spacing:.18em;font-size:.8rem;color:var(--graphite);text-decoration:none;text-transform:uppercase}
+.brand b{color:var(--persimmon)}
+.nav-links{display:flex;gap:26px;list-style:none;align-items:center;overflow-x:auto;scrollbar-width:none;max-width:100%}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links li{flex:none}
+.nav-links a{
+  font-family:var(--display);font-size:.72rem;font-weight:700;letter-spacing:.16em;
+  text-transform:uppercase;color:var(--graphite);text-decoration:none;position:relative;padding:4px 0;
+}
+.nav-links a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:0;background:var(--persimmon);transition:width .35s var(--ease)}
+.nav-links a:hover::after{width:100%}
+.nav-links a.back{color:var(--persimmon)}
+
+/* ============ MOTIFS ============ */
+.starburst{border-radius:50%;background:repeating-conic-gradient(var(--persimmon) 0deg 8deg,transparent 8deg 16deg)}
+.starburst.graphite{background:repeating-conic-gradient(var(--graphite) 0deg 10deg,transparent 10deg 20deg)}
+@keyframes spin{to{transform:rotate(360deg)}}
+.spin-slower{animation:spin 60s linear infinite}
+.atom{position:relative;width:150px;height:150px;flex:none}
+.atom .ring{position:absolute;left:50%;top:50%;width:130px;height:46px;margin:-23px 0 0 -65px;border:1.5px solid var(--graphite);border-radius:50%}
+.atom .ring:nth-child(1){transform:rotate(0deg)}
+.atom .ring:nth-child(2){transform:rotate(60deg);border-color:var(--teal)}
+.atom .ring:nth-child(3){transform:rotate(120deg);border-color:var(--persimmon)}
+.atom .nucleus{position:absolute;left:50%;top:50%;width:14px;height:14px;margin:-7px 0 0 -7px;border-radius:50%;background:var(--persimmon)}
+.halfshell{width:110px;height:56px;background:var(--teal);border-radius:999px 999px 0 0;flex:none}
+
+/* ============ RESUME HEADER ============ */
+.rhead{padding:150px 0 60px}
+.rhead h1{font-size:clamp(2.6rem,7vw,4.6rem);margin:.35rem 0 1rem}
+.js .rhead h1 .mask{display:inline-block;overflow:hidden;vertical-align:bottom;padding-bottom:.08em;margin-bottom:-.08em}
+.js .rhead h1 .word{display:inline-block;transform:translateY(112%);transition:transform .8s var(--ease)}
+.js .rhead h1.loaded .word{transform:none}
+.rhead .role{font-family:var(--display);font-size:.95rem;letter-spacing:.24em;text-transform:uppercase;color:var(--persimmon);margin-bottom:1.2rem}
+.rhead .summary{max-width:60ch;margin-bottom:1.8rem}
+.pill-row{display:flex;flex-wrap:wrap;gap:10px}
+.pill{
+  font-family:var(--display);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--teal);text-decoration:none;border:1.5px solid var(--teal);border-radius:999px;padding:.6rem 1.1rem;
+  transition:background .3s var(--ease),color .3s var(--ease),transform .3s var(--ease);
+}
+.pill:hover{background:var(--teal);color:var(--porcelain);transform:translateY(-2px)}
+.backline{margin-bottom:1.6rem}
+.backline a{font-family:var(--display);font-size:.75rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;color:var(--persimmon);text-decoration:none}
+.backline a:hover{text-decoration:underline;text-underline-offset:4px}
+
+/* ============ SECTIONS ============ */
+section.block{padding:84px 0;border-top:1px solid var(--hairline);scroll-margin-top:70px}
+section.block h2{font-size:clamp(1.75rem,4vw,2.6rem);margin-bottom:.4rem}
+.section-head{display:flex;align-items:center;gap:28px;margin-bottom:3rem;flex-wrap:wrap}
+.section-head p.lede{color:var(--taupe);max-width:52ch}
+
+/* experience — dark band */
+.band{background:var(--ink);color:#EDE6D3;border-top:none;position:relative;overflow:hidden}
+.band .eyebrow{color:#B9B0A0}
+.band h2{color:var(--porcelain)}
+.band .lede{color:#B9B0A0}
+.band-wallpaper{position:absolute;right:-140px;top:-40px;width:520px;height:520px;opacity:.10;pointer-events:none}
+.timeline{position:relative;margin-top:1rem;padding-left:56px}
+.timeline::before{content:"";position:absolute;left:17px;top:8px;bottom:8px;width:2px;background:#4a4a4a}
+.rail-fill{position:absolute;left:17px;top:8px;width:2px;background:var(--persimmon);height:0}
+.job{position:relative;padding:0 0 3rem;display:grid;grid-template-columns:1fr 1fr;gap:8px 32px}
+.job:last-child{padding-bottom:0}
+.job .node{position:absolute;left:-56px;top:2px;width:36px;height:36px;transition:transform .3s var(--ease)}
+.job:hover .node{transform:scale(1.22) rotate(18deg)}
+.job h3{font-size:1.3rem;color:var(--porcelain);grid-column:1}
+.job .meta{grid-column:2;text-align:right;font-family:var(--display);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mustard)}
+.job .company{grid-column:1/-1;font-family:var(--display);font-size:.85rem;letter-spacing:.08em;color:#B9B0A0;margin-top:-4px}
+.job .company a{color:var(--porcelain);text-decoration-color:var(--persimmon);text-underline-offset:3px}
+.job ul{grid-column:1/-1;list-style:none;display:flex;flex-direction:column;gap:.45rem}
+.job ul li{position:relative;padding-left:1.4rem;font-size:.98rem;color:#D8D0BC}
+.job ul li::before{content:"";position:absolute;left:0;top:.72em;width:8px;height:2px;background:var(--persimmon)}
+.job ul a{color:var(--porcelain)}
+.job .pills{grid-column:1/-1;display:flex;flex-wrap:wrap;gap:8px;margin-top:.4rem}
+.job .pills span{
+  font-family:var(--display);font-size:.66rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  border:1px solid #5a5a5a;color:#CFC7B4;border-radius:999px;padding:.32rem .8rem;
+}
+.job.current .node{width:44px;height:44px;left:-60px;top:-2px}
+.job.current .meta::after{content:" ●";color:var(--persimmon)}
+.edu{margin-top:3.5rem;padding-top:2rem;border-top:1px solid #4a4a4a;display:grid;grid-template-columns:1fr 1fr;gap:8px 32px;position:relative}
+.edu h3{font-size:1.15rem;color:var(--porcelain)}
+.edu .meta{font-family:var(--display);font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;color:var(--mustard);text-align:right}
+.edu p{grid-column:1/-1;color:#B9B0A0;font-size:.95rem}
+@media(max-width:760px){.job,.edu{grid-template-columns:1fr}.job .meta,.edu .meta{text-align:left}}
+
+/* skills */
+.skills-grid{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid var(--hairline);border-left:1px solid var(--hairline)}
+.skill-panel{
+  border-right:1px solid var(--hairline);border-bottom:1px solid var(--hairline);
+  padding:30px 28px;transition:background .35s var(--ease),color .35s var(--ease);background:transparent;
+}
+.skill-panel:hover{background:var(--graphite);color:var(--oat)}
+.skill-panel:hover .eyebrow{color:var(--mustard)}
+.skill-panel:hover p{color:#D8D0BC}
+.skill-ico{width:44px;height:44px;margin-bottom:1rem;position:relative}
+.skill-ico.circle{border-radius:50%;border:2.5px solid var(--persimmon)}
+.skill-ico.triangle{width:0;height:0;border-left:24px solid transparent;border-right:24px solid transparent;border-bottom:40px solid var(--teal)}
+.skill-ico.half{width:48px;height:24px;background:var(--mustard);border-radius:999px 999px 0 0}
+.skill-ico.boom{background:var(--persimmon);clip-path:polygon(4% 58%,52% 58%,92% 8%,100% 22%,58% 74%,4% 74%);width:52px;height:32px}
+.skill-ico.diamond{width:34px;height:34px;background:var(--teal);transform:rotate(45deg);margin:5px 5px 21px}
+.skill-ico.bars2{display:flex;gap:6px;align-items:flex-end;height:44px}
+.skill-ico.bars2 i{width:10px;background:var(--graphite)}
+.skill-ico.bars2 i:nth-child(1){height:18px}.skill-ico.bars2 i:nth-child(2){height:32px;background:var(--persimmon)}.skill-ico.bars2 i:nth-child(3){height:44px}
+.skill-panel p{font-size:.98rem}
+.skill-panel .eyebrow{margin-bottom:.8rem}
+@media(max-width:900px){.skills-grid{grid-template-columns:1fr 1fr}}
+@media(max-width:560px){.skills-grid{grid-template-columns:1fr}}
+
+/* colophon + back bar */
+.colophon{padding:70px 0 30px;text-align:center}
+.colophon p{font-family:var(--display);font-size:.72rem;letter-spacing:.16em;text-transform:uppercase;color:var(--taupe)}
+.colophon a{color:var(--persimmon)}
+.backbar{background:var(--graphite);color:var(--oat);text-align:center;padding:1.1rem}
+.backbar a{color:var(--mustard);font-family:var(--display);font-size:.75rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;text-decoration:none}
+.backbar a:hover{text-decoration:underline;text-underline-offset:4px}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none}
+  .js .rhead h1 .word{transform:none}
+}
+</style>
+</head>
+<body>
+<div id="progress" aria-hidden="true"></div>
+
+<nav class="site-nav" aria-label="Page">
+  <div class="wrap">
+    <a class="brand" href="/vibe-redesign/mid-century/">Benson <b>Fung</b></a>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#skills">Skills</a></li>
+      <li><a class="back" href="/vibe-redesign/mid-century/">&larr; Home</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="rhead">
+  <div class="wrap">
+    <p class="backline"><a href="/vibe-redesign/mid-century/">&larr; Back to Mid-Century Home</a></p>
+    <p class="eyebrow"><span class="tick"></span>Resume &mdash; The Spec Sheet</p>
+    <h1 id="hero-name" aria-label="Benson Fung">Benson Fung</h1>
+    <p class="role">Software Systems &amp; People Team Builder</p>
+    <p class="summary">A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification. Focused on Remote or Irvine, CA roles.</p>
+    <div class="pill-row">
+      <a class="pill" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">LinkedIn</a>
+      <a class="pill" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a>
+      <a class="pill" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener">StackOverflow</a>
+    </div>
+  </div>
+</header>
+
+<section class="block band" id="experience">
+  <div class="band-wallpaper starburst spin-slower" aria-hidden="true"></div>
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="atom" aria-hidden="true"><span class="ring"></span><span class="ring"></span><span class="ring"></span><span class="nucleus"></span></div>
+      <div>
+        <p class="eyebrow"><span class="tick"></span>Career &mdash; 01</p>
+        <h2>Experience</h2>
+      </div>
+      <p class="lede">Two decades of building systems and teams &mdash; from Chicago data warehouses to remote engineering leadership.</p>
+    </div>
+
+    <div class="timeline" id="timeline">
+      <div class="rail-fill" id="railFill" aria-hidden="true"></div>
+
+      <article class="job current reveal">
+        <span class="node starburst" aria-hidden="true"></span>
+        <h3>Engineering Manager</h3>
+        <p class="meta">Dec 2022 &ndash; Present</p>
+        <p class="company"><a href="https://www.datadoghq.com/" target="_blank" rel="noopener">Datadog</a> &bull; Remote</p>
+        <ul>
+          <li>Lead Demo Engineering, a software development team creating content that showcases what the Datadog platform can do.</li>
+          <li>Lead the Community Open Source Engineering team, engaging the open source community around <a href="https://vector.dev" target="_blank" rel="noopener">Vector</a> and <a href="https://quickwit.io" target="_blank" rel="noopener">Quickwit</a>.</li>
+        </ul>
+        <div class="pills"><span>Engineering Leadership</span><span>Open Source</span><span>Rust</span><span>Observability</span></div>
+      </article>
+
+      <article class="job reveal">
+        <span class="node starburst graphite" aria-hidden="true"></span>
+        <h3>Director of Data Platform</h3>
+        <p class="meta">Sep 2021 &ndash; Aug 2022</p>
+        <p class="company"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> &bull; Remote</p>
+        <ul>
+          <li>Streamlined software engineering interview process resulting in consistent hiring criteria and high quality of hires.</li>
+          <li>Provided non-technical stakeholders with a predictable and easy to understand feature delivery and launch plan.</li>
+          <li>Forecasted Engineering budget and controlled infrastructure costs (AWS), saving 10% on a $2.0m budget.</li>
+        </ul>
+        <div class="pills"><span>Management</span><span>AWS</span><span>FinOps</span><span>Data Platform</span></div>
+      </article>
+
+      <article class="job reveal">
+        <span class="node starburst graphite" aria-hidden="true"></span>
+        <h3>Principal DevOps Engineer &amp; Manager</h3>
+        <p class="meta">Jan 2020 &ndash; Sep 2021</p>
+        <p class="company"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> &bull; Remote</p>
+        <ul>
+          <li>Evaluated and selected core technologies, balancing build vs. buy. In buy scenarios, tools saved several headcounts in operational overhead.</li>
+          <li>Partnered with the InfoSec organization to craft secure SDLC practices integrated into the CI/CD pipeline.</li>
+          <li>Led and supported development and operations of Kubernetes-based microservices and data pipelines.</li>
+        </ul>
+        <div class="pills"><span>Kubernetes</span><span>DevOps</span><span>CI/CD</span><span>InfoSec</span><span>Terraform</span></div>
+      </article>
+
+      <article class="job reveal">
+        <span class="node starburst graphite" aria-hidden="true"></span>
+        <h3>Sr. Staff DevOps Engineer &amp; Manager</h3>
+        <p class="meta">Jan 2019 &ndash; Jan 2020</p>
+        <p class="company"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> &bull; Remote</p>
+        <ul>
+          <li>Designed and optimized centralized logging and metrics using Datadog for cloud services, reducing SaaS costs and time-to-debug.</li>
+          <li>Implemented secure Over-The-Air (OTA) firmware updates for IoT systems (Raspberry Pi SoCs) for the Eatsa Spotlight Pickup System, removing operational friction for customer staff.</li>
+        </ul>
+        <div class="pills"><span>Datadog</span><span>IoT</span><span>Firmware</span><span>Ansible</span><span>Linux</span></div>
+      </article>
+
+      <article class="job reveal">
+        <span class="node starburst graphite" aria-hidden="true"></span>
+        <h3>Engineering Manager (Core Platform)</h3>
+        <p class="meta">Nov 2014 &ndash; Jul 2016</p>
+        <p class="company"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a> (Acq. by Oracle) &bull; San Francisco, CA</p>
+        <ul>
+          <li>Led the Core Platform team of 4 engineers supporting 70+ developers in build tooling, deployment processes, and automated cloud operations.</li>
+        </ul>
+        <div class="pills"><span>Leadership</span><span>Developer Tooling</span><span>Infrastructure</span></div>
+      </article>
+
+      <article class="job reveal">
+        <span class="node starburst graphite" aria-hidden="true"></span>
+        <h3>Senior Software Engineer</h3>
+        <p class="meta">Aug 2011 &ndash; Jul 2014</p>
+        <p class="company"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a> &bull; San Francisco, CA</p>
+        <ul>
+          <li>Architected and implemented the authentication/authorization service and API gateway for Opower's microservice ecosystem.</li>
+          <li>Developed core framework libraries adopted company-wide to standardize and accelerate microservice deployment and observability.</li>
+        </ul>
+        <div class="pills"><span>Java</span><span>API Gateway</span><span>Microservices</span><span>OAuth2</span></div>
+      </article>
+
+      <article class="job reveal">
+        <span class="node starburst graphite" aria-hidden="true"></span>
+        <h3>Software Engineer</h3>
+        <p class="meta">Oct 2004 &ndash; Dec 2010</p>
+        <p class="company">Incisent Technologies &bull; Chicago, IL</p>
+        <ul>
+          <li>Designed and developed backend services and batch jobs processing statistical data for used car valuations using Java, C#, and Ruby on Rails.</li>
+          <li>Designed, implemented, and operated the Data Warehouse using Microsoft SSIS and SSAS, optimizing report query times for real-time dealership lookups.</li>
+        </ul>
+        <div class="pills"><span>Ruby on Rails</span><span>Java</span><span>SQL Server</span><span>Data Warehouse</span><span>SSIS / SSAS</span></div>
+      </article>
+    </div>
+
+    <div class="edu reveal">
+      <h3>University of Illinois Urbana-Champaign</h3>
+      <p class="meta">Aug 1999 &ndash; May 2003</p>
+      <p>B.S. in Computer Science &bull; Software Engineering Certification Program</p>
+    </div>
+  </div>
+</section>
+
+<section class="block" id="skills">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div class="halfshell" aria-hidden="true"></div>
+      <div>
+        <p class="eyebrow"><span class="tick"></span>Capabilities &mdash; 02</p>
+        <h2>Skills</h2>
+      </div>
+      <p class="lede">The spec sheet: six panels, zero fluff. Hover a panel to flip it into the dark.</p>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-panel reveal" style="--i:0">
+        <div class="skill-ico circle" aria-hidden="true"></div>
+        <p class="eyebrow"><span class="tick"></span>Core Expertise</p>
+        <p>Data Stack Design, Distributed Systems, DevOps &amp; GitOps, Engineering Leadership, Cost Optimization, Cloud Operations</p>
+      </div>
+      <div class="skill-panel reveal" style="--i:1">
+        <div class="skill-ico triangle" aria-hidden="true"></div>
+        <p class="eyebrow"><span class="tick"></span>Languages</p>
+        <p>Python, Java, Ruby, SQL, Bash</p>
+      </div>
+      <div class="skill-panel reveal" style="--i:2">
+        <div class="skill-ico half" aria-hidden="true"></div>
+        <p class="eyebrow"><span class="tick"></span>Infra &amp; Orchestration</p>
+        <p>Kubernetes, Terraform, Ansible, Docker, HashiCorp Vault, Chef / Puppet</p>
+      </div>
+      <div class="skill-panel reveal" style="--i:3">
+        <div class="skill-ico boom" aria-hidden="true"></div>
+        <p class="eyebrow"><span class="tick"></span>Data Platforms</p>
+        <p>Databricks, Delta Lake, Airflow, Snowflake, AWS EMR</p>
+      </div>
+      <div class="skill-panel reveal" style="--i:4">
+        <div class="skill-ico diamond" aria-hidden="true"></div>
+        <p class="eyebrow"><span class="tick"></span>AWS Cloud</p>
+        <p>EKS, RDS, S3, IAM, EC2 / ELB, CloudWatch</p>
+      </div>
+      <div class="skill-panel reveal" style="--i:5">
+        <div class="skill-ico bars2" aria-hidden="true"><i></i><i></i><i></i></div>
+        <p class="eyebrow"><span class="tick"></span>CI/CD &amp; Observability</p>
+        <p>Datadog, CircleCI, Jenkins, Loggly</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="wrap">
+  <div class="colophon">
+    <p>&copy; 2026 Benson Fung &mdash; Mid-Century Resume &nbsp;&middot;&nbsp; <a href="/vibe-redesign/">&larr; All Vibes</a></p>
+  </div>
+</div>
+
+<div class="backbar"><a href="/vibe-redesign/mid-century/">&larr; Back to Mid-Century Home</a></div>
+
+<script>
+(function(){
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* Kinetic headline */
+  var h1 = document.getElementById('hero-name');
+  if (h1 && !reduceMotion) {
+    var words = h1.textContent.trim().split(/\s+/);
+    h1.setAttribute('aria-label', h1.textContent.trim());
+    h1.innerHTML = words.map(function(w, i){
+      return '<span class="mask"><span class="word" style="transition-delay:' + (i * 120) + 'ms">' + w + '</span></span> ';
+    }).join('');
+    requestAnimationFrame(function(){ requestAnimationFrame(function(){ h1.classList.add('loaded'); }); });
+  }
+
+  /* Scroll reveals */
+  var revealEls = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -40px 0px' });
+    revealEls.forEach(function(el){ io.observe(el); });
+  } else {
+    revealEls.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+
+  /* Scroll progress bar + timeline rail fill (rAF-throttled) */
+  var progress = document.getElementById('progress');
+  var railFill = document.getElementById('railFill');
+  var timeline = document.getElementById('timeline');
+  var ticking = false;
+  function update(){
+    ticking = false;
+    var max = document.documentElement.scrollHeight - window.innerHeight;
+    var y = window.scrollY || window.pageYOffset;
+    if (progress && max > 0) progress.style.width = (y / max * 100) + '%';
+    if (railFill && timeline) {
+      var r = timeline.getBoundingClientRect();
+      var total = r.height;
+      var seen = Math.min(Math.max(window.innerHeight * 0.6 - r.top, 0), total);
+      railFill.style.height = (seen / total * 100) + '%';
+    }
+  }
+  window.addEventListener('scroll', function(){
+    if (!ticking) { ticking = true; requestAnimationFrame(update); }
+  }, { passive: true });
+  window.addEventListener('resize', update);
+  update();
+})();
+</script>
+</body>
+</html>

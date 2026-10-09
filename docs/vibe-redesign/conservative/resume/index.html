@@ -1,0 +1,384 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Professional | VibeRedesign</title>
+<meta name="description" content="Resume of Benson Fung in a conservative, professional style: letterpress serif typography and oxblood accents.">
+<link rel="canonical" href="https://bfung.github.io/vibe-redesign/conservative/resume/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benson Fung">
+<meta property="og:title" content="Resume — Professional | VibeRedesign">
+<meta property="og:description" content="A conservative, professional reading of Benson Fung's resume.">
+<meta property="og:url" content="https://bfung.github.io/vibe-redesign/conservative/resume/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Resume — Professional | VibeRedesign">
+<meta name="twitter:description" content="A conservative, professional reading of Benson Fung's resume.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#FAF8F4;
+  --ink:#1A1A1A;
+  --muted:#5C5A56;
+  --rule:#D8D2C4;
+  --oxblood:#6B1F2A;
+  --oxblood-deep:#4A141C;
+  --card:#FFFFFF;
+  --pill-bg:#F0ECE3;
+  --pill-text:#3A382F;
+  --serif:Georgia,'Charter','Palatino Linotype','Book Antiqua',Palatino,'Times New Roman',serif;
+  --sans:-apple-system,BlinkMacSystemFont,'Segoe UI',Roboto,'Helvetica Neue',Arial,sans-serif;
+  --mono:'SF Mono','SFMono-Regular',ui-monospace,Menlo,Consolas,'Liberation Mono',monospace;
+  --measure:720px;
+  --doc:880px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  background-image:
+    repeating-linear-gradient(0deg,rgba(26,26,26,.004) 0 1px,transparent 1px 3px),
+    repeating-linear-gradient(90deg,rgba(26,26,26,.004) 0 1px,transparent 1px 3px),
+    radial-gradient(120% 90% at 50% 0%,transparent 60%,rgba(26,26,26,.025));
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1.0625rem;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--oxblood);color:#fff}
+a{color:var(--oxblood)}
+h1,h2,h3{font-family:var(--serif);font-weight:400;line-height:1.25}
+
+/* ============ DOCUMENT COLUMN ============ */
+.doc{
+  max-width:var(--doc);
+  margin:0 auto;
+  padding:0 2.5rem 4rem;
+  border-left:1px solid var(--rule);
+  border-right:1px solid var(--rule);
+  background:var(--paper);
+  min-height:100vh;
+}
+@media(max-width:940px){
+  .doc{border-left:none;border-right:none;padding:0 1.25rem 3rem}
+}
+
+/* ============ STICKY HEADER ============ */
+.topbar{
+  position:sticky;top:0;z-index:50;
+  background:rgba(250,248,244,.97);
+  border-bottom:1px solid transparent;
+  transition:border-color .25s ease,box-shadow .25s ease;
+  padding:0 2.5rem;
+}
+@media(max-width:940px){.topbar{padding:0 1.25rem}}
+.topbar.scrolled{border-bottom-color:var(--rule);box-shadow:0 1px 0 var(--rule)}
+.topbar-inner{max-width:var(--doc);margin:0 auto;height:64px;display:flex;align-items:center;justify-content:space-between;gap:1rem}
+.brandline{display:flex;align-items:center;gap:.7rem;text-decoration:none;color:var(--ink)}
+.brandline .mono{font-family:var(--serif);font-size:1.05rem;letter-spacing:.02em;white-space:nowrap}
+.nav{display:flex;gap:1.4rem;overflow-x:auto;scrollbar-width:none}
+.nav::-webkit-scrollbar{display:none}
+.nav a{
+  font-size:.8125rem;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);
+  text-decoration:none;white-space:nowrap;padding:.3rem 0;position:relative;
+  transition:color .18s ease;
+}
+.nav a:hover{color:var(--oxblood)}
+.nav a.active{color:var(--oxblood)}
+.nav a.active::after{content:"";position:absolute;left:0;right:0;bottom:-2px;height:2px;background:var(--oxblood)}
+.nav a.backlink{color:var(--oxblood)}
+
+/* monogram seal */
+.seal{
+  width:36px;height:36px;flex:none;border:1.5px solid var(--oxblood);border-radius:50%;
+  display:inline-flex;align-items:center;justify-content:center;
+  font-family:var(--serif);font-size:.95rem;color:var(--oxblood);letter-spacing:.02em;
+  background:var(--paper);
+}
+
+/* ============ RESUME HEADER ============ */
+.back-link{
+  display:inline-block;margin:2.5rem 0 0;font-size:.9rem;color:var(--oxblood);text-decoration:none;
+}
+.back-link:hover{text-decoration:underline;text-underline-offset:3px}
+.resume-head{padding:1.6rem 0 2rem;max-width:var(--measure)}
+.resume-head h1{font-size:2.6rem;letter-spacing:-.01em;margin-bottom:.4rem}
+.resume-head .role{font-family:var(--serif);font-size:1.15rem;color:var(--oxblood);margin-bottom:.8rem}
+.resume-head .summary{font-size:.98rem;margin-bottom:1rem;max-width:60ch}
+.resume-head .contactline{font-family:var(--mono);font-size:.78rem;letter-spacing:.06em;color:var(--muted)}
+.resume-head .contactline a{color:var(--oxblood);text-decoration:none}
+.resume-head .contactline a:hover{text-decoration:underline;text-underline-offset:3px}
+.head-rule{border:none;border-top:1px solid var(--rule);max-width:var(--measure);margin:0 0 1rem}
+
+/* ============ SECTIONS ============ */
+section.block{max-width:var(--measure);margin:0 auto;padding:3rem 0;scroll-margin-top:96px}
+.sec-head{display:flex;align-items:baseline;gap:1rem;margin-bottom:2rem;border-bottom:1px solid var(--rule);padding-bottom:.9rem}
+.sec-num{font-family:var(--serif);font-style:italic;font-size:2rem;color:var(--oxblood);line-height:1}
+.sec-title{font-size:.9rem;letter-spacing:.12em;text-transform:uppercase;font-family:var(--sans);font-weight:600}
+
+/* in-text links */
+.txt a{
+  color:var(--oxblood);text-decoration:underline;text-decoration-color:transparent;
+  text-underline-offset:3px;transition:color .18s ease,text-decoration-color .22s ease;
+}
+.txt a:hover{color:var(--oxblood-deep);text-decoration-color:var(--oxblood-deep)}
+
+/* experience rows */
+.job{display:grid;grid-template-columns:140px 1fr;gap:1.6rem;padding:1.9rem 0;border-bottom:1px solid var(--rule)}
+.job:first-of-type{border-top:1px solid var(--rule)}
+.job-dates{font-family:var(--mono);font-size:.78rem;letter-spacing:.04em;color:var(--muted);text-align:right;line-height:1.9;padding-top:.15rem}
+.job-role{font-family:var(--serif);font-size:1.22rem;margin-bottom:.15rem}
+.job-co{color:var(--oxblood);font-weight:600;font-size:.98rem;margin-bottom:.5rem}
+.job-co .loc{color:var(--muted);font-weight:400}
+.job ul{list-style:disc;margin:0 0 .9rem 1.15rem;font-size:.96rem}
+.job ul li{margin-bottom:.35rem}
+.job ul li::marker{color:var(--oxblood)}
+.pills{display:flex;flex-wrap:wrap;gap:.45rem}
+.pills span{
+  background:var(--pill-bg);color:var(--pill-text);
+  font-size:.75rem;letter-spacing:.04em;border-radius:999px;padding:.28rem .8rem;
+}
+@media(max-width:640px){
+  .job{grid-template-columns:1fr;gap:.4rem}
+  .job-dates{text-align:left}
+}
+
+/* skills */
+.skills-grid{display:grid;grid-template-columns:1fr 1fr;gap:2.2rem 3rem}
+.skill-cat h3{font-family:var(--sans);font-size:.8rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;margin-bottom:.35rem}
+.skill-cat h3::after{content:"";display:block;width:24px;height:2px;background:var(--oxblood);margin-top:.5rem}
+.skill-cat p{font-size:.95rem;color:var(--ink)}
+@media(max-width:640px){.skills-grid{grid-template-columns:1fr}}
+
+/* education footnote */
+.edu{border-top:1px solid var(--rule);padding-top:1.4rem;font-size:.95rem;color:var(--muted)}
+.edu strong{font-family:var(--serif);font-weight:400;color:var(--ink);font-size:1.05rem}
+
+/* footer */
+.colophon{text-align:center;padding:3rem 0 1rem;max-width:var(--measure);margin:0 auto}
+.colophon .double-rule{border:none;border-top:3px solid var(--oxblood);position:relative;margin:0 auto 1.8rem;max-width:var(--measure)}
+.colophon .double-rule::after{content:"";display:block;border-top:1px solid var(--rule);margin-top:6px}
+.colophon .seal{margin-bottom:1rem}
+.colophon p{font-size:.85rem;color:var(--muted);margin-bottom:.4rem}
+.colophon a{color:var(--oxblood);text-decoration:none}
+.colophon a:hover{text-decoration:underline;text-underline-offset:3px}
+
+/* ============ REVEAL ============ */
+.js .reveal{opacity:0;transform:translateY(24px);transition:opacity .6s ease-out,transform .6s ease-out;transition-delay:calc(var(--i,0)*80ms)}
+.js .reveal.visible{opacity:1;transform:none}
+
+/* ============ PRINT ============ */
+@media print{
+  .topbar{display:none!important}
+  body{background:#fff}
+  .doc{border:none;max-width:100%;padding:0}
+  .js .reveal{opacity:1;transform:none}
+  a{color:#000;text-decoration:none}
+  section.block{padding:1.2rem 0}
+  .job{break-inside:avoid}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+
+<header class="topbar" id="topbar">
+  <div class="topbar-inner">
+    <a class="brandline" href="/vibe-redesign/conservative/" aria-label="Benson Fung — conservative home">
+      <span class="seal" aria-hidden="true">BF</span>
+      <span class="mono">Benson Fung</span>
+    </a>
+    <nav class="nav" aria-label="Sections">
+      <a href="#experience">Experience</a>
+      <a href="#skills">Skills</a>
+      <a class="backlink" href="/vibe-redesign/conservative/">&larr; Home</a>
+    </nav>
+  </div>
+</header>
+
+<div class="doc">
+
+  <a class="back-link" href="/vibe-redesign/conservative/">&larr; Back to Conservative Home</a>
+
+  <div class="resume-head txt">
+    <h1>Benson Fung</h1>
+    <p class="role">Software Systems &amp; People Team Builder</p>
+    <p class="summary">A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification. Focused on Remote or Irvine, CA roles.</p>
+    <p class="contactline">Irvine, CA &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">linkedin.com/in/bensonfung</a> &nbsp;&middot;&nbsp; <a href="https://github.com/bfung" target="_blank" rel="noopener">github.com/bfung</a></p>
+  </div>
+  <hr class="head-rule">
+
+  <section class="block txt" id="experience" aria-labelledby="exp-h">
+    <div class="sec-head reveal">
+      <span class="sec-num" aria-hidden="true">01</span>
+      <h2 class="sec-title" id="exp-h">Experience</h2>
+    </div>
+
+    <article class="job reveal">
+      <p class="job-dates">Dec 2022 &ndash;<br>Present</p>
+      <div>
+        <h3 class="job-role">Engineering Manager</h3>
+        <p class="job-co">Datadog <span class="loc">&mdash; Remote</span></p>
+        <ul>
+          <li>Lead Demo Engineering, a software development team creating content that showcases what the Datadog platform can do.</li>
+          <li>Lead the Community Open Source Engineering team, engaging the open source community around <a href="https://vector.dev" target="_blank" rel="noopener">Vector</a> and <a href="https://quickwit.io" target="_blank" rel="noopener">Quickwit</a>.</li>
+        </ul>
+        <div class="pills"><span>Engineering Leadership</span><span>Open Source</span><span>Rust</span><span>Observability</span></div>
+      </div>
+    </article>
+
+    <article class="job reveal">
+      <p class="job-dates">Sep 2021 &ndash;<br>Aug 2022</p>
+      <div>
+        <h3 class="job-role">Director of Data Platform</h3>
+        <p class="job-co">Brightloom <span class="loc">&mdash; Remote</span></p>
+        <ul>
+          <li>Streamlined software engineering interview process resulting in consistent hiring criteria and high quality of hires.</li>
+          <li>Provided non-technical stakeholders with a predictable and easy to understand feature delivery and launch plan.</li>
+          <li>Forecasted Engineering budget and controlled infrastructure costs (AWS), saving 10% on a $2.0m budget.</li>
+        </ul>
+        <div class="pills"><span>Management</span><span>AWS</span><span>FinOps</span><span>Data Platform</span></div>
+      </div>
+    </article>
+
+    <article class="job reveal">
+      <p class="job-dates">Jan 2020 &ndash;<br>Sep 2021</p>
+      <div>
+        <h3 class="job-role">Principal DevOps Engineer &amp; Manager</h3>
+        <p class="job-co">Brightloom <span class="loc">&mdash; Remote</span></p>
+        <ul>
+          <li>Evaluated and selected core technologies, balancing build vs. buy. In buy scenarios, tools saved several headcounts in operational overhead.</li>
+          <li>Partnered with the InfoSec organization to craft secure SDLC practices integrated into the CI/CD pipeline.</li>
+          <li>Led and supported development and operations of Kubernetes-based microservices and data pipelines.</li>
+        </ul>
+        <div class="pills"><span>Kubernetes</span><span>DevOps</span><span>CI/CD</span><span>InfoSec</span><span>Terraform</span></div>
+      </div>
+    </article>
+
+    <article class="job reveal">
+      <p class="job-dates">Jan 2019 &ndash;<br>Jan 2020</p>
+      <div>
+        <h3 class="job-role">Sr. Staff DevOps Engineer &amp; Manager</h3>
+        <p class="job-co">Brightloom <span class="loc">&mdash; Remote</span></p>
+        <ul>
+          <li>Designed and optimized centralized logging and metrics using Datadog for cloud services, reducing SaaS costs and time-to-debug.</li>
+          <li>Implemented secure Over-The-Air (OTA) firmware updates for IoT systems (Raspberry Pi SoCs) for the Eatsa Spotlight Pickup System, removing operational friction for customer staff.</li>
+        </ul>
+        <div class="pills"><span>Datadog</span><span>IoT</span><span>Firmware</span><span>Ansible</span><span>Linux</span></div>
+      </div>
+    </article>
+
+    <article class="job reveal">
+      <p class="job-dates">Nov 2014 &ndash;<br>Jul 2016</p>
+      <div>
+        <h3 class="job-role">Engineering Manager (Core Platform)</h3>
+        <p class="job-co">Opower <span class="loc">(Acq. by Oracle) &mdash; San Francisco, CA</span></p>
+        <ul>
+          <li>Led the Core Platform team of 4 engineers supporting 70+ developers in build tooling, deployment processes, and automated cloud operations.</li>
+        </ul>
+        <div class="pills"><span>Leadership</span><span>Developer Tooling</span><span>Infrastructure</span></div>
+      </div>
+    </article>
+
+    <article class="job reveal">
+      <p class="job-dates">Aug 2011 &ndash;<br>Jul 2014</p>
+      <div>
+        <h3 class="job-role">Senior Software Engineer</h3>
+        <p class="job-co">Opower <span class="loc">&mdash; San Francisco, CA</span></p>
+        <ul>
+          <li>Architected and implemented the authentication/authorization service and API gateway for Opower&rsquo;s microservice ecosystem.</li>
+          <li>Developed core framework libraries adopted company-wide to standardize and accelerate microservice deployment and observability.</li>
+        </ul>
+        <div class="pills"><span>Java</span><span>API Gateway</span><span>Microservices</span><span>OAuth2</span></div>
+      </div>
+    </article>
+
+    <article class="job reveal">
+      <p class="job-dates">Oct 2004 &ndash;<br>Dec 2010</p>
+      <div>
+        <h3 class="job-role">Software Engineer</h3>
+        <p class="job-co">Incisent Technologies <span class="loc">&mdash; Chicago, IL</span></p>
+        <ul>
+          <li>Designed and developed backend services and batch jobs processing statistical data for used car valuations using Java, C#, and Ruby on Rails.</li>
+          <li>Designed, implemented, and operated the Data Warehouse using Microsoft SSIS and SSAS, optimizing report query times for real-time dealership lookups.</li>
+        </ul>
+        <div class="pills"><span>Ruby on Rails</span><span>Java</span><span>SQL Server</span><span>Data Warehouse</span><span>SSIS / SSAS</span></div>
+      </div>
+    </article>
+  </section>
+
+  <section class="block" id="skills" aria-labelledby="skills-h">
+    <div class="sec-head reveal">
+      <span class="sec-num" aria-hidden="true">02</span>
+      <h2 class="sec-title" id="skills-h">Skills</h2>
+    </div>
+    <div class="skills-grid">
+      <div class="skill-cat reveal"><h3>Core Expertise</h3><p>Data Stack Design, Distributed Systems, DevOps &amp; GitOps, Engineering Leadership, Cost Optimization, Cloud Operations</p></div>
+      <div class="skill-cat reveal" style="--i:1"><h3>Languages</h3><p>Python, Java, Ruby, SQL, Bash</p></div>
+      <div class="skill-cat reveal"><h3>Infra &amp; Orchestration</h3><p>Kubernetes, Terraform, Ansible, Docker, HashiCorp Vault, Chef / Puppet</p></div>
+      <div class="skill-cat reveal" style="--i:1"><h3>Data Platforms</h3><p>Databricks, Delta Lake, Airflow, Snowflake, AWS EMR</p></div>
+      <div class="skill-cat reveal"><h3>AWS Cloud</h3><p>EKS, RDS, S3, IAM, EC2 / ELB, CloudWatch</p></div>
+      <div class="skill-cat reveal" style="--i:1"><h3>CI/CD &amp; Observability</h3><p>Datadog, CircleCI, Jenkins, Loggly</p></div>
+    </div>
+    <div class="edu reveal" style="margin-top:2.5rem">
+      <strong>B.S. Computer Science</strong> &mdash; University of Illinois at Urbana-Champaign <span style="color:var(--muted)">(1999 &ndash; 2003)</span>
+    </div>
+  </section>
+
+  <footer class="colophon">
+    <hr class="double-rule">
+    <span class="seal" aria-hidden="true">BF</span>
+    <p>&copy; 2026 Benson Fung. All rights reserved.</p>
+    <p><a href="/vibe-redesign/conservative/">&larr; Back to Conservative Home</a> &nbsp;&middot;&nbsp; <a href="/vibe-redesign/">&uarr; All Vibes</a></p>
+  </footer>
+
+</div><!-- /.doc -->
+
+<script>
+(function(){
+  document.documentElement.classList.add('js');
+
+  /* Scroll reveals */
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12, rootMargin: '0px 0px -8% 0px' });
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('visible'); });
+  }
+
+  /* Sticky header rule + active section link */
+  var topbar = document.getElementById('topbar');
+  var sections = ['experience','skills'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
+  var ticking = false;
+  function onScroll(){
+    ticking = false;
+    topbar.classList.toggle('scrolled', window.scrollY > 24);
+    var current = null;
+    sections.forEach(function(s){
+      if (s.getBoundingClientRect().top <= 120) current = s.id;
+    });
+    navLinks.forEach(function(a){
+      a.classList.toggle('active', a.getAttribute('href') === '#' + current);
+    });
+  }
+  window.addEventListener('scroll', function(){
+    if (!ticking) { ticking = true; requestAnimationFrame(onScroll); }
+  }, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>
