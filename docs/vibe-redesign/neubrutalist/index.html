@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benson Fung — Neo-Brutalist | VibeRedesign</title>
+<meta name="description" content="Benson Fung's portfolio in neo-brutalist style: thick black borders, hard offset shadows, loud flat color. Raw but friendly.">
+<link rel="canonical" href="https://bfung.github.io/vibe-redesign/neubrutalist/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benson Fung">
+<meta property="og:title" content="Benson Fung — Neo-Brutalist | VibeRedesign">
+<meta property="og:description" content="Thick borders, hard shadows, loud flat color. Raw but friendly.">
+<meta property="og:url" content="https://bfung.github.io/vibe-redesign/neubrutalist/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Benson Fung — Neo-Brutalist | VibeRedesign">
+<meta name="twitter:description" content="Thick borders, hard shadows, loud flat color. Raw but friendly.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#FFFDF5;
+  --ink:#111111;
+  --yellow:#FFD23F;
+  --pink:#FF6B6B;
+  --blue:#74B9FF;
+  --mint:#55EFC4;
+  --lav:#C7B9FF;
+  --display:"Arial Black","Archivo Black",Impact,"Franklin Gothic Heavy","Helvetica Neue",sans-serif;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",Menlo,Consolas,monospace;
+  --bd:3px solid var(--ink);
+  --sh:7px 7px 0 0 var(--ink);
+  --sh-sm:4px 4px 0 0 var(--ink);
+  --ease:cubic-bezier(.2,.7,.3,1);
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  background-image:radial-gradient(rgba(17,17,17,.10) 1.5px, transparent 1.6px);
+  background-size:26px 26px;
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1.05rem;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--yellow);color:var(--ink)}
+a{color:var(--ink)}
+h1,h2,h3{font-family:var(--display);line-height:1.02;letter-spacing:-.01em;text-transform:uppercase}
+:focus-visible{outline:4px solid var(--pink);outline-offset:3px}
+.skip{
+  position:fixed;top:-70px;left:16px;z-index:999;background:var(--ink);color:#fff;
+  font-family:var(--mono);font-weight:700;font-size:.8rem;padding:.8rem 1.2rem;
+  text-decoration:none;transition:top .15s;border:var(--bd);
+}
+.skip:focus{top:12px}
+.wrap{max-width:1120px;margin:0 auto;padding:0 24px}
+
+/* ============ NAV ============ */
+.site-nav{
+  position:sticky;top:0;z-index:100;background:var(--paper);
+  border-bottom:var(--bd);
+}
+.site-nav .wrap{display:flex;align-items:center;gap:1rem;height:72px}
+.logo{
+  font-family:var(--display);font-size:1.15rem;background:var(--pink);color:var(--ink);
+  border:var(--bd);box-shadow:var(--sh-sm);padding:.35rem .7rem;transform:rotate(-4deg);
+  text-decoration:none;display:inline-block;transition:transform .15s var(--ease);
+}
+.logo:hover{transform:rotate(2deg) scale(1.06)}
+.nav-links{display:flex;gap:.4rem;list-style:none;margin-left:auto;align-items:center;overflow-x:auto;scrollbar-width:none}
+.nav-links::-webkit-scrollbar{display:none}
+.nav-links li{flex:none}
+.nav-links a.plain{
+  font-family:var(--mono);font-weight:700;font-size:.8rem;letter-spacing:.08em;text-transform:uppercase;
+  text-decoration:none;padding:.55rem .9rem;border:3px solid transparent;
+}
+.nav-links a.plain:hover{border-color:var(--ink);background:var(--blue)}
+.btn{
+  display:inline-block;font-family:var(--display);font-size:.95rem;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);background:var(--yellow);
+  border:var(--bd);box-shadow:var(--sh-sm);padding:.7rem 1.4rem;
+  transition:transform .12s var(--ease),box-shadow .12s var(--ease);
+}
+.btn:hover{transform:translate(2px,2px);box-shadow:2px 2px 0 0 var(--ink)}
+.btn:active{transform:translate(4px,4px);box-shadow:0 0 0 0 var(--ink)}
+.btn.white{background:#fff}
+.btn.pink{background:var(--pink)}
+
+/* ============ HERO ============ */
+.hero{padding:72px 0 64px;position:relative}
+.kicker{
+  display:inline-block;font-family:var(--mono);font-weight:700;font-size:.78rem;letter-spacing:.14em;
+  text-transform:uppercase;background:var(--ink);color:#fff;padding:.5rem 1rem;
+  transform:rotate(-1.5deg);margin-bottom:1.6rem;
+}
+.hero h1{font-size:clamp(3.2rem,11vw,7.5rem);margin-bottom:1rem}
+.hl{position:relative;display:inline-block;padding:0 .12em;z-index:0}
+.hl::before{
+  content:"";position:absolute;inset:8% -2% 4% -2%;background:var(--yellow);
+  border:var(--bd);z-index:-1;transform:rotate(-1deg);
+}
+.hl.pink::before{background:var(--pink)}
+.tagline{font-family:var(--display);font-size:clamp(1.3rem,3.4vw,2rem);margin-bottom:.3rem}
+.subline{font-family:var(--mono);font-weight:700;font-size:1rem;letter-spacing:.06em;margin-bottom:1.4rem}
+.lede{max-width:60ch;margin-bottom:2rem;font-size:1.05rem}
+.hero-ctas{display:flex;gap:1rem;flex-wrap:wrap}
+/* sticker badges */
+.sticker{
+  position:absolute;font-family:var(--display);font-size:.85rem;text-transform:uppercase;
+  border:var(--bd);padding:.6rem .9rem;box-shadow:var(--sh-sm);z-index:2;
+  transition:transform .15s var(--ease);
+}
+.sticker:hover{transform:rotate(6deg) scale(1.08)!important}
+.sticker.s1{background:var(--blue);top:64px;right:6%;transform:rotate(7deg)}
+.sticker.s2{background:var(--mint);bottom:56px;right:12%;transform:rotate(-6deg)}
+.sticker.s3{background:var(--lav);top:46%;left:2%;transform:rotate(-8deg)}
+@media(max-width:900px){.sticker.s3{display:none}.sticker.s1{right:4%}.sticker.s2{right:6%}}
+
+/* ============ MARQUEE ============ */
+.marquee{background:var(--ink);color:var(--yellow);border-top:var(--bd);border-bottom:var(--bd);overflow:hidden;white-space:nowrap}
+.marquee-inner{display:inline-block;padding:.9rem 0;font-family:var(--display);font-size:1.15rem;letter-spacing:.06em;animation:mq 24s linear infinite}
+.marquee:hover .marquee-inner{animation-play-state:paused}
+@keyframes mq{to{transform:translateX(-50%)}}
+.marquee.pink{background:var(--pink);color:var(--ink)}
+
+/* ============ SECTIONS ============ */
+section.block{padding:80px 0;scroll-margin-top:80px}
+.sec-head{display:flex;align-items:center;gap:1.2rem;margin-bottom:2.6rem;flex-wrap:wrap}
+.sec-tag{
+  font-family:var(--display);font-size:.85rem;background:var(--ink);color:#fff;
+  padding:.5rem 1rem;transform:rotate(-1.5deg);text-transform:uppercase;
+}
+.sec-title{font-size:clamp(2rem,5.5vw,3.4rem)}
+.sec-title .u{box-shadow:inset 0 -.32em 0 var(--mint)}
+
+/* ============ PROJECT CARDS ============ */
+.proj-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:32px}
+.proj{
+  background:#fff;border:var(--bd);box-shadow:var(--sh);
+  transition:transform .15s var(--ease),box-shadow .15s var(--ease);
+  display:flex;flex-direction:column;position:relative;
+}
+.proj:nth-child(1){transform:rotate(-1deg)}
+.proj:nth-child(2){transform:rotate(1.2deg)}
+.proj:nth-child(3){transform:rotate(-.6deg)}
+.proj:hover{transform:rotate(0) translate(-3px,-3px);box-shadow:10px 10px 0 0 var(--ink)}
+.proj .zone{padding:1.1rem 1.4rem;border-bottom:var(--bd);font-family:var(--display);font-size:.8rem;letter-spacing:.08em}
+.proj:nth-child(1) .zone{background:var(--yellow)}
+.proj:nth-child(2) .zone{background:var(--pink)}
+.proj:nth-child(3) .zone{background:var(--blue)}
+.proj .pbody{padding:1.6rem;display:flex;flex-direction:column;gap:.8rem;flex:1}
+.proj h3{font-size:1.5rem}
+.proj p{font-size:.98rem}
+.proj .plink{margin-top:auto;padding-top:.8rem;display:flex;gap:1rem;flex-wrap:wrap}
+.proj .plink a{
+  font-family:var(--mono);font-weight:700;font-size:.8rem;text-transform:uppercase;letter-spacing:.06em;
+  text-decoration:none;border-bottom:3px solid var(--yellow);padding-bottom:2px;
+}
+.proj .plink a:hover{background:var(--yellow)}
+@media(max-width:900px){.proj-grid{grid-template-columns:1fr;max-width:520px;margin:0 auto}}
+
+/* ============ CONTACT ============ */
+.contact-zone{background:var(--blue);border-top:var(--bd);border-bottom:var(--bd);padding:80px 0}
+.cgrid{display:flex;flex-wrap:wrap;gap:14px;justify-content:center;margin-top:2.4rem}
+.cbtn{
+  font-family:var(--display);font-size:.9rem;text-transform:uppercase;text-decoration:none;color:var(--ink);
+  background:#fff;border:var(--bd);box-shadow:var(--sh-sm);padding:.8rem 1.5rem;
+  transition:transform .12s var(--ease),box-shadow .12s var(--ease);
+}
+.cbtn:nth-child(odd){transform:rotate(-1.5deg)}
+.cbtn:nth-child(even){transform:rotate(1.5deg)}
+.cbtn:hover{transform:rotate(0) translate(2px,2px);box-shadow:2px 2px 0 0 var(--ink);background:var(--yellow)}
+
+/* ============ FOOTER ============ */
+.colophon{padding:2.6rem 0;text-align:center}
+.colophon p{font-family:var(--mono);font-size:.8rem;font-weight:700;letter-spacing:.06em;margin-bottom:.5rem}
+.colophon a{color:var(--ink)}
+.backbar{background:var(--ink);color:#fff;text-align:center;padding:1rem}
+.backbar a{color:var(--yellow);font-family:var(--display);font-size:.85rem;text-transform:uppercase;text-decoration:none;letter-spacing:.06em}
+.backbar a:hover{text-decoration:underline}
+
+/* ============ REVEAL ============ */
+.js .reveal{opacity:0;transform:translateY(26px) scale(.98);transition:opacity .18s var(--ease),transform .18s var(--ease);transition-delay:calc(var(--i,0)*90ms)}
+.js .reveal.is-visible{opacity:1;transform:none}
+
+@media (prefers-reduced-motion: reduce){
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  html{scroll-behavior:auto}
+  .js .reveal{opacity:1;transform:none}
+  .marquee-inner{animation:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<nav class="site-nav" aria-label="Page">
+  <div class="wrap">
+    <a class="logo" href="/vibe-redesign/neubrutalist/">BF!</a>
+    <ul class="nav-links">
+      <li><a class="plain" href="#projects">Projects</a></li>
+      <li><a class="plain" href="#contact">Contact</a></li>
+      <li><a class="btn" href="/vibe-redesign/neubrutalist/resume/">Resume &rarr;</a></li>
+    </ul>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="wrap" style="position:relative">
+    <span class="sticker s1" aria-hidden="true">100% human</span>
+    <span class="sticker s2" aria-hidden="true">Est. 2004</span>
+    <span class="sticker s3" aria-hidden="true">No frameworks harmed</span>
+    <p class="kicker">Portfolio — the loud edition</p>
+    <h1>Benson<br><span class="hl">Fung</span></h1>
+    <p class="tagline">build better, be better, <span class="hl pink">boba.</span></p>
+    <p class="subline">family, friends, food, fun.</p>
+    <p class="lede"><strong>Software Systems &amp; People Team Builder.</strong> A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification. Focused on Remote or Irvine, CA roles.</p>
+    <div class="hero-ctas">
+      <a class="btn" href="/vibe-redesign/neubrutalist/resume/">Read the Resume &rarr;</a>
+      <a class="btn white" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a>
+      <a class="btn pink" href="#projects">See the Work &darr;</a>
+    </div>
+  </div>
+</header>
+
+<div class="marquee" aria-hidden="true"><div class="marquee-inner" id="mq1"></div></div>
+
+<main id="main">
+  <section class="block" id="projects" aria-label="Featured projects">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-tag">Selected work</span>
+        <h2 class="sec-title">Featured <span class="u">Projects</span></h2>
+      </div>
+      <div class="proj-grid">
+        <article class="proj reveal" style="--i:0">
+          <div class="zone">P-01 // Data</div>
+          <div class="pbody">
+            <h3>HNanalytics</h3>
+            <p>A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
+            <div class="plink"><a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">View code &rarr;</a></div>
+          </div>
+        </article>
+        <article class="proj reveal" style="--i:1">
+          <div class="zone">P-02 // Geometry</div>
+          <div class="pbody">
+            <h3>Luggage Pack</h3>
+            <p>A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
+            <div class="plink">
+              <a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Live site &rarr;</a>
+              <a href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">Code &rarr;</a>
+            </div>
+          </div>
+        </article>
+        <article class="proj reveal" style="--i:2">
+          <div class="zone">P-03 // Devtools</div>
+          <div class="pbody">
+            <h3>uMatrix Rule Generalizer</h3>
+            <p>A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
+            <div class="plink">
+              <a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">Live site &rarr;</a>
+              <a href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">Code &rarr;</a>
+            </div>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee pink" aria-hidden="true"><div class="marquee-inner" id="mq2"></div></div>
+
+  <section class="contact-zone" id="contact" aria-label="Contact">
+    <div class="wrap" style="text-align:center">
+      <div class="sec-head reveal" style="justify-content:center">
+        <span class="sec-tag">Say hello</span>
+        <h2 class="sec-title">Find me <span class="u">everywhere</span></h2>
+      </div>
+      <p class="reveal" style="--i:1;max-width:56ch;margin:0 auto">Irvine, CA — remote-friendly. Pick a sticker, any sticker.</p>
+      <div class="cgrid reveal" style="--i:2">
+        <a class="cbtn" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">LinkedIn</a>
+        <a class="cbtn" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a>
+        <a class="cbtn" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener">StackOverflow</a>
+        <a class="cbtn" href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener">Hacker News</a>
+        <a class="cbtn" href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener">Guides Blog</a>
+        <a class="cbtn" href="https://twitter.com/fungbenson" target="_blank" rel="noopener">Twitter</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="colophon wrap">
+    <p>&copy; 2026 BENSON FUNG — NEO-BRUTALIST VIBE</p>
+    <p><a href="/vibe-redesign/">&larr; Back to VibeRedesign</a></p>
+  </div>
+  <div class="backbar"><a href="/vibe-redesign/neubrutalist/resume/">Read the resume &rarr;</a></div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+  var reduceMotion = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* marquees */
+  function fill(id, text){
+    var el = document.getElementById(id);
+    if (!el) return;
+    var chunk = '';
+    for (var i = 0; i < 5; i++) { chunk += text + '  '; }
+    el.textContent = chunk + chunk;
+  }
+  if (!reduceMotion) {
+    fill('mq1', 'BUILD BETTER \u2605 BE BETTER \u2605 BOBA \u2605 FAMILY \u2605 FRIENDS \u2605 FOOD \u2605 FUN \u2605');
+    fill('mq2', 'SAME FACTS \u2605 LOUDER PAPER \u2605 NO GRADIENTS \u2605 NO MERCY \u2605');
+  }
+
+  /* reveals */
+  var els = document.querySelectorAll('.reveal');
+  if ('IntersectionObserver' in window && !reduceMotion) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.12 });
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('is-visible'); });
+  }
+})();
+</script>
+</body>
+</html>

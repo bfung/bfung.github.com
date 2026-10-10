@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benson Fung — Minimalist | VibeRedesign</title>
+<meta name="description" content="Benson Fung's portfolio reduced to the essential: one column, exquisite type, nothing else. The minimalist VibeRedesign.">
+<link rel="canonical" href="https://bfung.github.io/vibe-redesign/minimalist/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benson Fung">
+<meta property="og:title" content="Benson Fung — Minimalist | VibeRedesign">
+<meta property="og:description" content="Radical restraint: one narrow column, near-black on white, typography carrying everything.">
+<meta property="og:url" content="https://bfung.github.io/vibe-redesign/minimalist/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Benson Fung — Minimalist | VibeRedesign">
+<meta name="twitter:description" content="Radical restraint: one narrow column, near-black on white, typography carrying everything.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --paper:#FDFDFB;
+  --ink:#141414;
+  --muted:#6B6B6B;
+  --hairline:#E7E4DA;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  animation:rise .5s ease-out;
+}
+@keyframes rise{from{opacity:0}to{opacity:1}}
+::selection{background:var(--ink);color:var(--paper)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:1px}
+a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--muted)}
+
+/* skip link */
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:10;
+  background:var(--ink);color:var(--paper);text-decoration:none;
+  padding:.6rem 1rem;font-size:.85rem;
+}
+.skip:focus{left:0}
+
+/* the one column */
+.col{max-width:660px;margin:0 auto;padding:0 24px}
+
+/* quiet navigation */
+.topnav{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:2.25rem 0;font-size:.85rem;
+}
+.topnav .brand{font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-0.01em}
+.topnav .brand:hover{color:var(--muted)}
+.topnav nav a{color:var(--muted);text-decoration:none}
+.topnav nav a:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+
+/* hero */
+.hero{padding:13vh 0 9vh}
+.hero h1{
+  font-size:2.75rem;font-weight:600;letter-spacing:-0.025em;line-height:1.15;
+  margin-bottom:1.4rem;
+}
+.hero .tagline{font-size:1.15rem;color:var(--muted);margin-bottom:.35rem}
+.hero .tagline-sub{font-size:.95rem;color:var(--muted)}
+
+/* the single hairline — the one decorative whisper on the page */
+hr.rule{border:none;border-top:1px solid var(--hairline);margin:0}
+
+/* sections: whitespace is the only separator */
+section.block{margin:5.5rem 0}
+.label{
+  font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:2.25rem;
+}
+
+/* projects */
+.project{margin-bottom:3.25rem}
+.project:last-child{margin-bottom:0}
+.project h3{font-size:1.3rem;font-weight:600;letter-spacing:-0.015em;line-height:1.4;margin-bottom:.5rem}
+.project h3 a{color:var(--ink);text-decoration:none}
+.project h3 a:hover{text-decoration:underline;text-underline-offset:4px}
+.project p.desc{font-size:.96rem;color:var(--ink);max-width:58ch;margin-bottom:.6rem}
+.project p.links{font-size:.85rem;color:var(--muted)}
+.project p.links a{color:var(--muted)}
+.project p.links a:hover{color:var(--ink)}
+.project p.links .sep{margin:0 .5rem;color:var(--hairline)}
+
+/* contact */
+p.contactline{font-size:.95rem;line-height:2.1}
+p.contactline a{color:var(--ink)}
+p.contactline a:hover{color:var(--muted)}
+p.contactline .sep{margin:0 .55rem;color:var(--hairline)}
+
+/* footer */
+footer.site{margin-top:7rem;padding:2.5rem 0 3.5rem}
+footer.site p{font-size:.8rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+footer.site a:hover{color:var(--ink)}
+footer.site .sep{margin:0 .5rem;color:var(--hairline)}
+
+@media (prefers-reduced-motion: reduce){
+  body{animation:none}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important}
+}
+@media (max-width:480px){
+  .hero{padding:9vh 0 7vh}
+  .hero h1{font-size:2.2rem}
+  section.block{margin:4rem 0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="col">
+  <header class="topnav">
+    <a class="brand" href="/vibe-redesign/minimalist/">Benson Fung</a>
+    <nav aria-label="Primary"><a href="/vibe-redesign/minimalist/resume/">Resume &rarr;</a></nav>
+  </header>
+
+  <main id="main">
+    <section class="hero" aria-label="Introduction">
+      <h1>Benson Fung</h1>
+      <p class="tagline">build better, be better, boba.</p>
+      <p class="tagline-sub">family, friends, food, fun.</p>
+    </section>
+
+    <hr class="rule">
+
+    <section class="block" aria-labelledby="projects-h">
+      <h2 class="label" id="projects-h">Projects</h2>
+
+      <article class="project">
+        <h3><a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">HNanalytics</a></h3>
+        <p class="desc">A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
+        <p class="links"><a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">Code &rarr;</a></p>
+      </article>
+
+      <article class="project">
+        <h3><a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Luggage Pack</a></h3>
+        <p class="desc">A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
+        <p class="links"><a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Live site &rarr;</a><span class="sep">&middot;</span><a href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">Code &rarr;</a></p>
+      </article>
+
+      <article class="project">
+        <h3><a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">uMatrix Rule Generalizer</a></h3>
+        <p class="desc">A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
+        <p class="links"><a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">Live site &rarr;</a><span class="sep">&middot;</span><a href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">Code &rarr;</a></p>
+      </article>
+    </section>
+
+    <section class="block" aria-labelledby="contact-h">
+      <h2 class="label" id="contact-h">Contact</h2>
+      <p class="contactline"><a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">LinkedIn</a><span class="sep">&middot;</span><a href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a><span class="sep">&middot;</span><a href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener">StackOverflow</a><span class="sep">&middot;</span><a href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener">Hacker News</a><span class="sep">&middot;</span><a href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener">Guides</a><span class="sep">&middot;</span><a href="https://twitter.com/fungbenson" target="_blank" rel="noopener">Twitter</a></p>
+    </section>
+  </main>
+
+  <footer class="site">
+    <p>&copy; 2026 Benson Fung<span class="sep">&middot;</span><a href="/vibe-redesign/minimalist/resume/">Resume</a><span class="sep">&middot;</span><a href="/vibe-redesign/">&larr; All vibes</a></p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  document.documentElement.classList.add("js");
+})();
+</script>
+</body>
+</html>

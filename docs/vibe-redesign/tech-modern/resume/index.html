@@ -1,0 +1,344 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Résumé — Tech Modern | VibeRedesign</title>
+<meta name="description" content="Benson Fung's résumé in the 2026 dev-tool aesthetic: changelog-style roles, mono metadata, luminous cyan accents.">
+<link rel="canonical" href="https://bfung.github.io/vibe-redesign/tech-modern/resume/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benson Fung">
+<meta property="og:title" content="Résumé — Tech Modern | VibeRedesign">
+<meta property="og:description" content="Changelog-style résumé: dark substrate, mono metadata, luminous cyan accents.">
+<meta property="og:url" content="https://bfung.github.io/vibe-redesign/tech-modern/resume/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Résumé — Tech Modern | VibeRedesign">
+<meta name="twitter:description" content="Changelog-style résumé: dark substrate, mono metadata, luminous cyan.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --bg:#05070A;
+  --bg2:#0A0E13;
+  --panel:#0C1218;
+  --glass:linear-gradient(180deg, rgba(148,163,184,.075), rgba(148,163,184,.022));
+  --border:rgba(148,163,184,.14);
+  --border-soft:rgba(148,163,184,.08);
+  --text:#E8EEF4;
+  --muted:#8B98AB;
+  --faint:#5B6B7E;
+  --accent:#22D3EE;
+  --accent-dim:rgba(34,211,238,.12);
+  --accent-glow:rgba(34,211,238,.32);
+  --amber:#FBBF24;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{background:var(--bg);color:var(--text);font-family:var(--sans);font-size:1.0625rem;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden}
+::selection{background:var(--accent);color:#03181c}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{line-height:1.12;letter-spacing:-.03em;font-weight:800}
+.bg-dots{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(rgba(148,163,184,.14) 1px, transparent 1.4px);
+  background-size:28px 28px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 62% at 50% -4%, #000 25%, transparent 78%);
+  mask-image:radial-gradient(ellipse 90% 62% at 50% -4%, #000 25%, transparent 78%)}
+.orb{position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(90px);
+  width:560px;height:380px;left:50%;top:-160px;transform:translateX(-50%);
+  background:radial-gradient(closest-side, rgba(34,211,238,.14), transparent 70%)}
+.wrap{max-width:960px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.skip{position:fixed;top:-64px;left:16px;z-index:200;background:var(--accent);color:#03181c;
+  font-family:var(--mono);font-size:.8rem;font-weight:700;padding:.7rem 1.1rem;border-radius:8px;
+  text-decoration:none;transition:top .2s}
+.skip:focus{top:12px}
+
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .25s,border-color .25s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(5,7,10,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--border-soft)}
+.nav-in{max-width:960px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:var(--mono);font-size:.95rem;font-weight:700;color:var(--text);text-decoration:none}
+.brand b{color:var(--accent)}
+.nav-links{display:flex;gap:26px;list-style:none;align-items:center}
+.nav-links a{font-size:.86rem;color:var(--muted);text-decoration:none;transition:color .18s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.hl{color:var(--accent);font-weight:600}
+@media(max-width:640px){.nav-links{gap:16px}.nav-links a{font-size:.78rem}}
+
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .28s var(--ease),transform .28s var(--ease);transition-delay:var(--d,0ms)}
+.js .rv.in{opacity:1;transform:none}
+
+.back{font-family:var(--mono);font-size:.78rem;color:var(--muted);text-decoration:none;letter-spacing:.04em}
+.back:hover{color:var(--accent)}
+.rhead{padding:132px 0 40px}
+.status{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:.5rem 1rem;margin:22px 0 26px;
+  background:rgba(12,18,24,.6)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,.55)}55%{box-shadow:0 0 0 7px rgba(34,211,238,0)}}
+.rhead h1{font-size:clamp(2.6rem,7vw,4.5rem);margin-bottom:10px;
+  background:linear-gradient(180deg,#fff 25%,#9FB0C3 95%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){.rhead h1{color:var(--text)}}
+.role{font-family:var(--mono);font-size:.9rem;color:var(--accent);letter-spacing:.05em;margin-bottom:16px}
+.summary{color:var(--muted);max-width:64ch;margin-bottom:26px}
+.chips{display:flex;flex-wrap:wrap;gap:10px}
+.chip{font-family:var(--mono);font-size:.74rem;color:var(--muted);text-decoration:none;
+  border:1px solid var(--border);border-radius:999px;padding:.5rem 1rem;transition:border-color .2s,color .2s,transform .2s var(--ease)}
+.chip:hover{border-color:rgba(34,211,238,.5);color:var(--accent);transform:translateY(-1px)}
+
+section{padding:64px 0;position:relative;scroll-margin-top:64px}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.18em;color:var(--accent);margin-bottom:26px}
+.eyebrow::before{content:"~/";color:var(--faint)}
+
+.job{border-top:1px solid var(--border-soft);padding:1.7rem .4rem;display:grid;
+  grid-template-columns:190px 1fr;gap:8px 28px;transition:background .2s}
+.job:last-of-type{border-bottom:1px solid var(--border-soft)}
+.job:hover{background:rgba(148,163,184,.03)}
+.job .when{font-family:var(--mono);font-size:.74rem;color:var(--faint);letter-spacing:.04em;padding-top:.3rem}
+.job .when .now{display:inline-block;margin-top:8px;font-size:.64rem;letter-spacing:.12em;color:var(--amber);
+  border:1px solid rgba(251,191,36,.35);border-radius:6px;padding:.2rem .55rem}
+.job h3{font-size:1.28rem;margin-bottom:2px}
+.job h3 a{color:var(--text);text-decoration:none}
+.job h3 a:hover{color:var(--accent)}
+.job .co{font-size:.9rem;color:var(--muted);margin-bottom:.8rem}
+.job .co a{color:var(--muted);text-decoration:none;border-bottom:1px dotted var(--faint)}
+.job .co a:hover{color:var(--accent);border-bottom-color:var(--accent)}
+.job ul{list-style:none;margin-bottom:1rem;max-width:72ch}
+.job ul li{position:relative;padding-left:1.2rem;margin-bottom:.45rem;font-size:.95rem;color:#C3CDD9}
+.job ul li::before{content:"–";position:absolute;left:0;color:var(--accent)}
+.job ul a{color:var(--text);text-decoration:underline;text-decoration-color:var(--accent);text-underline-offset:3px}
+.tags{display:flex;flex-wrap:wrap;gap:8px}
+.tags span{font-family:var(--mono);font-size:.66rem;letter-spacing:.08em;color:var(--muted);
+  background:var(--accent-dim);border:1px solid rgba(34,211,238,.22);border-radius:6px;padding:.28rem .65rem}
+@media(max-width:700px){.job{grid-template-columns:1fr;gap:4px}.job .when{padding-top:0}.job .when .now{margin:4px 0 0 8px}}
+
+.sec-title{font-size:clamp(1.9rem,4vw,2.7rem);margin-bottom:30px}
+.stack{display:grid;grid-template-columns:repeat(3,1fr);gap:14px}
+.panel{background:var(--glass);border:1px solid var(--border-soft);border-radius:var(--r);padding:1.5rem;
+  transition:border-color .2s,transform .2s var(--ease);-webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.panel:hover{border-color:rgba(34,211,238,.35);transform:translateY(-2px)}
+.panel h3{font-family:var(--mono);font-size:.72rem;font-weight:700;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--accent);margin-bottom:1rem}
+.panel p{font-size:.88rem;color:var(--muted);line-height:1.9}
+@media(max-width:900px){.stack{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.stack{grid-template-columns:1fr}}
+
+.edu{background:var(--glass);border:1px solid var(--border-soft);border-radius:var(--r);padding:1.6rem 1.8rem;
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.edu b{font-size:1.05rem;letter-spacing:-.01em}
+.edu span{font-family:var(--mono);font-size:.72rem;color:var(--muted);letter-spacing:.06em}
+.edu em{display:block;font-style:normal;font-size:.85rem;color:var(--muted);margin-top:2px}
+
+footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-top:40px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.foot p{font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.06em}
+.foot nav{display:flex;gap:20px}
+.foot a{color:var(--muted);font-size:.82rem;text-decoration:none}
+.foot a:hover{color:var(--accent)}
+.ver{font-family:var(--mono);font-size:.68rem;color:var(--amber);border:1px solid rgba(251,191,36,.3);
+  border-radius:6px;padding:.25rem .6rem;letter-spacing:.08em}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="bg-dots" aria-hidden="true"></div>
+<div class="orb" aria-hidden="true"></div>
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="nav-in">
+    <a class="brand" href="/vibe-redesign/tech-modern/">bfung<b>_</b></a>
+    <ul class="nav-links">
+      <li><a href="#experience">Experience</a></li>
+      <li><a href="#stack">Stack</a></li>
+      <li><a class="hl" href="/vibe-redesign/tech-modern/">← Home</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="rhead wrap">
+    <a class="back rv" href="/vibe-redesign/tech-modern/">← back to home</a>
+    <p class="status rv" style="--d:60ms"><span class="dot" aria-hidden="true"></span>last deployed · dec 2022 — present</p>
+    <h1 class="rv" style="--d:100ms">Benson Fung</h1>
+    <p class="role rv" style="--d:140ms">Software Systems &amp; People Team Builder</p>
+    <p class="summary rv" style="--d:180ms">A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification. Focused on Remote or Irvine, CA roles.</p>
+    <div class="chips rv" style="--d:220ms">
+      <span class="chip">Irvine, CA</span>
+      <a class="chip" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">linkedin ↗</a>
+      <a class="chip" href="https://github.com/bfung" target="_blank" rel="noopener">github ↗</a>
+      <a class="chip" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener">stackoverflow ↗</a>
+    </div>
+  </header>
+
+  <section id="experience" aria-labelledby="exp-h">
+    <div class="wrap">
+      <p class="eyebrow rv">experience</p>
+      <h2 class="sec-title rv" id="exp-h" style="--d:60ms">Changelog</h2>
+
+      <article class="job rv">
+        <p class="when">Dec 2022 — Present<br><span class="now">● CURRENT</span></p>
+        <div>
+          <h3>Engineering Manager</h3>
+          <p class="co"><a href="https://www.datadoghq.com/" target="_blank" rel="noopener">Datadog</a> · Remote</p>
+          <ul>
+            <li>Lead Demo Engineering, a software development team creating content that showcases what the Datadog platform can do.</li>
+            <li>Lead the Community Open Source Engineering team, engaging the open source community around <a href="https://vector.dev" target="_blank" rel="noopener">Vector</a> and <a href="https://quickwit.io" target="_blank" rel="noopener">Quickwit</a>.</li>
+          </ul>
+          <div class="tags"><span>Engineering Leadership</span><span>Open Source</span><span>Rust</span><span>Observability</span></div>
+        </div>
+      </article>
+
+      <article class="job rv">
+        <p class="when">Sep 2021 — Aug 2022</p>
+        <div>
+          <h3>Director of Data Platform</h3>
+          <p class="co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> · Remote</p>
+          <ul>
+            <li>Streamlined software engineering interview process resulting in consistent hiring criteria and high quality of hires.</li>
+            <li>Provided non-technical stakeholders with a predictable and easy to understand feature delivery and launch plan.</li>
+            <li>Forecasted Engineering budget and controlled infrastructure costs (AWS), saving 10% on a $2.0m budget.</li>
+          </ul>
+          <div class="tags"><span>Management</span><span>AWS</span><span>FinOps</span><span>Data Platform</span></div>
+        </div>
+      </article>
+
+      <article class="job rv">
+        <p class="when">Jan 2020 — Sep 2021</p>
+        <div>
+          <h3>Principal DevOps Engineer &amp; Manager</h3>
+          <p class="co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> · Remote</p>
+          <ul>
+            <li>Evaluated and selected core technologies, balancing build vs. buy. In buy scenarios, tools saved several headcounts in operational overhead.</li>
+            <li>Partnered with the InfoSec organization to craft secure SDLC practices integrated into the CI/CD pipeline.</li>
+            <li>Led and supported development and operations of Kubernetes-based microservices and data pipelines.</li>
+          </ul>
+          <div class="tags"><span>Kubernetes</span><span>DevOps</span><span>CI/CD</span><span>InfoSec</span><span>Terraform</span></div>
+        </div>
+      </article>
+
+      <article class="job rv">
+        <p class="when">Jan 2019 — Jan 2020</p>
+        <div>
+          <h3>Senior Staff DevOps Engineer &amp; Manager</h3>
+          <p class="co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> · Remote</p>
+          <ul>
+            <li>Designed and optimized centralized logging and metrics using Datadog for cloud services, reducing SaaS costs and time-to-debug.</li>
+            <li>Implemented secure Over-The-Air (OTA) firmware updates for IoT systems (Raspberry Pi SoCs) for the Eatsa Spotlight Pickup System, removing operational friction for customer staff.</li>
+          </ul>
+          <div class="tags"><span>Datadog</span><span>IoT</span><span>Firmware</span><span>Ansible</span><span>Linux</span></div>
+        </div>
+      </article>
+
+      <article class="job rv">
+        <p class="when">Nov 2014 — Jul 2016</p>
+        <div>
+          <h3>Engineering Manager (Core Platform)</h3>
+          <p class="co"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a> (acq. by Oracle) · San Francisco, CA</p>
+          <ul>
+            <li>Led the Core Platform team of 4 engineers supporting 70+ developers in build tooling, deployment processes, and automated cloud operations.</li>
+          </ul>
+          <div class="tags"><span>Leadership</span><span>Developer Tooling</span><span>Infrastructure</span></div>
+        </div>
+      </article>
+
+      <article class="job rv">
+        <p class="when">Aug 2011 — Jul 2014</p>
+        <div>
+          <h3>Senior Software Engineer</h3>
+          <p class="co"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a> · San Francisco, CA</p>
+          <ul>
+            <li>Architected and implemented the authentication/authorization service and API gateway for Opower's microservice ecosystem.</li>
+            <li>Developed core framework libraries adopted company-wide to standardize and accelerate microservice deployment and observability.</li>
+          </ul>
+          <div class="tags"><span>Java</span><span>API Gateway</span><span>Microservices</span><span>OAuth2</span></div>
+        </div>
+      </article>
+
+      <article class="job rv">
+        <p class="when">Oct 2004 — Dec 2010</p>
+        <div>
+          <h3>Software Engineer</h3>
+          <p class="co">Incisent Technologies · Chicago, IL</p>
+          <ul>
+            <li>Designed and developed backend services and batch jobs processing statistical data for used car valuations using Java, C#, and Ruby on Rails.</li>
+            <li>Designed, implemented, and operated the Data Warehouse using Microsoft SSIS and SSAS, optimizing report query times for real-time dealership lookups.</li>
+          </ul>
+          <div class="tags"><span>Ruby on Rails</span><span>Java</span><span>SQL Server</span><span>Data Warehouse</span><span>SSIS / SSAS</span></div>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="stack" aria-labelledby="stack-h">
+    <div class="wrap">
+      <p class="eyebrow rv">stack</p>
+      <h2 class="sec-title rv" id="stack-h" style="--d:60ms">Dependencies</h2>
+      <div class="stack">
+        <div class="panel rv" style="--d:0ms"><h3>core-expertise</h3><p>Data Stack Design, Distributed Systems, DevOps &amp; GitOps, Engineering Leadership, Cost Optimization, Cloud Operations</p></div>
+        <div class="panel rv" style="--d:60ms"><h3>languages</h3><p>Python, Java, Ruby, SQL, Bash</p></div>
+        <div class="panel rv" style="--d:120ms"><h3>infra</h3><p>Kubernetes, Terraform, Ansible, Docker, HashiCorp Vault, Chef / Puppet</p></div>
+        <div class="panel rv" style="--d:0ms"><h3>data-platforms</h3><p>Databricks, Delta Lake, Airflow, Snowflake, AWS EMR</p></div>
+        <div class="panel rv" style="--d:60ms"><h3>aws</h3><p>EKS, RDS, S3, IAM, EC2 / ELB, CloudWatch</p></div>
+        <div class="panel rv" style="--d:120ms"><h3>cicd-observability</h3><p>Datadog, CircleCI, Jenkins, Loggly</p></div>
+      </div>
+    </div>
+  </section>
+
+  <section aria-labelledby="edu-h">
+    <div class="wrap">
+      <p class="eyebrow rv">education</p>
+      <div class="edu rv">
+        <div><b id="edu-h">University of Illinois Urbana-Champaign</b><em>B.S. Computer Science · Software Engineering Certification Program</em></div>
+        <span>Aug 1999 — May 2003</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>© 2026 Benson Fung · <span class="ver">v4.0 tech-modern</span></p>
+    <nav aria-label="Footer">
+      <a href="/vibe-redesign/tech-modern/">← Home</a>
+      <a href="/vibe-redesign/">All vibes</a>
+    </nav>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  var nav = document.getElementById('nav');
+  var tick = false;
+  function onScroll(){ tick = false; nav.classList.toggle('scrolled', window.scrollY > 24); }
+  window.addEventListener('scroll', function(){
+    if(!tick){ tick = true; requestAnimationFrame(onScroll); }
+  }, {passive:true});
+  onScroll();
+
+  var els = document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.1, rootMargin:'0px 0px -30px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+})();
+</script>
+</body>
+</html>

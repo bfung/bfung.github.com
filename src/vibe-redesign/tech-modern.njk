@@ -1,0 +1,364 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benson Fung — Tech Modern | VibeRedesign</title>
+<meta name="description" content="Benson Fung's portfolio in the 2026 dev-tool aesthetic: dark substrate, luminous cyan accents, glass panels, mono micro-labels.">
+<link rel="canonical" href="https://bfung.github.io/vibe-redesign/tech-modern/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benson Fung">
+<meta property="og:title" content="Benson Fung — Tech Modern | VibeRedesign">
+<meta property="og:description" content="The 2026 dev-tool aesthetic: dark substrate, luminous cyan, glass panels, mono micro-labels.">
+<meta property="og:url" content="https://bfung.github.io/vibe-redesign/tech-modern/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Benson Fung — Tech Modern | VibeRedesign">
+<meta name="twitter:description" content="The 2026 dev-tool aesthetic: dark substrate, luminous cyan, glass panels.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --bg:#05070A;
+  --bg2:#0A0E13;
+  --panel:#0C1218;
+  --glass:linear-gradient(180deg, rgba(148,163,184,.075), rgba(148,163,184,.022));
+  --border:rgba(148,163,184,.14);
+  --border-soft:rgba(148,163,184,.08);
+  --text:#E8EEF4;
+  --muted:#8B98AB;
+  --faint:#5B6B7E;
+  --accent:#22D3EE;
+  --accent-dim:rgba(34,211,238,.12);
+  --accent-glow:rgba(34,211,238,.32);
+  --amber:#FBBF24;
+  --sans:-apple-system,BlinkMacSystemFont,"SF Pro Display","Inter","Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+  --mono:ui-monospace,"SF Mono",SFMono-Regular,Menlo,Consolas,"Liberation Mono",monospace;
+  --ease:cubic-bezier(.22,1,.36,1);
+  --r:14px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);color:var(--text);
+  font-family:var(--sans);font-size:1.0625rem;line-height:1.65;
+  -webkit-font-smoothing:antialiased;overflow-x:hidden;
+}
+::selection{background:var(--accent);color:#03181c}
+a{color:var(--accent)}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:4px}
+h1,h2,h3{line-height:1.08;letter-spacing:-.03em;font-weight:800}
+
+/* backdrop layers */
+.bg-dots{position:fixed;inset:0;z-index:0;pointer-events:none;
+  background-image:radial-gradient(rgba(148,163,184,.14) 1px, transparent 1.4px);
+  background-size:28px 28px;
+  -webkit-mask-image:radial-gradient(ellipse 90% 62% at 50% -4%, #000 25%, transparent 78%);
+  mask-image:radial-gradient(ellipse 90% 62% at 50% -4%, #000 25%, transparent 78%);}
+.orb{position:fixed;z-index:0;pointer-events:none;border-radius:50%;filter:blur(90px)}
+.orb-a{width:560px;height:380px;left:50%;top:-160px;transform:translateX(-50%);
+  background:radial-gradient(closest-side, rgba(34,211,238,.16), transparent 70%)}
+.orb-b{width:420px;height:420px;right:-140px;top:38%;background:radial-gradient(closest-side, rgba(34,211,238,.07), transparent 70%)}
+
+.wrap{max-width:1080px;margin:0 auto;padding:0 24px;position:relative;z-index:1}
+.skip{position:fixed;top:-64px;left:16px;z-index:200;background:var(--accent);color:#03181c;
+  font-family:var(--mono);font-size:.8rem;font-weight:700;padding:.7rem 1.1rem;border-radius:8px;
+  text-decoration:none;transition:top .2s}
+.skip:focus{top:12px}
+
+/* nav */
+.nav{position:fixed;top:0;left:0;right:0;z-index:100;transition:background .25s,border-color .25s,backdrop-filter .25s;border-bottom:1px solid transparent}
+.nav.scrolled{background:rgba(5,7,10,.78);-webkit-backdrop-filter:blur(14px);backdrop-filter:blur(14px);border-bottom-color:var(--border-soft)}
+.nav-in{max-width:1080px;margin:0 auto;padding:0 24px;height:60px;display:flex;align-items:center;justify-content:space-between;gap:16px}
+.brand{font-family:var(--mono);font-size:.95rem;font-weight:700;color:var(--text);text-decoration:none;letter-spacing:-.01em}
+.brand b{color:var(--accent);font-weight:700}
+.nav-links{display:flex;gap:26px;list-style:none;align-items:center}
+.nav-links a{font-size:.86rem;color:var(--muted);text-decoration:none;transition:color .18s}
+.nav-links a:hover{color:var(--text)}
+.nav-links a.hl{color:var(--accent);font-weight:600}
+@media(max-width:640px){.nav-links{gap:16px}.nav-links a{font-size:.78rem}}
+
+/* reveal */
+.js .rv{opacity:0;transform:translateY(14px);transition:opacity .28s var(--ease),transform .28s var(--ease);transition-delay:var(--d,0ms)}
+.js .rv.in{opacity:1;transform:none}
+
+/* hero */
+.hero{padding:148px 0 72px;text-align:center;position:relative}
+.status{display:inline-flex;align-items:center;gap:9px;font-family:var(--mono);font-size:.72rem;letter-spacing:.1em;text-transform:uppercase;
+  color:var(--muted);border:1px solid var(--border);border-radius:999px;padding:.5rem 1rem;margin-bottom:28px;
+  background:rgba(12,18,24,.6);-webkit-backdrop-filter:blur(8px);backdrop-filter:blur(8px)}
+.dot{width:8px;height:8px;border-radius:50%;background:var(--accent);flex:none;animation:pulse 2.2s infinite}
+@keyframes pulse{0%,100%{box-shadow:0 0 0 0 rgba(34,211,238,.55)}55%{box-shadow:0 0 0 7px rgba(34,211,238,0)}}
+.hero h1{font-size:clamp(3rem,8.5vw,5.75rem);margin-bottom:18px;
+  background:linear-gradient(180deg,#fff 25%,#9FB0C3 95%);
+  -webkit-background-clip:text;background-clip:text;color:transparent}
+@supports not ((-webkit-background-clip:text) or (background-clip:text)){.hero h1{color:var(--text)}}
+.tagline{font-size:clamp(1.15rem,2.4vw,1.45rem);color:var(--text);font-weight:600;margin-bottom:6px}
+.tagline .boba{color:var(--accent)}
+.subline{font-family:var(--mono);font-size:.85rem;color:var(--muted);letter-spacing:.06em;margin-bottom:30px}
+.ctas{display:flex;gap:12px;justify-content:center;flex-wrap:wrap;margin-bottom:56px}
+.btn{display:inline-flex;align-items:center;gap:8px;font-size:.92rem;font-weight:600;text-decoration:none;
+  border-radius:999px;padding:.85rem 1.7rem;transition:transform .18s var(--ease),box-shadow .18s,background .18s,border-color .18s}
+.btn:active{transform:scale(.98)}
+.btn-primary{background:#fff;color:#05070A}
+.btn-primary:hover{box-shadow:0 0 28px rgba(34,211,238,.35);transform:translateY(-1px)}
+.btn-ghost{border:1px solid var(--border);color:var(--text);background:rgba(12,18,24,.5)}
+.btn-ghost:hover{border-color:var(--accent);color:var(--accent);transform:translateY(-1px)}
+
+/* terminal card */
+.term{max-width:640px;margin:0 auto;text-align:left;background:var(--glass);
+  border:1px solid var(--border);border-radius:var(--r);overflow:hidden;
+  box-shadow:0 24px 70px -30px rgba(0,0,0,.8), 0 0 0 1px rgba(0,0,0,.4), 0 0 44px -18px var(--accent-glow);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px)}
+.term-bar{display:flex;align-items:center;gap:7px;padding:.7rem 1rem;border-bottom:1px solid var(--border-soft)}
+.term-bar i{width:11px;height:11px;border-radius:50%;background:#2A3440}
+.term-bar i:nth-child(1){background:#FF5F57}.term-bar i:nth-child(2){background:#FEBC2E}.term-bar i:nth-child(3){background:#28C840}
+.term-bar span{margin-left:8px;font-family:var(--mono);font-size:.7rem;color:var(--faint);letter-spacing:.06em}
+.term-body{padding:1.2rem 1.3rem 1.4rem;font-family:var(--mono);font-size:.86rem;line-height:1.9;min-height:172px}
+.term-body .p{color:var(--accent)}
+.term-body .o{color:var(--text)}
+.term-body .m{color:var(--muted)}
+.caret{display:inline-block;width:9px;height:1.15em;background:var(--accent);vertical-align:text-bottom;animation:blink 1s steps(1) infinite}
+@keyframes blink{50%{opacity:0}}
+
+/* stats */
+.stats{display:grid;grid-template-columns:repeat(4,1fr);gap:12px;max-width:860px;margin:64px auto 0}
+.stat{background:var(--glass);border:1px solid var(--border-soft);border-radius:12px;padding:1.2rem .8rem;transition:border-color .2s,transform .2s var(--ease)}
+.stat:hover{border-color:var(--border);transform:translateY(-2px)}
+.stat b{display:block;font-size:1.9rem;letter-spacing:-.03em;font-weight:800}
+.stat b em{font-style:normal;color:var(--accent)}
+.stat span{font-family:var(--mono);font-size:.68rem;letter-spacing:.12em;text-transform:uppercase;color:var(--muted)}
+@media(max-width:640px){.stats{grid-template-columns:repeat(2,1fr)}}
+
+/* sections */
+section{padding:88px 0;position:relative;scroll-margin-top:64px}
+.eyebrow{font-family:var(--mono);font-size:.74rem;letter-spacing:.18em;color:var(--accent);margin-bottom:14px}
+.eyebrow::before{content:"~/";color:var(--faint)}
+.sec-title{font-size:clamp(1.9rem,4vw,2.9rem);margin-bottom:12px}
+.sec-sub{color:var(--muted);max-width:60ch;margin-bottom:44px}
+
+/* project cards */
+.grid3{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}
+.card{background:var(--glass);border:1px solid var(--border-soft);border-radius:var(--r);padding:1.7rem;
+  display:flex;flex-direction:column;gap:.7rem;position:relative;overflow:hidden;
+  transition:transform .22s var(--ease),border-color .22s,box-shadow .22s;
+  -webkit-backdrop-filter:blur(10px);backdrop-filter:blur(10px)}
+.card::before{content:"";position:absolute;inset:0;opacity:0;transition:opacity .25s;pointer-events:none;
+  background:radial-gradient(420px 200px at 50% -60px, var(--accent-glow), transparent 70%)}
+.card:hover{transform:translateY(-4px);border-color:rgba(34,211,238,.4);box-shadow:0 18px 50px -20px rgba(0,0,0,.7)}
+.card:hover::before{opacity:1}
+.card .idx{font-family:var(--mono);font-size:.7rem;color:var(--faint);letter-spacing:.14em}
+.card h3{font-size:1.3rem;letter-spacing:-.02em}
+.card p{font-size:.94rem;color:var(--muted);flex:1}
+.card .links{display:flex;gap:16px;margin-top:.4rem}
+.card .links a{font-family:var(--mono);font-size:.76rem;letter-spacing:.06em;color:var(--accent);text-decoration:none}
+.card .links a:hover{text-decoration:underline;text-underline-offset:4px}
+@media(max-width:900px){.grid3{grid-template-columns:1fr}}
+
+/* contact */
+.contact-panel{background:var(--glass);border:1px solid var(--border);border-radius:20px;padding:clamp(2rem,5vw,3.5rem);
+  -webkit-backdrop-filter:blur(12px);backdrop-filter:blur(12px);position:relative;overflow:hidden}
+.contact-panel::before{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(560px 240px at 50% -80px, var(--accent-glow), transparent 70%)}
+.contact-panel h2{font-size:clamp(1.8rem,4vw,2.7rem);margin-bottom:10px;position:relative}
+.contact-panel>p{color:var(--muted);margin-bottom:32px;position:relative}
+.linkrows{display:grid;grid-template-columns:1fr 1fr;gap:10px;position:relative}
+@media(max-width:640px){.linkrows{grid-template-columns:1fr}}
+.lrow{display:flex;align-items:center;justify-content:space-between;gap:12px;text-decoration:none;
+  border:1px solid var(--border-soft);border-radius:10px;padding:.95rem 1.15rem;color:var(--text);
+  transition:border-color .2s,background .2s,transform .2s var(--ease)}
+.lrow:hover{border-color:rgba(34,211,238,.45);background:rgba(34,211,238,.05);transform:translateY(-2px)}
+.lrow .n{font-weight:600;font-size:.95rem}
+.lrow .u{font-family:var(--mono);font-size:.7rem;color:var(--faint)}
+.lrow .arr{color:var(--accent);font-family:var(--mono)}
+
+/* footer */
+footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-top:40px}
+.foot{display:flex;justify-content:space-between;align-items:center;gap:14px;flex-wrap:wrap}
+.foot p{font-family:var(--mono);font-size:.72rem;color:var(--faint);letter-spacing:.06em}
+.foot a{color:var(--muted);font-size:.82rem;text-decoration:none}
+.foot a:hover{color:var(--accent)}
+.ver{font-family:var(--mono);font-size:.68rem;color:var(--amber);border:1px solid rgba(251,191,36,.3);
+  border-radius:6px;padding:.25rem .6rem;letter-spacing:.08em}
+
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .rv{opacity:1;transform:none}
+  .caret{display:none}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<div class="bg-dots" aria-hidden="true"></div>
+<div class="orb orb-a" aria-hidden="true"></div>
+<div class="orb orb-b" aria-hidden="true"></div>
+
+<nav class="nav" id="nav" aria-label="Primary">
+  <div class="nav-in">
+    <a class="brand" href="/vibe-redesign/tech-modern/">bfung<b>_</b></a>
+    <ul class="nav-links">
+      <li><a href="#projects">Projects</a></li>
+      <li><a href="#contact">Contact</a></li>
+      <li><a class="hl" href="/vibe-redesign/tech-modern/resume/">Résumé →</a></li>
+    </ul>
+  </div>
+</nav>
+
+<main id="main">
+  <header class="hero wrap">
+    <p class="status rv"><span class="dot" aria-hidden="true"></span>systems operational · open to work</p>
+    <h1 class="rv" style="--d:60ms">Benson Fung</h1>
+    <p class="tagline rv" style="--d:120ms">build better, be better, <span class="boba">boba.</span></p>
+    <p class="subline rv" style="--d:170ms">family, friends, food, fun.</p>
+    <div class="ctas rv" style="--d:220ms">
+      <a class="btn btn-primary" href="/vibe-redesign/tech-modern/resume/">View résumé</a>
+      <a class="btn btn-ghost" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+    </div>
+
+    <div class="term rv" style="--d:280ms" role="img" aria-label="Terminal card showing a short profile of Benson Fung">
+      <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>bfung — zsh</span></div>
+      <div class="term-body" id="termBody" aria-hidden="true"><div><span class="p">$ whoami</span></div><div><span class="o">benson-fung — systems &amp; people team builder</span></div><div><span class="p">$ cat focus.txt</span></div><div><span class="o">transparency · efficiency · simplification</span></div><div><span class="p">$ uptime --career</span></div><div><span class="o">20+ years · 7 roles · 0 downtime</span></div></div>
+    </div>
+
+    <div class="stats">
+      <div class="stat rv" style="--d:0ms"><b>20<em>+</em></b><span>years shipping</span></div>
+      <div class="stat rv" style="--d:60ms"><b>07</b><span>roles held</span></div>
+      <div class="stat rv" style="--d:120ms"><b>32</b><span>skills in stack</span></div>
+      <div class="stat rv" style="--d:180ms"><b>03</b><span>featured builds</span></div>
+    </div>
+  </header>
+
+  <section id="projects" aria-labelledby="proj-h">
+    <div class="wrap">
+      <p class="eyebrow rv">projects</p>
+      <h2 class="sec-title rv" id="proj-h" style="--d:60ms">Featured builds</h2>
+      <p class="sec-sub rv" style="--d:120ms">Shipped, working, and inspectable. Source available unless noted.</p>
+      <div class="grid3">
+        <article class="card rv" style="--d:0ms">
+          <span class="idx">01</span>
+          <h3>HNanalytics</h3>
+          <p>A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
+          <div class="links"><a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">code ↗</a></div>
+        </article>
+        <article class="card rv" style="--d:80ms">
+          <span class="idx">02</span>
+          <h3>Luggage Pack</h3>
+          <p>A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
+          <div class="links">
+            <a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">live ↗</a>
+            <a href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">code ↗</a>
+          </div>
+        </article>
+        <article class="card rv" style="--d:160ms">
+          <span class="idx">03</span>
+          <h3>uMatrix Rule Generalizer</h3>
+          <p>A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
+          <div class="links">
+            <a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">live ↗</a>
+            <a href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">code ↗</a>
+          </div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" aria-labelledby="contact-h">
+    <div class="wrap">
+      <div class="contact-panel rv">
+        <p class="eyebrow">contact</p>
+        <h2 id="contact-h">Let's ship something.</h2>
+        <p>Irvine, CA · remote-friendly. Fastest via any channel below.</p>
+        <div class="linkrows">
+          <a class="lrow" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener"><span><span class="n">LinkedIn</span><br><span class="u">/in/bensonfung</span></span><span class="arr" aria-hidden="true">↗</span></a>
+          <a class="lrow" href="https://github.com/bfung" target="_blank" rel="noopener"><span><span class="n">GitHub</span><br><span class="u">@bfung</span></span><span class="arr" aria-hidden="true">↗</span></a>
+          <a class="lrow" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener"><span><span class="n">StackOverflow</span><br><span class="u">user 45793</span></span><span class="arr" aria-hidden="true">↗</span></a>
+          <a class="lrow" href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener"><span><span class="n">Hacker News</span><br><span class="u">id=bfung</span></span><span class="arr" aria-hidden="true">↗</span></a>
+          <a class="lrow" href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener"><span><span class="n">Guides</span><br><span class="u">blogspot</span></span><span class="arr" aria-hidden="true">↗</span></a>
+          <a class="lrow" href="https://twitter.com/fungbenson" target="_blank" rel="noopener"><span><span class="n">Twitter</span><br><span class="u">@fungbenson</span></span><span class="arr" aria-hidden="true">↗</span></a>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <p>© 2026 Benson Fung · <span class="ver">v4.0 tech-modern</span></p>
+    <a href="/vibe-redesign/">← All vibes</a>
+  </div>
+</footer>
+
+<script>
+(function(){
+  document.documentElement.classList.remove('no-js');
+  document.documentElement.classList.add('js');
+  var reduce = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+  /* nav blur on scroll */
+  var nav = document.getElementById('nav');
+  var tick = false;
+  function onScroll(){ tick = false; nav.classList.toggle('scrolled', window.scrollY > 24); }
+  window.addEventListener('scroll', function(){
+    if(!tick){ tick = true; requestAnimationFrame(onScroll); }
+  }, {passive:true});
+  onScroll();
+
+  /* reveal on scroll */
+  var els = document.querySelectorAll('.rv');
+  if('IntersectionObserver' in window && !reduce){
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, {threshold:.12, rootMargin:'0px 0px -36px 0px'});
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add('in'); });
+  }
+
+  /* typed terminal */
+  var body = document.getElementById('termBody');
+  var lines = [
+    ['p','$ whoami'],
+    ['o','benson-fung — systems & people team builder'],
+    ['p','$ cat focus.txt'],
+    ['o','transparency · efficiency · simplification'],
+    ['p','$ uptime --career'],
+    ['o','20+ years · 7 roles · 0 downtime']
+  ];
+  function renderStatic(){
+    body.innerHTML = lines.map(function(l){
+      return '<div><span class="'+l[0]+'">'+l[1].split('').map(function(ch){
+        return ch === '<' ? '&lt;' : ch === '>' ? '&gt;' : ch === '&' ? '&amp;' : ch;
+      }).join('')+'</span></div>';
+    }).join('');
+  }
+  if(reduce || !('IntersectionObserver' in window)){ renderStatic(); return; }
+  var li = 0, ci = 0, html = '', started = false;
+  function typeLine(){
+    if(li >= lines.length){
+      body.innerHTML = html + '<div><span class="caret"></span></div>';
+      return;
+    }
+    var cls = lines[li][0], txt = lines[li][1];
+    if(ci === 0){ html += '<div><span class="'+cls+'">'; }
+    if(ci < txt.length){
+      var ch = txt[ci];
+      html += ch === '<' ? '&lt;' : ch === '>' ? '&gt;' : ch === '&' ? '&amp;' : ch;
+      ci++;
+      body.innerHTML = html + '</span><span class="caret"></span></div>';
+      setTimeout(typeLine, cls === 'p' ? 42 : 16);
+    } else {
+      html += '</span></div>'; li++; ci = 0;
+      body.innerHTML = html;
+      setTimeout(typeLine, 260);
+    }
+  }
+  var tio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      if(e.isIntersecting && !started){ started = true; body.innerHTML = ''; typeLine(); tio.disconnect(); }
+    });
+  }, {threshold:.4});
+  tio.observe(body);
+})();
+</script>
+</body>
+</html>

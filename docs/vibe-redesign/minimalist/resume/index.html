@@ -1,0 +1,281 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Resume — Minimalist | VibeRedesign</title>
+<meta name="description" content="Benson Fung's resume reduced to the essential: one column, exquisite type, nothing else. The minimalist VibeRedesign.">
+<link rel="canonical" href="https://bfung.github.io/vibe-redesign/minimalist/resume/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benson Fung">
+<meta property="og:title" content="Resume — Minimalist | VibeRedesign">
+<meta property="og:description" content="Radical restraint: one narrow column, near-black on white, typography carrying everything.">
+<meta property="og:url" content="https://bfung.github.io/vibe-redesign/minimalist/resume/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Resume — Minimalist | VibeRedesign">
+<meta name="twitter:description" content="Radical restraint: one narrow column, near-black on white, typography carrying everything.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<style>
+:root{
+  --paper:#FDFDFB;
+  --ink:#141414;
+  --muted:#6B6B6B;
+  --hairline:#E7E4DA;
+  --sans:-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.75;
+  -webkit-font-smoothing:antialiased;
+  animation:rise .5s ease-out;
+}
+@keyframes rise{from{opacity:0}to{opacity:1}}
+::selection{background:var(--ink);color:var(--paper)}
+:focus-visible{outline:2px solid var(--ink);outline-offset:3px;border-radius:1px}
+a{color:var(--ink);text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px}
+a:hover{color:var(--muted)}
+
+/* skip link */
+.skip{
+  position:absolute;left:-9999px;top:0;z-index:10;
+  background:var(--ink);color:var(--paper);text-decoration:none;
+  padding:.6rem 1rem;font-size:.85rem;
+}
+.skip:focus{left:0}
+
+/* the one column */
+.col{max-width:660px;margin:0 auto;padding:0 24px}
+
+/* quiet navigation */
+.topnav{
+  display:flex;justify-content:space-between;align-items:baseline;
+  padding:2.25rem 0;font-size:.85rem;
+}
+.topnav a.back{color:var(--muted);text-decoration:none}
+.topnav a.back:hover{color:var(--ink);text-decoration:underline;text-underline-offset:3px}
+.topnav .brand{font-weight:600;color:var(--ink);text-decoration:none;letter-spacing:-0.01em}
+.topnav .brand:hover{color:var(--muted)}
+
+/* resume header */
+.rhead{padding:8vh 0 0}
+.rhead h1{
+  font-size:2rem;font-weight:600;letter-spacing:-0.02em;line-height:1.2;
+  margin-bottom:.6rem;
+}
+.rhead .title{color:var(--muted);font-size:1rem;margin-bottom:1.4rem}
+.rhead .summary{max-width:58ch;margin-bottom:1.4rem}
+.rhead .contactline{font-size:.85rem;color:var(--muted)}
+.rhead .contactline a{color:var(--muted)}
+.rhead .contactline a:hover{color:var(--ink)}
+.rhead .contactline .sep{margin:0 .5rem;color:var(--hairline)}
+
+/* the single hairline — the one decorative whisper on the page */
+hr.rule{border:none;border-top:1px solid var(--hairline);margin:4.5rem 0 0}
+
+/* sections: whitespace is the only separator */
+section.block{margin:5rem 0}
+.label{
+  font-size:.75rem;font-weight:600;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:2.5rem;
+}
+
+/* jobs */
+.job{margin-bottom:3.5rem}
+.job:last-child{margin-bottom:0}
+.job h3{font-size:1.12rem;font-weight:600;letter-spacing:-0.01em;line-height:1.4;margin-bottom:.25rem}
+.job .meta{font-size:.85rem;color:var(--muted);margin-bottom:1rem}
+.job .meta a{color:var(--muted)}
+.job .meta a:hover{color:var(--ink)}
+.job .meta .sep{margin:0 .45rem;color:var(--hairline)}
+.job ul{list-style:none;margin-bottom:1rem}
+.job ul li{position:relative;padding-left:1.25rem;margin-bottom:.55rem;font-size:.96rem}
+.job ul li::before{content:"\2013";position:absolute;left:0;color:var(--muted)}
+.job ul a{color:var(--ink)}
+.job .tech{font-size:.85rem;color:var(--muted)}
+
+/* education */
+.edu p{font-size:.96rem;margin-bottom:.3rem}
+.edu p .when{color:var(--muted);font-size:.85rem}
+
+/* skills */
+.skillgroup{margin-bottom:1.75rem}
+.skillgroup:last-child{margin-bottom:0}
+.skillgroup h3{
+  font-size:.75rem;font-weight:600;letter-spacing:.14em;text-transform:uppercase;
+  color:var(--muted);margin-bottom:.4rem;
+}
+.skillgroup p{font-size:.96rem}
+
+/* footer */
+footer.site{margin-top:7rem;padding:2.5rem 0 3.5rem}
+footer.site p{font-size:.8rem;color:var(--muted)}
+footer.site a{color:var(--muted)}
+footer.site a:hover{color:var(--ink)}
+footer.site .sep{margin:0 .5rem;color:var(--hairline)}
+
+@media (prefers-reduced-motion: reduce){
+  body{animation:none}
+  html{scroll-behavior:auto}
+  *,*::before,*::after{transition:none !important}
+}
+@media (max-width:480px){
+  .rhead{padding:6vh 0 0}
+  .rhead h1{font-size:1.7rem}
+  section.block{margin:3.75rem 0}
+  hr.rule{margin:3.5rem 0 0}
+}
+</style>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<div class="col">
+  <header class="topnav">
+    <a class="back" href="/vibe-redesign/minimalist/">&larr; Home</a>
+    <a class="brand" href="/vibe-redesign/minimalist/">Benson Fung</a>
+  </header>
+
+  <main id="main">
+    <div class="rhead">
+      <h1>Benson Fung</h1>
+      <p class="title">Software Systems &amp; People Team Builder</p>
+      <p class="summary">A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification. Focused on Remote or Irvine, CA roles.</p>
+      <p class="contactline">Irvine, CA<span class="sep">&middot;</span><a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">LinkedIn</a><span class="sep">&middot;</span><a href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a></p>
+    </div>
+
+    <hr class="rule">
+
+    <section class="block" aria-labelledby="exp-h">
+      <h2 class="label" id="exp-h">Experience</h2>
+
+      <article class="job">
+        <h3>Engineering Manager</h3>
+        <p class="meta"><a href="https://www.datadoghq.com/" target="_blank" rel="noopener">Datadog</a><span class="sep">&middot;</span>Remote<span class="sep">&middot;</span>Dec 2022 &ndash; Present</p>
+        <ul>
+          <li>Lead Demo Engineering, a software development team creating content that showcases what the Datadog platform can do.</li>
+          <li>Lead the Community Open Source Engineering team, engaging the open source community around <a href="https://vector.dev" target="_blank" rel="noopener">Vector</a> and <a href="https://quickwit.io" target="_blank" rel="noopener">Quickwit</a>.</li>
+        </ul>
+        <p class="tech">Engineering Leadership, Open Source, Rust, Observability</p>
+      </article>
+
+      <article class="job">
+        <h3>Director of Data Platform</h3>
+        <p class="meta"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a><span class="sep">&middot;</span>Remote<span class="sep">&middot;</span>Sep 2021 &ndash; Aug 2022</p>
+        <ul>
+          <li>Streamlined software engineering interview process resulting in consistent hiring criteria and high quality of hires.</li>
+          <li>Provided non-technical stakeholders with a predictable and easy to understand feature delivery and launch plan.</li>
+          <li>Forecasted Engineering budget and controlled infrastructure costs (AWS), saving 10% on a $2.0m budget.</li>
+        </ul>
+        <p class="tech">Management, AWS, FinOps, Data Platform</p>
+      </article>
+
+      <article class="job">
+        <h3>Principal DevOps Engineer &amp; Manager</h3>
+        <p class="meta"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a><span class="sep">&middot;</span>Remote<span class="sep">&middot;</span>Jan 2020 &ndash; Sep 2021</p>
+        <ul>
+          <li>Evaluated and selected core technologies, balancing build vs. buy. In buy scenarios, tools saved several headcounts in operational overhead.</li>
+          <li>Partnered with the InfoSec organization to craft secure SDLC practices integrated into the CI/CD pipeline.</li>
+          <li>Led and supported development and operations of Kubernetes-based microservices and data pipelines.</li>
+        </ul>
+        <p class="tech">Kubernetes, DevOps, CI/CD, InfoSec, Terraform</p>
+      </article>
+
+      <article class="job">
+        <h3>Sr. Staff DevOps Engineer &amp; Manager</h3>
+        <p class="meta"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a><span class="sep">&middot;</span>Remote<span class="sep">&middot;</span>Jan 2019 &ndash; Jan 2020</p>
+        <ul>
+          <li>Designed and optimized centralized logging and metrics using Datadog for cloud services, reducing SaaS costs and time-to-debug.</li>
+          <li>Implemented secure Over-The-Air (OTA) firmware updates for IoT systems (Raspberry Pi SoCs) for the Eatsa Spotlight Pickup System, removing operational friction for customer staff.</li>
+        </ul>
+        <p class="tech">Datadog, IoT, Firmware, Ansible, Linux</p>
+      </article>
+
+      <article class="job">
+        <h3>Engineering Manager (Core Platform)</h3>
+        <p class="meta"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a> (Acq. by Oracle)<span class="sep">&middot;</span>San Francisco, CA<span class="sep">&middot;</span>Nov 2014 &ndash; Jul 2016</p>
+        <ul>
+          <li>Led the Core Platform team of 4 engineers supporting 70+ developers in build tooling, deployment processes, and automated cloud operations.</li>
+        </ul>
+        <p class="tech">Leadership, Developer Tooling, Infrastructure</p>
+      </article>
+
+      <article class="job">
+        <h3>Senior Software Engineer</h3>
+        <p class="meta"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a><span class="sep">&middot;</span>San Francisco, CA<span class="sep">&middot;</span>Aug 2011 &ndash; Jul 2014</p>
+        <ul>
+          <li>Architected and implemented the authentication/authorization service and API gateway for Opower&rsquo;s microservice ecosystem.</li>
+          <li>Developed core framework libraries adopted company-wide to standardize and accelerate microservice deployment and observability.</li>
+        </ul>
+        <p class="tech">Java, API Gateway, Microservices, OAuth2</p>
+      </article>
+
+      <article class="job">
+        <h3>Software Engineer</h3>
+        <p class="meta">Incisent Technologies<span class="sep">&middot;</span>Chicago, IL<span class="sep">&middot;</span>Oct 2004 &ndash; Dec 2010</p>
+        <ul>
+          <li>Designed and developed backend services and batch jobs processing statistical data for used car valuations using Java, C#, and Ruby on Rails.</li>
+          <li>Designed, implemented, and operated the Data Warehouse using Microsoft SSIS and SSAS, optimizing report query times for real-time dealership lookups.</li>
+        </ul>
+        <p class="tech">Ruby on Rails, Java, SQL Server, Data Warehouse, SSIS / SSAS</p>
+      </article>
+    </section>
+
+    <section class="block edu" aria-labelledby="edu-h">
+      <h2 class="label" id="edu-h">Education</h2>
+      <p>University of Illinois Urbana-Champaign <span class="when">&mdash; B.S. Computer Science, Aug 1999 &ndash; May 2003</span></p>
+      <p><span class="when">Software Engineering Certification Program</span></p>
+    </section>
+
+    <section class="block" aria-labelledby="skills-h">
+      <h2 class="label" id="skills-h">Skills</h2>
+
+      <div class="skillgroup">
+        <h3>Core Expertise</h3>
+        <p>Data Stack Design, Distributed Systems, DevOps &amp; GitOps, Engineering Leadership, Cost Optimization, Cloud Operations</p>
+      </div>
+
+      <div class="skillgroup">
+        <h3>Languages</h3>
+        <p>Python, Java, Ruby, SQL, Bash</p>
+      </div>
+
+      <div class="skillgroup">
+        <h3>Infra &amp; Orchestration</h3>
+        <p>Kubernetes, Terraform, Ansible, Docker, HashiCorp Vault, Chef / Puppet</p>
+      </div>
+
+      <div class="skillgroup">
+        <h3>Data Platforms</h3>
+        <p>Databricks, Delta Lake, Airflow, Snowflake, AWS EMR</p>
+      </div>
+
+      <div class="skillgroup">
+        <h3>AWS Cloud</h3>
+        <p>EKS, RDS, S3, IAM, EC2 / ELB, CloudWatch</p>
+      </div>
+
+      <div class="skillgroup">
+        <h3>CI/CD &amp; Observability</h3>
+        <p>Datadog, CircleCI, Jenkins, Loggly</p>
+      </div>
+    </section>
+  </main>
+
+  <footer class="site">
+    <p>&copy; 2026 Benson Fung<span class="sep">&middot;</span><a href="/vibe-redesign/minimalist/">&larr; Home</a><span class="sep">&middot;</span><a href="/vibe-redesign/">&larr; All vibes</a></p>
+  </footer>
+</div>
+
+<script>
+(function(){
+  "use strict";
+  document.documentElement.classList.add("js");
+})();
+</script>
+</body>
+</html>

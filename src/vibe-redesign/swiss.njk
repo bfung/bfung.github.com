@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en" class="no-js">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Benson Fung — Swiss International | VibeRedesign</title>
+<meta name="description" content="Benson Fung's portfolio in the Swiss International Typographic Style: strict modular grid, Helvetica-tight type, black and white with one poster red.">
+<link rel="canonical" href="https://bfung.github.io/vibe-redesign/swiss/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Benson Fung">
+<meta property="og:title" content="Benson Fung — Swiss International | VibeRedesign">
+<meta property="og:description" content="A Swiss International Typographic Style reading of a software systems and engineering leader's portfolio. Grid, type, one red.">
+<meta property="og:url" content="https://bfung.github.io/vibe-redesign/swiss/">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="Benson Fung — Swiss International | VibeRedesign">
+<meta name="twitter:description" content="Grid, type, one red. A Swiss International Typographic Style portfolio.">
+<link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+<style>
+/* ============ TOKENS ============ */
+:root{
+  --paper:#FFFFFF;
+  --ink:#000000;
+  --red:#E30613;
+  --gray:#767676;
+  --hairline:#E2E2E2;
+  --band:#0A0A0A;
+  --sans:"Helvetica Neue",Helvetica,Arial,system-ui,sans-serif;
+  --maxw:1200px;
+  --gut:24px;
+  --bar:64px;
+}
+*{margin:0;padding:0;box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  background:var(--paper);
+  color:var(--ink);
+  font-family:var(--sans);
+  font-size:1rem;
+  line-height:1.6;
+  -webkit-font-smoothing:antialiased;
+}
+::selection{background:var(--red);color:#fff}
+a{color:var(--ink)}
+h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
+:focus-visible{outline:2px solid var(--red);outline-offset:3px}
+
+/* ============ GRID ============ */
+.wrap{max-width:var(--maxw);margin:0 auto;padding-left:var(--gut);padding-right:var(--gut)}
+.grid{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut)}
+.meta{
+  font-size:.72rem;font-weight:500;letter-spacing:.18em;text-transform:uppercase;
+  color:var(--gray);line-height:1.7;
+}
+.meta strong{color:var(--ink);font-weight:700}
+.skip{
+  position:fixed;top:-64px;left:16px;z-index:999;
+  background:var(--ink);color:#fff;font-size:.78rem;font-weight:700;letter-spacing:.12em;text-transform:uppercase;
+  padding:.8rem 1.2rem;text-decoration:none;transition:top .18s ease;
+}
+.skip:focus{top:12px}
+
+/* ============ TOPBAR ============ */
+.topbar{
+  position:fixed;top:0;left:0;right:0;z-index:100;height:var(--bar);
+  background:var(--paper);border-bottom:1px solid var(--ink);
+}
+.topbar-inner{height:var(--bar);display:flex;align-items:center;justify-content:space-between}
+.brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);
+  font-weight:700;font-size:1.05rem;letter-spacing:-0.01em}
+.brand-mark{width:12px;height:12px;background:var(--red);flex:none}
+.nav-list{display:flex;gap:28px;list-style:none}
+.nav-list a{
+  font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  text-decoration:none;color:var(--ink);padding:6px 0;position:relative;
+}
+.nav-list a::after{content:"";position:absolute;left:0;bottom:0;height:2px;width:100%;
+  background:var(--red);transform:scaleX(0);transform-origin:left;transition:transform .25s ease}
+.nav-list a:hover::after{transform:scaleX(1)}
+.nav-list a.active{color:var(--red)}
+
+/* ============ REVEAL (progressive enhancement) ============ */
+.js .reveal{opacity:0;transform:translateY(16px);transition:opacity .45s ease,transform .45s ease}
+.js .reveal.is-visible{opacity:1;transform:none}
+
+/* ============ HERO ============ */
+.hero{padding:calc(var(--bar) + 72px) 0 88px;border-bottom:1px solid var(--ink)}
+.hero-meta{grid-column:1/-1;display:flex;justify-content:space-between;gap:16px;margin-bottom:56px;flex-wrap:wrap}
+.hero-name{
+  grid-column:1/11;align-self:end;
+  font-size:clamp(4.25rem,14.5vw,12.5rem);
+  text-transform:lowercase;letter-spacing:-0.035em;line-height:.88;
+}
+.hero-red{grid-column:11/13;align-self:end;aspect-ratio:1/1;background:var(--red);margin-bottom:.6vw}
+.hero-title{grid-column:1/8;margin-top:40px;font-size:clamp(1.35rem,2.6vw,1.9rem);letter-spacing:-0.01em}
+.hero-tag{grid-column:1/9;margin-top:28px;font-size:clamp(1.6rem,3.4vw,2.6rem);font-weight:700;letter-spacing:-0.02em;line-height:1.15}
+.hero-sub{grid-column:1/9;margin-top:14px;display:flex;align-items:center;gap:12px}
+.hero-sub .sq{width:10px;height:10px;background:var(--red);flex:none}
+.hero-sub span:last-child{font-size:.78rem;font-weight:700;letter-spacing:.22em;text-transform:uppercase}
+.hero-cta{grid-column:1/-1;margin-top:44px;display:flex;gap:32px;flex-wrap:wrap}
+.textlink{
+  font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;
+  text-decoration:none;border-bottom:2px solid var(--ink);padding-bottom:6px;
+  transition:color .2s ease,border-color .2s ease;
+}
+.textlink:hover{color:var(--red);border-color:var(--red)}
+.textlink .arr{color:var(--red)}
+
+/* ============ SECTIONS ============ */
+.section{padding:96px 0;scroll-margin-top:var(--bar)}
+.sec-head{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:end;
+  padding-bottom:24px;border-bottom:1px solid var(--ink);margin-bottom:8px}
+.sec-num{grid-column:1/2;color:var(--red);font-size:clamp(2.5rem,5vw,4rem);font-weight:700;letter-spacing:-0.02em;line-height:1}
+.sec-title{grid-column:2/13;font-size:clamp(2.5rem,6vw,4.5rem);text-transform:lowercase}
+
+/* ============ PROJECTS ============ */
+.proj{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);
+  padding:40px 0;border-bottom:1px solid var(--hairline);align-items:start}
+.proj-marker{grid-column:1/2;width:14px;height:14px;background:var(--red);margin-top:8px}
+.proj-title{grid-column:2/6;font-size:clamp(1.5rem,2.8vw,2.1rem)}
+.proj-desc{grid-column:6/11;color:#333;max-width:52ch}
+.proj-links{grid-column:11/13;display:flex;flex-direction:column;gap:10px;align-items:flex-end;text-align:right}
+.proj-links a{
+  font-size:.72rem;font-weight:700;letter-spacing:.18em;text-transform:uppercase;
+  text-decoration:none;white-space:nowrap;
+}
+.proj-links a:hover{color:var(--red)}
+.proj-links a .arr{color:var(--red)}
+
+/* ============ CONTACT BAND ============ */
+.band{background:var(--band);color:#fff;padding:96px 0 0;scroll-margin-top:var(--bar)}
+.band .sec-head{border-bottom-color:#fff}
+.band .sec-title{color:#fff}
+.contact-list{list-style:none}
+.contact-list li{border-bottom:1px solid #2a2a2a}
+.contact-list li:first-child{border-top:1px solid #2a2a2a}
+.contact-list a{
+  display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);align-items:baseline;
+  padding:26px 0;text-decoration:none;color:#fff;
+}
+.c-name{grid-column:1/8;font-size:clamp(1.9rem,5vw,3.4rem);font-weight:700;letter-spacing:-0.02em;
+  text-transform:lowercase;line-height:1;transition:color .2s ease}
+.c-url{grid-column:8/13;text-align:right;font-size:.72rem;letter-spacing:.14em;color:var(--gray);text-transform:lowercase}
+.contact-list a:hover .c-name{color:var(--red)}
+.colophon{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);
+  padding:40px 0;margin-top:64px;border-top:1px solid #2a2a2a;align-items:center}
+.colophon p{font-size:.7rem;letter-spacing:.16em;text-transform:uppercase;color:var(--gray)}
+.colophon .c1{grid-column:1/6}
+.colophon .c2{grid-column:6/10;text-align:center}
+.colophon .c3{grid-column:10/13;text-align:right}
+.colophon a{color:#fff;text-decoration:none}
+.colophon a:hover{color:var(--red)}
+
+/* ============ RESPONSIVE ============ */
+@media(max-width:900px){
+  .proj-title{grid-column:2/13}
+  .proj-desc{grid-column:2/13;margin-top:4px}
+  .proj-links{grid-column:2/13;flex-direction:row;align-items:flex-start;text-align:left;margin-top:8px;gap:24px}
+  .c-url{grid-column:1/13;text-align:left;margin-top:6px}
+  .c-name{grid-column:1/13}
+  .colophon .c1,.colophon .c2,.colophon .c3{grid-column:1/13;text-align:left;margin-top:8px}
+}
+@media(max-width:760px){
+  .hero-name{grid-column:1/-1}
+  .hero-red{grid-column:1/4;margin-top:28px;margin-bottom:0}
+  .hero-title{grid-column:1/-1}
+  .hero-tag{grid-column:1/-1}
+  .hero-sub{grid-column:1/-1}
+  .sec-num{grid-column:1/3}
+  .sec-title{grid-column:3/13}
+  .nav-list{gap:18px}
+  .nav-list a{font-size:.64rem;letter-spacing:.12em}
+  .section{padding:64px 0}
+}
+@media (prefers-reduced-motion: reduce){
+  html{scroll-behavior:auto}
+  *,*::before,*::after{animation:none!important;transition:none!important}
+  .js .reveal{opacity:1;transform:none}
+}
+</style>
+<noscript><style>.reveal{opacity:1!important;transform:none!important}</style></noscript>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="topbar">
+  <div class="wrap topbar-inner">
+    <a class="brand" href="/vibe-redesign/swiss/" aria-label="Benson Fung — Swiss home">
+      <span class="brand-mark" aria-hidden="true"></span>benson fung
+    </a>
+    <nav aria-label="Sections">
+      <ul class="nav-list">
+        <li><a href="#projects" data-sec="projects">projects</a></li>
+        <li><a href="#contact" data-sec="contact">contact</a></li>
+        <li><a href="/vibe-redesign/swiss/resume/">resume <span class="arr" style="color:var(--red)">→</span></a></li>
+      </ul>
+    </nav>
+  </div>
+</header>
+
+<main id="main">
+  <section class="hero" aria-label="Introduction">
+    <div class="wrap grid">
+      <div class="hero-meta">
+        <p class="meta"><strong>vibedesign</strong> — swiss international typographic style</p>
+        <p class="meta">irvine, california — remote</p>
+      </div>
+      <h1 class="hero-name">benson<br>fung</h1>
+      <div class="hero-red" aria-hidden="true"></div>
+      <p class="hero-title">software systems &amp; people team builder</p>
+      <p class="hero-tag">build better, be better, boba.</p>
+      <p class="hero-sub"><span class="sq" aria-hidden="true"></span><span>family, friends, food, fun.</span></p>
+      <div class="hero-cta">
+        <a class="textlink" href="/vibe-redesign/swiss/resume/">read the resume <span class="arr">→</span></a>
+        <a class="textlink" href="https://github.com/bfung" target="_blank" rel="noopener">github profile <span class="arr">→</span></a>
+      </div>
+    </div>
+  </section>
+
+  <section id="projects" class="section" aria-label="Featured projects">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num" aria-hidden="true">01</span>
+        <h2 class="sec-title">projects</h2>
+      </div>
+
+      <article class="proj reveal">
+        <span class="proj-marker" aria-hidden="true"></span>
+        <h3 class="proj-title">HNanalytics</h3>
+        <p class="proj-desc">A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
+        <div class="proj-links">
+          <a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">view code <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <span class="proj-marker" aria-hidden="true"></span>
+        <h3 class="proj-title">Luggage Pack</h3>
+        <p class="proj-desc">A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
+        <div class="proj-links">
+          <a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">live site <span class="arr">→</span></a>
+          <a href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">code <span class="arr">→</span></a>
+        </div>
+      </article>
+
+      <article class="proj reveal">
+        <span class="proj-marker" aria-hidden="true"></span>
+        <h3 class="proj-title">uMatrix Rule Generalizer</h3>
+        <p class="proj-desc">A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
+        <div class="proj-links">
+          <a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">live site <span class="arr">→</span></a>
+          <a href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">code <span class="arr">→</span></a>
+        </div>
+      </article>
+    </div>
+  </section>
+
+  <section id="contact" class="band" aria-label="Contact">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num" aria-hidden="true">02</span>
+        <h2 class="sec-title">contact</h2>
+      </div>
+      <ul class="contact-list">
+        <li class="reveal"><a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener"><span class="c-name">linkedin</span><span class="c-url">linkedin.com/in/bensonfung</span></a></li>
+        <li class="reveal"><a href="https://github.com/bfung" target="_blank" rel="noopener"><span class="c-name">github</span><span class="c-url">github.com/bfung</span></a></li>
+        <li class="reveal"><a href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener"><span class="c-name">stackoverflow</span><span class="c-url">stackoverflow.com/users/45793/benson</span></a></li>
+        <li class="reveal"><a href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener"><span class="c-name">hacker news</span><span class="c-url">news.ycombinator.com/user?id=bfung</span></a></li>
+        <li class="reveal"><a href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener"><span class="c-name">guides</span><span class="c-url">benson-guides.blogspot.com</span></a></li>
+        <li class="reveal"><a href="https://twitter.com/fungbenson" target="_blank" rel="noopener"><span class="c-name">twitter</span><span class="c-url">twitter.com/fungbenson</span></a></li>
+      </ul>
+      <div class="colophon">
+        <p class="c1">© 2026 benson fung</p>
+        <p class="c2"><a href="/vibe-redesign/swiss/resume/">resume →</a></p>
+        <p class="c3"><a href="/vibe-redesign/">↑ vibedesign</a></p>
+      </div>
+    </div>
+  </section>
+</main>
+
+<script>
+(function(){
+  document.documentElement.classList.remove("no-js");
+  document.documentElement.classList.add("js");
+  var reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+  /* Scroll reveals */
+  var els = document.querySelectorAll(".reveal");
+  if ("IntersectionObserver" in window && !reduceMotion) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting) { e.target.classList.add("is-visible"); io.unobserve(e.target); }
+      });
+    }, { threshold: 0.1, rootMargin: "0px 0px -32px 0px" });
+    els.forEach(function(el){ io.observe(el); });
+  } else {
+    els.forEach(function(el){ el.classList.add("is-visible"); });
+  }
+
+  /* Active section link */
+  var links = Array.prototype.slice.call(document.querySelectorAll(".nav-list a[data-sec]"));
+  var secs = ["projects", "contact"].map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  function onScroll(){
+    var current = null;
+    secs.forEach(function(s){
+      if (s.getBoundingClientRect().top <= 120) current = s.id;
+    });
+    links.forEach(function(a){
+      a.classList.toggle("active", a.getAttribute("data-sec") === current);
+    });
+  }
+  var ticking = false;
+  window.addEventListener("scroll", function(){
+    if (!ticking) { ticking = true; requestAnimationFrame(function(){ ticking = false; onScroll(); }); }
+  }, { passive: true });
+  onScroll();
+})();
+</script>
+</body>
+</html>
