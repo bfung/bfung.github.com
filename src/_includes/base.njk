@@ -38,8 +38,8 @@
       "name": "Benson Fung",
       "url": "{{ site.url }}/",
       "image": "https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400",
-      "jobTitle": "Software Systems & People Team Builder",
-      "address": {
+{% if not noJobTitle %}      "jobTitle": "Software Systems & People Team Builder",
+{% endif %}      "address": {
         "@type": "PostalAddress",
         "addressLocality": "Irvine",
         "addressRegion": "CA"
