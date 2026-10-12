@@ -280,7 +280,9 @@
     return !!downPos && Math.hypot(e.clientX - downPos[0], e.clientY - downPos[1]) > 6;
   }
 
-  var linkGen = d3.linkVertical();
+  var linkGen = d3.linkVertical()
+    .x(function (d) { return d.x; })
+    .y(function (d) { return d.y; });
   function linkPath(l) {
     return linkGen({ source: { x: l.sx, y: l.sy }, target: { x: l.tx, y: l.ty } });
   }
