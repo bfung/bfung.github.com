@@ -1,0 +1,32 @@
+---
+layout: base.njk
+title: FamilyTreeMe | Benson Fung
+description: An explorable family tree — three generations, one family at a time.
+---
+
+<section class="hero-section" style="text-align: left; align-items: flex-start;">
+  <p class="hero-tagline" style="margin-bottom: 0.5rem;">FamilyTreeMe</p>
+  <h1>FamilyTreeMe</h1>
+  <p class="hero-sub" style="max-width: 620px;">
+    Our family, mapped with kinship titles instead of names &mdash; three
+    generations, one family at a time.
+  </p>
+  <p class="ft-hints">
+    Click a name to visit their family &middot;
+    <span class="ft-count" aria-hidden="true">+N</span> expands hidden relatives
+  </p>
+</section>
+
+<section class="ft-section" aria-label="Family tree explorer">
+  <div class="ft-header">
+    <h2 class="ft-title" id="ft-heading" tabindex="-1">「媽媽 · 爸爸」一家</h2>
+    <button type="button" class="ft-reset" id="ft-reset">回到我 · back to start</button>
+  </div>
+  <div class="ft-tree" id="family-tree"></div>
+  <p class="sr-only" role="status" id="ft-live"></p>
+  <noscript>
+    <p>FamilyTreeMe needs JavaScript to explore the tree &mdash; every view is drawn in your browser.</p>
+  </noscript>
+</section>
+
+<script src="/assets/js/familytreeme.js" defer></script>

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>FamilyTreeMe | Benson Fung</title>
+    <meta name="description" content="An explorable family tree — three generations, one family at a time.">
+    <link rel="canonical" href="https://bfung.github.io/familytreeme/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Benson Fung">
+    <meta property="og:title" content="FamilyTreeMe | Benson Fung">
+    <meta property="og:description" content="An explorable family tree — three generations, one family at a time.">
+    <meta property="og:url" content="https://bfung.github.io/familytreeme/">
+    <meta property="og:image" content="https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="FamilyTreeMe | Benson Fung">
+    <meta name="twitter:description" content="An explorable family tree — three generations, one family at a time.">
+    <meta name="twitter:image" content="https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Benson Fung",
+      "url": "https://bfung.github.io/",
+      "image": "https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400",
+      "jobTitle": "Software Systems & People Team Builder",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Irvine",
+        "addressRegion": "CA"
+      },
+      "sameAs": [
+        "https://github.com/bfung",
+        "https://www.linkedin.com/in/bensonfung",
+        "https://stackoverflow.com/users/45793/benson",
+        "https://news.ycombinator.com/user?id=bfung",
+        "https://twitter.com/fungbenson"
+      ]
+    }
+    </script>
+
+    <!-- Declare supported color schemes for browser rendering and FOUC prevention -->
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- Inline script to apply saved theme preference immediately -->
+    <script>
+      {
+        const savedTheme = localStorage.getItem("color-scheme");
+        if (savedTheme) {
+          document.querySelector('meta[name="color-scheme"]').content = savedTheme;
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      }
+    </script>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/style.css">
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="site-header">
+      <div class="header-container">
+        <a href="/" class="brand" id="brand-logo">Benson Fung</a>
+        <nav class="site-nav" aria-label="Main Navigation">
+          <ul class="nav-links">
+            <li><a href="/" >Home</a></li>
+            <li><a href="/resume.html" >Resume</a></li>
+            <li><a href="/vibe-redesign/" >VibeRedesign</a></li>
+            <li><a href="/familytreeme/" class="active" aria-current="page">FamilyTreeMe</a></li>
+          </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle theme">
+          <!-- SVG for Sun Icon (visible in Dark Mode) -->
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <!-- SVG for Moon Icon (visible in Light Mode) -->
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content" class="content-wrapper">
+      
+<section class="hero-section" style="text-align: left; align-items: flex-start;">
+  <p class="hero-tagline" style="margin-bottom: 0.5rem;">FamilyTreeMe</p>
+  <h1>FamilyTreeMe</h1>
+  <p class="hero-sub" style="max-width: 620px;">
+    Our family, mapped with kinship titles instead of names &mdash; three
+    generations, one family at a time.
+  </p>
+  <p class="ft-hints">
+    Click a name to visit their family &middot;
+    <span class="ft-count" aria-hidden="true">+N</span> expands hidden relatives
+  </p>
+</section>
+
+<section class="ft-section" aria-label="Family tree explorer">
+  <div class="ft-header">
+    <h2 class="ft-title" id="ft-heading" tabindex="-1">「媽媽 · 爸爸」一家</h2>
+    <button type="button" class="ft-reset" id="ft-reset">回到我 · back to start</button>
+  </div>
+  <div class="ft-tree" id="family-tree"></div>
+  <p class="sr-only" role="status" id="ft-live"></p>
+  <noscript>
+    <p>FamilyTreeMe needs JavaScript to explore the tree &mdash; every view is drawn in your browser.</p>
+  </noscript>
+</section>
+
+<script src="/assets/js/familytreeme.js" defer></script>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <p>&copy; 2026 Benson Fung. All rights reserved.</p>
+        <p class="footer-meta">Built with <a href="https://www.11ty.dev/" target="_blank" rel="noopener">Eleventy</a> &bull; Blazing fast, build-time static HTML.</p>
+      </div>
+    </footer>
+
+    <!-- Client-side JS -->
+    <script src="/assets/js/main.js" defer></script>
+  </body>
+</html>
