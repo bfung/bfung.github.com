@@ -839,19 +839,16 @@
   }
 
   .ft-label {
-    font-size: 20px;
+    font-size: 18px;
     font-weight: 600;
     fill: var(--color-heading);
     text-anchor: middle;
     dominant-baseline: central;
   }
 
-  .ft-label--leaf {
-    font-size: 18px;
-  }
-
   .ft-label--up {
-    font-size: 16px;
+    font-size: 14px;
+    font-weight: 600;
   }
 
   /* +N expand/collapse badge */
@@ -868,6 +865,25 @@
   .ft-badge text {
     fill: #ffffff;
     font-size: 15px;
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  /* → "more family" indicator on band-3 cards (decorative; the card navigates) */
+  .ft-goto {
+    pointer-events: none;
+  }
+
+  .ft-goto circle {
+    fill: var(--color-card);
+    stroke: var(--color-accent);
+    stroke-width: 2px;
+  }
+
+  .ft-goto text {
+    fill: var(--color-accent);
+    font-size: 14px;
     font-weight: 700;
     text-anchor: middle;
     dominant-baseline: central;
