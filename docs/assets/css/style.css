@@ -803,6 +803,7 @@
     fill: none;
     stroke: var(--color-border);
     stroke-width: 2px;
+    stroke-linecap: round;
   }
 
   .ft-link--up {

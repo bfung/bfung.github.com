@@ -35,6 +35,7 @@
   var UW = 120, UH = 48;   /* up card (grandparents) */
   var PAIR_GAP = 16, GROUP_GAP = 64, DY = 170;
   var BADGE_R = 22;        /* ~44px touch target */
+  var STUB = 16;           /* couple-mark stub length */
 
   /* ---------- Pure logic (no DOM) ---------- */
 
@@ -83,6 +84,48 @@
 
   function pairW(n, w) { return n <= 0 ? 0 : n * w + (n - 1) * PAIR_GAP; }
 
+  /* --- Sibship-bus link assemblies (orthogonal, zero crossings) ---
+   * A sibship = 1–2 parents in one band + their rendered children below.
+   * Couple mark (pairs only): U-shaped stubs joining the two parent cards,
+   *   drawn ALWAYS (even when children are collapsed). Key: couple:<ids>:<gap>.
+   * Trunk: vertical from the couple bar (or single parent bottom-center) to a
+   *   horizontal bus at the band midpoint, with vertical drops to each child.
+   *   Drawn ONLY when children are rendered. Key: trunk:<ids>:<gap>:open.
+   * A single parent with a single child collapses to one straight line. */
+
+  function r2(v) { return Math.round(v * 100) / 100; }
+
+  function skey(ids) { return ids.slice().sort().join(","); }
+
+  /* "M x,y L x,y ..." — consecutive duplicates collapsed, NaN impossible:
+   * every coordinate is produced here from layout numbers, never from D3. */
+  function pathFrom(pts) {
+    var seq = [];
+    pts.forEach(function (p) {
+      var q = [r2(p[0]), r2(p[1])];
+      var l = seq[seq.length - 1];
+      if (!l || l[0] !== q[0] || l[1] !== q[1]) seq.push(q);
+    });
+    return "M" + seq.map(function (q) { return q[0] + "," + q[1]; }).join("L");
+  }
+
+  /* U-shaped couple mark joining two parent cards at their bottom-centers. */
+  function couplePath(x1, x2, yBottom) {
+    var yC = yBottom + STUB;
+    return pathFrom([[x1, yBottom], [x1, yC], [x2, yC], [x2, yBottom]]);
+  }
+
+  /* Trunk + bus + drops as one serpentine polyline. tx: trunk x; topY: start;
+   * busY: horizontal bus level; childXs: drop positions; childTopY. */
+  function trunkPath(tx, topY, busY, childXs, childTopY) {
+    var pts = [[tx, topY], [tx, busY]];
+    childXs.slice().sort(function (a, b) { return a - b; }).forEach(function (cx) {
+      pts.push([cx, busY], [cx, childTopY], [cx, busY]);
+    });
+    pts.pop(); /* end at the last drop */
+    return pathFrom(pts);
+  }
+
   /* View model for a focus person:
    *   b1     — focus person's parents, individual cards
    *   groups — band 2: focus group [F, spouse?] then one single-card group per sibling
@@ -130,10 +173,6 @@
     var anyOpen = view.groups.some(function (g) { return g.open && g.children.length; });
     if (anyOpen) yB3 = (yi++) * DY;
 
-    function mkLink(sx, sy, tx, ty, up, key) {
-      return { sx: sx, sy: sy, tx: tx, ty: ty, up: up, key: key };
-    }
-
     /* Band 2 (+ band 3 beneath open groups) */
     var gws = view.groups.map(function (g) {
       var pw = pairW(g.persons.length, PW);
@@ -142,7 +181,7 @@
     });
     var total2 = gws.reduce(function (a, b) { return a + b; }, 0) + GROUP_GAP * (gws.length - 1);
     var x = -total2 / 2;
-    var b1x = {}, b2x = {}, b3x = {};
+    var b1x = {}, b2x = {}, b3x = {}, upX = {};
     view.groups.forEach(function (g, gi) {
       g.cx = x + gws[gi] / 2;
       var pw = pairW(g.persons.length, PW);
@@ -160,12 +199,6 @@
           nodes.push({ kind: "b3", id: c, label: PEOPLE[c].t, x: cx, y: yB3, w: PW, h: PH,
                        self: c === SELF, hasKids: childrenOf(c).length > 0,
                        spawnX: g.cx, spawnY: yB2 });
-        });
-        g.persons.forEach(function (p) {
-          g.children.forEach(function (c) {
-            links.push(mkLink(b2x[p], yB2 + PH / 2, b3x[c], yB3 - PH / 2, false,
-                              "b2:" + p + "->b3:" + c));
-          });
         });
       }
       x += gws[gi] + GROUP_GAP;
@@ -190,25 +223,10 @@
           var sib = view.ups.filter(function (v) { return v.child === u.child; });
           var idx = sib.indexOf(u);
           var ux = qx - pairW(sib.length, UW) / 2 + UW / 2 + idx * (UW + PAIR_GAP);
+          upX[u.id + "|" + u.child] = ux;
           nodes.push({ kind: "up", id: u.id, label: PEOPLE[u.id].t, x: ux, y: yUp, w: UW, h: UH, self: false });
-          links.push(mkLink(ux, yUp + UH / 2, qx, yB1 - PH / 2, true, "up:" + u.id + "->b1:" + u.child));
         });
       }
-      /* Band 1 -> band 2 links follow actual parentage: only parents of r
-       * that are present in band 1 get a link. (E.g. 媽媽 has no incoming
-       * link in 爸爸's view — her parents are 外婆/公公, shown in her view.) */
-      var b1set = {};
-      view.b1.forEach(function (q) { b1set[q] = true; });
-      view.groups.forEach(function (g) {
-        g.persons.forEach(function (r) {
-          parentsOf(r).forEach(function (q) {
-            if (b1set[q]) {
-              links.push(mkLink(b1x[q], yB1 + PH / 2, b2x[r], yB2 - PH / 2, false,
-                                "b1:" + q + "->b2:" + r));
-            }
-          });
-        });
-      });
     }
 
     /* Group badges (+N expand / − collapse) */
@@ -223,6 +241,97 @@
         };
       });
 
+    /* --- Sibship-bus link assemblies ---
+     * One assembly per (parent set, band gap): a couple mark (pairs, always)
+     * plus a trunk/bus/drops polyline (only when children are rendered).
+     * Drops follow actual parentage: a band-2 person gets a drop only from a
+     * parent set containing one of their own parents. (E.g. 媽媽 gets no drop
+     * from 爺爺/嫲嫲 in 爸爸's view — her parents are 外婆/公公.) */
+    function addLink(key, d, up, pids, kids) {
+      links.push({ key: key, d: d, up: up, pids: pids, kids: kids });
+    }
+
+    /* 1. Up band: each band-1 card's own grandparents (never cross-pair). */
+    if (yUp >= 0) {
+      view.b1.forEach(function (q) {
+        var ps = parentsOf(q);
+        if (!ps.length) return;
+        var ids = skey(ps);
+        var yB = yUp + UH / 2, yT = yB1 - PH / 2, busY = (yB + yT) / 2;
+        var xs = ps.map(function (u) { return upX[u + "|" + q]; });
+        if (ps.length === 2) {
+          addLink("couple:" + ids + ":up-b1", couplePath(xs[0], xs[1], yB), true, ps, []);
+          var tx = (xs[0] + xs[1]) / 2;
+          addLink("trunk:" + ids + ":up-b1:open",
+                  trunkPath(tx, yB + STUB, busY, [b1x[q]], yT), true, ps, [q]);
+        } else {
+          addLink("trunk:" + ids + ":up-b1:open",
+                  trunkPath(xs[0], yB, busY, [b1x[q]], yT), true, ps, [q]);
+        }
+      });
+    }
+
+    /* 2. Band 1 -> band 2: ONE assembly for the parent set. */
+    if (view.b1.length) {
+      var pids = view.b1.slice();
+      var ids = skey(pids);
+      var b1set = {};
+      pids.forEach(function (q) { b1set[q] = true; });
+      var yB = yB1 + PH / 2, yT = yB2 - PH / 2, busY = (yB + yT) / 2;
+      var kids = [];
+      var seen = {};
+      view.groups.forEach(function (g) {
+        g.persons.forEach(function (r) {
+          if (seen[r]) return;
+          if (parentsOf(r).some(function (q) { return b1set[q]; })) {
+            seen[r] = true;
+            kids.push({ id: r, x: b2x[r] });
+          }
+        });
+      });
+      if (pids.length === 2) {
+        addLink("couple:" + ids + ":b1-b2",
+                couplePath(b1x[pids[0]], b1x[pids[1]], yB), false, pids, []);
+        var tx = (b1x[pids[0]] + b1x[pids[1]]) / 2;
+        addLink("trunk:" + ids + ":b1-b2:open",
+                trunkPath(tx, yB + STUB, busY,
+                          kids.map(function (k) { return k.x; }), yT),
+                false, pids, kids.map(function (k) { return k.id; }));
+      } else if (kids.length) {
+        addLink("trunk:" + ids + ":b1-b2:open",
+                trunkPath(b1x[pids[0]], yB, busY,
+                          kids.map(function (k) { return k.x; }), yT),
+                false, pids, kids.map(function (k) { return k.id; }));
+      }
+    }
+
+    /* 3. Band 2 -> band 3: per group with rendered children. Couple marks
+     * persist for pairs even when collapsed; trunks only when open. */
+    view.groups.forEach(function (g) {
+      var ids = skey(g.persons);
+      var yB = yB2 + PH / 2;
+      if (g.persons.length === 2) {
+        addLink("couple:" + ids + ":b2-b3",
+                couplePath(b2x[g.persons[0]], b2x[g.persons[1]], yB),
+                false, g.persons, []);
+      }
+      if (g.open && g.children.length) {
+        var yT = yB3 - PH / 2, busY = (yB + yT) / 2;
+        var tx, topY;
+        if (g.persons.length === 2) {
+          tx = (b2x[g.persons[0]] + b2x[g.persons[1]]) / 2;
+          topY = yB + STUB;
+        } else {
+          tx = b2x[g.persons[0]];
+          topY = yB;
+        }
+        addLink("trunk:" + ids + ":b2-b3:open",
+                trunkPath(tx, topY, busY,
+                          g.children.map(function (c) { return b3x[c]; }), yT),
+                false, g.persons, g.children.slice());
+      }
+    });
+
     return { nodes: nodes, links: links, badges: badges, view: view,
              bands: { up: yUp, b1: yB1, b2: yB2, b3: yB3 } };
   }
@@ -232,8 +341,10 @@
     module.exports = {
       PEOPLE: PEOPLE, SELF: SELF, START: START,
       PW: PW, PH: PH, UW: UW, UH: UH, PAIR_GAP: PAIR_GAP, GROUP_GAP: GROUP_GAP, DY: DY,
+      STUB: STUB,
       parentsOf: parentsOf, childrenOf: childrenOf, siblingsOf: siblingsOf,
       spouseOf: spouseOf, descendants: descendants,
+      skey: skey, pathFrom: pathFrom, couplePath: couplePath, trunkPath: trunkPath,
       buildView: buildView, layout: layout
     };
     return;
@@ -278,13 +389,6 @@
   svg.on("pointerdown", function (e) { downPos = [e.clientX, e.clientY]; });
   function dragged(e) {
     return !!downPos && Math.hypot(e.clientX - downPos[0], e.clientY - downPos[1]) > 6;
-  }
-
-  var linkGen = d3.linkVertical()
-    .x(function (d) { return d.x; })
-    .y(function (d) { return d.y; });
-  function linkPath(l) {
-    return linkGen({ source: { x: l.sx, y: l.sy }, target: { x: l.tx, y: l.ty } });
   }
 
   function activateKey(e, fn) {
@@ -424,17 +528,17 @@
       return [d.x, d.y];
     }
 
-    /* Links */
+    /* Links: sibship-bus assemblies. d strings are precomputed polylines
+     * (no D3 curve generator — NaN impossible). Enter fades in at final d;
+     * updates morph d for position shifts; exits fade out. */
     var linkSel = linkLayer.selectAll("path.ft-link").data(L.links, function (d) { return d.key; });
-    linkSel.enter().append("path")
+    var linkEnter = linkSel.enter().append("path")
       .attr("class", function (d) { return "ft-link" + (d.up ? " ft-link--up" : ""); })
-      .attr("d", function (d) {
-        return linkGen({ source: { x: d.sx, y: d.sy }, target: { x: d.sx, y: d.sy } });
-      })
-      .style("opacity", 0)
-      .merge(linkSel)
-      .transition().duration(DUR).ease(d3.easeCubicOut)
-      .attr("d", linkPath)
+      .attr("d", function (d) { return d.d; })
+      .style("opacity", 0);
+    linkEnter.transition().duration(DUR).style("opacity", 1);
+    linkSel.transition().duration(DUR).ease(d3.easeCubicOut)
+      .attr("d", function (d) { return d.d; })
       .style("opacity", 1);
     linkSel.exit().transition().duration(DUR).style("opacity", 0).remove();
 
