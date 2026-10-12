@@ -722,11 +722,11 @@
   }
 }
 
-  /* --- FamilyTreeMe: explorable family tree --- */
+  /* --- FamilyTreeMe: D3 explorable family tree --- */
   .ft-hints {
     color: var(--color-text-muted);
     font-size: 0.95rem;
-    max-width: 620px;
+    max-width: 640px;
   }
 
   .ft-section {
@@ -769,261 +769,141 @@
   }
 
   .ft-tree {
-    --ft-line: var(--color-border);
-    --ft-gap: 16px;
     padding: var(--space-md) 0 var(--space-xl);
   }
 
-  /* Up band: small ancestor nodes, one column per parent of the focus family */
-  .ft-upband {
-    display: grid;
-    grid-template-columns: repeat(var(--ft-cols, 1), 1fr);
-  }
-
-  .ft-upcell {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-  }
-
-  .ft-upgroup {
-    display: flex;
-    gap: var(--space-sm);
-    flex-wrap: wrap;
-    justify-content: center;
-  }
-
-  .ft-up-trunk {
-    width: 2px;
-    height: var(--ft-gap);
-    background: var(--ft-line);
-    margin-top: 6px;
-  }
-
-  /* Focus family: parents row */
-  .ft-parents {
-    display: grid;
-    grid-template-columns: repeat(var(--ft-cols, 1), 1fr);
-  }
-
-  .ft-parentcell {
-    display: flex;
-    justify-content: center;
-  }
-
-  /* Person nodes */
-  .ft-node {
-    font-family: 'Outfit', system-ui, sans-serif;
-    font-size: 1.05rem;
-    font-weight: 600;
-    color: var(--color-heading);
-    background: var(--color-card);
-    border: 1.5px solid var(--color-border);
-    border-radius: var(--radius-lg);
-    padding: 0.55rem 1.1rem;
-    box-shadow: var(--shadow);
-    text-align: center;
-    line-height: 1.4;
-  }
-
-  button.ft-node {
-    cursor: pointer;
-    transition: border-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
-  }
-
-  button.ft-node:hover {
-    border-color: var(--color-accent);
-    transform: translateY(-1px);
-  }
-
-  .ft-node--static {
-    cursor: default;
-  }
-
-  .ft-node--small {
-    font-size: 0.85rem;
-    padding: 0.35rem 0.75rem;
-    border-radius: var(--radius-md);
-  }
-
-  .ft-node--self {
-    border-color: var(--color-accent);
-  }
-
-  .ft-self-pill {
-    display: inline-block;
-    font-size: 0.68rem;
-    font-weight: 700;
-    letter-spacing: 0.06em;
-    color: var(--color-accent);
-    background: oklch(from var(--color-accent) calc(l + 0.32) c h / 0.14);
-    border-radius: 999px;
-    padding: 0.15em 0.6em;
-    margin-left: 0.5em;
-    vertical-align: middle;
-    white-space: nowrap;
-  }
-
-  html[data-theme="dark"] .ft-self-pill {
-    background: oklch(from var(--color-accent) calc(l - 0.45) c h / 0.25);
-  }
-
-  /* Connector: trunk from parents down to the children bus */
-  .ft-trunk {
-    width: 2px;
-    height: var(--ft-gap);
-    background: var(--ft-line);
-    margin: 0 auto;
-  }
-
-  /* Children row: equal slots, horizontal bus + per-child stubs */
-  .ft-kids {
-    position: relative;
-    display: flex;
-    padding-top: var(--ft-gap);
-  }
-
-  .ft-kids::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: calc(50% / var(--ft-n, 1));
-    right: calc(50% / var(--ft-n, 1));
-    border-top: 2px solid var(--ft-line);
-  }
-
-  .ft-kid {
-    flex: 1 1 0;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    padding: var(--ft-gap) var(--space-xs) 0;
-  }
-
-  .ft-kid::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 2px;
-    height: var(--ft-gap);
-    transform: translateX(-50%);
-    background: var(--ft-line);
-  }
-
-  /* Expander toggle under a child who parents their own family */
-  .ft-expander {
-    margin-top: var(--space-sm);
-    display: inline-flex;
-    align-items: center;
-    gap: 0.35em;
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.8rem;
-    font-weight: 600;
+  .ft-fallback {
     color: var(--color-text-muted);
-    background: var(--color-card);
-    border: 1.5px solid var(--color-border);
-    border-radius: 999px;
-    padding: 0.25rem 0.8rem;
-    cursor: pointer;
-    transition: border-color 0.2s ease, color 0.2s ease;
+    font-size: 1rem;
+    padding: var(--space-xl) 0;
+    text-align: center;
   }
 
-  .ft-expander:hover {
-    border-color: var(--color-accent);
-    color: var(--color-accent);
-  }
-
-  .ft-count {
-    display: inline-block;
-    font-weight: 700;
-    color: var(--color-accent);
-    background: oklch(from var(--color-accent) calc(l + 0.32) c h / 0.14);
-    border-radius: 999px;
-    padding: 0.1em 0.6em;
-    font-size: 0.85em;
-    white-space: nowrap;
-  }
-
-  html[data-theme="dark"] .ft-count {
-    background: oklch(from var(--color-accent) calc(l - 0.45) c h / 0.25);
-  }
-
-  .ft-expander-text {
-    white-space: nowrap;
-  }
-
-  /* Generation 3: expanded grandchildren */
-  .ft-gtrunk {
-    width: 2px;
-    height: 12px;
-    background: var(--ft-line);
-    margin-top: var(--space-sm);
-  }
-
-  .ft-gkids {
-    position: relative;
-    display: flex;
-    padding-top: 12px;
+  /* D3 SVG canvas */
+  .ft-svg {
+    display: block;
     width: 100%;
-    justify-content: center;
+    height: clamp(440px, 62vh, 640px);
+    touch-action: pan-y; /* vertical page scroll stays native on touch; d3.zoom handles pinch + horizontal pan */
+    cursor: grab;
+    user-select: none;
+    -webkit-user-select: none;
   }
 
-  .ft-gkids::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: calc(50% / var(--ft-n, 1));
-    right: calc(50% / var(--ft-n, 1));
-    border-top: 2px solid var(--ft-line);
+  .ft-svg:active {
+    cursor: grabbing;
   }
 
-  .ft-gkid {
-    flex: 1 1 0;
-    min-width: 0;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    position: relative;
-    padding: 12px var(--space-xs) 0;
+  .ft-svg text {
+    font-family: 'Outfit', 'Inter', system-ui, 'PingFang TC', 'PingFang HK', 'Microsoft JhengHei', 'Noto Sans TC', sans-serif;
   }
 
-  .ft-gkid::before {
-    content: "";
-    position: absolute;
-    top: 0;
-    left: 50%;
-    width: 2px;
-    height: 12px;
-    transform: translateX(-50%);
-    background: var(--ft-line);
+  /* Curved node-link connectors */
+  .ft-link {
+    fill: none;
+    stroke: var(--color-border);
+    stroke-width: 2px;
   }
 
-  .ft-visit {
-    margin-top: var(--space-xs);
-    background: none;
-    border: none;
-    color: var(--color-accent);
-    font-family: 'Inter', system-ui, sans-serif;
-    font-size: 0.82rem;
-    font-weight: 600;
+  .ft-link--up {
+    stroke-dasharray: 7 5;
+  }
+
+  /* Node cards */
+  .ft-card {
+    fill: var(--color-card);
+    stroke: var(--color-border);
+    stroke-width: 1.5px;
+    filter: drop-shadow(0 3px 6px rgb(0 0 0 / 0.10));
+  }
+
+  html[data-theme="dark"] .ft-card {
+    filter: drop-shadow(0 4px 10px rgb(0 0 0 / 0.45));
+  }
+
+  .ft-cardg {
     cursor: pointer;
-    padding: 0.25rem 0.5rem;
-    white-space: nowrap;
   }
 
-  .ft-visit:hover {
-    color: var(--color-accent-hover);
-    text-decoration: underline;
+  .ft-cardg:hover .ft-card {
+    stroke: var(--color-accent);
+  }
+
+  .ft-card--up {
+    stroke-dasharray: 7 5;
+  }
+
+  .ft-node--self .ft-card {
+    stroke: var(--color-accent);
+    stroke-width: 2.5px;
+  }
+
+  .ft-label {
+    font-size: 20px;
+    font-weight: 600;
+    fill: var(--color-heading);
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  .ft-label--leaf {
+    font-size: 18px;
+  }
+
+  .ft-label--up {
+    font-size: 16px;
+  }
+
+  /* +N expand/collapse badge */
+  .ft-badge {
+    cursor: pointer;
+  }
+
+  .ft-badge circle {
+    fill: var(--color-accent);
+    stroke: var(--color-card);
+    stroke-width: 3px;
+  }
+
+  .ft-badge text {
+    fill: #ffffff;
+    font-size: 15px;
+    font-weight: 700;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  /* 「起點」 marker pill */
+  .ft-pill rect {
+    fill: oklch(from var(--color-accent) calc(l + 0.32) c h / 0.16);
+  }
+
+  html[data-theme="dark"] .ft-pill rect {
+    fill: oklch(from var(--color-accent) calc(l - 0.45) c h / 0.28);
+  }
+
+  .ft-pill text {
+    fill: var(--color-accent);
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.08em;
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  /* Keyboard focus */
+  .ft-svg .ft-focusable:focus {
+    outline: none;
+  }
+
+  .ft-svg .ft-focusable:focus-visible {
+    outline: 3px solid var(--color-accent);
+    outline-offset: 5px;
   }
 
   @media (prefers-reduced-motion: reduce) {
-    .ft-tree *,
-    .ft-tree *::before,
-    .ft-tree *::after {
-      transition: none;
+    .ft-svg * {
+      transition: none !important;
     }
   }
 }
