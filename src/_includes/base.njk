@@ -60,6 +60,7 @@
     <!-- Inline script to apply saved theme preference immediately -->
     <script>
       {
+        document.documentElement.classList.add("js");
         const savedTheme = localStorage.getItem("color-scheme");
         if (savedTheme) {
           document.querySelector('meta[name="color-scheme"]').content = savedTheme;
@@ -82,7 +83,15 @@
       <div class="header-container">
         <a href="/" class="brand" id="brand-logo">Benson Fung</a>
         <nav class="site-nav" aria-label="Main Navigation">
-          <ul class="nav-links">
+          <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+            <svg class="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+            <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18"></path>
+            </svg>
+          </button>
+          <ul class="nav-links" id="nav-menu">
             <li><a href="/" {% if page.url == "/" %}class="active" aria-current="page"{% endif %}>Home</a></li>
             <li><a href="/resume.html" {% if page.url == "/resume.html" %}class="active" aria-current="page"{% endif %}>Resume</a></li>
             <li><a href="/vibe-redesign/" {% if "/vibe-redesign" in page.url %}class="active" aria-current="page"{% endif %}>VibeRedesign</a></li>

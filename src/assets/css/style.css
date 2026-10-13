@@ -338,6 +338,89 @@
   html[data-theme="dark"] .sun-icon { display: block; }
   html[data-theme="dark"] .moon-icon { display: none; }
 
+  /* --- Responsive Mobile Navigation (progressively enhanced) --- */
+  /* The hamburger toggle only appears on small screens when JS is available.
+     Without JS the full menu stays visible, so navigation never breaks. */
+  .nav-toggle {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    flex: none;
+    border-radius: var(--radius-md);
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    background-color: var(--color-card);
+    transition: background-color 0.2s ease, border-color 0.2s, color 0.2s;
+  }
+
+  .nav-toggle:hover {
+    background-color: var(--color-bg);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .nav-toggle .icon-close { display: none; }
+  .nav-toggle[aria-expanded="true"] .icon-open { display: none; }
+  .nav-toggle[aria-expanded="true"] .icon-close { display: block; }
+
+  @media (max-width: 639px) {
+    .nav-links {
+      flex-direction: column;
+      gap: 0;
+      padding: var(--space-xs) var(--space-md) var(--space-md);
+    }
+
+    .nav-links li { border-top: 1px solid var(--color-border); }
+    .nav-links li:last-child { border-bottom: 1px solid var(--color-border); }
+
+    .nav-links a {
+      display: block;
+      font-size: 1rem;
+      padding: 0.8rem var(--space-xs);
+    }
+
+    /* The desktop underline doesn't suit full-width rows; the active
+       link is indicated by accent color instead. */
+    .nav-links a::after { display: none; }
+    .nav-links a.active { color: var(--color-accent); }
+
+    /* No JS: the menu stays in normal flow below the header row. */
+    html:not(.js) .header-container { flex-wrap: wrap; }
+    html:not(.js) .site-nav { order: 3; flex-basis: 100%; margin: 0; }
+    html:not(.js) .nav-links { padding-top: var(--space-sm); }
+
+    /* With JS: hamburger toggle + dropdown panel under the sticky header. */
+    html.js .nav-toggle { display: flex; }
+    html.js .site-nav { margin-right: var(--space-sm); }
+    html.js .nav-links {
+      display: none;
+      position: absolute;
+      top: 100%;
+      left: 0;
+      right: 0;
+      /* Solid card background (not glass) so menu text stays readable
+         over page content beneath the dropdown. */
+      background-color: var(--color-card);
+      border-bottom: 1px solid var(--color-border);
+      box-shadow: var(--shadow);
+    }
+    html.js .nav-toggle[aria-expanded="true"] + .nav-links {
+      display: flex;
+      animation: nav-menu-in 0.18s ease-out;
+    }
+  }
+
+  @keyframes nav-menu-in {
+    from { opacity: 0; transform: translateY(-8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    html.js .nav-toggle[aria-expanded="true"] + .nav-links { animation: none; }
+  }
+
   /* --- Hero Landing Section --- */
   .hero-section {
     display: flex;
