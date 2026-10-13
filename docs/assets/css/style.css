@@ -564,6 +564,97 @@
     font-weight: 600;
   }
 
+  .project-tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+    margin-bottom: var(--space-sm);
+  }
+
+  .tag-pill {
+    font-size: 0.72rem;
+    font-weight: 600;
+    letter-spacing: 0.02em;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.15rem 0.6rem;
+    background-color: var(--color-bg);
+  }
+
+  .projects-more {
+    margin-top: var(--space-lg);
+    font-weight: 600;
+  }
+
+  /* --- Projects page: filter + sort controls (JS-enhanced) --- */
+  .project-controls[hidden],
+  .results-count[hidden] {
+    display: none;
+  }
+
+  .project-controls {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: var(--space-md);
+    margin-top: var(--space-lg);
+  }
+
+  .filter-chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-xs);
+  }
+
+  .filter-chip {
+    font-size: 0.85rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 0.4rem 0.9rem;
+    background-color: var(--color-card);
+    transition: background-color 0.2s ease, border-color 0.2s ease, color 0.2s ease;
+  }
+
+  .filter-chip:hover {
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .filter-chip[aria-pressed="true"] {
+    background-color: var(--color-accent);
+    border-color: var(--color-accent);
+    color: #fff;
+  }
+
+  .sort-label {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    font-size: 0.9rem;
+    font-weight: 600;
+    color: var(--color-text-muted);
+  }
+
+  .sort-label select {
+    font: inherit;
+    color: var(--color-text);
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    padding: 0.4rem 0.6rem;
+  }
+
+  .results-count {
+    font-size: 0.85rem;
+    color: var(--color-text-muted);
+    margin-top: var(--space-md);
+    margin-bottom: 0;
+  }
+
   /* --- Social links --- */
   .social-grid {
     display: flex;

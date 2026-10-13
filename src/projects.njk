@@ -1,0 +1,83 @@
+---
+layout: base.njk
+title: Projects | Benson Fung
+description: A running list of projects by Benson Fung — web apps, data visualizations, design experiments, and developer tools.
+---
+
+<section class="projects-section">
+  <h1>Projects</h1>
+  <p style="color: var(--color-text-muted);">A running list of things I've built, newest first. Filter by tag or change the sort order.</p>
+
+  <div class="project-controls" hidden>
+    <div class="filter-chips" role="group" aria-label="Filter projects by tag">
+      <button type="button" class="filter-chip" data-tag="all" aria-pressed="true">All</button>
+      {% for tag in projects.tags %}
+      <button type="button" class="filter-chip" data-tag="{{ tag }}" aria-pressed="false">{{ tag }}</button>
+      {% endfor %}
+    </div>
+    <label class="sort-label">Sort
+      <select id="project-sort">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="az">A&ndash;Z</option>
+      </select>
+    </label>
+  </div>
+  <p class="results-count" id="results-count" hidden></p>
+
+  <div class="projects-grid" id="projects-grid">
+    {% for project in projects.items %}
+      {% include "project-card.njk" %}
+    {% endfor %}
+  </div>
+
+  <script>
+  (function () {
+    var controls = document.querySelector('.project-controls');
+    var count = document.getElementById('results-count');
+    var grid = document.getElementById('projects-grid');
+    if (!controls || !grid) return;
+    // Controls only make sense with JS; without it every card stays visible.
+    controls.hidden = false;
+    count.hidden = false;
+
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.project-card'));
+    var chips = Array.prototype.slice.call(controls.querySelectorAll('.filter-chip'));
+    var sortSel = document.getElementById('project-sort');
+    var activeTag = 'all';
+
+    function updateCount(n) {
+      count.textContent = 'Showing ' + n + ' of ' + cards.length + ' projects';
+    }
+
+    function apply() {
+      var visible = [];
+      cards.forEach(function (card) {
+        var tags = (card.getAttribute('data-tags') || '').split(',');
+        var show = activeTag === 'all' || tags.indexOf(activeTag) !== -1;
+        card.style.display = show ? '' : 'none';
+        if (show) visible.push(card);
+      });
+      var mode = sortSel.value;
+      visible.sort(function (a, b) {
+        if (mode === 'az') return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
+        var da = a.getAttribute('data-date'), db = b.getAttribute('data-date');
+        if (mode === 'oldest') return da < db ? -1 : da > db ? 1 : 0;
+        return da > db ? -1 : da < db ? 1 : 0;
+      });
+      visible.forEach(function (card) { grid.appendChild(card); });
+      updateCount(visible.length);
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        activeTag = chip.getAttribute('data-tag');
+        chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+        apply();
+      });
+    });
+    sortSel.addEventListener('change', apply);
+    apply();
+  })();
+  </script>
+</section>

@@ -1,0 +1,300 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Projects | Benson Fung</title>
+    <meta name="description" content="A running list of projects by Benson Fung — web apps, data visualizations, design experiments, and developer tools.">
+    <link rel="canonical" href="https://bfung.github.io/projects/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Benson Fung">
+    <meta property="og:title" content="Projects | Benson Fung">
+    <meta property="og:description" content="A running list of projects by Benson Fung — web apps, data visualizations, design experiments, and developer tools.">
+    <meta property="og:url" content="https://bfung.github.io/projects/">
+    <meta property="og:image" content="https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Projects | Benson Fung">
+    <meta name="twitter:description" content="A running list of projects by Benson Fung — web apps, data visualizations, design experiments, and developer tools.">
+    <meta name="twitter:image" content="https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Benson Fung",
+      "url": "https://bfung.github.io/",
+      "image": "https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400",
+      "jobTitle": "Software Systems & People Team Builder",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Irvine",
+        "addressRegion": "CA"
+      },
+      "sameAs": [
+        "https://github.com/bfung",
+        "https://www.linkedin.com/in/bensonfung",
+        "https://stackoverflow.com/users/45793/benson",
+        "https://news.ycombinator.com/user?id=bfung",
+        "https://twitter.com/fungbenson"
+      ]
+    }
+    </script>
+
+    <!-- Declare supported color schemes for browser rendering and FOUC prevention -->
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- Inline script to apply saved theme preference immediately -->
+    <script>
+      {
+        document.documentElement.classList.add("js");
+        const savedTheme = localStorage.getItem("color-scheme");
+        if (savedTheme) {
+          document.querySelector('meta[name="color-scheme"]').content = savedTheme;
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      }
+    </script>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/style.css?v=218d6a3f">
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="site-header">
+      <div class="header-container">
+        <a href="/" class="brand" id="brand-logo">Benson Fung</a>
+        <nav class="site-nav" aria-label="Main Navigation">
+          <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+            <svg class="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+            <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18"></path>
+            </svg>
+          </button>
+          <ul class="nav-links" id="nav-menu">
+            <li><a href="/" >Home</a></li>
+            <li><a href="/resume.html" >Resume</a></li>
+            <li><a href="/projects/" class="active" aria-current="page">Projects</a></li>
+          </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle theme">
+          <!-- SVG for Sun Icon (visible in Dark Mode) -->
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <!-- SVG for Moon Icon (visible in Light Mode) -->
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content" class="content-wrapper">
+      
+<section class="projects-section">
+  <h1>Projects</h1>
+  <p style="color: var(--color-text-muted);">A running list of things I've built, newest first. Filter by tag or change the sort order.</p>
+
+  <div class="project-controls" hidden>
+    <div class="filter-chips" role="group" aria-label="Filter projects by tag">
+      <button type="button" class="filter-chip" data-tag="all" aria-pressed="true">All</button>
+      
+      <button type="button" class="filter-chip" data-tag="web app" aria-pressed="false">web app</button>
+      
+      <button type="button" class="filter-chip" data-tag="data viz" aria-pressed="false">data viz</button>
+      
+      <button type="button" class="filter-chip" data-tag="design" aria-pressed="false">design</button>
+      
+      <button type="button" class="filter-chip" data-tag="tool" aria-pressed="false">tool</button>
+      
+      <button type="button" class="filter-chip" data-tag="data" aria-pressed="false">data</button>
+      
+    </div>
+    <label class="sort-label">Sort
+      <select id="project-sort">
+        <option value="newest">Newest first</option>
+        <option value="oldest">Oldest first</option>
+        <option value="az">A&ndash;Z</option>
+      </select>
+    </label>
+  </div>
+  <p class="results-count" id="results-count" hidden></p>
+
+  <div class="projects-grid" id="projects-grid">
+    
+      <article class="project-card" data-tags="web app,data viz" data-date="2026-10" data-title="familytreeme">
+  <h3 class="project-title">FamilyTreeMe</h3>
+  <div class="project-tags" aria-label="Tags">
+    <span class="tag-pill">web app</span><span class="tag-pill">data viz</span>
+  </div>
+  <p class="project-desc">An explorable family tree — three generations, one family at a time. Relatives appear by kinship titles only, with pan/zoom and light/dark themes.</p>
+  <div class="project-links">
+    
+      
+      <a href="/familytreeme/">Explore</a>
+      
+    
+  </div>
+</article>
+
+    
+      <article class="project-card" data-tags="design" data-date="2026-10" data-title="viberedesign">
+  <h3 class="project-title">VibeRedesign</h3>
+  <div class="project-tags" aria-label="Tags">
+    <span class="tag-pill">design</span>
+  </div>
+  <p class="project-desc">Eight design variants of my home and resume pages — from letterpress serif to neubrutalism — each self-contained with zero third-party requests.</p>
+  <div class="project-links">
+    
+      
+      <a href="/vibe-redesign/">View designs</a>
+      
+    
+  </div>
+</article>
+
+    
+      <article class="project-card" data-tags="web app" data-date="2026-09" data-title="luggage pack">
+  <h3 class="project-title">Luggage Pack</h3>
+  <div class="project-tags" aria-label="Tags">
+    <span class="tag-pill">web app</span>
+  </div>
+  <p class="project-desc">A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
+  <div class="project-links">
+    
+      
+      <a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Live Site</a>
+      
+    
+      
+      <a href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">Code</a>
+      
+    
+  </div>
+</article>
+
+    
+      <article class="project-card" data-tags="tool" data-date="2017-01" data-title="umatrix rule generalizer">
+  <h3 class="project-title">uMatrix Rule Generalizer</h3>
+  <div class="project-tags" aria-label="Tags">
+    <span class="tag-pill">tool</span>
+  </div>
+  <p class="project-desc">A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
+  <div class="project-links">
+    
+      
+      <a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">Live Site</a>
+      
+    
+      
+      <a href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">Code</a>
+      
+    
+  </div>
+</article>
+
+    
+      <article class="project-card" data-tags="data,web app" data-date="2011-08" data-title="hnanalytics">
+  <h3 class="project-title">HNanalytics</h3>
+  <div class="project-tags" aria-label="Tags">
+    <span class="tag-pill">data</span><span class="tag-pill">web app</span>
+  </div>
+  <p class="project-desc">A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
+  <div class="project-links">
+    
+      
+      <a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">View Code →</a>
+      
+    
+  </div>
+</article>
+
+    
+  </div>
+
+  <script>
+  (function () {
+    var controls = document.querySelector('.project-controls');
+    var count = document.getElementById('results-count');
+    var grid = document.getElementById('projects-grid');
+    if (!controls || !grid) return;
+    // Controls only make sense with JS; without it every card stays visible.
+    controls.hidden = false;
+    count.hidden = false;
+
+    var cards = Array.prototype.slice.call(grid.querySelectorAll('.project-card'));
+    var chips = Array.prototype.slice.call(controls.querySelectorAll('.filter-chip'));
+    var sortSel = document.getElementById('project-sort');
+    var activeTag = 'all';
+
+    function updateCount(n) {
+      count.textContent = 'Showing ' + n + ' of ' + cards.length + ' projects';
+    }
+
+    function apply() {
+      var visible = [];
+      cards.forEach(function (card) {
+        var tags = (card.getAttribute('data-tags') || '').split(',');
+        var show = activeTag === 'all' || tags.indexOf(activeTag) !== -1;
+        card.style.display = show ? '' : 'none';
+        if (show) visible.push(card);
+      });
+      var mode = sortSel.value;
+      visible.sort(function (a, b) {
+        if (mode === 'az') return a.getAttribute('data-title').localeCompare(b.getAttribute('data-title'));
+        var da = a.getAttribute('data-date'), db = b.getAttribute('data-date');
+        if (mode === 'oldest') return da < db ? -1 : da > db ? 1 : 0;
+        return da > db ? -1 : da < db ? 1 : 0;
+      });
+      visible.forEach(function (card) { grid.appendChild(card); });
+      updateCount(visible.length);
+    }
+
+    chips.forEach(function (chip) {
+      chip.addEventListener('click', function () {
+        activeTag = chip.getAttribute('data-tag');
+        chips.forEach(function (c) { c.setAttribute('aria-pressed', c === chip ? 'true' : 'false'); });
+        apply();
+      });
+    });
+    sortSel.addEventListener('change', apply);
+    apply();
+  })();
+  </script>
+</section>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <p>&copy; 2026 Benson Fung. All rights reserved.</p>
+        <p class="footer-meta">Built with <a href="https://www.11ty.dev/" target="_blank" rel="noopener">Eleventy</a> &bull; Blazing fast, build-time static HTML.</p>
+      </div>
+    </footer>
+
+    <!-- Client-side JS -->
+    <script src="/assets/js/main.js?v=c5127d94" defer></script>
+  </body>
+</html>

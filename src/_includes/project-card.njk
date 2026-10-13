@@ -1,0 +1,16 @@
+<article class="project-card" data-tags="{{ project.tags | join(',') }}" data-date="{{ project.date }}" data-title="{{ project.title | lower }}">
+  <h3 class="project-title">{{ project.title }}</h3>
+  <div class="project-tags" aria-label="Tags">
+    {% for tag in project.tags %}<span class="tag-pill">{{ tag }}</span>{% endfor %}
+  </div>
+  <p class="project-desc">{{ project.description }}</p>
+  <div class="project-links">
+    {% for link in project.links %}
+      {% if link.external %}
+      <a href="{{ link.url }}" target="_blank" rel="noopener">{{ link.label }}</a>
+      {% else %}
+      <a href="{{ link.url }}">{{ link.label }}</a>
+      {% endif %}
+    {% endfor %}
+  </div>
+</article>
