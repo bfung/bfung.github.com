@@ -1,0 +1,11 @@
+<article class="guide-card">
+  <h3 class="guide-title"><a href="{{ guide.url }}">{{ guide.title }}</a></h3>
+  <p class="guide-date">{{ guide.date }}</p>
+  <div class="project-tags" aria-label="Tags">
+    {% for tag in guide.tags %}<span class="tag-pill">{{ tag }}</span>{% endfor %}
+  </div>
+  <p class="project-desc">{{ guide.description }}</p>
+  <div class="project-links">
+    <a href="{{ guide.url }}">Read the guide</a>
+  </div>
+</article>

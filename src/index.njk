@@ -40,6 +40,18 @@ description: Personal website of Benson Fung, a product-focused generalist softw
   <p class="projects-more"><a href="/projects/">View all projects &rarr;</a></p>
 </section>
 
+<section class="guides-section">
+  <h2>Guides</h2>
+  <div class="guides-grid">
+    {% for guide in guides.items %}
+    {% if loop.index <= 6 %}
+      {% include "guide-card.njk" %}
+    {% endif %}
+    {% endfor %}
+  </div>
+  <p class="projects-more"><a href="/guides/">View all guides &rarr;</a></p>
+</section>
+
 <section class="social-section" style="margin-top: var(--space-xxl);">
   <h2>Connect & Links</h2>
   <p style="color: var(--color-text-muted); font-size: 0.95rem;">You can find me across these developer and community platforms:</p>
