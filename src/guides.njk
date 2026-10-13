@@ -1,0 +1,26 @@
+---
+layout: base.njk
+title: Guides | Benson Fung
+description: Step-by-step guides by Benson Fung — practical walkthroughs of things he's built and figured out.
+---
+
+<section class="guides-section">
+  <h1>Guides</h1>
+  <p style="color: var(--color-text-muted);">Step-by-step walkthroughs of things I've figured out, written so you can follow along.</p>
+
+  <div class="guides-grid">
+    {% for guide in guides.items %}
+    <article class="guide-card">
+      <h2 class="guide-title"><a href="{{ guide.url }}">{{ guide.title }}</a></h2>
+      <p class="guide-date">{{ guide.date }}</p>
+      <div class="project-tags" aria-label="Tags">
+        {% for tag in guide.tags %}<span class="tag-pill">{{ tag }}</span>{% endfor %}
+      </div>
+      <p class="project-desc">{{ guide.description }}</p>
+      <div class="project-links">
+        <a href="{{ guide.url }}">Read the guide</a>
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>

@@ -53,6 +53,24 @@
       ]
     }
     </script>
+{% if articleDate %}
+    <!-- Article structured data for guide articles -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Article",
+      "headline": {{ title | dump | safe }},
+      "description": {{ description | dump | safe }},
+      "datePublished": "{{ articleDate }}",
+      "author": {
+        "@type": "Person",
+        "name": "Benson Fung",
+        "url": "{{ site.url }}/"
+      },
+      "mainEntityOfPage": "{{ site.url }}{{ page.url }}"
+    }
+    </script>
+{% endif %}
 
     <!-- Declare supported color schemes for browser rendering and FOUC prevention -->
     <meta name="color-scheme" content="light dark">
@@ -95,6 +113,7 @@
             <li><a href="/" {% if page.url == "/" %}class="active" aria-current="page"{% endif %}>Home</a></li>
             <li><a href="/resume.html" {% if page.url == "/resume.html" %}class="active" aria-current="page"{% endif %}>Resume</a></li>
             <li><a href="/projects/" {% if "/projects" in page.url %}class="active" aria-current="page"{% endif %}>Projects</a></li>
+            <li><a href="/guides/" {% if "/guides" in page.url %}class="active" aria-current="page"{% endif %}>Guides</a></li>
           </ul>
         </nav>
         <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle theme">

@@ -1,0 +1,96 @@
+---
+layout: base.njk
+title: Publish and maintain a personal website using Muse from Meta and GitHub Pages for free | Benson Fung
+description: There's a lot of AI talk, but not many examples. Here's how I updated my website from my phone in 4 days — using Muse from Meta and GitHub Pages, for free.
+articleDate: "2026-10-26"
+---
+
+<article class="guide-article">
+  <h1>Publish and maintain a personal website using Muse from Meta and GitHub Pages for free</h1>
+  <p class="article-date">Oct. 26, 2026</p>
+
+  <p>There's a lot of Artificial Intelligence (AI) talk, but not many examples.</p>
+
+  <p>I was vacationing and didn't bring a laptop, however, using this setup, I was able to update my website more in 4 days than the last 4 years using only my phone!</p>
+
+  <p>Here's how it works.</p>
+
+  <figure class="diagram">
+    <div id="arch-diagram" role="img" aria-label="Architecture diagram: the Muse app on your phone connects to your GitHub repository; pushing changes triggers GitHub Actions, which publishes your site to your GitHub Pages URL."></div>
+    <figcaption>How the pieces fit together: Muse talks to GitHub, GitHub Actions publishes, GitHub Pages serves your site.</figcaption>
+  </figure>
+  <noscript><p>The diagram needs JavaScript to draw &mdash; in short: Muse (on your phone) &rarr; GitHub repository &rarr; GitHub Actions &rarr; your live site URL.</p></noscript>
+
+  <h2>Software and accounts</h2>
+  <ul>
+    <li>A GitHub account to publish to GitHub Pages</li>
+    <li>GitHub &amp; GitHub Pages are free.</li>
+    <li>GitHub Actions for public repos are free.</li>
+    <li>No, you don't have to know how to code.</li>
+    <li>Install and setup Muse from Meta. [<a href="https://apps.apple.com/us/app/muse-from-meta/id6760173601" target="_blank" rel="noopener">Apple app store</a>]</li>
+  </ul>
+
+  <h2>Connecting them together</h2>
+  <p>Go to the Settings &rarr; Connectors section of the Muse app and follow the instructions.</p>
+  <p>Opinion me: as long as you don't connect things that spend real money, it's safe. Don't panic, READ BEFORE APPROVING, and be smart.</p>
+
+  <h2>Setup GitHub Pages plumbing</h2>
+  <p>These are the few steps you do yourself in a browser, since Muse can't click through GitHub's setup screens for you (yet).</p>
+  <ol>
+    <li><strong>Create a free GitHub account</strong> at <a href="https://github.com/signup" target="_blank" rel="noopener">github.com/signup</a> &mdash; an email and a password are all it takes.</li>
+    <li><strong>Create a repository.</strong> Think of a repository as a folder that lives on GitHub and holds everything for one project. Click the <strong>+</strong> menu in the top-right corner, choose <strong>New repository</strong>, and name it exactly <code>&lt;your-username&gt;.github.io</code> (for example, if your username is <code>octocat</code>, name it <code>octocat.github.io</code>). Choose <strong>Public</strong> &mdash; GitHub Actions, the free automation service that will publish your site, is free for public repos &mdash; tick <strong>Add a README</strong>, and click <strong>Create repository</strong>.</li>
+    <li><strong>Turn on GitHub Pages with GitHub Actions.</strong> In your new repo, click the <strong>Settings</strong> tab, then <strong>Pages</strong> in the left sidebar. Under &ldquo;Build and deployment&rdquo;, next to &ldquo;Source&rdquo;, choose <strong>GitHub Actions</strong>. (<a href="https://docs.github.com/en/pages/getting-started-with-github-pages/configuring-a-publishing-source-for-your-github-pages-site" target="_blank" rel="noopener">Official steps</a>)</li>
+    <li><strong>Add the publish workflow.</strong> A <em>workflow</em> is a saved recipe of automated steps; each time it runs is called a <em>run</em>. GitHub will suggest a few ready-made workflow templates &mdash; choose <strong>Configure</strong> next to <strong>Static HTML</strong>. This saves the official starter recipe (it packages your files with <code>upload-pages-artifact</code> and publishes them with <code>deploy-pages</code>) to <code>.github/workflows/static.yml</code>. Commit the file and you're done &mdash; see <a href="https://github.com/actions/starter-workflows/blob/main/pages/static.yml" target="_blank" rel="noopener">the official template</a> if you're curious.</li>
+    <li><strong>Find your live site.</strong> Head to the <strong>Actions</strong> tab and wait a minute or two for the first run to finish; a green checkmark means it succeeded. Your site is now live at <strong>https://&lt;your-username&gt;.github.io</strong> &mdash; go ahead and visit it!</li>
+  </ol>
+
+  <h2>First Step: index.html</h2>
+  <p>As a simple first step, let's test the setup. We'll have Muse create the standard index.html landing page by writing a prompt for Muse:</p>
+  <blockquote class="prompt">
+    <span class="prompt-label">Prompt for Muse</span>
+    <p>Write an index.html for my personal GitHub pages website that says my name. The repository is located at <span class="prompt-blank">[paste a link to your GitHub repository]</span>. Clone the repo, make changes, commit and push. After pushing, check that the GitHub Action publishes the changes and that the site, <span class="prompt-blank">[your GitHub Pages site URL]</span>, reflects the new changes.</p>
+  </blockquote>
+  <p>Since this is the first time Muse is writing code and making changes on GitHub, you'll have to approve its tool use. If you're uncomfortable doing &ldquo;Always allow&rdquo;, feel free to confirm allow one at a time.</p>
+  <p>After the AI gets working, and the whole machinery executes, it shouldn't take more than 15min to be able to visit your new site. If anything goes wrong, ask the AI what went wrong and collaborate with you to fix it.</p>
+  <p>Once you see your index.html working, we'll repeat prompting the AI and ask for more and more complicated designs.</p>
+
+  <h2>Be curious, be creative</h2>
+  <p>After publishing a simple index.html, the rest is up to you!</p>
+  <p>While I have been programming computers since I was 10, I've always been weakest in design and frontend development (like making webpages look nice). When I don't know a term or design, I give the AI a few examples and descriptions and ask it &ldquo;if there is a concise professional term&rdquo; for the idea. Then use the term in my next prompts. Rinse and repeat!</p>
+  <p>Here is a sampling of ideas and prompts I ended up incorporating in various parts of my site.</p>
+
+  <div class="ipr-grid">
+    <dl class="ipr-card">
+      <dt>Idea</dt>
+      <dd>Reimagine my homepage and resume in 8 completely different design styles as a portfolio showcase.</dd>
+      <dt>Prompt</dt>
+      <dd class="prompt-text">&ldquo;Design 8 full redesign variants of my Home and Resume pages, each with its own distinct aesthetic &mdash; serif letterpress, art deco noir, mid-century modern, brutalist, Swiss grid, minimalist, experimental chaos, and a dark dev-tool tech style &mdash; and give me a hub page to browse them all.&rdquo;</dd>
+      <dt>Result</dt>
+      <dd><a href="/vibe-redesign/">VibeRedesign gallery</a></dd>
+    </dl>
+    <dl class="ipr-card">
+      <dt>Idea</dt>
+      <dd>An explorable family tree page, with relatives shown by kinship title only (never real names).</dd>
+      <dt>Prompt</dt>
+      <dd class="prompt-text">&ldquo;Build me an interactive family tree page using D3.js. Show relatives by Chinese kinship titles with short English labels, highlight the focused person's card, collapse distant branches behind +N badges, and keep it pan/zoom-able in both light and dark themes.&rdquo;</dd>
+      <dt>Result</dt>
+      <dd><a href="/familytreeme/">FamilyTreeMe</a></dd>
+    </dl>
+    <dl class="ipr-card">
+      <dt>Idea</dt>
+      <dd>A dark, dev-tool-inspired redesign variant of my site.</dd>
+      <dt>Prompt</dt>
+      <dd class="prompt-text">&ldquo;Make one redesign variant in a dark dev-tool aesthetic &mdash; monospace type, cyan accents, a self-typing terminal in the hero &mdash; and keep the hero status line neutral like &lsquo;systems operational&rsquo;.&rdquo;</dd>
+      <dt>Result</dt>
+      <dd><a href="/vibe-redesign/tech-modern/">Tech Modern variant</a></dd>
+    </dl>
+  </div>
+
+  <div class="guide-next">
+    <p><strong>Want more?</strong> I've collected more idea &rarr; prompt &rarr; result examples from building this site.</p>
+    <p><a href="/guides/personal-website-muse-github-pages/prompts/">Browse more ideas &amp; prompts &rarr;</a></p>
+  </div>
+</article>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>
+<script src="{{ '/assets/js/guides-diagram.js' | cacheBust }}" defer></script>
