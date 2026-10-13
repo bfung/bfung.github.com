@@ -856,8 +856,21 @@
   }
 
   .ft-label--up {
-    font-size: 14px;
+    font-size: 15px;
     font-weight: 600;
+  }
+
+  /* English relationship sublabel (relative to the focus person) */
+  .ft-label-en {
+    font-size: 12px;
+    font-weight: 500;
+    fill: var(--color-text-muted);
+    text-anchor: middle;
+    dominant-baseline: central;
+  }
+
+  .ft-label-en--up {
+    font-size: 11px;
   }
 
   /* +N expand/collapse badge */

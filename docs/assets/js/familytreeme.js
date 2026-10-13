@@ -31,8 +31,8 @@
   var START = "me";
 
   /* Card geometry */
-  var PW = 150, PH = 56;   /* person card */
-  var UW = 120, UH = 48;   /* up card (grandparents) */
+  var PW = 150, PH = 70;   /* person card (two text lines: title + English sublabel) */
+  var UW = 120, UH = 62;   /* up card (grandparents) */
   var PAIR_GAP = 16, GROUP_GAP = 64, DY = 170;
   var BADGE_R = 22;        /* ~44px touch target */
   var STUB = 16;           /* couple-mark stub length */
@@ -80,6 +80,111 @@
       });
     })(p);
     return out;
+  }
+
+  /* ---------- English kinship terms (relative to the focus person) ---------- */
+  /* Gender derived from the user's own Chinese titles. */
+  var GENDER = {
+    me: "M", mom: "F", dad: "M", brother: "M", niece: "F",
+    gmaD: "F", gpaD: "M", gmaM: "F", gpaM: "M",
+    aunt: "F", uncle: "M", cousinA: "F", cousinU: "F",
+    uncleB: "M", uncleL: "M", auntM: "F"
+  };
+
+  /* Shortest labeled path from focus to target over U (parent), D (child),
+   * S (spouse) edges. Returns { moves, nodes } or null when focus == target
+   * (no relation to self) or when unreachable (no English label). */
+  function kinRoute(focus, target) {
+    if (focus === target) return null;
+    var prev = {}, pmove = {}, seen = {};
+    seen[focus] = true;
+    var queue = [focus];
+    function visit(from, to, mv) {
+      if (seen[to]) return;
+      seen[to] = true;
+      prev[to] = from;
+      pmove[to] = mv;
+      queue.push(to);
+    }
+    while (queue.length) {
+      var cur = queue.shift();
+      if (cur === target) break;
+      parentsOf(cur).forEach(function (p) { visit(cur, p, "U"); });
+      childrenOf(cur).forEach(function (c) { visit(cur, c, "D"); });
+      var sp = spouseOf(cur);
+      if (sp) visit(cur, sp, "S");
+    }
+    if (!seen[target]) return null;
+    var moves = [], nodes = [target], n = target;
+    while (n !== focus) { moves.unshift(pmove[n]); n = prev[n]; nodes.unshift(n); }
+    return { moves: moves, nodes: nodes };
+  }
+
+  /* [masculine, feminine] by TARGET gender; keyed "u,d" = up/down move counts. */
+  var KIN_S0 = {
+    "1,0": ["Dad", "Mom"],
+    "0,1": ["Son", "Daughter"],
+    "1,1": ["Brother", "Sister"],
+    "0,2": ["Grandson", "Granddaughter"],
+    "2,1": ["Uncle", "Aunt"],
+    "1,2": ["Nephew", "Niece"],
+    "2,2": ["Cousin", "Cousin"],
+    "0,3": ["Great-grandson", "Great-granddaughter"],
+    "3,1": ["Great-uncle", "Great-aunt"],
+    "1,3": ["Grandnephew", "Grandniece"],
+    "2,3": ["Cousin", "Cousin"],
+    "3,2": ["Cousin", "Cousin"]
+  };
+  var KIN_S1_FIRST = {
+    "1,0": ["Father-in-law", "Mother-in-law"],
+    "0,1": ["Son-in-law", "Daughter-in-law"],
+    "1,1": ["Brother-in-law", "Sister-in-law"],
+    "2,0": ["Grandpa-in-law", "Grandma-in-law"],
+    "0,2": ["Grandson-in-law", "Granddaughter-in-law"],
+    "2,1": ["Uncle-in-law", "Aunt-in-law"],
+    "1,2": ["Nephew", "Niece"],
+    "2,2": ["Cousin", "Cousin"]
+  };
+  var KIN_S1_LAST = {
+    "0,1": ["Son-in-law", "Daughter-in-law"],
+    "1,1": ["Brother-in-law", "Sister-in-law"],
+    "2,1": ["Uncle", "Aunt"]
+  };
+
+  /* Concise English relationship of target relative to focus, or null when
+   * there is no concise term (self, unreachable, or via 2+ marriages). */
+  function kinship(focusId, targetId) {
+    var route = kinRoute(focusId, targetId);
+    if (!route) return null;
+    var moves = route.moves, nodes = route.nodes;
+    var g = GENDER[targetId];
+    var u = 0, d = 0, s = 0, i;
+    for (i = 0; i < moves.length; i++) {
+      if (moves[i] === "U") u++;
+      else if (moves[i] === "D") d++;
+      else s++;
+    }
+    function mf(m, f) { return g === "M" ? m : f; }
+    function lookup(table) {
+      var e = table[u + "," + d];
+      return e ? mf(e[0], e[1]) : null;
+    }
+    if (s === 0) {
+      if (u === 2 && d === 0) {
+        /* Paternal/Maternal by the gender of the parent we went up through. */
+        var via = nodes[moves.indexOf("U") + 1];
+        return (GENDER[via] === "M" ? "Paternal " : "Maternal ") + mf("grandpa", "grandma");
+      }
+      if (u === 3 && d === 0) return mf("Great-grandpa", "Great-grandma");
+      return lookup(KIN_S0);
+    }
+    if (s === 1) {
+      if (moves.length === 1) return mf("Husband", "Wife");
+      if (moves[0] === "S") return lookup(KIN_S1_FIRST);
+      if (moves[moves.length - 1] === "S") return lookup(KIN_S1_LAST);
+      return null; /* S in the middle: no concise term */
+    }
+    return null;
   }
 
   function pairW(n, w) { return n <= 0 ? 0 : n * w + (n - 1) * PAIR_GAP; }
@@ -345,7 +450,9 @@
       parentsOf: parentsOf, childrenOf: childrenOf, siblingsOf: siblingsOf,
       spouseOf: spouseOf, descendants: descendants,
       skey: skey, pathFrom: pathFrom, couplePath: couplePath, trunkPath: trunkPath,
-      buildView: buildView, layout: layout
+      buildView: buildView, layout: layout,
+      GENDER: GENDER, kinRoute: kinRoute, kinship: kinship,
+      KIN_S0: KIN_S0, KIN_S1_FIRST: KIN_S1_FIRST, KIN_S1_LAST: KIN_S1_LAST
     };
     return;
   }
@@ -444,19 +551,31 @@
 
   function drawNode(g, d) {
     g.selectAll("*").remove();
+    /* English sublabel: concise relationship relative to the focus person.
+     * Recomputed every render so it tracks navigation; the focus card itself
+     * gets Chinese only (kinship() returns null for focus == target). */
+    var en = (d.id === state.focus) ? null : kinship(state.focus, d.id);
+    var isUp = d.kind === "up";
     var card = g.append("g")
       .attr("class", "ft-cardg ft-focusable")
       .attr("tabindex", "0").attr("role", "button")
-      .attr("aria-label", "前往「" + d.label + "」");
+      .attr("aria-label", "前往「" + d.label + "」" + (en ? " (" + en + ")" : ""));
     card.on("click", function (e) { if (!dragged(e)) gotoPerson(d.id); });
     card.on("keydown", function (e) { activateKey(e, function () { gotoPerson(d.id); }); });
     card.append("rect")
-      .attr("class", "ft-card" + (d.kind === "up" ? " ft-card--up" : ""))
+      .attr("class", "ft-card" + (isUp ? " ft-card--up" : ""))
       .attr("x", -d.w / 2).attr("y", -d.h / 2)
       .attr("width", d.w).attr("height", d.h).attr("rx", 12);
     card.append("text")
-      .attr("class", "ft-label" + (d.kind === "up" ? " ft-label--up" : ""))
+      .attr("class", "ft-label" + (isUp ? " ft-label--up" : ""))
+      .attr("y", en ? (isUp ? -10 : -11) : 0)
       .text(d.label);
+    if (en) {
+      card.append("text")
+        .attr("class", "ft-label-en" + (isUp ? " ft-label-en--up" : ""))
+        .attr("y", isUp ? 12 : 13)
+        .text(en);
+    }
     if (d.self) {
       var pill = g.append("g")
         .attr("class", "ft-pill")
