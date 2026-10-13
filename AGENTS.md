@@ -34,3 +34,4 @@ Working instructions for this repository — Benson Fung's personal site.
 - Pages are Nunjucks templates (`.njk`) with front matter (`title`, `description`) consumed by the layout.
 - Assets live under `src/assets/` and are passthrough-copied to `docs/assets/`.
 - Reference global data from `src/_data/site.json` rather than hardcoding the site URL in templates.
+- Commit and push promptly after a change is verified — uncommitted work in this checkout was once lost mid-session (working tree reverted to HEAD with no trace), so don't leave changes uncommitted across long detours.
