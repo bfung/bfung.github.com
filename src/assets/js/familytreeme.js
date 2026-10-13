@@ -543,14 +543,17 @@
     linkSel.exit().transition().duration(DUR).style("opacity", 0).remove();
 
     /* Nodes */
+    var nodeClass = function (d) {
+      return "ft-node" + (d.self ? " ft-node--self" : "") + (d.id === state.focus ? " ft-node--focus" : "");
+    };
     var nodeSel = nodeLayer.selectAll("g.ft-node").data(L.nodes, function (d) { return d.kind + ":" + d.id; });
     var nodeEnter = nodeSel.enter().append("g")
-      .attr("class", function (d) { return "ft-node" + (d.self ? " ft-node--self" : ""); })
+      .attr("class", nodeClass)
       .attr("transform", function (d) { var p = spawnPos(d); return "translate(" + p[0] + "," + p[1] + ")"; })
       .style("opacity", 0);
     nodeEnter.each(function (d) { drawNode(d3.select(this), d); });
     nodeSel.each(function (d) { drawNode(d3.select(this), d); });
-    nodeEnter.merge(nodeSel)
+    nodeEnter.merge(nodeSel).attr("class", nodeClass)
       .transition().duration(DUR).ease(d3.easeCubicOut)
       .attr("transform", function (d) { return "translate(" + d.x + "," + d.y + ")"; })
       .style("opacity", 1);
