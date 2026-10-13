@@ -1118,7 +1118,6 @@
       transition: none !important;
     }
   }
-}
 
 @layer utilities {
   .sr-only {
