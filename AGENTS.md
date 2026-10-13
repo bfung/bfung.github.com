@@ -35,3 +35,4 @@ Working instructions for this repository — Benson Fung's personal site.
 - Assets live under `src/assets/` and are passthrough-copied to `docs/assets/`.
 - Reference global data from `src/_data/site.json` rather than hardcoding the site URL in templates.
 - Commit and push promptly after a change is verified — uncommitted work in this checkout was once lost mid-session (working tree reverted to HEAD with no trace), so don't leave changes uncommitted across long detours.
+- Keep braces balanced in `style.css`: a single stray `}` once caused the CSS parser to silently drop the entire `@layer utilities` block (visible skip link, dead `.sr-only`). After structural CSS edits, verify the parsed stylesheet in the browser (e.g. check `document.styleSheets` layer blocks), not just the source.
