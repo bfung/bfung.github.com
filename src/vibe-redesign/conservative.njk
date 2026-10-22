@@ -216,13 +216,14 @@ section.block{max-width:var(--measure);margin:0 auto;padding:3.5rem 0;scroll-mar
 
 <header class="topbar" id="topbar">
   <div class="topbar-inner">
-    <a class="brandline" href="/vibe-redesign/conservative/" aria-label="Benson Fung — home">
+    <a class="brandline" href="/vibe-redesign/conservative/" aria-label="{{ site.name }} — home">
       <span class="seal" aria-hidden="true">BF</span>
-      <span class="mono">Benson Fung</span>
+      <span class="mono">{{ site.name }}</span>
     </a>
     <nav class="nav" aria-label="Sections">
       <a href="#about">About</a>
       <a href="#projects">Projects</a>
+      <a href="#guides">Guides</a>
       <a href="#contact">Contact</a>
       <a class="backlink" href="/vibe-redesign/conservative/resume/">Resume &rarr;</a>
       <a class="backlink" href="/vibe-redesign/">&larr; All Vibes</a>
@@ -234,11 +235,11 @@ section.block{max-width:var(--measure);margin:0 auto;padding:3.5rem 0;scroll-mar
 
   <div class="masthead">
     <span class="seal lg" aria-hidden="true">BF</span>
-    <h1>Benson Fung</h1>
-    <p class="tagline-1">build better, be better, boba.</p>
-    <p class="tagline-2">family, friends, food, fun.</p>
+    <h1>{{ site.name }}</h1>
+    <p class="tagline-1">{{ profile.taglinePrimary }}</p>
+    <p class="tagline-2">{{ profile.taglineSecondary }}</p>
     <hr class="double-rule">
-    <p class="role-line">Engineering Manager, Datadog &mdash; Irvine, California</p>
+    <p class="role-line">{{ resume.experience[0].title }}, {{ resume.experience[0].company }} &mdash; {{ profile.locationLong }}</p>
     <p style="margin-top:1.2rem">
       <a href="/vibe-redesign/conservative/resume/" style="font-size:.8rem;font-weight:600;letter-spacing:.12em;text-transform:uppercase;color:var(--oxblood);text-decoration:none;border-bottom:1px solid var(--oxblood);padding-bottom:2px;">Read the Resume &rarr;</a>
     </p>
@@ -249,10 +250,10 @@ section.block{max-width:var(--measure);margin:0 auto;padding:3.5rem 0;scroll-mar
       <span class="sec-num" aria-hidden="true">01</span>
       <h2 class="sec-title" id="about-h">About</h2>
     </div>
-    <p class="dropcap reveal">A product focused, generalist software systems and engineering leader. I&rsquo;m interested in technology that improves lives through transparency, efficiency, and simplification &mdash; and in building the teams that build that technology.</p>
-    <p class="reveal" style="--i:1">Currently leading Demo Engineering and Community Open Source Engineering at <a href="https://www.datadoghq.com/" target="_blank" rel="noopener">Datadog</a>, working remotely from Irvine, California. Previously: data platforms, DevOps, and core infrastructure across Brightloom, Opower, and Incisent Technologies.</p>
+    <p class="dropcap reveal">{{ profile.summary | replace("simplification.", "simplification") }} &mdash; and in building the teams that build that technology.</p>
+    <p class="reveal" style="--i:1">Currently leading Demo Engineering and Community Open Source Engineering at <a href="{{ resume.experience[0].companyUrl }}" target="_blank" rel="noopener">{{ resume.experience[0].company }}</a>, working remotely from {{ profile.locationLong }}. Previously: data platforms, DevOps, and core infrastructure across {{ resume.experience[1].company }}, {{ resume.experience[4].company }}, and {{ resume.experience[6].company }}.</p>
     <p class="linkline reveal" id="contact" style="--i:2;scroll-margin-top:96px">
-      <a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">LinkedIn</a><span class="sep">&middot;</span><a href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a><span class="sep">&middot;</span><a href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener">Stack Overflow</a><span class="sep">&middot;</span><a href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener">Hacker News</a><span class="sep">&middot;</span><a href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener">Blog</a><span class="sep">&middot;</span><a href="https://twitter.com/fungbenson" target="_blank" rel="noopener">Twitter</a>
+      {% for s in profile.socials %}<a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.label }}</a>{% if not loop.last %}<span class="sep">&middot;</span>{% endif %}{% endfor %}
     </p>
   </section>
 
@@ -263,37 +264,38 @@ section.block{max-width:var(--measure);margin:0 auto;padding:3.5rem 0;scroll-mar
       <h2 class="sec-title" id="proj-h">Projects</h2>
     </div>
 
+    {% for project in projects.items %}
+    <article class="proj reveal" style="--i:{{ loop.index0 }}">
+      <h3>{{ project.title }}</h3>
+      <p>{{ project.description }}</p>
+      <p class="tech">{% for tag in project.tags %}{{ tag | upper }}{% if not loop.last %} &middot; {% endif %}{% endfor %}</p>
+      {% for link in project.links %}<a class="golink" href="{{ link.url }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.label }}</a>{% if not loop.last %} &nbsp;&middot;&nbsp; {% endif %}{% endfor %}
+    </article>
+    {% endfor %}
+
+  </section>
+
+  <section class="block" id="guides" aria-labelledby="guides-h">
+    <div class="sec-head reveal">
+      <span class="sec-num" aria-hidden="true">03</span>
+      <h2 class="sec-title" id="guides-h">Guides</h2>
+    </div>
+
+    {% for guide in guides.items %}
     <article class="proj reveal">
-      <h3>HNanalytics</h3>
-      <p>A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
-      <p class="tech">DATA ANALYSIS &middot; DASHBOARD</p>
-      <a class="golink" href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">View on GitHub &rarr;</a>
+      <h3><a href="{{ guide.url }}">{{ guide.title }}</a></h3>
+      <p>{{ guide.description }}</p>
+      <p class="tech">{{ guide.date }} &middot; {% for tag in guide.tags %}{{ tag | upper }}{% if not loop.last %} &middot; {% endif %}{% endfor %}</p>
+      <a class="golink" href="{{ guide.url }}">Read the guide</a>
     </article>
-
-    <article class="proj reveal" style="--i:1">
-      <h3>Luggage Pack</h3>
-      <p>A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
-      <p class="tech">WEB APP &middot; GEOMETRY</p>
-      <a class="golink" href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Live Site</a>
-      &nbsp;&middot;&nbsp;
-      <a class="golink" href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">Code &rarr;</a>
-    </article>
-
-    <article class="proj reveal" style="--i:2">
-      <h3>uMatrix Rule Generalizer</h3>
-      <p>A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
-      <p class="tech">DEVELOPER TOOL &middot; BROWSER</p>
-      <a class="golink" href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">Live Site</a>
-      &nbsp;&middot;&nbsp;
-      <a class="golink" href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">Code &rarr;</a>
-    </article>
+    {% endfor %}
   </section>
 
 
   <footer class="colophon">
     <hr class="double-rule">
     <span class="seal" aria-hidden="true">BF</span>
-    <p>&copy; 2026 Benson Fung. All rights reserved.</p>
+    <p>&copy; 2026 {{ site.name }}. All rights reserved.</p>
     <p><a href="/vibe-redesign/">&uarr; Back to VibeRedesign</a></p>
   </footer>
 
@@ -318,7 +320,7 @@ section.block{max-width:var(--measure);margin:0 auto;padding:3.5rem 0;scroll-mar
 
   /* Sticky header rule + active section link */
   var topbar = document.getElementById('topbar');
-  var sections = ['about','projects'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var sections = ['about','projects','guides'].map(function(id){ return document.getElementById(id); }).filter(Boolean);
   var navLinks = Array.prototype.slice.call(document.querySelectorAll('.nav a[href^="#"]'));
   var ticking = false;
   function onScroll(){

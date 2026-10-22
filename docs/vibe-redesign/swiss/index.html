@@ -66,7 +66,7 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
 }
 .topbar-inner{height:var(--bar);display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);
-  font-weight:700;font-size:1.05rem;letter-spacing:-0.01em}
+  font-weight:700;font-size:1.05rem;letter-spacing:-0.01em;text-transform:lowercase}
 .brand-mark{width:12px;height:12px;background:var(--red);flex:none}
 .nav-list{display:flex;gap:28px;list-style:none}
 .nav-list a{
@@ -91,7 +91,7 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
   text-transform:lowercase;letter-spacing:-0.035em;line-height:.88;
 }
 .hero-red{grid-column:11/13;align-self:end;aspect-ratio:1/1;background:var(--red);margin-bottom:.6vw}
-.hero-title{grid-column:1/8;margin-top:40px;font-size:clamp(1.35rem,2.6vw,1.9rem);letter-spacing:-0.01em}
+.hero-title{grid-column:1/8;margin-top:40px;font-size:clamp(1.35rem,2.6vw,1.9rem);letter-spacing:-0.01em;text-transform:lowercase}
 .hero-tag{grid-column:1/9;margin-top:28px;font-size:clamp(1.6rem,3.4vw,2.6rem);font-weight:700;letter-spacing:-0.02em;line-height:1.15}
 .hero-sub{grid-column:1/9;margin-top:14px;display:flex;align-items:center;gap:12px}
 .hero-sub .sq{width:10px;height:10px;background:var(--red);flex:none}
@@ -185,11 +185,12 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
 <header class="topbar">
   <div class="wrap topbar-inner">
     <a class="brand" href="/vibe-redesign/swiss/" aria-label="Benson Fung — Swiss home">
-      <span class="brand-mark" aria-hidden="true"></span>benson fung
+      <span class="brand-mark" aria-hidden="true"></span>Benson Fung
     </a>
     <nav aria-label="Sections">
       <ul class="nav-list">
         <li><a href="#projects" data-sec="projects">projects</a></li>
+        <li><a href="#guides" data-sec="guides">guides</a></li>
         <li><a href="#contact" data-sec="contact">contact</a></li>
         <li><a href="/vibe-redesign/swiss/resume/">resume <span class="arr" style="color:var(--red)">→</span></a></li>
       </ul>
@@ -202,16 +203,16 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
     <div class="wrap grid">
       <div class="hero-meta">
         <p class="meta"><strong>vibedesign</strong> — swiss international typographic style</p>
-        <p class="meta">irvine, california — remote</p>
+        <p class="meta">Irvine, California — remote</p>
       </div>
-      <h1 class="hero-name">benson<br>fung</h1>
+      <h1 class="hero-name">Benson<br>Fung</h1>
       <div class="hero-red" aria-hidden="true"></div>
-      <p class="hero-title">software systems &amp; people team builder</p>
+      <p class="hero-title">Software Systems &amp; People Team Builder</p>
       <p class="hero-tag">build better, be better, boba.</p>
       <p class="hero-sub"><span class="sq" aria-hidden="true"></span><span>family, friends, food, fun.</span></p>
       <div class="hero-cta">
         <a class="textlink" href="/vibe-redesign/swiss/resume/">read the resume <span class="arr">→</span></a>
-        <a class="textlink" href="https://github.com/bfung" target="_blank" rel="noopener">github profile <span class="arr">→</span></a>
+        <a class="textlink" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub profile <span class="arr">→</span></a>
       </div>
     </div>
   </section>
@@ -223,53 +224,99 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
         <h2 class="sec-title">projects</h2>
       </div>
 
+      
       <article class="proj reveal">
         <span class="proj-marker" aria-hidden="true"></span>
-        <h3 class="proj-title">HNanalytics</h3>
-        <p class="proj-desc">A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
+        <h3 class="proj-title">FamilyTreeMe</h3>
+        <p class="proj-desc">An explorable family tree — three generations, one family at a time. Relatives appear by kinship titles only, with pan/zoom and light/dark themes.</p>
         <div class="proj-links">
-          <a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">view code <span class="arr">→</span></a>
+          <a href="/familytreeme/">Explore</a>
+          
         </div>
       </article>
-
+      
+      <article class="proj reveal">
+        <span class="proj-marker" aria-hidden="true"></span>
+        <h3 class="proj-title">VibeRedesign</h3>
+        <p class="proj-desc">Eight design variants of my home and resume pages — from letterpress serif to neubrutalism — each self-contained with zero third-party requests.</p>
+        <div class="proj-links">
+          <a href="/vibe-redesign/">View designs</a>
+          
+        </div>
+      </article>
+      
       <article class="proj reveal">
         <span class="proj-marker" aria-hidden="true"></span>
         <h3 class="proj-title">Luggage Pack</h3>
         <p class="proj-desc">A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
         <div class="proj-links">
-          <a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">live site <span class="arr">→</span></a>
-          <a href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">code <span class="arr">→</span></a>
+          <a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Live Site</a>
+          <a href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">Code</a>
+          
         </div>
       </article>
-
+      
       <article class="proj reveal">
         <span class="proj-marker" aria-hidden="true"></span>
         <h3 class="proj-title">uMatrix Rule Generalizer</h3>
         <p class="proj-desc">A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
         <div class="proj-links">
-          <a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">live site <span class="arr">→</span></a>
-          <a href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">code <span class="arr">→</span></a>
+          <a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">Live Site</a>
+          <a href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">Code</a>
+          
         </div>
       </article>
+      
+      <article class="proj reveal">
+        <span class="proj-marker" aria-hidden="true"></span>
+        <h3 class="proj-title">HNanalytics</h3>
+        <p class="proj-desc">A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
+        <div class="proj-links">
+          <a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">View Code →</a>
+          
+        </div>
+      </article>
+      
+    </div>
+  </section>
+
+  <section id="guides" class="section" aria-label="Guides">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-num" aria-hidden="true">02</span>
+        <h2 class="sec-title">guides</h2>
+      </div>
+
+      
+      <article class="proj reveal">
+        <span class="proj-marker" aria-hidden="true"></span>
+        <h3 class="proj-title"><a href="/guides/personal-website-muse-github-pages/">Publish and maintain a personal website using Muse from Meta and GitHub Pages for free</a></h3>
+        <p class="proj-desc">There&#39;s a lot of AI talk, but not many examples. I was vacationing without a laptop and updated my website more in 4 days than in the last 4 years — using only my phone.</p>
+        <div class="proj-links">
+          <a href="/guides/personal-website-muse-github-pages/">Read the guide</a>
+        </div>
+      </article>
+      
     </div>
   </section>
 
   <section id="contact" class="band" aria-label="Contact">
     <div class="wrap">
       <div class="sec-head reveal">
-        <span class="sec-num" aria-hidden="true">02</span>
+        <span class="sec-num" aria-hidden="true">03</span>
         <h2 class="sec-title">contact</h2>
       </div>
       <ul class="contact-list">
-        <li class="reveal"><a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener"><span class="c-name">linkedin</span><span class="c-url">linkedin.com/in/bensonfung</span></a></li>
-        <li class="reveal"><a href="https://github.com/bfung" target="_blank" rel="noopener"><span class="c-name">github</span><span class="c-url">github.com/bfung</span></a></li>
-        <li class="reveal"><a href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener"><span class="c-name">stackoverflow</span><span class="c-url">stackoverflow.com/users/45793/benson</span></a></li>
-        <li class="reveal"><a href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener"><span class="c-name">hacker news</span><span class="c-url">news.ycombinator.com/user?id=bfung</span></a></li>
-        <li class="reveal"><a href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener"><span class="c-name">guides</span><span class="c-url">benson-guides.blogspot.com</span></a></li>
-        <li class="reveal"><a href="https://twitter.com/fungbenson" target="_blank" rel="noopener"><span class="c-name">twitter</span><span class="c-url">twitter.com/fungbenson</span></a></li>
+        <li class="reveal"><a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener"><span class="c-name">LinkedIn</span><span class="c-url">linkedin.com/in/bensonfung</span></a></li>
+        <li class="reveal"><a href="https://github.com/bfung" target="_blank" rel="noopener"><span class="c-name">GitHub</span><span class="c-url">github.com/bfung</span></a></li>
+        <li class="reveal"><a href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener"><span class="c-name">StackOverflow</span><span class="c-url">stackoverflow.com/users/45793/benson</span></a></li>
+        <li class="reveal"><a href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener"><span class="c-name">Hacker News</span><span class="c-url">news.ycombinator.com/user?id=bfung</span></a></li>
+        <li class="reveal"><a href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener"><span class="c-name">Blog</span><span class="c-url">benson-guides.blogspot.com</span></a></li>
+        <li class="reveal"><a href="https://twitter.com/fungbenson" target="_blank" rel="noopener"><span class="c-name">Twitter</span><span class="c-url">twitter.com/fungbenson</span></a></li>
+        
       </ul>
       <div class="colophon">
-        <p class="c1">© 2026 benson fung</p>
+        <p class="c1">© 2026 Benson Fung</p>
         <p class="c2"><a href="/vibe-redesign/swiss/resume/">resume →</a></p>
         <p class="c3"><a href="/vibe-redesign/">↑ vibedesign</a></p>
       </div>
@@ -298,7 +345,7 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
 
   /* Active section link */
   var links = Array.prototype.slice.call(document.querySelectorAll(".nav-list a[data-sec]"));
-  var secs = ["projects", "contact"].map(function(id){ return document.getElementById(id); }).filter(Boolean);
+  var secs = ["projects", "guides", "contact"].map(function(id){ return document.getElementById(id); }).filter(Boolean);
   function onScroll(){
     var current = null;
     secs.forEach(function(s){

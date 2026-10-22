@@ -145,11 +145,15 @@ section.block{padding:80px 0;scroll-margin-top:80px}
 .proj:nth-child(1){transform:rotate(-1deg)}
 .proj:nth-child(2){transform:rotate(1.2deg)}
 .proj:nth-child(3){transform:rotate(-.6deg)}
+.proj:nth-child(4){transform:rotate(.8deg)}
+.proj:nth-child(5){transform:rotate(-1.2deg)}
 .proj:hover{transform:rotate(0) translate(-3px,-3px);box-shadow:10px 10px 0 0 var(--ink)}
-.proj .zone{padding:1.1rem 1.4rem;border-bottom:var(--bd);font-family:var(--display);font-size:.8rem;letter-spacing:.08em}
+.proj .zone{padding:1.1rem 1.4rem;border-bottom:var(--bd);font-family:var(--display);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
 .proj:nth-child(1) .zone{background:var(--yellow)}
 .proj:nth-child(2) .zone{background:var(--pink)}
 .proj:nth-child(3) .zone{background:var(--blue)}
+.proj:nth-child(4) .zone{background:var(--mint)}
+.proj:nth-child(5) .zone{background:var(--lav)}
 .proj .pbody{padding:1.6rem;display:flex;flex-direction:column;gap:.8rem;flex:1}
 .proj h3{font-size:1.5rem}
 .proj p{font-size:.98rem}
@@ -201,6 +205,7 @@ section.block{padding:80px 0;scroll-margin-top:80px}
     <a class="logo" href="/vibe-redesign/neubrutalist/">BF!</a>
     <ul class="nav-links">
       <li><a class="plain" href="#projects">Projects</a></li>
+      <li><a class="plain" href="#guides">Guides</a></li>
       <li><a class="plain" href="#contact">Contact</a></li>
       <li><a class="btn" href="/vibe-redesign/neubrutalist/resume/">Resume &rarr;</a></li>
     </ul>
@@ -235,36 +240,73 @@ section.block{padding:80px 0;scroll-margin-top:80px}
         <h2 class="sec-title">Featured <span class="u">Projects</span></h2>
       </div>
       <div class="proj-grid">
+        
         <article class="proj reveal" style="--i:0">
-          <div class="zone">P-01 // Data</div>
+          <div class="zone">P-01 // web app</div>
           <div class="pbody">
-            <h3>HNanalytics</h3>
-            <p>A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
-            <div class="plink"><a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">View code &rarr;</a></div>
+            <h3>FamilyTreeMe</h3>
+            <p>An explorable family tree — three generations, one family at a time. Relatives appear by kinship titles only, with pan/zoom and light/dark themes.</p>
+            <div class="plink"><a href="/familytreeme/">Explore</a></div>
           </div>
         </article>
+        
         <article class="proj reveal" style="--i:1">
-          <div class="zone">P-02 // Geometry</div>
+          <div class="zone">P-02 // design</div>
+          <div class="pbody">
+            <h3>VibeRedesign</h3>
+            <p>Eight design variants of my home and resume pages — from letterpress serif to neubrutalism — each self-contained with zero third-party requests.</p>
+            <div class="plink"><a href="/vibe-redesign/">View designs</a></div>
+          </div>
+        </article>
+        
+        <article class="proj reveal" style="--i:2">
+          <div class="zone">P-03 // web app</div>
           <div class="pbody">
             <h3>Luggage Pack</h3>
             <p>A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
-            <div class="plink">
-              <a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Live site &rarr;</a>
-              <a href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">Code &rarr;</a>
-            </div>
+            <div class="plink"><a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Live Site</a><a href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">Code</a></div>
           </div>
         </article>
-        <article class="proj reveal" style="--i:2">
-          <div class="zone">P-03 // Devtools</div>
+        
+        <article class="proj reveal" style="--i:3">
+          <div class="zone">P-04 // tool</div>
           <div class="pbody">
             <h3>uMatrix Rule Generalizer</h3>
             <p>A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
-            <div class="plink">
-              <a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">Live site &rarr;</a>
-              <a href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">Code &rarr;</a>
-            </div>
+            <div class="plink"><a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">Live Site</a><a href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">Code</a></div>
           </div>
         </article>
+        
+        <article class="proj reveal" style="--i:4">
+          <div class="zone">P-05 // data</div>
+          <div class="pbody">
+            <h3>HNanalytics</h3>
+            <p>A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
+            <div class="plink"><a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">View Code →</a></div>
+          </div>
+        </article>
+        
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="guides" aria-label="Guides">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-tag">Field notes</span>
+        <h2 class="sec-title">Fresh <span class="u">Guides</span></h2>
+      </div>
+      <div class="proj-grid">
+        
+        <article class="proj reveal" style="--i:0">
+          <div class="zone">G-01 // ai · github</div>
+          <div class="pbody">
+            <h3><a href="/guides/personal-website-muse-github-pages/">Publish and maintain a personal website using Muse from Meta and GitHub Pages for free</a></h3>
+            <p>There&#39;s a lot of AI talk, but not many examples. I was vacationing without a laptop and updated my website more in 4 days than in the last 4 years — using only my phone.</p>
+            <div class="plink"><a href="/guides/personal-website-muse-github-pages/">Read the guide</a></div>
+          </div>
+        </article>
+        
       </div>
     </div>
   </section>
@@ -283,8 +325,9 @@ section.block{padding:80px 0;scroll-margin-top:80px}
         <a class="cbtn" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a>
         <a class="cbtn" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener">StackOverflow</a>
         <a class="cbtn" href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener">Hacker News</a>
-        <a class="cbtn" href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener">Guides Blog</a>
+        <a class="cbtn" href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener">Blog</a>
         <a class="cbtn" href="https://twitter.com/fungbenson" target="_blank" rel="noopener">Twitter</a>
+        
       </div>
     </div>
   </section>
@@ -292,7 +335,7 @@ section.block{padding:80px 0;scroll-margin-top:80px}
 
 <footer>
   <div class="colophon wrap">
-    <p>&copy; 2026 BENSON FUNG — NEO-BRUTALIST VIBE</p>
+    <p>&copy; 2026 Benson Fung — NEO-BRUTALIST VIBE</p>
     <p><a href="/vibe-redesign/">&larr; Back to VibeRedesign</a></p>
   </div>
   <div class="backbar"><a href="/vibe-redesign/neubrutalist/resume/">Read the resume &rarr;</a></div>

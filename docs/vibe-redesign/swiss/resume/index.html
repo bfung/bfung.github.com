@@ -65,7 +65,7 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
 }
 .topbar-inner{height:var(--bar);display:flex;align-items:center;justify-content:space-between}
 .brand{display:flex;align-items:center;gap:10px;text-decoration:none;color:var(--ink);
-  font-weight:700;font-size:1.05rem;letter-spacing:-0.01em}
+  font-weight:700;font-size:1.05rem;letter-spacing:-0.01em;text-transform:lowercase}
 .brand-mark{width:12px;height:12px;background:var(--red);flex:none}
 .nav-list{display:flex;gap:28px;list-style:none}
 .nav-list a{
@@ -88,7 +88,7 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
   margin:32px 0 40px;
 }
 .rhead h1 .rdot{color:var(--red)}
-.role{grid-column:1/8;font-size:clamp(1.25rem,2.4vw,1.7rem);letter-spacing:-0.01em}
+.role{grid-column:1/8;font-size:clamp(1.25rem,2.4vw,1.7rem);letter-spacing:-0.01em;text-transform:lowercase}
 .summary{grid-column:1/8;margin-top:20px;color:#333;max-width:56ch}
 .contact-meta{grid-column:9/13;display:flex;flex-direction:column;gap:8px}
 .contact-meta a{text-decoration:none;border-bottom:1px solid var(--hairline);padding-bottom:8px;
@@ -110,8 +110,8 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
 .job-dates{grid-column:2/4;font-size:.72rem;font-weight:700;letter-spacing:.16em;text-transform:uppercase;
   color:var(--gray);line-height:1.8;padding-top:4px}
 .job-body{grid-column:4/13}
-.job-body h3{font-size:1.45rem;margin-bottom:2px}
-.job-co{font-size:.95rem;color:#333;margin-bottom:12px}
+.job-body h3{font-size:1.45rem;margin-bottom:2px;text-transform:lowercase}
+.job-co{font-size:.95rem;color:#333;margin-bottom:12px;text-transform:lowercase}
 .job-co a{color:var(--ink);text-decoration:underline;text-decoration-color:var(--red);text-underline-offset:3px}
 .job-body ul{list-style:none;margin-bottom:14px;max-width:62ch}
 .job-body ul li{position:relative;padding-left:18px;margin-bottom:6px;color:#222}
@@ -129,10 +129,10 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
 .edu{display:grid;grid-template-columns:repeat(12,1fr);gap:var(--gut);
   padding:36px 0;border-bottom:1px solid var(--hairline);align-items:baseline}
 .edu-num{grid-column:1/2;color:var(--red);font-size:1.9rem;font-weight:700;line-height:1.1}
-.edu-name{grid-column:2/9;font-size:1.45rem}
+.edu-name{grid-column:2/9;font-size:1.45rem;text-transform:lowercase}
 .edu-dates{grid-column:9/13;text-align:right;font-size:.72rem;font-weight:700;letter-spacing:.16em;
   text-transform:uppercase;color:var(--gray)}
-.edu-sub{grid-column:2/13;color:#333;margin-top:6px}
+.edu-sub{grid-column:2/13;color:#333;margin-top:6px;text-transform:lowercase}
 
 /* ============ FOOTER BAND ============ */
 .band{background:var(--band);color:#fff;padding:72px 0 0;margin-top:88px}
@@ -181,7 +181,7 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
 <header class="topbar">
   <div class="wrap topbar-inner">
     <a class="brand" href="/vibe-redesign/swiss/" aria-label="Benson Fung — Swiss home">
-      <span class="brand-mark" aria-hidden="true"></span>benson fung
+      <span class="brand-mark" aria-hidden="true"></span>Benson Fung
     </a>
     <nav aria-label="Sections">
       <ul class="nav-list">
@@ -197,14 +197,13 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
   <section class="rhead" aria-label="Resume header">
     <div class="wrap">
       <p class="meta">curriculum vitae</p>
-      <h1>benson fung<span class="rdot" aria-hidden="true">.</span></h1>
+      <h1>Benson Fung<span class="rdot" aria-hidden="true">.</span></h1>
       <div class="grid">
-        <p class="role"><strong>software systems &amp; people team builder</strong></p>
+        <p class="role"><strong>Software Systems &amp; People Team Builder</strong></p>
         <p class="summary">A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification.</p>
         <div class="contact-meta">
-          <p class="meta"><strong>irvine, california</strong></p>
-          <a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">linkedin.com/in/bensonfung</a>
-          <a href="https://github.com/bfung" target="_blank" rel="noopener">github.com/bfung</a>
+          <p class="meta"><strong>Irvine, California</strong></p>
+          <a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">linkedin.com/in/bensonfung</a><a href="https://github.com/bfung" target="_blank" rel="noopener">github.com/bfung</a>
         </div>
         <p class="backrow"><a class="textlink" href="/vibe-redesign/swiss/" style="font-size:.78rem;font-weight:700;letter-spacing:.2em;text-transform:uppercase;text-decoration:none;border-bottom:2px solid var(--ink);padding-bottom:6px;"><span style="color:var(--red)">←</span> home</a></p>
       </div>
@@ -218,104 +217,113 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
         <h2 class="sec-title">experience</h2>
       </div>
 
+      
       <article class="job reveal">
         <span class="job-num" aria-hidden="true">01</span>
-        <p class="job-dates">dec 2022 —<br>present</p>
+        <p class="job-dates">Dec 2022 —<br>Present</p>
         <div class="job-body">
-          <h3>engineering manager</h3>
-          <p class="job-co"><a href="https://www.datadoghq.com/" target="_blank" rel="noopener">datadog</a> — remote</p>
+          <h3>Engineering Manager</h3>
+          <p class="job-co"><a href="https://www.datadoghq.com/" target="_blank" rel="noopener">Datadog</a> — Remote</p>
           <ul>
             <li>Lead Demo Engineering, a software development team creating content that showcases what the Datadog platform can do.</li>
-            <li>Lead the Community Open Source Engineering team, engaging the open source community around <a href="https://vector.dev" target="_blank" rel="noopener">Vector</a> and <a href="https://quickwit.io" target="_blank" rel="noopener">Quickwit</a>.</li>
+            <li>Lead the Community Open Source Engineering team, engaging the open source community around <a href="https://vector.dev" target="_blank" rel="noopener">Vector</a> (<a href="https://github.com/vectordotdev/vector" target="_blank" rel="noopener">vectordotdev/vector</a>) and <a href="https://quickwit.io" target="_blank" rel="noopener">Quickwit</a> (<a href="https://github.com/quickwit-oss/quickwit" target="_blank" rel="noopener">quickwit-oss/quickwit</a>).</li>
+            
           </ul>
-          <p class="job-tags">engineering leadership / open source / rust / observability</p>
+          <p class="job-tags">Engineering Leadership / Open Source / Rust / Observability</p>
         </div>
       </article>
-
+      
       <article class="job reveal">
         <span class="job-num" aria-hidden="true">02</span>
-        <p class="job-dates">sep 2021 —<br>aug 2022</p>
+        <p class="job-dates">Sep 2021 —<br>Aug 2022</p>
         <div class="job-body">
-          <h3>director of data platform</h3>
-          <p class="job-co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">brightloom</a> — remote</p>
+          <h3>Director of Data Platform</h3>
+          <p class="job-co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> — Remote</p>
           <ul>
             <li>Streamlined software engineering interview process resulting in consistent hiring criteria and high quality of hires.</li>
             <li>Provided non-technical stakeholders with a predictable and easy to understand feature delivery and launch plan.</li>
             <li>Forecasted Engineering budget and controlled infrastructure costs (AWS), saving 10% on a $2.0m budget.</li>
+            
           </ul>
-          <p class="job-tags">management / aws / finops / data platform</p>
+          <p class="job-tags">Management / AWS / FinOps / Data Platform</p>
         </div>
       </article>
-
+      
       <article class="job reveal">
         <span class="job-num" aria-hidden="true">03</span>
-        <p class="job-dates">jan 2020 —<br>sep 2021</p>
+        <p class="job-dates">Jan 2020 —<br>Sep 2021</p>
         <div class="job-body">
-          <h3>principal devops engineer &amp; manager</h3>
-          <p class="job-co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">brightloom</a> — remote</p>
+          <h3>Principal DevOps Engineer &amp; Manager</h3>
+          <p class="job-co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> — Remote</p>
           <ul>
             <li>Evaluated and selected core technologies, balancing build vs. buy. In buy scenarios, tools saved several headcounts in operational overhead.</li>
             <li>Partnered with the InfoSec organization to craft secure SDLC practices integrated into the CI/CD pipeline.</li>
             <li>Led and supported development and operations of Kubernetes-based microservices and data pipelines.</li>
+            
           </ul>
-          <p class="job-tags">kubernetes / devops / ci/cd / infosec / terraform</p>
+          <p class="job-tags">Kubernetes / DevOps / CI/CD / InfoSec / Terraform</p>
         </div>
       </article>
-
+      
       <article class="job reveal">
         <span class="job-num" aria-hidden="true">04</span>
-        <p class="job-dates">jan 2019 —<br>jan 2020</p>
+        <p class="job-dates">Jan 2019 —<br>Jan 2020</p>
         <div class="job-body">
-          <h3>sr. staff devops engineer &amp; manager</h3>
-          <p class="job-co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">brightloom</a> — remote</p>
+          <h3>Sr. Staff DevOps Engineer &amp; Manager</h3>
+          <p class="job-co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> — Remote</p>
           <ul>
             <li>Designed and optimized centralized logging and metrics using Datadog for cloud services, reducing SaaS costs and time-to-debug.</li>
             <li>Implemented secure Over-The-Air (OTA) firmware updates for IoT systems (Raspberry Pi SoCs) for the Eatsa Spotlight Pickup System, removing operational friction for customer staff.</li>
+            
           </ul>
-          <p class="job-tags">datadog / iot / firmware / ansible / linux</p>
+          <p class="job-tags">Datadog / IoT / Firmware / Ansible / Linux</p>
         </div>
       </article>
-
+      
       <article class="job reveal">
         <span class="job-num" aria-hidden="true">05</span>
-        <p class="job-dates">nov 2014 —<br>jul 2016</p>
+        <p class="job-dates">Nov 2014 —<br>Jul 2016</p>
         <div class="job-body">
-          <h3>engineering manager (core platform)</h3>
-          <p class="job-co"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">opower</a> (acq. by oracle) — san francisco, ca</p>
+          <h3>Engineering Manager (Core Platform)</h3>
+          <p class="job-co"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a> (Acq. by Oracle) — San Francisco, CA</p>
           <ul>
             <li>Led the Core Platform team of 4 engineers supporting 70+ developers in build tooling, deployment processes, and automated cloud operations.</li>
+            
           </ul>
-          <p class="job-tags">leadership / developer tooling / infrastructure</p>
+          <p class="job-tags">Leadership / Developer Tooling / Infrastructure</p>
         </div>
       </article>
-
+      
       <article class="job reveal">
         <span class="job-num" aria-hidden="true">06</span>
-        <p class="job-dates">aug 2011 —<br>jul 2014</p>
+        <p class="job-dates">Aug 2011 —<br>Jul 2014</p>
         <div class="job-body">
-          <h3>senior software engineer</h3>
-          <p class="job-co"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">opower</a> — san francisco, ca</p>
+          <h3>Senior Software Engineer</h3>
+          <p class="job-co"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a> — San Francisco, CA</p>
           <ul>
             <li>Architected and implemented the authentication/authorization service and API gateway for Opower's microservice ecosystem.</li>
             <li>Developed core framework libraries adopted company-wide to standardize and accelerate microservice deployment and observability.</li>
+            
           </ul>
-          <p class="job-tags">java / api gateway / microservices / oauth2</p>
+          <p class="job-tags">Java / API Gateway / Microservices / OAuth2</p>
         </div>
       </article>
-
+      
       <article class="job reveal">
         <span class="job-num" aria-hidden="true">07</span>
-        <p class="job-dates">oct 2004 —<br>dec 2010</p>
+        <p class="job-dates">Oct 2004 —<br>Dec 2010</p>
         <div class="job-body">
-          <h3>software engineer</h3>
-          <p class="job-co">incisent technologies — chicago, il</p>
+          <h3>Software Engineer</h3>
+          <p class="job-co">Incisent Technologies — Chicago, IL</p>
           <ul>
             <li>Designed and developed backend services and batch jobs processing statistical data for used car valuations using Java, C#, and Ruby on Rails.</li>
             <li>Designed, implemented, and operated the Data Warehouse using Microsoft SSIS and SSAS, optimizing report query times for real-time dealership lookups.</li>
+            
           </ul>
-          <p class="job-tags">ruby on rails / java / sql server / data warehouse / ssis / ssas</p>
+          <p class="job-tags">Ruby on Rails / Java / SQL Server / Data Warehouse / SSIS / SSAS</p>
         </div>
       </article>
+      
     </div>
   </section>
 
@@ -327,29 +335,35 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
       </div>
       <div class="skills-grid">
         <div class="skill-cell reveal">
-          <h3><span class="sq" aria-hidden="true"></span>core expertise</h3>
+          <h3><span class="sq" aria-hidden="true"></span>Core Expertise</h3>
           <p>Data Stack Design, Distributed Systems, DevOps &amp; GitOps, Engineering Leadership, Cost Optimization, Cloud Operations</p>
         </div>
+        
         <div class="skill-cell reveal">
-          <h3><span class="sq" aria-hidden="true"></span>languages</h3>
+          <h3><span class="sq" aria-hidden="true"></span>Languages</h3>
           <p>Python, Java, Ruby, SQL, Bash</p>
         </div>
+        
         <div class="skill-cell reveal">
-          <h3><span class="sq" aria-hidden="true"></span>infra &amp; orchestration</h3>
+          <h3><span class="sq" aria-hidden="true"></span>Infra &amp; Orchestration</h3>
           <p>Kubernetes, Terraform, Ansible, Docker, HashiCorp Vault, Chef / Puppet</p>
         </div>
+        
         <div class="skill-cell reveal">
-          <h3><span class="sq" aria-hidden="true"></span>data platforms</h3>
+          <h3><span class="sq" aria-hidden="true"></span>Data Platforms</h3>
           <p>Databricks, Delta Lake, Airflow, Snowflake, AWS EMR</p>
         </div>
+        
         <div class="skill-cell reveal">
-          <h3><span class="sq" aria-hidden="true"></span>aws cloud</h3>
+          <h3><span class="sq" aria-hidden="true"></span>AWS Cloud</h3>
           <p>EKS, RDS, S3, IAM, EC2 / ELB, CloudWatch</p>
         </div>
+        
         <div class="skill-cell reveal">
-          <h3><span class="sq" aria-hidden="true"></span>ci/cd &amp; observability</h3>
+          <h3><span class="sq" aria-hidden="true"></span>CI/CD &amp; Observability</h3>
           <p>Datadog, CircleCI, Jenkins, Loggly</p>
         </div>
+        
       </div>
     </div>
   </section>
@@ -362,9 +376,9 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
       </div>
       <div class="edu reveal">
         <span class="edu-num" aria-hidden="true"><span style="display:inline-block;width:14px;height:14px;background:var(--red)"></span></span>
-        <h3 class="edu-name">university of illinois urbana-champaign</h3>
-        <p class="edu-dates">aug 1999 — may 2003</p>
-        <p class="edu-sub">b.s. computer science — software engineering certification program</p>
+        <h3 class="edu-name">University of Illinois Urbana-Champaign</h3>
+        <p class="edu-dates">Aug 1999 — May 2003</p>
+        <p class="edu-sub">B.S. in Computer Science — Software Engineering Certification Program</p>
       </div>
     </div>
   </section>
@@ -372,7 +386,7 @@ h1,h2,h3{font-weight:700;line-height:1.05;letter-spacing:-0.02em}
   <div class="band">
     <div class="wrap">
       <div class="colophon">
-        <p class="c1">© 2026 benson fung</p>
+        <p class="c1">© 2026 Benson Fung</p>
         <p class="c2"><a href="/vibe-redesign/swiss/"><span style="color:var(--red)">←</span> home</a></p>
         <p class="c3"><a href="/vibe-redesign/">↑ vibedesign</a></p>
       </div>

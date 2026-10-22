@@ -121,7 +121,7 @@ body.has-cursor .cdot,body.has-cursor .cring{display:flex}
 @keyframes gl2{0%{transform:translate(7px,-3px);clip-path:inset(60% 0 10% 0)}50%{transform:translate(-6px,2px);clip-path:inset(20% 0 55% 0)}100%{transform:translate(5px,-1px);clip-path:inset(5% 0 80% 0)}}
 .stamp{
   display:inline-block;background:var(--lime);color:#000;
-  font-family:var(--mono);font-weight:700;font-size:clamp(.85rem,2vw,1.15rem);letter-spacing:.06em;
+  font-family:var(--mono);font-weight:700;font-size:clamp(.85rem,2vw,1.15rem);letter-spacing:.06em;text-transform:uppercase;
   padding:.7rem 1.3rem;transform:rotate(-3deg);
   margin:4vh 0 0 38vw;box-shadow:6px 6px 0 var(--red);
   border:none;cursor:pointer;
@@ -132,11 +132,11 @@ body.has-cursor .cdot,body.has-cursor .cring{display:flex}
   font-family:var(--serif);font-style:italic;
   font-size:clamp(1.5rem,4vw,2.8rem);color:var(--bone);margin-top:3.5vh;
 }
-.hero-meta{margin-top:2.5vh;font-size:.78rem;letter-spacing:.2em;color:var(--bone);opacity:.75}
+.hero-meta{margin-top:2.5vh;font-size:.78rem;letter-spacing:.2em;color:var(--bone);opacity:.75;text-transform:uppercase}
 .hero-meta b{color:var(--lime)}
 .vert{
   position:absolute;right:2.5vw;top:50%;transform:translateY(-50%);
-  writing-mode:vertical-rl;font-size:.7rem;letter-spacing:.34em;color:var(--bone);opacity:.6;
+  writing-mode:vertical-rl;font-size:.7rem;letter-spacing:.34em;color:var(--bone);opacity:.6;text-transform:uppercase;
 }
 @media(max-width:760px){.vert{display:none}.stamp{margin-left:8vw}}
 
@@ -226,7 +226,7 @@ section{padding:14vh 5vw;position:relative}
 .job-body ul li::before{content:">";position:absolute;left:0;color:var(--lime);font-weight:700}
 .job-body ul a{color:var(--bone);text-decoration:underline;text-decoration-color:var(--lime);text-underline-offset:3px}
 .jtags{display:flex;flex-wrap:wrap;gap:.5rem}
-.jtags span{border:1px solid var(--bone);font-size:.68rem;letter-spacing:.12em;padding:.35rem .8rem}
+.jtags span{border:1px solid var(--bone);font-size:.68rem;letter-spacing:.12em;padding:.35rem .8rem;text-transform:uppercase}
 @media(max-width:760px){
   .job-head{grid-template-columns:auto 1fr;gap:1rem}
   .jmeta{grid-column:1/-1;flex-direction:row;align-items:center;justify-content:flex-start}
@@ -244,11 +244,15 @@ section{padding:14vh 5vw;position:relative}
 .panel .pnum{font-family:var(--display);font-size:clamp(2.4rem,7vw,5rem);color:transparent;-webkit-text-stroke:2px #000}
 @supports not (-webkit-text-stroke:1px black){.panel .pnum{color:#000}}
 .panel h3{font-size:clamp(2rem,7vw,5rem);line-height:.9;margin:.6rem 0 1rem}
+.panel h3 a{color:#000;text-decoration:none}
+.panel h3 a:hover{text-decoration:underline;text-underline-offset:4px}
+.panel .jtags{margin-bottom:1.6rem}
+.panel .jtags span{border-color:#000;color:#000}
 .panel p{font-family:var(--mono);font-size:1rem;max-width:56ch;margin-bottom:1.6rem}
 .pbtns{display:flex;flex-wrap:wrap;gap:.9rem}
 .pbtn{
   display:inline-block;border:3px solid #000;background:#000;color:var(--lime);
-  font-family:var(--mono);font-weight:700;font-size:.85rem;letter-spacing:.1em;
+  font-family:var(--mono);font-weight:700;font-size:.85rem;letter-spacing:.1em;text-transform:uppercase;
   padding:.8rem 1.4rem;text-decoration:none;transition:transform .15s,box-shadow .15s;
 }
 .pbtn:hover{transform:translate(-2px,-2px);box-shadow:5px 5px 0 var(--red)}
@@ -292,7 +296,7 @@ section{padding:14vh 5vw;position:relative}
 #contact{min-height:92vh;display:flex;flex-direction:column;justify-content:center}
 .crow{
   display:flex;align-items:baseline;gap:1.4rem;text-decoration:none;color:var(--bone);
-  font-family:var(--display);font-size:clamp(2.2rem,8vw,6.5rem);line-height:1;
+  font-family:var(--display);font-size:clamp(2.2rem,8vw,6.5rem);line-height:1;text-transform:uppercase;
   padding:1.2rem .6rem;border-top:2px solid var(--bone);position:relative;
   background-image:linear-gradient(var(--lime),var(--lime));
   background-repeat:no-repeat;background-position:left center;background-size:0% 100%;
@@ -308,7 +312,7 @@ section{padding:14vh 5vw;position:relative}
 footer{
   border-top:2px solid var(--bone);padding:2.2rem 5vw 7rem;
   display:flex;justify-content:space-between;gap:1rem;flex-wrap:wrap;
-  font-size:.75rem;letter-spacing:.12em;
+  font-size:.75rem;letter-spacing:.12em;text-transform:uppercase;
 }
 footer a{color:var(--lime)}
 
@@ -338,13 +342,13 @@ footer a{color:var(--lime)}
 
 <header class="hero">
   <p class="hero-kicker">VIBEDESIGN // FILE 02 OF 03 // HANDLE WITH CHAOS</p>
-  <h1 id="glitchname" data-cursor="BOOP"><span class="l1">BENSON</span><span class="l2" data-text="FUNG">FUNG</span></h1>
+  <h1 id="glitchname" data-cursor="BOOP"><span class="l1">Benson</span><span class="l2" data-text="Fung">Fung</span></h1>
   <div>
-    <button class="stamp" id="bobastamp" data-cursor="BOOP">BUILD BETTER, BE BETTER, BOBA.<span class="stamp-hint">[ PRESS B ]</span></button>
+    <button class="stamp" id="bobastamp" data-cursor="BOOP">build better, be better, boba.<span class="stamp-hint">[ PRESS B ]</span></button>
   </div>
   <p class="hero-sub">family, friends, food, fun.</p>
-  <p class="hero-meta"><b>ENGINEERING MANAGER</b> — DATADOG // SYSTEMS &amp; PEOPLE TEAM BUILDER</p>
-  <p class="vert" aria-hidden="true">EST. HUMAN — IRVINE, CA — v3.0</p>
+  <p class="hero-meta"><b>Engineering Manager</b> — Datadog // Software Systems &amp; People Team Builder</p>
+  <p class="vert" aria-hidden="true">EST. HUMAN — Irvine, CA — v3.0</p>
 </header>
 
 <div class="marquee" aria-hidden="true"><div class="marquee-inner" id="mq1"></div></div>
@@ -361,30 +365,47 @@ footer a{color:var(--lime)}
     <p class="sec-tag">§2 — SPECIMENS</p>
     <h2 class="sec-title wipe">PRO<span class="lime">JECTS</span></h2>
     <div class="panels">
+      
       <article class="panel" style="--tilt:-2deg">
         <p class="pnum" aria-hidden="true">P-01</p>
-        <h3>HNanalytics</h3>
-        <p>A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
-        <div class="pbtns"><a class="pbtn" data-cursor="READ" href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">VIEW CODE &rarr;</a></div>
+        <h3>FamilyTreeMe</h3>
+        <p>An explorable family tree — three generations, one family at a time. Relatives appear by kinship titles only, with pan/zoom and light/dark themes.</p>
+        <div class="jtags"><span>web app</span><span>data viz</span></div>
+        <div class="pbtns"><a class="pbtn" data-cursor="READ" href="/familytreeme/">Explore</a></div>
       </article>
+      
       <article class="panel" style="--tilt:1.5deg">
         <p class="pnum" aria-hidden="true">P-02</p>
-        <h3>Luggage Pack</h3>
-        <p>A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
-        <div class="pbtns">
-          <a class="pbtn" data-cursor="READ" href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">LIVE SITE &rarr;</a>
-          <a class="pbtn ghost" data-cursor="READ" href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">CODE &rarr;</a>
-        </div>
+        <h3>VibeRedesign</h3>
+        <p>Eight design variants of my home and resume pages — from letterpress serif to neubrutalism — each self-contained with zero third-party requests.</p>
+        <div class="jtags"><span>design</span></div>
+        <div class="pbtns"><a class="pbtn" data-cursor="READ" href="/vibe-redesign/">View designs</a></div>
       </article>
+      
       <article class="panel" style="--tilt:-1deg">
         <p class="pnum" aria-hidden="true">P-03</p>
+        <h3>Luggage Pack</h3>
+        <p>A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
+        <div class="jtags"><span>web app</span></div>
+        <div class="pbtns"><a class="pbtn" data-cursor="READ" href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Live Site</a><a class="pbtn ghost" data-cursor="READ" href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">Code</a></div>
+      </article>
+      
+      <article class="panel" style="--tilt:-2deg">
+        <p class="pnum" aria-hidden="true">P-04</p>
         <h3>uMatrix Rule Generalizer</h3>
         <p>A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
-        <div class="pbtns">
-          <a class="pbtn" data-cursor="READ" href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">LIVE SITE &rarr;</a>
-          <a class="pbtn ghost" data-cursor="READ" href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">CODE &rarr;</a>
-        </div>
+        <div class="jtags"><span>tool</span></div>
+        <div class="pbtns"><a class="pbtn" data-cursor="READ" href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">Live Site</a><a class="pbtn ghost" data-cursor="READ" href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">Code</a></div>
       </article>
+      
+      <article class="panel" style="--tilt:1.5deg">
+        <p class="pnum" aria-hidden="true">P-05</p>
+        <h3>HNanalytics</h3>
+        <p>A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
+        <div class="jtags"><span>data</span><span>web app</span></div>
+        <div class="pbtns"><a class="pbtn" data-cursor="READ" href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">View Code →</a></div>
+      </article>
+      
     </div>
     <div style="text-align:center;margin-top:6vh">
       <a class="pbtn" data-cursor="READ" href="/vibe-redesign/experimental/resume/">READ THE WORK FILES &rarr;</a>
@@ -393,30 +414,55 @@ footer a{color:var(--lime)}
 
 
 
+
+  <section id="guides" aria-label="Guides">
+    <p class="sec-tag">§3 — FIELD NOTES</p>
+    <h2 class="sec-title wipe">GUI<span class="lime">DES</span></h2>
+    <div class="panels">
+      
+      <article class="panel" style="--tilt:1deg">
+        <p class="pnum" aria-hidden="true">G-01</p>
+        <h3><a href="/guides/personal-website-muse-github-pages/">Publish and maintain a personal website using Muse from Meta and GitHub Pages for free</a></h3>
+        <p>There&#39;s a lot of AI talk, but not many examples. I was vacationing without a laptop and updated my website more in 4 days than in the last 4 years — using only my phone.</p>
+        <div class="jtags"><span>ai</span><span>github</span></div>
+        <div class="pbtns"><a class="pbtn" data-cursor="READ" href="/guides/personal-website-muse-github-pages/">Read the guide</a></div>
+      </article>
+      
+    </div>
+  </section>
+
   <div class="marquee rev" aria-hidden="true"><div class="marquee-inner" id="mq2"></div></div>
 
   <section id="contact" aria-label="Contact">
     <p class="sec-tag">§5 — TRANSMISSION</p>
     <h2 class="sec-title wipe">FIND ME <span class="lime">(I'M EASY TO FIND)</span></h2>
     <nav aria-label="Contact links">
-      <a class="crow" data-cursor="GO" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener"><span>LINKEDIN</span><span class="curl">linkedin.com/in/bensonfung</span></a>
-      <a class="crow" data-cursor="GO" href="https://github.com/bfung" target="_blank" rel="noopener"><span>GITHUB</span><span class="curl">github.com/bfung</span></a>
-      <a class="crow" data-cursor="GO" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener"><span>STACKOVERFLOW</span><span class="curl">stackoverflow.com/users/45793/benson</span></a>
-      <a class="crow" data-cursor="GO" href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener"><span>HACKER NEWS</span><span class="curl">news.ycombinator.com/user?id=bfung</span></a>
-      <a class="crow" data-cursor="GO" href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener"><span>GUIDES (BLOG)</span><span class="curl">benson-guides.blogspot.com</span></a>
-      <a class="crow" data-cursor="GO" href="https://twitter.com/fungbenson" target="_blank" rel="noopener"><span>TWITTER</span><span class="curl">twitter.com/fungbenson</span></a>
+      
+      <a class="crow" data-cursor="GO" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener"><span>LinkedIn</span><span class="curl">linkedin.com/in/bensonfung</span></a>
+      
+      <a class="crow" data-cursor="GO" href="https://github.com/bfung" target="_blank" rel="noopener"><span>GitHub</span><span class="curl">github.com/bfung</span></a>
+      
+      <a class="crow" data-cursor="GO" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener"><span>StackOverflow</span><span class="curl">stackoverflow.com/users/45793/benson</span></a>
+      
+      <a class="crow" data-cursor="GO" href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener"><span>Hacker News</span><span class="curl">news.ycombinator.com/user?id=bfung</span></a>
+      
+      <a class="crow" data-cursor="GO" href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener"><span>Blog</span><span class="curl">benson-guides.blogspot.com</span></a>
+      
+      <a class="crow" data-cursor="GO" href="https://twitter.com/fungbenson" target="_blank" rel="noopener"><span>Twitter</span><span class="curl">twitter.com/fungbenson</span></a>
+      
     </nav>
   </section>
 </main>
 
 <footer>
-  <span>&copy; 2026 BENSON FUNG — NO FRAMEWORKS WERE HARMED IN THE MAKING OF THIS PAGE.</span>
+  <span>&copy; 2026 Benson Fung — NO FRAMEWORKS WERE HARMED IN THE MAKING OF THIS PAGE.</span>
   <a href="/vibe-redesign/">BACK TO ../VIBE-REDESIGN</a>
 </footer>
 
 <nav class="bottomnav" aria-label="Page sections">
   <a href="/vibe-redesign/experimental/resume/">WORK &rarr;</a>
   <a href="#projects" data-sec="projects">PROJECTS</a>
+  <a href="#guides" data-sec="guides">GUIDES</a>
   <a href="#contact" data-sec="contact">CONTACT</a>
   <a class="home" href="/vibe-redesign/">../</a>
 </nav>
@@ -631,7 +677,7 @@ footer a{color:var(--lime)}
 
   /* ---------- BOTTOM NAV ACTIVE STATE ---------- */
   var navLinks = document.querySelectorAll('.bottomnav a[data-sec]');
-  var secs = ['projects', 'contact'].map(function(id){ return document.getElementById(id); });
+  var secs = ['projects', 'guides', 'contact'].map(function(id){ return document.getElementById(id); });
   if ('IntersectionObserver' in window) {
     var nio = new IntersectionObserver(function(entries){
       entries.forEach(function(e){

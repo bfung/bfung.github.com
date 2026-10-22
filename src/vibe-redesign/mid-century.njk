@@ -271,6 +271,7 @@ section.block h2{font-size:clamp(1.75rem,4vw,2.6rem);margin-bottom:.4rem}
     <a class="brand" href="/vibe-redesign/mid-century/">Benson <b>Fung</b></a>
     <ul class="nav-links">
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#guides">Guides</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a class="back" href="/vibe-redesign/mid-century/resume/">Resume &rarr;</a></li>
       <li><a class="back" href="/vibe-redesign/">&larr; All Vibes</a></li>
@@ -282,15 +283,15 @@ section.block h2{font-size:clamp(1.75rem,4vw,2.6rem);margin-bottom:.4rem}
   <div class="wrap hero-grid">
     <div>
       <p class="eyebrow"><span class="tick"></span>Portfolio &mdash; Est. 2004</p>
-      <h1 id="hero-name" aria-label="Benson Fung">Benson Fung</h1>
-      <p class="tagline">build better, be better, boba.</p>
-      <p class="hero-sub">family, friends, food, fun.</p>
-      <p class="hero-summary"><strong>Software Systems &amp; People Team Builder.</strong> A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification.</p>
+      <h1 id="hero-name" aria-label="{{ site.name }}">{{ site.name }}</h1>
+      <p class="tagline">{{ profile.taglinePrimary }}</p>
+      <p class="hero-sub">{{ profile.taglineSecondary }}</p>
+      <p class="hero-summary"><strong>{{ profile.title }}.</strong> {{ profile.summary }}</p>
       <div class="pill-row">
         <a class="pill" href="#projects">Featured Projects</a>
         <a class="pill" href="/vibe-redesign/mid-century/resume/">Resume</a>
-        <a class="pill" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a>
-        <a class="pill" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">LinkedIn</a>
+        {% for s in profile.socials %}{% if s.id == "github" %}<a class="pill" href="{{ s.url }}" target="_blank" rel="noopener">{{ s.label }}</a>{% endif %}{% endfor %}
+        {% for s in profile.socials %}{% if s.id == "linkedin" %}<a class="pill" href="{{ s.url }}" target="_blank" rel="noopener">{{ s.label }}</a>{% endif %}{% endfor %}
       </div>
     </div>
     <div class="medallion" aria-hidden="true">
@@ -310,62 +311,66 @@ section.block h2{font-size:clamp(1.75rem,4vw,2.6rem);margin-bottom:.4rem}
         <p class="eyebrow"><span class="tick"></span>Selected Work &mdash; 01</p>
         <h2>Featured Projects</h2>
       </div>
-      <p class="lede">Three builds, three obsessions: data, packing geometry, and taming the browser. Every card below is a working thing with working links.</p>
+      <p class="lede">{{ projects.items | length }} builds, {{ projects.items | length }} obsessions. Every card below is a working thing with working links.</p>
     </div>
     <div class="proj-grid">
-      <article class="proj reveal" style="--i:0">
-        <div class="glyph bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+      {% for project in projects.items %}
+      <article class="proj reveal" style="--i:{{ loop.index0 }}">
+        {% if loop.index0 % 3 == 0 %}<div class="glyph bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>{% elif loop.index0 % 3 == 1 %}<div class="glyph pack" aria-hidden="true"><i></i><i></i><i></i></div>{% else %}<div class="glyph lattice" aria-hidden="true"><b class="on"></b><b></b><b class="alt"></b><b></b><b class="on"></b><b></b><b></b><b class="alt"></b><b></b><b class="on"></b><b></b><b></b><b class="alt"></b><b></b><b class="on"></b><b></b><b></b><b class="alt"></b></div>{% endif %}
         <div class="proj-body">
-          <h3>HNanalytics</h3>
-          <p>A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
-          <a class="proj-link" href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">View Code &rarr;</a>
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+          <p>{{ project.tags | join(" · ") }}</p>
+          {% for link in project.links %}<a class="proj-link" href="{{ link.url }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}{% if not loop.first %} style="padding-top:0"{% endif %}>{{ link.label }}</a>
+          {% endfor %}
         </div>
       </article>
-      <article class="proj reveal" style="--i:1">
-        <div class="glyph pack" aria-hidden="true"><i></i><i></i><i></i></div>
-        <div class="proj-body">
-          <h3>Luggage Pack</h3>
-          <p>A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
-          <a class="proj-link" href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Live Site</a>
-          <a class="proj-link" href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener" style="padding-top:0">Code &rarr;</a>
-        </div>
-      </article>
-      <article class="proj reveal" style="--i:2">
-        <div class="glyph lattice" aria-hidden="true"><b class="on"></b><b></b><b class="alt"></b><b></b><b class="on"></b><b></b><b></b><b class="alt"></b><b></b><b class="on"></b><b></b><b></b><b class="alt"></b><b></b><b class="on"></b><b></b><b></b><b class="alt"></b></div>
-        <div class="proj-body">
-          <h3>uMatrix Rule Generalizer</h3>
-          <p>A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
-          <a class="proj-link" href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">Live Site</a>
-          <a class="proj-link" href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener" style="padding-top:0">Code &rarr;</a>
-        </div>
-      </article>
+      {% endfor %}
     </div>
   </div>
 </section>
 
-
+<section class="block" id="guides">
+  <div class="wrap">
+    <div class="section-head reveal">
+      <div>
+        <p class="eyebrow"><span class="tick"></span>Guides &mdash; 02</p>
+        <h2>Guides</h2>
+      </div>
+      <p class="lede">Notes from building in the open. Every card below is a working thing with working links.</p>
+    </div>
+    <div class="proj-grid">
+      {% for guide in guides.items %}
+      <article class="proj reveal" style="--i:{{ loop.index0 }}">
+        <div class="glyph bars" aria-hidden="true"><span></span><span></span><span></span><span></span><span></span></div>
+        <div class="proj-body">
+          <h3>{{ guide.title }}</h3>
+          <p>{{ guide.description }}</p>
+          <p>{{ guide.tags | join(" · ") }}</p>
+          <a class="proj-link" href="{{ guide.url }}">Read the guide</a>
+        </div>
+      </article>
+      {% endfor %}
+    </div>
+  </div>
+</section>
 
 <footer class="contact" id="contact">
   <div class="wrap">
-    <p class="eyebrow" style="color:var(--mustard)"><span class="tick"></span>Say Hello &mdash; 02</p>
+    <p class="eyebrow" style="color:var(--mustard)"><span class="tick"></span>Say Hello &mdash; 03</p>
     <h2 class="reveal">Let's talk.</h2>
-    <p class="lede reveal">Irvine, CA &bull; Remote-friendly. The fastest way to reach me is below &mdash; pick your platform.</p>
+    <p class="lede reveal">{{ profile.location }} &bull; Remote-friendly. The fastest way to reach me is below &mdash; pick your platform.</p>
     <div class="contact-grid reveal">
-      <a class="cbtn" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">LinkedIn</a>
-      <a class="cbtn" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a>
-      <a class="cbtn" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener">StackOverflow</a>
-      <a class="cbtn" href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener">Hacker News</a>
-      <a class="cbtn" href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener">Guides Blog</a>
-      <a class="cbtn" href="https://twitter.com/fungbenson" target="_blank" rel="noopener">Twitter</a>
+      {% for s in profile.socials %}<a class="cbtn" href="{{ s.url }}" target="_blank" rel="noopener">{{ s.label }}</a>
+      {% endfor %}
     </div>
     <div class="social-row reveal">
       <span style="color:#DCE8E2">Elsewhere:</span>
-      <a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Luggage Pack</a>
-      <a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">uMatrix Tool</a>
-      <a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">HNanalytics</a>
+      {% for project in projects.items %}<a href="{{ project.links[0].url }}"{% if project.links[0].external %} target="_blank" rel="noopener"{% endif %}>{{ project.title }}</a>
+      {% endfor %}
     </div>
     <div class="colophon">
-      <span>&copy; 2026 Benson Fung &mdash; Mid-Century Vibe</span>
+      <span>&copy; 2026 {{ site.name }} &mdash; Mid-Century Vibe</span>
       <a href="/vibe-redesign/">&larr; Back to VibeRedesign</a>
     </div>
   </div>
@@ -375,7 +380,7 @@ section.block h2{font-size:clamp(1.75rem,4vw,2.6rem);margin-bottom:.4rem}
   </div>
 </footer>
 
-<div class="backbar"><a href="/vibe-redesign/">&larr; Back to all three vibes</a></div>
+<div class="backbar"><a href="/vibe-redesign/">&larr; Back to all vibes</a></div>
 
 <script>
 (function(){

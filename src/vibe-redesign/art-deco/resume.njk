@@ -229,11 +229,11 @@ section.block .lede{color:var(--smoked);max-width:56ch;margin:0 auto 3.5rem}
     <p class="backline"><a href="/vibe-redesign/art-deco/">&larr; Back to Art Deco Home</a></p>
     <div class="rhead-panel deco-frame fluted reveal">
       <p class="eyebrow">Curriculum Vitae</p>
-      <h1>Benson Fung</h1>
-      <p class="role">Software Systems &amp; People Team Builder</p>
+      <h1>{{ site.name }}</h1>
+      <p class="role">{{ profile.title }}</p>
       <div class="diamond-rule" aria-hidden="true"><i></i></div>
-      <p class="summary">A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification.</p>
-      <p class="contactline">Irvine, CA &nbsp;&middot;&nbsp; <a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">LinkedIn</a> &nbsp;&middot;&nbsp; <a href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a></p>
+      <p class="summary">{{ profile.summary }}</p>
+      <p class="contactline">{{ profile.location }} &nbsp;&middot;&nbsp; {% for s in profile.socials %}{% if s.id == "linkedin" or s.id == "github" %}<a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.label }}</a>{% if s.id == "linkedin" %} &nbsp;&middot;&nbsp; {% endif %}{% endif %}{% endfor %}</p>
     </div>
   </div>
 </header>
@@ -249,111 +249,23 @@ section.block .lede{color:var(--smoked);max-width:56ch;margin:0 auto 3.5rem}
       <div class="timeline" id="timeline">
         <div class="spine-fill" id="spineFill" aria-hidden="true"></div>
 
-        <article class="job reveal">
+        {% set numerals = ["I", "II", "III", "IV", "V", "VI", "VII"] %}
+        {% for job in resume.experience %}
+        <article class="job reveal"{% if loop.index0 % 2 == 1 %} style="--i:1"{% endif %}>
           <span class="node" aria-hidden="true"></span>
           <div class="panel deco-frame">
-            <p class="numeral">I</p>
-            <h3>Engineering Manager</h3>
-            <p class="co">Datadog <span class="loc">— Remote</span></p>
-            <p class="period">Dec 2022 — <span class="now">Present</span></p>
+            <p class="numeral">{{ numerals[loop.index0] }}</p>
+            <h3>{{ job.title }}</h3>
+            <p class="co">{{ job.company }} <span class="loc">{% if job.companyNote %}({{ job.companyNote }}) {% endif %}— {{ job.location }}</span></p>
+            <p class="period">{{ job.start }} — {% if job.end == "Present" %}<span class="now">{{ job.end }}</span>{% else %}{{ job.end }}{% endif %}</p>
             <ul>
-              <li>Lead Demo Engineering, a software development team creating content that showcases what the Datadog platform can do.</li>
-              <li>Lead the Community Open Source Engineering team, engaging the open source community around <a href="https://vector.dev" target="_blank" rel="noopener">Vector</a> and <a href="https://quickwit.io" target="_blank" rel="noopener">Quickwit</a>.</li>
+              {% for b in job.bulletsHtml %}<li>{{ b | safe }}</li>
+              {% endfor %}
             </ul>
-            <div class="jtags"><span>Engineering Leadership</span><span>Open Source</span><span>Rust</span><span>Observability</span></div>
+            <div class="jtags">{% for tag in job.tags %}<span>{{ tag }}</span>{% endfor %}</div>
           </div>
         </article>
-
-        <article class="job reveal" style="--i:1">
-          <span class="node" aria-hidden="true"></span>
-          <div class="panel deco-frame">
-            <p class="numeral">II</p>
-            <h3>Director of Data Platform</h3>
-            <p class="co">Brightloom <span class="loc">— Remote</span></p>
-            <p class="period">Sep 2021 — Aug 2022</p>
-            <ul>
-              <li>Streamlined software engineering interview process resulting in consistent hiring criteria and high quality of hires.</li>
-              <li>Provided non-technical stakeholders with a predictable and easy to understand feature delivery and launch plan.</li>
-              <li>Forecasted Engineering budget and controlled infrastructure costs (AWS), saving 10% on a $2.0m budget.</li>
-            </ul>
-            <div class="jtags"><span>Management</span><span>AWS</span><span>FinOps</span><span>Data Platform</span></div>
-          </div>
-        </article>
-
-        <article class="job reveal">
-          <span class="node" aria-hidden="true"></span>
-          <div class="panel deco-frame">
-            <p class="numeral">III</p>
-            <h3>Principal DevOps Engineer &amp; Manager</h3>
-            <p class="co">Brightloom <span class="loc">— Remote</span></p>
-            <p class="period">Jan 2020 — Sep 2021</p>
-            <ul>
-              <li>Evaluated and selected core technologies, balancing build vs. buy. In buy scenarios, tools saved several headcounts in operational overhead.</li>
-              <li>Partnered with the InfoSec organization to craft secure SDLC practices integrated into the CI/CD pipeline.</li>
-              <li>Led and supported development and operations of Kubernetes-based microservices and data pipelines.</li>
-            </ul>
-            <div class="jtags"><span>Kubernetes</span><span>DevOps</span><span>CI/CD</span><span>InfoSec</span><span>Terraform</span></div>
-          </div>
-        </article>
-
-        <article class="job reveal" style="--i:1">
-          <span class="node" aria-hidden="true"></span>
-          <div class="panel deco-frame">
-            <p class="numeral">IV</p>
-            <h3>Sr. Staff DevOps Engineer &amp; Manager</h3>
-            <p class="co">Brightloom <span class="loc">— Remote</span></p>
-            <p class="period">Jan 2019 — Jan 2020</p>
-            <ul>
-              <li>Designed and optimized centralized logging and metrics using Datadog for cloud services, reducing SaaS costs and time-to-debug.</li>
-              <li>Implemented secure Over-The-Air (OTA) firmware updates for IoT systems (Raspberry Pi SoCs) for the Eatsa Spotlight Pickup System, removing operational friction for customer staff.</li>
-            </ul>
-            <div class="jtags"><span>Datadog</span><span>IoT</span><span>Firmware</span><span>Ansible</span><span>Linux</span></div>
-          </div>
-        </article>
-
-        <article class="job reveal">
-          <span class="node" aria-hidden="true"></span>
-          <div class="panel deco-frame">
-            <p class="numeral">V</p>
-            <h3>Engineering Manager (Core Platform)</h3>
-            <p class="co">Opower <span class="loc">(Acq. by Oracle) — San Francisco, CA</span></p>
-            <p class="period">Nov 2014 — Jul 2016</p>
-            <ul>
-              <li>Led the Core Platform team of 4 engineers supporting 70+ developers in build tooling, deployment processes, and automated cloud operations.</li>
-            </ul>
-            <div class="jtags"><span>Leadership</span><span>Developer Tooling</span><span>Infrastructure</span></div>
-          </div>
-        </article>
-
-        <article class="job reveal" style="--i:1">
-          <span class="node" aria-hidden="true"></span>
-          <div class="panel deco-frame">
-            <p class="numeral">VI</p>
-            <h3>Senior Software Engineer</h3>
-            <p class="co">Opower <span class="loc">— San Francisco, CA</span></p>
-            <p class="period">Aug 2011 — Jul 2014</p>
-            <ul>
-              <li>Architected and implemented the authentication/authorization service and API gateway for Opower's microservice ecosystem.</li>
-              <li>Developed core framework libraries adopted company-wide to standardize and accelerate microservice deployment and observability.</li>
-            </ul>
-            <div class="jtags"><span>Java</span><span>API Gateway</span><span>Microservices</span><span>OAuth2</span></div>
-          </div>
-        </article>
-
-        <article class="job reveal">
-          <span class="node" aria-hidden="true"></span>
-          <div class="panel deco-frame">
-            <p class="numeral">VII</p>
-            <h3>Software Engineer</h3>
-            <p class="co">Incisent Technologies <span class="loc">— Chicago, IL</span></p>
-            <p class="period">Oct 2004 — Dec 2010</p>
-            <ul>
-              <li>Designed and developed backend services and batch jobs processing statistical data for used car valuations using Java, C#, and Ruby on Rails.</li>
-              <li>Designed, implemented, and operated the Data Warehouse using Microsoft SSIS and SSAS, optimizing report query times for real-time dealership lookups.</li>
-            </ul>
-            <div class="jtags"><span>Ruby on Rails</span><span>Java</span><span>SQL Server</span><span>Data Warehouse</span><span>SSIS / SSAS</span></div>
-          </div>
-        </article>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -368,33 +280,15 @@ section.block .lede{color:var(--smoked);max-width:56ch;margin:0 auto 3.5rem}
         <div class="skill-panel deco-frame reveal" style="--i:0">
           <div class="crest sunburst-fan" aria-hidden="true"></div>
           <h3>Core Expertise</h3>
-          <p>Data Stack Design, Distributed Systems, DevOps &amp; GitOps, Engineering Leadership, Cost Optimization, Cloud Operations</p>
+          <p>{{ resume.coreSkills | join(", ") }}</p>
         </div>
-        <div class="skill-panel deco-frame reveal" style="--i:1">
+        {% for group in resume.skillGroups %}
+        <div class="skill-panel deco-frame reveal" style="--i:{{ loop.index % 3 }}">
           <div class="crest sunburst-fan" aria-hidden="true"></div>
-          <h3>Languages</h3>
-          <p>Python, Java, Ruby, SQL, Bash</p>
+          <h3>{{ group.category }}</h3>
+          <p>{{ group.items | join(", ") }}</p>
         </div>
-        <div class="skill-panel deco-frame reveal" style="--i:2">
-          <div class="crest sunburst-fan" aria-hidden="true"></div>
-          <h3>Infra &amp; Orchestration</h3>
-          <p>Kubernetes, Terraform, Ansible, Docker, HashiCorp Vault, Chef / Puppet</p>
-        </div>
-        <div class="skill-panel deco-frame reveal" style="--i:0">
-          <div class="crest sunburst-fan" aria-hidden="true"></div>
-          <h3>Data Platforms</h3>
-          <p>Databricks, Delta Lake, Airflow, Snowflake, AWS EMR</p>
-        </div>
-        <div class="skill-panel deco-frame reveal" style="--i:1">
-          <div class="crest sunburst-fan" aria-hidden="true"></div>
-          <h3>AWS Cloud</h3>
-          <p>EKS, RDS, S3, IAM, EC2 / ELB, CloudWatch</p>
-        </div>
-        <div class="skill-panel deco-frame reveal" style="--i:2">
-          <div class="crest sunburst-fan" aria-hidden="true"></div>
-          <h3>CI/CD &amp; Observability</h3>
-          <p>Datadog, CircleCI, Jenkins, Loggly</p>
-        </div>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -402,7 +296,7 @@ section.block .lede{color:var(--smoked);max-width:56ch;margin:0 auto 3.5rem}
   <div class="edu">
     <div class="wrap">
       <div class="diamond-rule draw reveal" aria-hidden="true"><i></i></div>
-      <p class="big reveal">B.S. Computer Science — University of Illinois Urbana-Champaign</p>
+      <p class="big reveal">{{ resume.education.degree }} — {{ resume.education.school }} &middot; {{ resume.education.start }} &ndash; {{ resume.education.end }} &middot; {{ resume.education.detail }}</p>
       <div class="diamond-rule draw reveal" aria-hidden="true"><i></i></div>
     </div>
   </div>
@@ -411,7 +305,7 @@ section.block .lede{color:var(--smoked);max-width:56ch;margin:0 auto 3.5rem}
 <footer class="colophon">
   <div class="wrap">
     <div class="foot-mono" aria-hidden="true"><span>BF</span></div>
-    <p>&copy; 2026 Benson Fung &mdash; Art Deco Resume</p>
+    <p>&copy; 2026 {{ site.name }} &mdash; Art Deco Resume</p>
     <p><a href="/vibe-redesign/art-deco/">&larr; Back to Art Deco Home</a> &nbsp;&middot;&nbsp; <a href="/vibe-redesign/">&larr; All Vibes</a></p>
   </div>
 </footer>

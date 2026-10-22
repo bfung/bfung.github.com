@@ -145,11 +145,15 @@ section.block{padding:80px 0;scroll-margin-top:80px}
 .proj:nth-child(1){transform:rotate(-1deg)}
 .proj:nth-child(2){transform:rotate(1.2deg)}
 .proj:nth-child(3){transform:rotate(-.6deg)}
+.proj:nth-child(4){transform:rotate(.8deg)}
+.proj:nth-child(5){transform:rotate(-1.2deg)}
 .proj:hover{transform:rotate(0) translate(-3px,-3px);box-shadow:10px 10px 0 0 var(--ink)}
-.proj .zone{padding:1.1rem 1.4rem;border-bottom:var(--bd);font-family:var(--display);font-size:.8rem;letter-spacing:.08em}
+.proj .zone{padding:1.1rem 1.4rem;border-bottom:var(--bd);font-family:var(--display);font-size:.8rem;letter-spacing:.08em;text-transform:uppercase}
 .proj:nth-child(1) .zone{background:var(--yellow)}
 .proj:nth-child(2) .zone{background:var(--pink)}
 .proj:nth-child(3) .zone{background:var(--blue)}
+.proj:nth-child(4) .zone{background:var(--mint)}
+.proj:nth-child(5) .zone{background:var(--lav)}
 .proj .pbody{padding:1.6rem;display:flex;flex-direction:column;gap:.8rem;flex:1}
 .proj h3{font-size:1.5rem}
 .proj p{font-size:.98rem}
@@ -201,6 +205,7 @@ section.block{padding:80px 0;scroll-margin-top:80px}
     <a class="logo" href="/vibe-redesign/neubrutalist/">BF!</a>
     <ul class="nav-links">
       <li><a class="plain" href="#projects">Projects</a></li>
+      <li><a class="plain" href="#guides">Guides</a></li>
       <li><a class="plain" href="#contact">Contact</a></li>
       <li><a class="btn" href="/vibe-redesign/neubrutalist/resume/">Resume &rarr;</a></li>
     </ul>
@@ -213,13 +218,13 @@ section.block{padding:80px 0;scroll-margin-top:80px}
     <span class="sticker s2" aria-hidden="true">Est. 2004</span>
     <span class="sticker s3" aria-hidden="true">No frameworks harmed</span>
     <p class="kicker">Portfolio — the loud edition</p>
-    <h1>Benson<br><span class="hl">Fung</span></h1>
-    <p class="tagline">build better, be better, <span class="hl pink">boba.</span></p>
-    <p class="subline">family, friends, food, fun.</p>
-    <p class="lede"><strong>Software Systems &amp; People Team Builder.</strong> A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification.</p>
+    <h1>{{ site.name | replace(" ", "<br>") | replace("Fung", '<span class="hl">Fung</span>') | safe }}</h1>
+    <p class="tagline">{{ profile.taglinePrimary | replace("boba.", '<span class="hl pink">boba.</span>') | safe }}</p>
+    <p class="subline">{{ profile.taglineSecondary }}</p>
+    <p class="lede"><strong>{{ profile.title }}.</strong> {{ profile.summary }}</p>
     <div class="hero-ctas">
       <a class="btn" href="/vibe-redesign/neubrutalist/resume/">Read the Resume &rarr;</a>
-      <a class="btn white" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a>
+      {% for s in profile.socials %}{% if s.id == "github" %}<a class="btn white" href="{{ s.url }}" target="_blank" rel="noopener">{{ s.label }}</a>{% endif %}{% endfor %}
       <a class="btn pink" href="#projects">See the Work &darr;</a>
     </div>
   </div>
@@ -235,36 +240,37 @@ section.block{padding:80px 0;scroll-margin-top:80px}
         <h2 class="sec-title">Featured <span class="u">Projects</span></h2>
       </div>
       <div class="proj-grid">
-        <article class="proj reveal" style="--i:0">
-          <div class="zone">P-01 // Data</div>
+        {% for project in projects.items %}
+        <article class="proj reveal" style="--i:{{ loop.index0 }}">
+          <div class="zone">P-{{ loop.index | pad2 }} // {{ project.tags[0] }}</div>
           <div class="pbody">
-            <h3>HNanalytics</h3>
-            <p>A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
-            <div class="plink"><a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">View code &rarr;</a></div>
+            <h3>{{ project.title }}</h3>
+            <p>{{ project.description }}</p>
+            <div class="plink">{% for link in project.links %}<a href="{{ link.url }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.label }}</a>{% endfor %}</div>
           </div>
         </article>
-        <article class="proj reveal" style="--i:1">
-          <div class="zone">P-02 // Geometry</div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <section class="block" id="guides" aria-label="Guides">
+    <div class="wrap">
+      <div class="sec-head reveal">
+        <span class="sec-tag">Field notes</span>
+        <h2 class="sec-title">Fresh <span class="u">Guides</span></h2>
+      </div>
+      <div class="proj-grid">
+        {% for guide in guides.items %}
+        <article class="proj reveal" style="--i:{{ loop.index0 }}">
+          <div class="zone">G-{{ loop.index | pad2 }} // {{ guide.tags | join(" · ") }}</div>
           <div class="pbody">
-            <h3>Luggage Pack</h3>
-            <p>A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
-            <div class="plink">
-              <a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">Live site &rarr;</a>
-              <a href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">Code &rarr;</a>
-            </div>
+            <h3><a href="{{ guide.url }}">{{ guide.title }}</a></h3>
+            <p>{{ guide.description }}</p>
+            <div class="plink"><a href="{{ guide.url }}">Read the guide</a></div>
           </div>
         </article>
-        <article class="proj reveal" style="--i:2">
-          <div class="zone">P-03 // Devtools</div>
-          <div class="pbody">
-            <h3>uMatrix Rule Generalizer</h3>
-            <p>A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
-            <div class="plink">
-              <a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">Live site &rarr;</a>
-              <a href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">Code &rarr;</a>
-            </div>
-          </div>
-        </article>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -277,14 +283,10 @@ section.block{padding:80px 0;scroll-margin-top:80px}
         <span class="sec-tag">Say hello</span>
         <h2 class="sec-title">Find me <span class="u">everywhere</span></h2>
       </div>
-      <p class="reveal" style="--i:1;max-width:56ch;margin:0 auto">Irvine, CA — remote-friendly. Pick a sticker, any sticker.</p>
+      <p class="reveal" style="--i:1;max-width:56ch;margin:0 auto">{{ profile.location }} — remote-friendly. Pick a sticker, any sticker.</p>
       <div class="cgrid reveal" style="--i:2">
-        <a class="cbtn" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">LinkedIn</a>
-        <a class="cbtn" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a>
-        <a class="cbtn" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener">StackOverflow</a>
-        <a class="cbtn" href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener">Hacker News</a>
-        <a class="cbtn" href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener">Guides Blog</a>
-        <a class="cbtn" href="https://twitter.com/fungbenson" target="_blank" rel="noopener">Twitter</a>
+        {% for s in profile.socials %}<a class="cbtn" href="{{ s.url }}" target="_blank" rel="noopener">{{ s.label }}</a>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -292,7 +294,7 @@ section.block{padding:80px 0;scroll-margin-top:80px}
 
 <footer>
   <div class="colophon wrap">
-    <p>&copy; 2026 BENSON FUNG — NEO-BRUTALIST VIBE</p>
+    <p>&copy; 2026 {{ site.name }} — NEO-BRUTALIST VIBE</p>
     <p><a href="/vibe-redesign/">&larr; Back to VibeRedesign</a></p>
   </div>
   <div class="backbar"><a href="/vibe-redesign/neubrutalist/resume/">Read the resume &rarr;</a></div>

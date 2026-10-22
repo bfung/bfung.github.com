@@ -1,6 +1,6 @@
 # VibeRedesign Content-Sync Plan
 
-Status: PLAN ONLY — no implementation yet. Produced 2026-10-22.
+Status: IMPLEMENTED 2026-10-22 — all 8 redesigns + main site render from src/_data/profile.json, resume.json, projects.json, guides.json. Plan produced 2026-10-22; sections 3+ were delivered in the planning report and executed as summarized in git history (767bbf1, 7516ccf, and the final sync commit).
 Goal (user's words): update content on all VibeRedesign pages to match the main site,
 source content from a single place so main-site changes reflect on all redesigns,
 use subagents to update the redesigns, coordinator verifies.
