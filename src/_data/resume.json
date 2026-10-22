@@ -1,0 +1,208 @@
+{
+  "experience": [
+    {
+      "title": "Engineering Manager",
+      "company": "Datadog",
+      "companyUrl": "https://www.datadoghq.com/",
+      "companyNote": null,
+      "location": "Remote",
+      "start": "Dec 2022",
+      "end": "Present",
+      "bulletsHtml": [
+        "Lead Demo Engineering, a software development team creating content that showcases what the Datadog platform can do.",
+        "Lead the Community Open Source Engineering team, engaging the open source community around <a href=\"https://vector.dev\" target=\"_blank\" rel=\"noopener\">Vector</a> (<a href=\"https://github.com/vectordotdev/vector\" target=\"_blank\" rel=\"noopener\">vectordotdev/vector</a>) and <a href=\"https://quickwit.io\" target=\"_blank\" rel=\"noopener\">Quickwit</a> (<a href=\"https://github.com/quickwit-oss/quickwit\" target=\"_blank\" rel=\"noopener\">quickwit-oss/quickwit</a>)."
+      ],
+      "tags": [
+        "Engineering Leadership",
+        "Open Source",
+        "Rust",
+        "Observability"
+      ]
+    },
+    {
+      "title": "Director of Data Platform",
+      "company": "Brightloom",
+      "companyUrl": "https://www.brightloom.com/",
+      "companyNote": null,
+      "location": "Remote",
+      "start": "Sep 2021",
+      "end": "Aug 2022",
+      "bulletsHtml": [
+        "Streamlined software engineering interview process resulting in consistent hiring criteria and high quality of hires.",
+        "Provided non-technical stakeholders with a predictable and easy to understand feature delivery and launch plan.",
+        "Forecasted Engineering budget and controlled infrastructure costs (AWS), saving 10% on a $2.0m budget."
+      ],
+      "tags": [
+        "Management",
+        "AWS",
+        "FinOps",
+        "Data Platform"
+      ]
+    },
+    {
+      "title": "Principal DevOps Engineer & Manager",
+      "company": "Brightloom",
+      "companyUrl": "https://www.brightloom.com/",
+      "companyNote": null,
+      "location": "Remote",
+      "start": "Jan 2020",
+      "end": "Sep 2021",
+      "bulletsHtml": [
+        "Evaluated and selected core technologies, balancing build vs. buy. In buy scenarios, tools saved several headcounts in operational overhead.",
+        "Partnered with the InfoSec organization to craft secure SDLC practices integrated into the CI/CD pipeline.",
+        "Led and supported development and operations of Kubernetes-based microservices and data pipelines."
+      ],
+      "tags": [
+        "Kubernetes",
+        "DevOps",
+        "CI/CD",
+        "InfoSec",
+        "Terraform"
+      ]
+    },
+    {
+      "title": "Sr. Staff DevOps Engineer & Manager",
+      "company": "Brightloom",
+      "companyUrl": "https://www.brightloom.com/",
+      "companyNote": null,
+      "location": "Remote",
+      "start": "Jan 2019",
+      "end": "Jan 2020",
+      "bulletsHtml": [
+        "Designed and optimized centralized logging and metrics using Datadog for cloud services, reducing SaaS costs and time-to-debug.",
+        "Implemented secure Over-The-Air (OTA) firmware updates for IoT systems (Raspberry Pi SoCs) for the Eatsa Spotlight Pickup System, removing operational friction for customer staff."
+      ],
+      "tags": [
+        "Datadog",
+        "IoT",
+        "Firmware",
+        "Ansible",
+        "Linux"
+      ]
+    },
+    {
+      "title": "Engineering Manager (Core Platform)",
+      "company": "Opower",
+      "companyUrl": "https://www.oracle.com/industries/utilities/opower-energy-efficiency/",
+      "companyNote": "Acq. by Oracle",
+      "location": "San Francisco, CA",
+      "start": "Nov 2014",
+      "end": "Jul 2016",
+      "bulletsHtml": [
+        "Led the Core Platform team of 4 engineers supporting 70+ developers in build tooling, deployment processes, and automated cloud operations."
+      ],
+      "tags": [
+        "Leadership",
+        "Developer Tooling",
+        "Infrastructure"
+      ]
+    },
+    {
+      "title": "Senior Software Engineer",
+      "company": "Opower",
+      "companyUrl": "https://www.oracle.com/industries/utilities/opower-energy-efficiency/",
+      "companyNote": null,
+      "location": "San Francisco, CA",
+      "start": "Aug 2011",
+      "end": "Jul 2014",
+      "bulletsHtml": [
+        "Architected and implemented the authentication/authorization service and API gateway for Opower's microservice ecosystem.",
+        "Developed core framework libraries adopted company-wide to standardize and accelerate microservice deployment and observability."
+      ],
+      "tags": [
+        "Java",
+        "API Gateway",
+        "Microservices",
+        "OAuth2"
+      ]
+    },
+    {
+      "title": "Software Engineer",
+      "company": "Incisent Technologies",
+      "companyUrl": null,
+      "companyNote": null,
+      "location": "Chicago, IL",
+      "start": "Oct 2004",
+      "end": "Dec 2010",
+      "bulletsHtml": [
+        "Designed and developed backend services and batch jobs processing statistical data for used car valuations using Java, C#, and Ruby on Rails.",
+        "Designed, implemented, and operated the Data Warehouse using Microsoft SSIS and SSAS, optimizing report query times for real-time dealership lookups."
+      ],
+      "tags": [
+        "Ruby on Rails",
+        "Java",
+        "SQL Server",
+        "Data Warehouse",
+        "SSIS / SSAS"
+      ]
+    }
+  ],
+  "education": {
+    "school": "University of Illinois Urbana-Champaign",
+    "start": "Aug 1999",
+    "end": "May 2003",
+    "degree": "B.S. in Computer Science",
+    "detail": "Software Engineering Certification Program"
+  },
+  "coreSkills": [
+    "Data Stack Design",
+    "Distributed Systems",
+    "DevOps & GitOps",
+    "Engineering Leadership",
+    "Cost Optimization",
+    "Cloud Operations"
+  ],
+  "skillGroups": [
+    {
+      "category": "Languages",
+      "items": [
+        "Python",
+        "Java",
+        "Ruby",
+        "SQL",
+        "Bash"
+      ]
+    },
+    {
+      "category": "Infra & Orchestration",
+      "items": [
+        "Kubernetes",
+        "Terraform",
+        "Ansible",
+        "Docker",
+        "HashiCorp Vault",
+        "Chef / Puppet"
+      ]
+    },
+    {
+      "category": "Data Platforms",
+      "items": [
+        "Databricks",
+        "Delta Lake",
+        "Airflow",
+        "Snowflake",
+        "AWS EMR"
+      ]
+    },
+    {
+      "category": "AWS Cloud",
+      "items": [
+        "EKS",
+        "RDS",
+        "S3",
+        "IAM",
+        "EC2 / ELB",
+        "CloudWatch"
+      ]
+    },
+    {
+      "category": "CI/CD & Observability",
+      "items": [
+        "Datadog",
+        "CircleCI",
+        "Jenkins",
+        "Loggly"
+      ]
+    }
+  ]
+}

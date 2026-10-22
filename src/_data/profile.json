@@ -1,0 +1,49 @@
+{
+  "title": "Software Systems & People Team Builder",
+  "taglinePrimary": "build better, be better, boba.",
+  "taglineSecondary": "family, friends, food, fun.",
+  "summary": "A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification.",
+  "location": "Irvine, CA",
+  "locationLong": "Irvine, California",
+  "avatar": "https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef",
+  "socials": [
+    {
+      "id": "linkedin",
+      "label": "LinkedIn",
+      "url": "https://www.linkedin.com/in/bensonfung",
+      "display": "linkedin.com/in/bensonfung"
+    },
+    {
+      "id": "github",
+      "label": "GitHub",
+      "url": "https://github.com/bfung",
+      "display": "github.com/bfung",
+      "handle": "@bfung"
+    },
+    {
+      "id": "stackoverflow",
+      "label": "StackOverflow",
+      "url": "https://stackoverflow.com/users/45793/benson",
+      "display": "stackoverflow.com/users/45793/benson"
+    },
+    {
+      "id": "hackernews",
+      "label": "Hacker News",
+      "url": "https://news.ycombinator.com/user?id=bfung",
+      "display": "news.ycombinator.com/user?id=bfung"
+    },
+    {
+      "id": "blog",
+      "label": "Blog",
+      "url": "https://benson-guides.blogspot.com/",
+      "display": "benson-guides.blogspot.com"
+    },
+    {
+      "id": "twitter",
+      "label": "Twitter",
+      "url": "https://twitter.com/fungbenson",
+      "display": "twitter.com/fungbenson",
+      "handle": "@fungbenson"
+    }
+  ]
+}

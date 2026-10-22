@@ -14,6 +14,9 @@ export default function (eleventyConfig) {
 
   // Cache-busting: append a short content hash to local asset URLs so
   // pushes are picked up immediately instead of serving stale cached copies.
+  // Zero-pad a number to two digits (e.g. 5 -> "05") for design stats/numbering.
+  eleventyConfig.addFilter("pad2", (n) => String(n).padStart(2, "0"));
+
   eleventyConfig.addFilter("cacheBust", (url) => {
     try {
       const file = join("src", String(url).replace(/^\//, "").split("?")[0]);
