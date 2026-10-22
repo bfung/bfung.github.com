@@ -137,15 +137,15 @@ footer.site .sep{margin:0 .5rem;color:var(--hairline)}
 <div class="col">
   <header class="topnav">
     <a class="back" href="/vibe-redesign/minimalist/">&larr; Home</a>
-    <a class="brand" href="/vibe-redesign/minimalist/">Benson Fung</a>
+    <a class="brand" href="/vibe-redesign/minimalist/">{{ site.name }}</a>
   </header>
 
   <main id="main">
     <div class="rhead">
-      <h1>Benson Fung</h1>
-      <p class="title">Software Systems &amp; People Team Builder</p>
-      <p class="summary">A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification.</p>
-      <p class="contactline">Irvine, CA<span class="sep">&middot;</span><a href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">LinkedIn</a><span class="sep">&middot;</span><a href="https://github.com/bfung" target="_blank" rel="noopener">GitHub</a></p>
+      <h1>{{ site.name }}</h1>
+      <p class="title">{{ profile.title }}</p>
+      <p class="summary">{{ profile.summary }}</p>
+      <p class="contactline">{{ profile.location }}<span class="sep">&middot;</span>{% for s in profile.socials %}{% if s.id == "linkedin" or s.id == "github" %}<a href="{{ s.url }}" target="_blank" rel="noopener">{{ s.label }}</a>{% if s.id == "linkedin" %}<span class="sep">&middot;</span>{% endif %}{% endif %}{% endfor %}</p>
     </div>
 
     <hr class="rule">
@@ -153,82 +153,23 @@ footer.site .sep{margin:0 .5rem;color:var(--hairline)}
     <section class="block" aria-labelledby="exp-h">
       <h2 class="label" id="exp-h">Experience</h2>
 
+      {% for job in resume.experience %}
       <article class="job">
-        <h3>Engineering Manager</h3>
-        <p class="meta"><a href="https://www.datadoghq.com/" target="_blank" rel="noopener">Datadog</a><span class="sep">&middot;</span>Remote<span class="sep">&middot;</span>Dec 2022 &ndash; Present</p>
+        <h3>{{ job.title }}</h3>
+        <p class="meta">{% if job.companyUrl %}<a href="{{ job.companyUrl }}" target="_blank" rel="noopener">{{ job.company }}</a>{% else %}{{ job.company }}{% endif %}{% if job.companyNote %} ({{ job.companyNote }}){% endif %}<span class="sep">&middot;</span>{{ job.location }}<span class="sep">&middot;</span>{{ job.start }} &ndash; {{ job.end }}</p>
         <ul>
-          <li>Lead Demo Engineering, a software development team creating content that showcases what the Datadog platform can do.</li>
-          <li>Lead the Community Open Source Engineering team, engaging the open source community around <a href="https://vector.dev" target="_blank" rel="noopener">Vector</a> and <a href="https://quickwit.io" target="_blank" rel="noopener">Quickwit</a>.</li>
+          {% for b in job.bulletsHtml %}<li>{{ b | safe }}</li>
+          {% endfor %}
         </ul>
-        <p class="tech">Engineering Leadership, Open Source, Rust, Observability</p>
+        <p class="tech">{% for tag in job.tags %}{{ tag }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
       </article>
-
-      <article class="job">
-        <h3>Director of Data Platform</h3>
-        <p class="meta"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a><span class="sep">&middot;</span>Remote<span class="sep">&middot;</span>Sep 2021 &ndash; Aug 2022</p>
-        <ul>
-          <li>Streamlined software engineering interview process resulting in consistent hiring criteria and high quality of hires.</li>
-          <li>Provided non-technical stakeholders with a predictable and easy to understand feature delivery and launch plan.</li>
-          <li>Forecasted Engineering budget and controlled infrastructure costs (AWS), saving 10% on a $2.0m budget.</li>
-        </ul>
-        <p class="tech">Management, AWS, FinOps, Data Platform</p>
-      </article>
-
-      <article class="job">
-        <h3>Principal DevOps Engineer &amp; Manager</h3>
-        <p class="meta"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a><span class="sep">&middot;</span>Remote<span class="sep">&middot;</span>Jan 2020 &ndash; Sep 2021</p>
-        <ul>
-          <li>Evaluated and selected core technologies, balancing build vs. buy. In buy scenarios, tools saved several headcounts in operational overhead.</li>
-          <li>Partnered with the InfoSec organization to craft secure SDLC practices integrated into the CI/CD pipeline.</li>
-          <li>Led and supported development and operations of Kubernetes-based microservices and data pipelines.</li>
-        </ul>
-        <p class="tech">Kubernetes, DevOps, CI/CD, InfoSec, Terraform</p>
-      </article>
-
-      <article class="job">
-        <h3>Sr. Staff DevOps Engineer &amp; Manager</h3>
-        <p class="meta"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a><span class="sep">&middot;</span>Remote<span class="sep">&middot;</span>Jan 2019 &ndash; Jan 2020</p>
-        <ul>
-          <li>Designed and optimized centralized logging and metrics using Datadog for cloud services, reducing SaaS costs and time-to-debug.</li>
-          <li>Implemented secure Over-The-Air (OTA) firmware updates for IoT systems (Raspberry Pi SoCs) for the Eatsa Spotlight Pickup System, removing operational friction for customer staff.</li>
-        </ul>
-        <p class="tech">Datadog, IoT, Firmware, Ansible, Linux</p>
-      </article>
-
-      <article class="job">
-        <h3>Engineering Manager (Core Platform)</h3>
-        <p class="meta"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a> (Acq. by Oracle)<span class="sep">&middot;</span>San Francisco, CA<span class="sep">&middot;</span>Nov 2014 &ndash; Jul 2016</p>
-        <ul>
-          <li>Led the Core Platform team of 4 engineers supporting 70+ developers in build tooling, deployment processes, and automated cloud operations.</li>
-        </ul>
-        <p class="tech">Leadership, Developer Tooling, Infrastructure</p>
-      </article>
-
-      <article class="job">
-        <h3>Senior Software Engineer</h3>
-        <p class="meta"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a><span class="sep">&middot;</span>San Francisco, CA<span class="sep">&middot;</span>Aug 2011 &ndash; Jul 2014</p>
-        <ul>
-          <li>Architected and implemented the authentication/authorization service and API gateway for Opower&rsquo;s microservice ecosystem.</li>
-          <li>Developed core framework libraries adopted company-wide to standardize and accelerate microservice deployment and observability.</li>
-        </ul>
-        <p class="tech">Java, API Gateway, Microservices, OAuth2</p>
-      </article>
-
-      <article class="job">
-        <h3>Software Engineer</h3>
-        <p class="meta">Incisent Technologies<span class="sep">&middot;</span>Chicago, IL<span class="sep">&middot;</span>Oct 2004 &ndash; Dec 2010</p>
-        <ul>
-          <li>Designed and developed backend services and batch jobs processing statistical data for used car valuations using Java, C#, and Ruby on Rails.</li>
-          <li>Designed, implemented, and operated the Data Warehouse using Microsoft SSIS and SSAS, optimizing report query times for real-time dealership lookups.</li>
-        </ul>
-        <p class="tech">Ruby on Rails, Java, SQL Server, Data Warehouse, SSIS / SSAS</p>
-      </article>
+      {% endfor %}
     </section>
 
     <section class="block edu" aria-labelledby="edu-h">
       <h2 class="label" id="edu-h">Education</h2>
-      <p>University of Illinois Urbana-Champaign <span class="when">&mdash; B.S. Computer Science, Aug 1999 &ndash; May 2003</span></p>
-      <p><span class="when">Software Engineering Certification Program</span></p>
+      <p>{{ resume.education.school }} <span class="when">&mdash; {{ resume.education.degree }}, {{ resume.education.start }} &ndash; {{ resume.education.end }}</span></p>
+      <p><span class="when">{{ resume.education.detail }}</span></p>
     </section>
 
     <section class="block" aria-labelledby="skills-h">
@@ -236,38 +177,19 @@ footer.site .sep{margin:0 .5rem;color:var(--hairline)}
 
       <div class="skillgroup">
         <h3>Core Expertise</h3>
-        <p>Data Stack Design, Distributed Systems, DevOps &amp; GitOps, Engineering Leadership, Cost Optimization, Cloud Operations</p>
+        <p>{% for skill in resume.coreSkills %}{{ skill }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
       </div>
-
+      {% for group in resume.skillGroups %}
       <div class="skillgroup">
-        <h3>Languages</h3>
-        <p>Python, Java, Ruby, SQL, Bash</p>
+        <h3>{{ group.category }}</h3>
+        <p>{% for skill in group.items %}{{ skill }}{% if not loop.last %}, {% endif %}{% endfor %}</p>
       </div>
-
-      <div class="skillgroup">
-        <h3>Infra &amp; Orchestration</h3>
-        <p>Kubernetes, Terraform, Ansible, Docker, HashiCorp Vault, Chef / Puppet</p>
-      </div>
-
-      <div class="skillgroup">
-        <h3>Data Platforms</h3>
-        <p>Databricks, Delta Lake, Airflow, Snowflake, AWS EMR</p>
-      </div>
-
-      <div class="skillgroup">
-        <h3>AWS Cloud</h3>
-        <p>EKS, RDS, S3, IAM, EC2 / ELB, CloudWatch</p>
-      </div>
-
-      <div class="skillgroup">
-        <h3>CI/CD &amp; Observability</h3>
-        <p>Datadog, CircleCI, Jenkins, Loggly</p>
-      </div>
+      {% endfor %}
     </section>
   </main>
 
   <footer class="site">
-    <p>&copy; 2026 Benson Fung<span class="sep">&middot;</span><a href="/vibe-redesign/minimalist/">&larr; Home</a><span class="sep">&middot;</span><a href="/vibe-redesign/">&larr; All vibes</a></p>
+    <p>&copy; 2026 {{ site.name }}<span class="sep">&middot;</span><a href="/vibe-redesign/minimalist/">&larr; Home</a><span class="sep">&middot;</span><a href="/vibe-redesign/">&larr; All vibes</a></p>
   </footer>
 </div>
 

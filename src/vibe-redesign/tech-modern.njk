@@ -198,6 +198,7 @@ footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-to
     <a class="brand" href="/vibe-redesign/tech-modern/">bfung<b>_</b></a>
     <ul class="nav-links">
       <li><a href="#projects">Projects</a></li>
+      <li><a href="#guides">Guides</a></li>
       <li><a href="#contact">Contact</a></li>
       <li><a class="hl" href="/vibe-redesign/tech-modern/resume/">Résumé →</a></li>
     </ul>
@@ -207,24 +208,24 @@ footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-to
 <main id="main">
   <header class="hero wrap">
     <p class="status rv"><span class="dot" aria-hidden="true"></span>systems operational</p>
-    <h1 class="rv" style="--d:60ms">Benson Fung</h1>
-    <p class="tagline rv" style="--d:120ms">build better, be better, <span class="boba">boba.</span></p>
-    <p class="subline rv" style="--d:170ms">family, friends, food, fun.</p>
+    <h1 class="rv" style="--d:60ms">{{ site.name }}</h1>
+    <p class="tagline rv" style="--d:120ms">{{ profile.taglinePrimary | replace("boba.", '<span class="boba">boba.</span>') | safe }}</p>
+    <p class="subline rv" style="--d:170ms">{{ profile.taglineSecondary }}</p>
     <div class="ctas rv" style="--d:220ms">
       <a class="btn btn-primary" href="/vibe-redesign/tech-modern/resume/">View résumé</a>
-      <a class="btn btn-ghost" href="https://github.com/bfung" target="_blank" rel="noopener">GitHub <span aria-hidden="true">↗</span></a>
+      {% for s in profile.socials %}{% if s.id == "github" %}<a class="btn btn-ghost" href="{{ s.url }}" target="_blank" rel="noopener">{{ s.label }} <span aria-hidden="true">↗</span></a>{% endif %}{% endfor %}
     </div>
 
     <div class="term rv" style="--d:280ms" role="img" aria-label="Terminal card showing a short profile of Benson Fung">
       <div class="term-bar" aria-hidden="true"><i></i><i></i><i></i><span>bfung — zsh</span></div>
-      <div class="term-body" id="termBody" aria-hidden="true"><div><span class="p">$ whoami</span></div><div><span class="o">benson-fung — systems &amp; people team builder</span></div><div><span class="p">$ cat focus.txt</span></div><div><span class="o">transparency · efficiency · simplification</span></div><div><span class="p">$ uptime --career</span></div><div><span class="o">20+ years · 7 roles · 0 downtime</span></div></div>
+      <div class="term-body" id="termBody" aria-hidden="true"><div><span class="p">$ whoami</span></div><div><span class="o">benson-fung — systems &amp; people team builder</span></div><div><span class="p">$ cat focus.txt</span></div><div><span class="o">transparency · efficiency · simplification</span></div><div><span class="p">$ uptime --career</span></div><div><span class="o">20+ years · {{ resume.experience | length }} roles · 0 downtime</span></div></div>
     </div>
 
     <div class="stats">
       <div class="stat rv" style="--d:0ms"><b>20<em>+</em></b><span>years shipping</span></div>
-      <div class="stat rv" style="--d:60ms"><b>07</b><span>roles held</span></div>
-      <div class="stat rv" style="--d:120ms"><b>32</b><span>skills in stack</span></div>
-      <div class="stat rv" style="--d:180ms"><b>03</b><span>featured builds</span></div>
+      <div class="stat rv" style="--d:60ms"><b>{{ resume.experience | length | pad2 }}</b><span>roles held</span></div>
+      {% set totalSkills = resume.coreSkills | length %}{% for g in resume.skillGroups %}{% set totalSkills = totalSkills + g.items | length %}{% endfor %}<div class="stat rv" style="--d:120ms"><b>{{ totalSkills }}</b><span>skills in stack</span></div>
+      <div class="stat rv" style="--d:180ms"><b>{{ projects.items | length | pad2 }}</b><span>featured builds</span></div>
     </div>
   </header>
 
@@ -234,30 +235,31 @@ footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-to
       <h2 class="sec-title rv" id="proj-h" style="--d:60ms">Featured builds</h2>
       <p class="sec-sub rv" style="--d:120ms">Shipped, working, and inspectable. Source available unless noted.</p>
       <div class="grid3">
-        <article class="card rv" style="--d:0ms">
-          <span class="idx">01</span>
-          <h3>HNanalytics</h3>
-          <p>A custom dashboard analyzing Hacker News submission performance, user voting behaviors, and text statistics.</p>
-          <div class="links"><a href="https://github.com/bfung/HNAnalytics" target="_blank" rel="noopener">code ↗</a></div>
+        {% for project in projects.items %}
+        <article class="card rv" style="--d:{{ loop.index0 * 80 }}ms">
+          <span class="idx">{{ loop.index | pad2 }}</span>
+          <h3>{{ project.title }}</h3>
+          <p>{{ project.description }}</p>
+          <div class="links">{% for link in project.links %}<a href="{{ link.url }}"{% if link.external %} target="_blank" rel="noopener"{% endif %}>{{ link.label }}</a>{% endfor %}</div>
         </article>
-        <article class="card rv" style="--d:80ms">
-          <span class="idx">02</span>
-          <h3>Luggage Pack</h3>
-          <p>A web app that arranges packing cubes inside a suitcase, shows unused space, and suggests cube sizes that fit the remaining gaps.</p>
-          <div class="links">
-            <a href="https://luggage-packing-optimizer.ai.studio" target="_blank" rel="noopener">live ↗</a>
-            <a href="https://github.com/bfung/luggage-pack" target="_blank" rel="noopener">code ↗</a>
-          </div>
+        {% endfor %}
+      </div>
+  </section>
+
+  <section id="guides" aria-labelledby="guides-h">
+    <div class="wrap">
+      <p class="eyebrow rv">guides</p>
+      <h2 class="sec-title rv" id="guides-h" style="--d:60ms">Guides</h2>
+      <p class="sec-sub rv" style="--d:120ms">Field notes from building in the open.</p>
+      <div class="grid3">
+        {% for guide in guides.items %}
+        <article class="card rv" style="--d:{{ loop.index0 * 80 }}ms">
+          <span class="idx">{{ loop.index | pad2 }}</span>
+          <h3><a href="{{ guide.url }}">{{ guide.title }}</a></h3>
+          <p>{{ guide.description }}</p>
+          <div class="links"><a href="{{ guide.url }}">Read the guide</a></div>
         </article>
-        <article class="card rv" style="--d:160ms">
-          <span class="idx">03</span>
-          <h3>uMatrix Rule Generalizer</h3>
-          <p>A developer tool to easily generalize rules for the uMatrix browser extension, helping filter host lists and domains.</p>
-          <div class="links">
-            <a href="https://bfung.github.io/uMatrixRuleGeneralizer/" target="_blank" rel="noopener">live ↗</a>
-            <a href="https://github.com/bfung/uMatrixRuleGeneralizer" target="_blank" rel="noopener">code ↗</a>
-          </div>
-        </article>
+        {% endfor %}
       </div>
     </div>
   </section>
@@ -267,14 +269,11 @@ footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-to
       <div class="contact-panel rv">
         <p class="eyebrow">contact</p>
         <h2 id="contact-h">Say hello.</h2>
-        <p>Irvine, CA · remote-friendly. Fastest via any channel below.</p>
+        <p>{{ profile.location }} · remote-friendly. Fastest via any channel below.</p>
         <div class="linkrows">
-          <a class="lrow" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener"><span><span class="n">LinkedIn</span><br><span class="u">/in/bensonfung</span></span><span class="arr" aria-hidden="true">↗</span></a>
-          <a class="lrow" href="https://github.com/bfung" target="_blank" rel="noopener"><span><span class="n">GitHub</span><br><span class="u">@bfung</span></span><span class="arr" aria-hidden="true">↗</span></a>
-          <a class="lrow" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener"><span><span class="n">StackOverflow</span><br><span class="u">user 45793</span></span><span class="arr" aria-hidden="true">↗</span></a>
-          <a class="lrow" href="https://news.ycombinator.com/user?id=bfung" target="_blank" rel="noopener"><span><span class="n">Hacker News</span><br><span class="u">id=bfung</span></span><span class="arr" aria-hidden="true">↗</span></a>
-          <a class="lrow" href="https://benson-guides.blogspot.com/" target="_blank" rel="noopener"><span><span class="n">Guides</span><br><span class="u">blogspot</span></span><span class="arr" aria-hidden="true">↗</span></a>
-          <a class="lrow" href="https://twitter.com/fungbenson" target="_blank" rel="noopener"><span><span class="n">Twitter</span><br><span class="u">@fungbenson</span></span><span class="arr" aria-hidden="true">↗</span></a>
+          {% for s in profile.socials %}
+          <a class="lrow" href="{{ s.url }}" target="_blank" rel="noopener"><span><span class="n">{{ s.label }}</span><br><span class="u">{% if s.id == "linkedin" %}/in/bensonfung{% elif s.id == "github" %}{{ s.handle }}{% elif s.id == "stackoverflow" %}user 45793{% elif s.id == "hackernews" %}id=bfung{% elif s.id == "blog" %}blogspot{% elif s.id == "twitter" %}{{ s.handle }}{% endif %}</span></span><span class="arr" aria-hidden="true">↗</span></a>
+          {% endfor %}
         </div>
       </div>
     </div>
@@ -283,7 +282,7 @@ footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-to
 
 <footer>
   <div class="wrap foot">
-    <p>© 2026 Benson Fung · <span class="ver">v4.0 tech-modern</span></p>
+    <p>© 2026 {{ site.name }} · <span class="ver">v4.0 tech-modern</span></p>
     <a href="/vibe-redesign/">← All vibes</a>
   </div>
 </footer>
@@ -322,7 +321,7 @@ footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-to
     ['p','$ cat focus.txt'],
     ['o','transparency · efficiency · simplification'],
     ['p','$ uptime --career'],
-    ['o','20+ years · 7 roles · 0 downtime']
+    ['o','20+ years · {{ resume.experience | length }} roles · 0 downtime']
   ];
   function renderStatic(){
     body.innerHTML = lines.map(function(l){

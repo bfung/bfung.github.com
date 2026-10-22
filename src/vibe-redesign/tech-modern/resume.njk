@@ -171,16 +171,14 @@ footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-to
 <main id="main">
   <header class="rhead wrap">
     <a class="back rv" href="/vibe-redesign/tech-modern/">← back to home</a>
-    <p class="status rv" style="--d:60ms"><span class="dot" aria-hidden="true"></span>last deployed · dec 2022 — present</p>
-    <h1 class="rv" style="--d:100ms">Benson Fung</h1>
-    <p class="role rv" style="--d:140ms">Software Systems &amp; People Team Builder</p>
-    <p class="summary rv" style="--d:180ms">A product focused, generalist software systems and engineering leader. Interested in technology that improves lives through transparency, efficiency, and simplification.</p>
+    <p class="status rv" style="--d:60ms"><span class="dot" aria-hidden="true"></span>last deployed · {{ resume.experience[0].start | lower }} — {{ resume.experience[0].end | lower }}</p>
+    <h1 class="rv" style="--d:100ms">{{ site.name }}</h1>
+    <p class="role rv" style="--d:140ms">{{ profile.title }}</p>
+    <p class="summary rv" style="--d:180ms">{{ profile.summary }}</p>
     <div class="chips rv" style="--d:220ms">
-      <span class="chip">Irvine, CA</span>
-      <a class="chip" href="https://www.linkedin.com/in/bensonfung" target="_blank" rel="noopener">linkedin ↗</a>
-      <a class="chip" href="https://github.com/bfung" target="_blank" rel="noopener">github ↗</a>
-      <a class="chip" href="https://stackoverflow.com/users/45793/benson" target="_blank" rel="noopener">stackoverflow ↗</a>
-    </div>
+      <span class="chip">{{ profile.location }}</span>
+      {% for s in profile.socials %}{% if s.id == "linkedin" or s.id == "github" or s.id == "stackoverflow" %}<a class="chip" href="{{ s.url }}" target="_blank" rel="noopener">{{ s.label | lower }} ↗</a>
+      {% endif %}{% endfor %}    </div>
   </header>
 
   <section id="experience" aria-labelledby="exp-h">
@@ -188,97 +186,20 @@ footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-to
       <p class="eyebrow rv">experience</p>
       <h2 class="sec-title rv" id="exp-h" style="--d:60ms">Changelog</h2>
 
+      {% for job in resume.experience %}
       <article class="job rv">
-        <p class="when">Dec 2022 — Present<br><span class="now">● CURRENT</span></p>
+        <p class="when">{{ job.start }} — {{ job.end }}{% if loop.first %}<br><span class="now">● CURRENT</span>{% endif %}</p>
         <div>
-          <h3>Engineering Manager</h3>
-          <p class="co"><a href="https://www.datadoghq.com/" target="_blank" rel="noopener">Datadog</a> · Remote</p>
+          <h3>{{ job.title }}</h3>
+          <p class="co">{% if job.companyUrl %}<a href="{{ job.companyUrl }}" target="_blank" rel="noopener">{{ job.company }}</a>{% else %}{{ job.company }}{% endif %}{% if job.companyNote %} ({{ job.companyNote }}){% endif %} · {{ job.location }}</p>
           <ul>
-            <li>Lead Demo Engineering, a software development team creating content that showcases what the Datadog platform can do.</li>
-            <li>Lead the Community Open Source Engineering team, engaging the open source community around <a href="https://vector.dev" target="_blank" rel="noopener">Vector</a> and <a href="https://quickwit.io" target="_blank" rel="noopener">Quickwit</a>.</li>
+            {% for b in job.bulletsHtml %}<li>{{ b | safe }}</li>
+            {% endfor %}
           </ul>
-          <div class="tags"><span>Engineering Leadership</span><span>Open Source</span><span>Rust</span><span>Observability</span></div>
+          <div class="tags">{% for tag in job.tags %}<span>{{ tag }}</span>{% endfor %}</div>
         </div>
       </article>
-
-      <article class="job rv">
-        <p class="when">Sep 2021 — Aug 2022</p>
-        <div>
-          <h3>Director of Data Platform</h3>
-          <p class="co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> · Remote</p>
-          <ul>
-            <li>Streamlined software engineering interview process resulting in consistent hiring criteria and high quality of hires.</li>
-            <li>Provided non-technical stakeholders with a predictable and easy to understand feature delivery and launch plan.</li>
-            <li>Forecasted Engineering budget and controlled infrastructure costs (AWS), saving 10% on a $2.0m budget.</li>
-          </ul>
-          <div class="tags"><span>Management</span><span>AWS</span><span>FinOps</span><span>Data Platform</span></div>
-        </div>
-      </article>
-
-      <article class="job rv">
-        <p class="when">Jan 2020 — Sep 2021</p>
-        <div>
-          <h3>Principal DevOps Engineer &amp; Manager</h3>
-          <p class="co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> · Remote</p>
-          <ul>
-            <li>Evaluated and selected core technologies, balancing build vs. buy. In buy scenarios, tools saved several headcounts in operational overhead.</li>
-            <li>Partnered with the InfoSec organization to craft secure SDLC practices integrated into the CI/CD pipeline.</li>
-            <li>Led and supported development and operations of Kubernetes-based microservices and data pipelines.</li>
-          </ul>
-          <div class="tags"><span>Kubernetes</span><span>DevOps</span><span>CI/CD</span><span>InfoSec</span><span>Terraform</span></div>
-        </div>
-      </article>
-
-      <article class="job rv">
-        <p class="when">Jan 2019 — Jan 2020</p>
-        <div>
-          <h3>Senior Staff DevOps Engineer &amp; Manager</h3>
-          <p class="co"><a href="https://www.brightloom.com/" target="_blank" rel="noopener">Brightloom</a> · Remote</p>
-          <ul>
-            <li>Designed and optimized centralized logging and metrics using Datadog for cloud services, reducing SaaS costs and time-to-debug.</li>
-            <li>Implemented secure Over-The-Air (OTA) firmware updates for IoT systems (Raspberry Pi SoCs) for the Eatsa Spotlight Pickup System, removing operational friction for customer staff.</li>
-          </ul>
-          <div class="tags"><span>Datadog</span><span>IoT</span><span>Firmware</span><span>Ansible</span><span>Linux</span></div>
-        </div>
-      </article>
-
-      <article class="job rv">
-        <p class="when">Nov 2014 — Jul 2016</p>
-        <div>
-          <h3>Engineering Manager (Core Platform)</h3>
-          <p class="co"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a> (acq. by Oracle) · San Francisco, CA</p>
-          <ul>
-            <li>Led the Core Platform team of 4 engineers supporting 70+ developers in build tooling, deployment processes, and automated cloud operations.</li>
-          </ul>
-          <div class="tags"><span>Leadership</span><span>Developer Tooling</span><span>Infrastructure</span></div>
-        </div>
-      </article>
-
-      <article class="job rv">
-        <p class="when">Aug 2011 — Jul 2014</p>
-        <div>
-          <h3>Senior Software Engineer</h3>
-          <p class="co"><a href="https://www.oracle.com/industries/utilities/opower-energy-efficiency/" target="_blank" rel="noopener">Opower</a> · San Francisco, CA</p>
-          <ul>
-            <li>Architected and implemented the authentication/authorization service and API gateway for Opower's microservice ecosystem.</li>
-            <li>Developed core framework libraries adopted company-wide to standardize and accelerate microservice deployment and observability.</li>
-          </ul>
-          <div class="tags"><span>Java</span><span>API Gateway</span><span>Microservices</span><span>OAuth2</span></div>
-        </div>
-      </article>
-
-      <article class="job rv">
-        <p class="when">Oct 2004 — Dec 2010</p>
-        <div>
-          <h3>Software Engineer</h3>
-          <p class="co">Incisent Technologies · Chicago, IL</p>
-          <ul>
-            <li>Designed and developed backend services and batch jobs processing statistical data for used car valuations using Java, C#, and Ruby on Rails.</li>
-            <li>Designed, implemented, and operated the Data Warehouse using Microsoft SSIS and SSAS, optimizing report query times for real-time dealership lookups.</li>
-          </ul>
-          <div class="tags"><span>Ruby on Rails</span><span>Java</span><span>SQL Server</span><span>Data Warehouse</span><span>SSIS / SSAS</span></div>
-        </div>
-      </article>
+      {% endfor %}
     </div>
   </section>
 
@@ -287,22 +208,19 @@ footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-to
       <p class="eyebrow rv">stack</p>
       <h2 class="sec-title rv" id="stack-h" style="--d:60ms">Dependencies</h2>
       <div class="stack">
-        <div class="panel rv" style="--d:0ms"><h3>core-expertise</h3><p>Data Stack Design, Distributed Systems, DevOps &amp; GitOps, Engineering Leadership, Cost Optimization, Cloud Operations</p></div>
-        <div class="panel rv" style="--d:60ms"><h3>languages</h3><p>Python, Java, Ruby, SQL, Bash</p></div>
-        <div class="panel rv" style="--d:120ms"><h3>infra</h3><p>Kubernetes, Terraform, Ansible, Docker, HashiCorp Vault, Chef / Puppet</p></div>
-        <div class="panel rv" style="--d:0ms"><h3>data-platforms</h3><p>Databricks, Delta Lake, Airflow, Snowflake, AWS EMR</p></div>
-        <div class="panel rv" style="--d:60ms"><h3>aws</h3><p>EKS, RDS, S3, IAM, EC2 / ELB, CloudWatch</p></div>
-        <div class="panel rv" style="--d:120ms"><h3>cicd-observability</h3><p>Datadog, CircleCI, Jenkins, Loggly</p></div>
+        <div class="panel rv" style="--d:0ms"><h3>core-expertise</h3><p>{{ resume.coreSkills | join(", ") }}</p></div>
+        {% for group in resume.skillGroups %}
+        <div class="panel rv" style="--d:{{ (loop.index % 3) * 60 }}ms"><h3>{% if loop.index == 1 %}languages{% elif loop.index == 2 %}infra{% elif loop.index == 3 %}data-platforms{% elif loop.index == 4 %}aws{% elif loop.index == 5 %}cicd-observability{% endif %}</h3><p>{{ group.items | join(", ") }}</p></div>
+        {% endfor %}
       </div>
-    </div>
   </section>
 
   <section aria-labelledby="edu-h">
     <div class="wrap">
       <p class="eyebrow rv">education</p>
       <div class="edu rv">
-        <div><b id="edu-h">University of Illinois Urbana-Champaign</b><em>B.S. Computer Science · Software Engineering Certification Program</em></div>
-        <span>Aug 1999 — May 2003</span>
+        <div><b id="edu-h">{{ resume.education.school }}</b><em>{{ resume.education.degree }} · {{ resume.education.detail }}</em></div>
+        <span>{{ resume.education.start }} — {{ resume.education.end }}</span>
       </div>
     </div>
   </section>
@@ -310,7 +228,7 @@ footer{border-top:1px solid var(--border-soft);padding:2.2rem 0 2.6rem;margin-to
 
 <footer>
   <div class="wrap foot">
-    <p>© 2026 Benson Fung · <span class="ver">v4.0 tech-modern</span></p>
+    <p>© 2026 {{ site.name }} · <span class="ver">v4.0 tech-modern</span></p>
     <nav aria-label="Footer">
       <a href="/vibe-redesign/tech-modern/">← Home</a>
       <a href="/vibe-redesign/">All vibes</a>
