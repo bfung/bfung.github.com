@@ -4,12 +4,14 @@
   "description": "Benson Fung's Modern Personal Portfolio and Resume Website",
   "type": "module",
   "scripts": {
-    "bundle:rum": "esbuild src/assets/js/rum-init.src.js --bundle --minify --format=iife --outfile=src/assets/js/rum-init.js",
+    "bundle:rum": "esbuild src/assets/js/rum-init.src.js --bundle --minify --format=iife --sourcemap --sources-content=true --outfile=src/assets/js/rum-init.js",
+    "upload:sourcemaps": "npm run bundle:rum && node scripts/upload-sourcemaps.mjs",
     "build": "npm run bundle:rum && npx @11ty/eleventy",
     "dev": "npm run bundle:rum && npx @11ty/eleventy --serve"
   },
   "devDependencies": {
     "@11ty/eleventy": "^3.0.0",
+    "@datadog/datadog-ci": "^5.25.0",
     "esbuild": "^0.28.2"
   },
   "dependencies": {

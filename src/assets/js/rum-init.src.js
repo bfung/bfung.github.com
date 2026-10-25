@@ -8,6 +8,9 @@ try {
   datadogRum.init({
     applicationId: 'a3caa3ee-c97f-4ad1-b73f-88f0b332c8dd',
     clientToken: 'pub64f4157a783a60c869656001071c84ac',
+    remoteConfiguration: {
+      id: 'ecf1ba7e-43a0-4d4f-8c3a-9efb501107ff',
+    },
     site: 'us3.datadoghq.com',
     service: 'bfung.github.io',
     env: 'prod',
