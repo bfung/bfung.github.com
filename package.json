@@ -4,10 +4,15 @@
   "description": "Benson Fung's Modern Personal Portfolio and Resume Website",
   "type": "module",
   "scripts": {
-    "build": "npx @11ty/eleventy",
-    "dev": "npx @11ty/eleventy --serve"
+    "bundle:rum": "esbuild src/assets/js/rum-init.src.js --bundle --minify --format=iife --outfile=src/assets/js/rum-init.js",
+    "build": "npm run bundle:rum && npx @11ty/eleventy",
+    "dev": "npm run bundle:rum && npx @11ty/eleventy --serve"
   },
   "devDependencies": {
-    "@11ty/eleventy": "^3.0.0"
+    "@11ty/eleventy": "^3.0.0",
+    "esbuild": "^0.28.2"
+  },
+  "dependencies": {
+    "@datadog/browser-rum": "^7.16.1"
   }
 }
