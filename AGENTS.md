@@ -25,7 +25,7 @@ Working instructions for this repository — Benson Fung's personal site.
 - The deploy step works in a throwaway clone and pushes the contents of `docs/` (including `.nojekyll`) to `gh-pages`, one commit per deploy, message `Deploy bfung.github.io from <sha>`. The `master` checkout is never disturbed. Deploys are serialized (`concurrency: pages-deploy`).
 - The source-map upload runs after deploy in the same job, using the `DD_API_KEY` repository secret; see Source Code Integration below. The site deploys even if the upload fails.
 - `docs/` is a local build artifact: gitignored, never committed, never hand-edited. Local `npm run build` / `npm run dev` still write it for preview.
-- Cutover (one-time, in progress): `docs/` is still committed on `master` and Pages still serves `master` / `docs` until the Pages source is switched to `gh-pages` and the live site is verified; then delete `docs/` from `master` in a follow-up commit.
+- Cutover complete (2026-10-25): Pages source switched to `gh-pages` / root, live site verified in the browser, and the committed `docs/` removed from `master` — `master` now holds source only.
 
 ## Analytics — Datadog RUM (the site's only analytics)
 
