@@ -1,0 +1,106 @@
+# Build the Eleventy site and publish it to the gh-pages branch.
+#
+# Publishing model: `master` holds only source. This workflow builds the
+# site in Actions, pushes the built output to the `gh-pages` branch, and
+# uploads the RUM source map to Datadog. GitHub Pages serves the site
+# from the `gh-pages` branch (root).
+#
+# One-time setup (repo owner, in the GitHub UI):
+#   1. Repository secret `DD_API_KEY` (Settings > Secrets and variables >
+#      Actions): a dedicated Datadog API key for the us3 org. Until it
+#      exists, the source-map step fails; the deploy step already ran, so
+#      re-run the workflow after adding it.
+#   2. Pages source (Settings > Pages > Build and deployment > Source):
+#      "Deploy from a branch", branch `gh-pages`, folder `/ (root)`.
+#      Switch this after the first run creates the branch; until then
+#      Pages keeps serving `master` / `docs`.
+#
+# Runs on every push to `master` (any change redeploys the site) and on
+# pull requests, where it only builds — deploy and source-map upload are
+# skipped. Manual dispatch is available from the Actions tab.
+#
+# Order inside the job is deliberate: build -> deploy -> upload. The site
+# always goes out even if Datadog is unreachable; a failed upload just
+# turns the run red and can be re-run. The upload's Git metadata comes
+# from the `master` checkout, which the deploy step never disturbs (it
+# works in a throwaway clone), so the map is always tied to the deployed
+# commit. Re-uploading an unchanged version is a no-op in Datadog.
+name: Build and deploy site
+
+on:
+  push:
+    branches: [master]
+  pull_request:
+    branches: [master]
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: pages-deploy
+  cancel-in-progress: false
+
+jobs:
+  build-and-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # Full history so datadog-ci records the exact deployed commit
+          # in the source map's Git metadata.
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: npm
+
+      - run: npm ci
+
+      - run: npm run build
+
+      - name: Verify build output
+        run: |
+          test -f docs/index.html
+          test -f docs/assets/js/rum-init.js
+          test -f docs/.nojekyll
+          missing=$(grep -rL 'rum-init\.js' docs --include='*.html' || true)
+          if [ -n "$missing" ]; then
+            echo "Pages missing the RUM bundle:"
+            printf '%s\n' "$missing"
+            exit 1
+          fi
+
+      - name: Deploy to gh-pages branch
+        if: github.ref == 'refs/heads/master'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: |
+          set -euo pipefail
+          DEPLOY_DIR="$(mktemp -d)"
+          # DEPLOY_REPO_URL is an escape hatch for local testing; in
+          # Actions it is unset and the GitHub remote is used.
+          REPO_URL="${DEPLOY_REPO_URL:-https://x-access-token:${GH_TOKEN}@github.com/${GITHUB_REPOSITORY}.git}"
+          if git ls-remote --heads "$REPO_URL" gh-pages | grep -q 'gh-pages'; then
+            git clone --quiet --branch gh-pages --single-branch "$REPO_URL" "$DEPLOY_DIR"
+            git -C "$DEPLOY_DIR" rm --quiet -rf .
+          else
+            git init --quiet "$DEPLOY_DIR"
+            git -C "$DEPLOY_DIR" checkout --quiet --orphan gh-pages
+            git -C "$DEPLOY_DIR" remote add origin "$REPO_URL"
+          fi
+          cp -r docs/. "$DEPLOY_DIR"/
+          git -C "$DEPLOY_DIR" add -A
+          git -C "$DEPLOY_DIR" -c user.name="github-actions[bot]" -c user.email="github-actions[bot]@users.noreply.github.com" commit --quiet -m "Deploy bfung.github.io from ${GITHUB_SHA}" || echo "No changes to deploy"
+          git -C "$DEPLOY_DIR" push --quiet origin gh-pages
+          rm -rf "$DEPLOY_DIR"
+
+      - name: Upload source maps to Datadog
+        if: github.ref == 'refs/heads/master'
+        run: npm run upload:sourcemaps
+        env:
+          DD_API_KEY: ${{ secrets.DD_API_KEY }}
+          DATADOG_API_KEY: ${{ secrets.DD_API_KEY }}
+          DD_SITE: us3.datadoghq.com
+          DATADOG_SITE: us3.datadoghq.com
