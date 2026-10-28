@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>AI Financing Map | Benson Fung</title>
+    <meta name="description" content="An interactive graph of AI financing, build-out, and spend — Nvidia, hyperscalers, Oracle, neoclouds, and frontier labs — with the same filters as the underlying spreadsheet.">
+    <link rel="canonical" href="https://bfung.github.io/ai-financing-map/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Benson Fung">
+    <meta property="og:title" content="AI Financing Map | Benson Fung">
+    <meta property="og:description" content="An interactive graph of AI financing, build-out, and spend — Nvidia, hyperscalers, Oracle, neoclouds, and frontier labs — with the same filters as the underlying spreadsheet.">
+    <meta property="og:url" content="https://bfung.github.io/ai-financing-map/">
+    <meta property="og:image" content="https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="AI Financing Map | Benson Fung">
+    <meta name="twitter:description" content="An interactive graph of AI financing, build-out, and spend — Nvidia, hyperscalers, Oracle, neoclouds, and frontier labs — with the same filters as the underlying spreadsheet.">
+    <meta name="twitter:image" content="https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Benson Fung",
+      "url": "https://bfung.github.io/",
+      "image": "https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Irvine",
+        "addressRegion": "CA"
+      },
+      "sameAs": [
+        "https://github.com/bfung",
+        "https://www.linkedin.com/in/bensonfung",
+        "https://stackoverflow.com/users/45793/benson",
+        "https://news.ycombinator.com/user?id=bfung",
+        "https://twitter.com/fungbenson"
+      ]
+    }
+    </script>
+
+
+    <!-- Declare supported color schemes for browser rendering and FOUC prevention -->
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- Inline script to apply saved theme preference immediately -->
+    <script>
+      {
+        document.documentElement.classList.add("js");
+        const savedTheme = localStorage.getItem("color-scheme");
+        if (savedTheme) {
+          document.querySelector('meta[name="color-scheme"]').content = savedTheme;
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      }
+    </script>
+    
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/style.css?v=46ae6391">
+
+    <!-- Datadog RUM: page views, resources, and user interactions -->
+    <script src="/assets/js/rum-init.js?v=cbc54720" defer></script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="site-header">
+      <div class="header-container">
+        <a href="/" class="brand" id="brand-logo">Benson Fung</a>
+        <nav class="site-nav" aria-label="Main Navigation">
+          <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+            <svg class="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+            <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18"></path>
+            </svg>
+          </button>
+          <ul class="nav-links" id="nav-menu">
+            <li><a href="/" >Home</a></li>
+            <li><a href="/resume/" >Resume</a></li>
+            <li><a href="/projects/" >Projects</a></li>
+            <li><a href="/guides/" >Guides</a></li>
+          </ul>
+        </nav>
+        <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle theme">
+          <!-- SVG for Sun Icon (visible in Dark Mode) -->
+          <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <circle cx="12" cy="12" r="4"></circle>
+            <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+          </svg>
+          <!-- SVG for Moon Icon (visible in Light Mode) -->
+          <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+            <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+          </svg>
+        </button>
+      </div>
+    </header>
+
+    <main id="main-content" class="content-wrapper">
+      
+<section class="hero-section" style="text-align: left; align-items: flex-start;">
+  <p class="hero-tagline" style="margin-bottom: 0.5rem;">AI Financing Map</p>
+  <h1>AI Financing Map</h1>
+  <p class="hero-sub" style="max-width: 680px;">
+    Who funds whom in the AI build-out — and in what form. Arrows run from
+    the payer (outflow) to the recipient (inflow). The same dollar can
+    circulate supplier → lab → cloud → supplier, so never sum every row
+    into one total.
+  </p>
+  <p class="ft-hints">
+    Drag companies to rearrange &middot; scroll to zoom &middot; click a
+    company to highlight its flows &middot; click a link for its details.
+    Snapshot: late October 2026.
+  </p>
+  <p>
+    <a href="/assets/data/ai-financing-map.json?v=175650de">Download the JSON data</a>
+    &middot; Node size is total flow volume (low amounts, non-aggregate rows).
+    Dashed links are contingent, “up to”, or LOI amounts — not funded cash.
+  </p>
+</section>
+
+<section id="afm" data-json="/assets/data/ai-financing-map.json?v=175650de" aria-label="AI financing graph">
+  <div class="afm-controls">
+    <div class="afm-row">
+      <label>Search company
+        <input type="search" id="afm-search" placeholder="e.g. CoreWeave" aria-label="Search company">
+      </label>
+      <label>Start year from
+        <input type="number" id="afm-year-min" aria-label="Minimum start year">
+      </label>
+      <label>to
+        <input type="number" id="afm-year-max" aria-label="Maximum start year">
+      </label>
+      <button type="button" class="ft-reset" id="afm-reset">Reset filters</button>
+    </div>
+    <fieldset>
+      <legend>Flow type</legend>
+      <div class="afm-checks" id="afm-cat"></div>
+    </fieldset>
+    <fieldset>
+      <legend>Money-flow status</legend>
+      <div class="afm-checks" id="afm-status"></div>
+    </fieldset>
+    <fieldset>
+      <legend>Confidence</legend>
+      <div class="afm-checks" id="afm-conf"></div>
+    </fieldset>
+    <fieldset>
+      <legend>Company type</legend>
+      <div class="afm-checks" id="afm-type"></div>
+    </fieldset>
+    <div class="afm-row">
+      <label><input type="checkbox" id="afm-agg"> Include aggregate rows (round / programme / debt totals)</label>
+      <label><input type="checkbox" id="afm-comp"> Include component splits</label>
+      <label><input type="checkbox" id="afm-labels" checked> Show company labels</label>
+    </div>
+    <p class="afm-legend" aria-label="Node colours">
+      <span><i style="background:#4f46e5"></i>Chip</span>
+      <span><i style="background:#0e7490"></i>Hyperscaler</span>
+      <span><i style="background:#ea580c"></i>Neocloud</span>
+      <span><i style="background:#7c3aed"></i>Lab</span>
+      <span><i style="background:#15803d"></i>Investor</span>
+      <span><i style="background:#64748b"></i>Lender</span>
+      <span><i style="background:#92400e"></i>Developer</span>
+      <span><i style="background:#475569"></i>Other</span>
+    </p>
+  </div>
+
+  <p id="afm-count" role="status">Loading graph…</p>
+
+  <div class="afm-graph">
+    <svg id="afm-svg" role="img" aria-label="Force-directed graph of AI financing flows"></svg>
+  </div>
+  <div id="afm-tooltip" hidden style="position:absolute;z-index:10;max-width:320px;padding:0.5rem 0.75rem;border:1.5px solid var(--color-border);border-radius:8px;background:var(--color-card);font-size:0.9rem;pointer-events:none;"></div>
+
+  <div class="afm-detail" id="afm-detail">
+    <p>Select a company or a link for details.</p>
+  </div>
+
+  <noscript>
+    <p>The graph needs JavaScript. The underlying data is still available as <a href="/assets/data/ai-financing-map.json">JSON</a>.</p>
+  </noscript>
+
+  <h2>Filtered links</h2>
+  <div class="afm-table-wrap">
+    <table class="afm-table" id="afm-table">
+      <thead>
+        <tr><th>From (outflow)</th><th>To (inflow)</th><th>Category</th><th>Amount</th><th>Status</th><th>Confidence</th><th>Years</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <h2>Hyperscaler capex — own spend, not lab investment</h2>
+  <p style="color: var(--color-text-muted);">Capex definitions differ (leases, fiscal vs calendar years), so use ranges. Do not add capex to lab equity.</p>
+  <div class="afm-table-wrap">
+    <table class="afm-table" id="afm-capex">
+      <thead>
+        <tr><th>Company</th><th>Year</th><th>Amount</th><th>Status</th><th>Confidence</th><th>Notes</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <p style="color: var(--color-text-muted);">
+    Method note: figures are as reported at the dates stated, with “up to”,
+    letter-of-intent, and reported amounts kept distinct from funded cash.
+    Low-confidence items — including Anthropic’s Series H headline and the
+    reported Nvidia Ohio guarantees — need re-tying to a primary announcement
+    or filing before use in valuation work. This is a first map, not
+    investment advice.
+  </p>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>
+<script src="/assets/js/ai-financing-map.js?v=7db101a3" defer></script>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <p>&copy; 2026 Benson Fung. All rights reserved.</p>
+        <p class="footer-meta">Built with <a href="https://www.11ty.dev/" target="_blank" rel="noopener">Eleventy</a> &bull; Blazing fast, build-time static HTML.</p>
+      </div>
+    </footer>
+
+    <!-- Client-side JS -->
+    <script src="/assets/js/main.js?v=c5127d94" defer></script>
+  </body>
+</html>
