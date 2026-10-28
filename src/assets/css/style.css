@@ -1394,6 +1394,100 @@
     }
   }
 
+  /* --- AI Financing Map: D3 graph + spreadsheet-style controls --- */
+  .afm-controls {
+    display: grid;
+    gap: var(--space-md);
+    margin: var(--space-lg) 0;
+    padding: var(--space-md);
+    border: 1.5px solid var(--color-border);
+    border-radius: 12px;
+    background: var(--color-card);
+  }
+
+  .afm-controls fieldset {
+    border: 0;
+    padding: 0;
+    margin: 0;
+  }
+
+  .afm-controls legend {
+    font-weight: 700;
+    margin-bottom: 0.4rem;
+  }
+
+  .afm-checks {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 0.4rem 1rem;
+  }
+
+  .afm-checks label, .afm-row label {
+    font-size: 0.9rem;
+    white-space: nowrap;
+  }
+
+  .afm-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--space-md);
+    align-items: center;
+  }
+
+  .afm-row input[type="search"], .afm-row input[type="number"], .afm-row select {
+    font: inherit;
+    padding: 0.35rem 0.6rem;
+    border: 1.5px solid var(--color-border);
+    border-radius: 8px;
+    background: var(--color-card);
+    color: var(--color-text);
+  }
+
+  .afm-graph {
+    border: 1.5px solid var(--color-border);
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--color-card);
+  }
+
+  .afm-svg {
+    display: block;
+    width: 100%;
+    height: clamp(480px, 68vh, 720px);
+    cursor: grab;
+    user-select: none;
+  }
+
+  .afm-svg:active { cursor: grabbing; }
+
+  .afm-svg text {
+    font-family: 'Outfit', 'Inter', system-ui, sans-serif;
+  }
+
+  .afm-node { cursor: pointer; }
+  .afm-node circle { stroke: var(--color-card); stroke-width: 2px; }
+  .afm-node text { font-size: 12px; font-weight: 600; fill: var(--color-heading); pointer-events: none; }
+  .afm-node--dim { opacity: 0.25; }
+  .afm-node--selected circle { stroke: var(--color-accent); stroke-width: 3.5px; }
+  .afm-link { fill: none; stroke-linecap: round; }
+  .afm-link--dim { opacity: 0.08 !important; }
+  .afm-link--contingent { stroke-dasharray: 6 4; }
+
+  .afm-detail {
+    margin: var(--space-md) 0 var(--space-xl);
+    padding: var(--space-md);
+    border: 1.5px solid var(--color-border);
+    border-radius: 12px;
+  }
+
+  .afm-table-wrap { overflow-x: auto; margin: var(--space-md) 0 var(--space-xl); }
+  .afm-table { width: 100%; border-collapse: collapse; font-size: 0.9rem; }
+  .afm-table th, .afm-table td { text-align: left; padding: 0.45rem 0.6rem; border-bottom: 1px solid var(--color-border); vertical-align: top; }
+  .afm-table th { white-space: nowrap; }
+
+  .afm-legend { display: flex; flex-wrap: wrap; gap: 0.4rem 1rem; font-size: 0.9rem; color: var(--color-text-muted); }
+  .afm-legend i { display: inline-block; width: 12px; height: 12px; border-radius: 50%; vertical-align: middle; margin-right: 0.3rem; }
+
 @layer utilities {
   .sr-only {
     position: absolute;

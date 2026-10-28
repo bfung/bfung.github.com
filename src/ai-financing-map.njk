@@ -1,0 +1,123 @@
+---
+layout: base.njk
+title: AI Financing Map | Benson Fung
+description: An interactive graph of AI financing, build-out, and spend — Nvidia, hyperscalers, Oracle, neoclouds, and frontier labs — with the same filters as the underlying spreadsheet.
+noJobTitle: true
+---
+
+<section class="hero-section" style="text-align: left; align-items: flex-start;">
+  <p class="hero-tagline" style="margin-bottom: 0.5rem;">AI Financing Map</p>
+  <h1>AI Financing Map</h1>
+  <p class="hero-sub" style="max-width: 680px;">
+    Who funds whom in the AI build-out — and in what form. Arrows run from
+    the payer (outflow) to the recipient (inflow). The same dollar can
+    circulate supplier → lab → cloud → supplier, so never sum every row
+    into one total.
+  </p>
+  <p class="ft-hints">
+    Drag companies to rearrange &middot; scroll to zoom &middot; click a
+    company to highlight its flows &middot; click a link for its details.
+    Snapshot: late October 2026.
+  </p>
+  <p>
+    <a href="{{ '/assets/data/ai-financing-map.json' | cacheBust }}">Download the JSON data</a>
+    &middot; Node size is total flow volume (low amounts, non-aggregate rows).
+    Dashed links are contingent, “up to”, or LOI amounts — not funded cash.
+  </p>
+</section>
+
+<section id="afm" data-json="{{ '/assets/data/ai-financing-map.json' | cacheBust }}" aria-label="AI financing graph">
+  <div class="afm-controls">
+    <div class="afm-row">
+      <label>Search company
+        <input type="search" id="afm-search" placeholder="e.g. CoreWeave" aria-label="Search company">
+      </label>
+      <label>Start year from
+        <input type="number" id="afm-year-min" aria-label="Minimum start year">
+      </label>
+      <label>to
+        <input type="number" id="afm-year-max" aria-label="Maximum start year">
+      </label>
+      <button type="button" class="ft-reset" id="afm-reset">Reset filters</button>
+    </div>
+    <fieldset>
+      <legend>Flow type</legend>
+      <div class="afm-checks" id="afm-cat"></div>
+    </fieldset>
+    <fieldset>
+      <legend>Money-flow status</legend>
+      <div class="afm-checks" id="afm-status"></div>
+    </fieldset>
+    <fieldset>
+      <legend>Confidence</legend>
+      <div class="afm-checks" id="afm-conf"></div>
+    </fieldset>
+    <fieldset>
+      <legend>Company type</legend>
+      <div class="afm-checks" id="afm-type"></div>
+    </fieldset>
+    <div class="afm-row">
+      <label><input type="checkbox" id="afm-agg"> Include aggregate rows (round / programme / debt totals)</label>
+      <label><input type="checkbox" id="afm-comp"> Include component splits</label>
+      <label><input type="checkbox" id="afm-labels" checked> Show company labels</label>
+    </div>
+    <p class="afm-legend" aria-label="Node colours">
+      <span><i style="background:#4f46e5"></i>Chip</span>
+      <span><i style="background:#0e7490"></i>Hyperscaler</span>
+      <span><i style="background:#ea580c"></i>Neocloud</span>
+      <span><i style="background:#7c3aed"></i>Lab</span>
+      <span><i style="background:#15803d"></i>Investor</span>
+      <span><i style="background:#64748b"></i>Lender</span>
+      <span><i style="background:#92400e"></i>Developer</span>
+      <span><i style="background:#475569"></i>Other</span>
+    </p>
+  </div>
+
+  <p id="afm-count" role="status">Loading graph…</p>
+
+  <div class="afm-graph">
+    <svg id="afm-svg" role="img" aria-label="Force-directed graph of AI financing flows"></svg>
+  </div>
+  <div id="afm-tooltip" hidden style="position:absolute;z-index:10;max-width:320px;padding:0.5rem 0.75rem;border:1.5px solid var(--color-border);border-radius:8px;background:var(--color-card);font-size:0.9rem;pointer-events:none;"></div>
+
+  <div class="afm-detail" id="afm-detail">
+    <p>Select a company or a link for details.</p>
+  </div>
+
+  <noscript>
+    <p>The graph needs JavaScript. The underlying data is still available as <a href="/assets/data/ai-financing-map.json">JSON</a>.</p>
+  </noscript>
+
+  <h2>Filtered links</h2>
+  <div class="afm-table-wrap">
+    <table class="afm-table" id="afm-table">
+      <thead>
+        <tr><th>From (outflow)</th><th>To (inflow)</th><th>Category</th><th>Amount</th><th>Status</th><th>Confidence</th><th>Years</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <h2>Hyperscaler capex — own spend, not lab investment</h2>
+  <p style="color: var(--color-text-muted);">Capex definitions differ (leases, fiscal vs calendar years), so use ranges. Do not add capex to lab equity.</p>
+  <div class="afm-table-wrap">
+    <table class="afm-table" id="afm-capex">
+      <thead>
+        <tr><th>Company</th><th>Year</th><th>Amount</th><th>Status</th><th>Confidence</th><th>Notes</th></tr>
+      </thead>
+      <tbody></tbody>
+    </table>
+  </div>
+
+  <p style="color: var(--color-text-muted);">
+    Method note: figures are as reported at the dates stated, with “up to”,
+    letter-of-intent, and reported amounts kept distinct from funded cash.
+    Low-confidence items — including Anthropic’s Series H headline and the
+    reported Nvidia Ohio guarantees — need re-tying to a primary announcement
+    or filing before use in valuation work. This is a first map, not
+    investment advice.
+  </p>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/d3@7/dist/d3.min.js" defer></script>
+<script src="{{ '/assets/js/ai-financing-map.js' | cacheBust }}" defer></script>
