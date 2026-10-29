@@ -87,13 +87,23 @@
       }
     </script>
     
+    <!-- Vibe carryover: loaded synchronously, before the stylesheets,
+         so vibe.js can set data-vibe before the first paint. See
+         src/assets/js/vibe.js for how the last VibeRedesign is remembered. -->
+    <script src="/assets/js/vibe.js?v=eaf9d710"></script>
+
     <!-- Premium Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    
+
     <!-- Stylesheet -->
     <link rel="stylesheet" href="/assets/css/style.css?v=46ae6391">
+
+    <!-- Vibe carryover tokens: unlayered, so they override style.css's
+         layered theme tokens whenever data-vibe is set. No effect
+         (beyond the hidden banner) when no vibe is active. -->
+    <link rel="stylesheet" href="/assets/css/vibes.css?v=c582f353">
 
     <!-- Datadog RUM: page views, resources, and user interactions -->
     <script src="/assets/js/rum-init.js?v=cbc54720" defer></script>
@@ -132,6 +142,15 @@
         </button>
       </div>
     </header>
+
+    <!-- Vibe carryover banner: hidden unless vibe.js finds an active
+         vibe (it fills in the name and unhides this). The Exit button
+         clears the stored vibe and returns this page to the default theme;
+         visiting Home (/) clears it too. -->
+    <div class="vibe-banner" data-vibe-banner hidden>
+      Viewing in the <span data-vibe-name></span> vibe
+      &middot; <button type="button" data-vibe-clear>Exit vibe</button>
+    </div>
 
     <main id="main-content" class="content-wrapper">
       
