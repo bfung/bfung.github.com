@@ -53,6 +53,12 @@ Working instructions for this repository — Benson Fung's personal site.
 - Accessibility: semantic HTML, skip-to-content link, real `alt` text on images, keyboard-reachable controls.
 - SEO basics live in the shared layout: canonical URL, Open Graph + Twitter cards, JSON-LD Person schema, `sitemap.xml`, `robots.txt`. Keep metadata current when URLs or page purposes change.
 
+## Vibe carryover
+
+- A VibeRedesign page's own styling cannot follow a visitor onto a differently-marked-up page, so carryover is token-level, not a layout clone: `src/assets/js/vibe.js` remembers the last vibe in localStorage (`bfung-vibe`) and sets `data-vibe` on `<html>`; `src/assets/css/vibes.css` (unlayered, so it beats style.css's layered theme tokens) re-skins shared-layout pages from that vibe's palette and type. All 16 vibe templates load vibe.js; the shared layout loads it synchronously in `<head>` before the stylesheets, so there is no unthemed flash.
+- Precedence in vibe.js: `?vibe=<slug>` (or `?vibe=none` to clear) wins; then a `/vibe-redesign/<slug>/` URL records that vibe; then visiting main Home (`/` or `/index.html`) clears the stored vibe and restores the original theme; otherwise the stored vibe is re-applied. The hub (`/vibe-redesign/`) records nothing, so it shows the carried vibe. The banner in base.njk ("Viewing in the X vibe · Exit vibe") is the other way out; while a vibe is active the light/dark toggle has no visible effect.
+- Scope limits: only pages rendered by base.njk carry a vibe (Resume, Projects, Guides, FamilyTreeMe, AI Financing Map, hub). Page-specific art (FamilyTreeMe SVG, AI Financing Map D3 colours) keeps its own palette. External project links leave the site, so no vibe can follow them. Keep the slug allowlist in vibe.js and the token blocks in vibes.css in step; palette values are copied from each vibe's own `:root` tokens, with two documented legibility deviations (mid-century accent darkened, neubrutalist accent = ink with yellow as tag/shadow).
+
 ## Conventions
 
 - Pages are Nunjucks templates (`.njk`) with front matter (`title`, `description`) consumed by the layout.

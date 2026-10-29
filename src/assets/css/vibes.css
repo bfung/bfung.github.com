@@ -1,0 +1,312 @@
+/* Vibe carryover for the shared layout (base.njk).
+ *
+ * When vibe.js sets data-vibe on <html>, this file re-skins every
+ * base.njk page from the corresponding VibeRedesign palette and type.
+ * It works only because the main stylesheet is token-driven: header,
+ * cards, buttons, links and headings all read --color-*, --radius-*
+ * and --shadow. This file is intentionally UNLAYERED: unlayered rules
+ * beat style.css's @layer theme/base/components rules regardless of
+ * the light/dark data-theme attribute, which is exactly what "the
+ * vibe overrides the default theme" means. A vibe is a fixed look, so
+ * while one is active the light/dark toggle has no visible effect;
+ * the banner below and a visit to Home (/) are the ways out.
+ *
+ * Palette values are copied from each vibe's own :root tokens in
+ * src/vibe-redesign/<vibe>.njk (same hex, same name in the comment).
+ * Two deliberate deviations, both for legibility on main-site pages
+ * where the accent colours small link text:
+ *   - mid-century: accent darkened one step from --persimmon #D96C2C.
+ *   - neubrutalist: --yellow #FFD23F cannot colour small text on
+ *     paper, so the accent is --ink and yellow survives as the tag
+ *     background plus the hard card shadow, the vibe's real signature.
+ * What this does NOT do: it does not re-mark-up a page in a vibe's
+ * layout, and it does not restyle page-specific art (the FamilyTreeMe
+ * SVG, the AI Financing Map D3 colours). Those keep their own
+ * palettes; the chrome, type and cards around them carry the vibe.
+ */
+
+/* --- The banner: hidden until a vibe is active ---------------------- */
+.vibe-banner {
+  display: none;
+}
+html[data-vibe] .vibe-banner {
+  display: block;
+  border-bottom: 1px solid var(--color-border);
+  background-color: var(--color-card);
+  color: var(--color-text-muted);
+  font-size: 0.85rem;
+  text-align: center;
+  padding: 0.5rem 1rem;
+}
+.vibe-banner button {
+  color: var(--color-accent);
+  font-weight: 600;
+  text-decoration: underline;
+  text-underline-offset: 2px;
+}
+
+/* --- Shared shape: fonts + radii follow the vibe -------------------- */
+html[data-vibe="conservative"] body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+html[data-vibe="conservative"] h1,
+html[data-vibe="conservative"] h2,
+html[data-vibe="conservative"] h3,
+html[data-vibe="conservative"] h4,
+html[data-vibe="conservative"] h5,
+html[data-vibe="conservative"] h6,
+html[data-vibe="conservative"] .brand {
+  font-family: Georgia, "Charter", "Palatino Linotype", "Book Antiqua",
+    Palatino, "Times New Roman", serif;
+}
+html[data-vibe="conservative"] {
+  --color-bg: #faf8f4;
+  --color-card: #ffffff;
+  --color-text: #1a1a1a;
+  --color-text-muted: #5c5a56;
+  --color-heading: #1a1a1a;
+  --color-accent: #6b1f2a;
+  --color-accent-hover: #4a141c;
+  --color-border: #d8d2c4;
+  --color-glass: rgba(250, 248, 244, 0.85);
+  --color-glass-border: #d8d2c4;
+  --shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.08);
+  --radius-sm: 2px;
+  --radius-md: 4px;
+  --radius-lg: 6px;
+  --radius-xl: 8px;
+  color-scheme: light;
+}
+
+html[data-vibe="experimental"] body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+html[data-vibe="experimental"] h1,
+html[data-vibe="experimental"] h2,
+html[data-vibe="experimental"] h3,
+html[data-vibe="experimental"] h4,
+html[data-vibe="experimental"] h5,
+html[data-vibe="experimental"] h6,
+html[data-vibe="experimental"] .brand {
+  font-family: Impact, "Arial Black", "Franklin Gothic Heavy",
+    "Helvetica Neue", sans-serif;
+}
+html[data-vibe="experimental"] {
+  --color-bg: #101013;
+  --color-card: #1b1b20;
+  --color-text: #f2efe3;
+  --color-text-muted: #b9b4a6;
+  --color-heading: #f2efe3;
+  --color-accent: #c8ff1e;
+  --color-accent-hover: #e2ff66;
+  --color-border: #33333a;
+  --color-glass: rgba(16, 16, 19, 0.85);
+  --color-glass-border: #33333a;
+  --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  color-scheme: dark;
+}
+
+html[data-vibe="mid-century"] body {
+  font-family: Georgia, "Palatino Linotype", "Book Antiqua", Palatino,
+    "Times New Roman", serif;
+}
+html[data-vibe="mid-century"] h1,
+html[data-vibe="mid-century"] h2,
+html[data-vibe="mid-century"] h3,
+html[data-vibe="mid-century"] h4,
+html[data-vibe="mid-century"] h5,
+html[data-vibe="mid-century"] h6,
+html[data-vibe="mid-century"] .brand {
+  font-family: Futura, "Century Gothic", "Trebuchet MS", "Segoe UI",
+    Verdana, sans-serif;
+}
+html[data-vibe="mid-century"] {
+  --color-bg: #f5eedf;
+  --color-card: #fbf8f1;
+  --color-text: #232323;
+  --color-text-muted: #7a756c;
+  --color-heading: #232323;
+  --color-accent: #c65a1e;
+  --color-accent-hover: #a34a18;
+  --color-border: #d8cfbb;
+  --color-glass: rgba(245, 238, 223, 0.85);
+  --color-glass-border: #d8cfbb;
+  --shadow: 0 4px 12px -4px rgba(0, 0, 0, 0.1);
+  --radius-sm: 4px;
+  --radius-md: 8px;
+  --radius-lg: 12px;
+  --radius-xl: 16px;
+  color-scheme: light;
+}
+
+html[data-vibe="art-deco"] body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+html[data-vibe="art-deco"] h1,
+html[data-vibe="art-deco"] h2,
+html[data-vibe="art-deco"] h3,
+html[data-vibe="art-deco"] h4,
+html[data-vibe="art-deco"] h5,
+html[data-vibe="art-deco"] h6,
+html[data-vibe="art-deco"] .brand {
+  font-family: Didot, "Bodoni MT", "Cochin", "Palatino Linotype",
+    "Book Antiqua", Palatino, serif;
+}
+html[data-vibe="art-deco"] {
+  --color-bg: #0e1512;
+  --color-card: #16241f;
+  --color-text: #f2efe6;
+  --color-text-muted: #b9b2a4;
+  --color-heading: #f2efe6;
+  --color-accent: #d4af37;
+  --color-accent-hover: #e3c66a;
+  --color-border: #3a3322;
+  --color-glass: rgba(14, 21, 18, 0.85);
+  --color-glass-border: #3a3322;
+  --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  --radius-sm: 0;
+  --radius-md: 2px;
+  --radius-lg: 2px;
+  --radius-xl: 2px;
+  color-scheme: dark;
+}
+
+html[data-vibe="tech-modern"] body,
+html[data-vibe="tech-modern"] h1,
+html[data-vibe="tech-modern"] h2,
+html[data-vibe="tech-modern"] h3,
+html[data-vibe="tech-modern"] h4,
+html[data-vibe="tech-modern"] h5,
+html[data-vibe="tech-modern"] h6,
+html[data-vibe="tech-modern"] .brand {
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display",
+    "Inter", "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+html[data-vibe="tech-modern"] {
+  --color-bg: #05070a;
+  --color-card: #0c1218;
+  --color-text: #e8eef4;
+  --color-text-muted: #8b98ab;
+  --color-heading: #e8eef4;
+  --color-accent: #22d3ee;
+  --color-accent-hover: #67e8f9;
+  --color-border: rgba(148, 163, 184, 0.14);
+  --color-glass: rgba(5, 7, 10, 0.85);
+  --color-glass-border: rgba(148, 163, 184, 0.14);
+  --shadow: 0 10px 30px -10px rgba(0, 0, 0, 0.7);
+  --radius-sm: 6px;
+  --radius-md: 10px;
+  --radius-lg: 14px;
+  --radius-xl: 18px;
+  color-scheme: dark;
+}
+
+html[data-vibe="minimalist"] body,
+html[data-vibe="minimalist"] h1,
+html[data-vibe="minimalist"] h2,
+html[data-vibe="minimalist"] h3,
+html[data-vibe="minimalist"] h4,
+html[data-vibe="minimalist"] h5,
+html[data-vibe="minimalist"] h6,
+html[data-vibe="minimalist"] .brand {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+html[data-vibe="minimalist"] {
+  --color-bg: #fdfdfb;
+  --color-card: #ffffff;
+  --color-text: #141414;
+  --color-text-muted: #6b6b6b;
+  --color-heading: #141414;
+  --color-accent: #141414;
+  --color-accent-hover: #000000;
+  --color-border: #e7e4da;
+  --color-glass: rgba(253, 253, 251, 0.85);
+  --color-glass-border: #e7e4da;
+  --shadow: none;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  color-scheme: light;
+}
+
+html[data-vibe="neubrutalist"] body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+    "Helvetica Neue", Arial, sans-serif;
+}
+html[data-vibe="neubrutalist"] h1,
+html[data-vibe="neubrutalist"] h2,
+html[data-vibe="neubrutalist"] h3,
+html[data-vibe="neubrutalist"] h4,
+html[data-vibe="neubrutalist"] h5,
+html[data-vibe="neubrutalist"] h6,
+html[data-vibe="neubrutalist"] .brand {
+  font-family: "Arial Black", "Archivo Black", Impact,
+    "Franklin Gothic Heavy", "Helvetica Neue", sans-serif;
+}
+html[data-vibe="neubrutalist"] {
+  --color-bg: #fffdf5;
+  --color-card: #ffffff;
+  --color-text: #111111;
+  --color-text-muted: #555555;
+  --color-heading: #111111;
+  --color-accent: #111111;
+  --color-accent-hover: #000000;
+  --color-border: #111111;
+  --color-glass: rgba(255, 253, 245, 0.9);
+  --color-glass-border: #111111;
+  --shadow: 7px 7px 0 0 #111111;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  color-scheme: light;
+}
+/* The vibe's thick border + hard shadow, on the main site's cards. */
+html[data-vibe="neubrutalist"] .project-card,
+html[data-vibe="neubrutalist"] .guide-card {
+  border: 3px solid #111111;
+  box-shadow: 7px 7px 0 0 #111111;
+}
+html[data-vibe="neubrutalist"] .tag-pill {
+  background-color: #ffd23f;
+  color: #111111;
+  border-color: #111111;
+}
+
+html[data-vibe="swiss"] body,
+html[data-vibe="swiss"] h1,
+html[data-vibe="swiss"] h2,
+html[data-vibe="swiss"] h3,
+html[data-vibe="swiss"] h4,
+html[data-vibe="swiss"] h5,
+html[data-vibe="swiss"] h6,
+html[data-vibe="swiss"] .brand {
+  font-family: "Helvetica Neue", Helvetica, Arial, system-ui, sans-serif;
+}
+html[data-vibe="swiss"] {
+  --color-bg: #ffffff;
+  --color-card: #ffffff;
+  --color-text: #000000;
+  --color-text-muted: #767676;
+  --color-heading: #000000;
+  --color-accent: #e30613;
+  --color-accent-hover: #b0050f;
+  --color-border: #e2e2e2;
+  --color-glass: rgba(255, 255, 255, 0.9);
+  --color-glass-border: #e2e2e2;
+  --shadow: none;
+  --radius-sm: 0;
+  --radius-md: 0;
+  --radius-lg: 0;
+  --radius-xl: 0;
+  color-scheme: light;
+}
