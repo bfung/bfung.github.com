@@ -26,6 +26,11 @@
     <priority>0.6</priority>
   </url>
   <url>
+    <loc>https://bfung.github.io/cve-by-quarter/</loc>
+    <changefreq>monthly</changefreq>
+    <priority>0.6</priority>
+  </url>
+  <url>
     <loc>https://bfung.github.io/projects/</loc>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
