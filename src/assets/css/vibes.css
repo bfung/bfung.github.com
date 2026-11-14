@@ -1,4 +1,4 @@
-/* Vibe carryover for the shared layout (base.njk).
+/* Vibe themes for the shared layout (base.njk).
  *
  * When vibe.js sets data-vibe on <html>, this file re-skins every
  * base.njk page from the corresponding VibeRedesign palette and type.
@@ -9,9 +9,8 @@
  * the light/dark data-theme attribute, which is exactly what "the
  * vibe overrides the default theme" means. A vibe is a fixed look, so
  * while one is active the light/dark toggle has no visible effect
- * (vibe.js disables it); the header theme picker, the banner below
- * and choosing Default are the ways back out. Home no longer resets
- * the theme: Default is an explicit choice in the picker.
+ * (vibe.js disables it); the header theme picker is the way back:
+ * choose Default there to leave a vibe.
  *
  * Palette values are copied from each vibe's own :root tokens in
  * src/vibe-redesign/<vibe>.njk (same hex, same name in the comment).
@@ -26,26 +25,6 @@
  * SVG, the AI Financing Map D3 colours). Those keep their own
  * palettes; the chrome, type and cards around them carry the vibe.
  */
-
-/* --- The banner: hidden until a vibe is active ---------------------- */
-.vibe-banner {
-  display: none;
-}
-html[data-vibe] .vibe-banner {
-  display: block;
-  border-bottom: 1px solid var(--color-border);
-  background-color: var(--color-card);
-  color: var(--color-text-muted);
-  font-size: 0.85rem;
-  text-align: center;
-  padding: 0.5rem 1rem;
-}
-.vibe-banner button {
-  color: var(--color-accent);
-  font-weight: 600;
-  text-decoration: underline;
-  text-underline-offset: 2px;
-}
 
 /* --- Shared shape: fonts + radii follow the vibe -------------------- */
 html[data-vibe="conservative"] body {
