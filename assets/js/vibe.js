@@ -32,8 +32,9 @@
 // light/dark toggle has nothing to switch (vibes.css overrides the
 // data-theme tokens); the toggle is disabled until Default is chosen
 // again. The header picker (see main.js) cycles themes on tap and opens
-// the full list via its chevron / a long press; the banner in base.njk
-// and choosing Default are the other ways back out.
+// the full list via its chevron / a long press; visiting a vibe page
+// directly just switches that picker to the vibe, and choosing Default
+// in the picker is the way back out. There is no banner any more.
 (function () {
   "use strict";
 
@@ -93,23 +94,11 @@
     return slug && VIBES[slug] ? VIBES[slug] : "Default";
   }
 
-  function updateBanner() {
-    var banner = document.querySelector("[data-vibe-banner]");
-    if (!banner) return;
-    var slug = currentSlug();
-    var label = banner.querySelector("[data-vibe-name]");
-    if (slug && VIBES[slug]) {
-      if (label) label.textContent = VIBES[slug];
-      banner.hidden = false;
-    } else {
-      banner.hidden = true;
-    }
-  }
-
   // The light/dark toggle is meaningless while a vibe is active, so
   // disable it there and re-enable it for Default. This element does
   // not exist yet when this file runs in <head>, so apply() is a no-op
-  // for it on first paint and main.js re-syncs on DOMContentLoaded.
+  // for it on first paint and the DOMContentLoaded handler below
+  // re-syncs it once the document is parsed.
   function syncThemeToggle(slug) {
     var toggle = document.getElementById("theme-toggle");
     if (!toggle) return;
@@ -131,7 +120,6 @@
     } else {
       document.documentElement.removeAttribute("data-vibe");
     }
-    updateBanner();
     syncThemeToggle(slug);
     if (!silent) {
       try {
@@ -172,24 +160,17 @@
     apply(readStored(), true);
   }
 
-  // The banner lives in the shared layout only; wire it once the
-  // document is parsed. Clearing removes the attribute, so vibes.css
-  // stops applying instantly — no reload needed.
-  function wireBanner() {
-    updateBanner();
+  // The theme toggle does not exist yet when this file runs in <head>;
+  // sync it once the document is parsed so it is disabled while a
+  // vibe is active. (There is no banner any more: the header picker
+  // is the only theme UI, and choosing Default there is the way out.)
+  function syncToggleOnLoad() {
     syncThemeToggle(currentSlug());
-    var clear = document.querySelector("[data-vibe-clear]");
-    if (clear) {
-      clear.addEventListener("click", function () {
-        store(null);
-        apply(null);
-      });
-    }
   }
   if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", wireBanner);
+    document.addEventListener("DOMContentLoaded", syncToggleOnLoad);
   } else {
-    wireBanner();
+    syncToggleOnLoad();
   }
 
   window.BfungVibe = {
