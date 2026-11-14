@@ -8,8 +8,10 @@
  * beat style.css's @layer theme/base/components rules regardless of
  * the light/dark data-theme attribute, which is exactly what "the
  * vibe overrides the default theme" means. A vibe is a fixed look, so
- * while one is active the light/dark toggle has no visible effect;
- * the banner below and a visit to Home (/) are the ways out.
+ * while one is active the light/dark toggle has no visible effect
+ * (vibe.js disables it); the header theme picker, the banner below
+ * and choosing Default are the ways back out. Home no longer resets
+ * the theme: Default is an explicit choice in the picker.
  *
  * Palette values are copied from each vibe's own :root tokens in
  * src/vibe-redesign/<vibe>.njk (same hex, same name in the comment).

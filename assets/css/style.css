@@ -332,6 +332,157 @@
     color: var(--color-accent);
   }
 
+  /* While a vibe theme is active the light/dark toggle has nothing to
+     switch (vibes.css overrides the data-theme tokens), so vibe.js
+     disables it; keep it visible but clearly inert. */
+  .theme-toggle-btn:disabled {
+    opacity: 0.45;
+    cursor: not-allowed;
+  }
+
+  .theme-toggle-btn:disabled:hover {
+    background-color: var(--color-card);
+    border-color: var(--color-border);
+    color: var(--color-text-muted);
+  }
+
+  /* --- Site-wide theme picker (hybrid) --- */
+  /* Header actions sit after the nav: the vibe picker (split button)
+     plus the light/dark toggle, in one tight group. */
+  .header-actions {
+    display: flex;
+    align-items: center;
+    gap: var(--space-sm);
+    flex: none;
+  }
+
+  .vibe-picker {
+    position: relative;
+    display: flex;
+    align-items: stretch;
+  }
+
+  .vibe-cycle-btn,
+  .vibe-menu-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 38px;
+    border: 1px solid var(--color-border);
+    color: var(--color-text-muted);
+    background-color: var(--color-card);
+    transition: background-color 0.2s ease, border-color 0.2s, color 0.2s;
+  }
+
+  .vibe-cycle-btn:hover,
+  .vibe-menu-btn:hover {
+    background-color: var(--color-bg);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .vibe-cycle-btn {
+    gap: 6px;
+    padding: 0 8px 0 10px;
+    border-radius: var(--radius-md) 0 0 var(--radius-md);
+    border-right: none;
+  }
+
+  .vibe-menu-btn {
+    width: 26px;
+    padding: 0;
+    border-radius: 0 var(--radius-md) var(--radius-md) 0;
+  }
+
+  .vibe-menu-btn[aria-expanded="true"] {
+    background-color: var(--color-bg);
+    border-color: var(--color-accent);
+    color: var(--color-accent);
+  }
+
+  .vibe-cycle-btn:focus-visible,
+  .vibe-menu-btn:focus-visible,
+  .vibe-menu button:focus-visible {
+    outline: 2px solid var(--color-accent);
+    outline-offset: 2px;
+  }
+
+  /* The dot previews the active theme: half background, half accent. */
+  .vibe-dot {
+    width: 14px;
+    height: 14px;
+    flex: none;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: linear-gradient(135deg, #ffffff 50%, #1a1a2e 50%);
+  }
+
+  html[data-vibe="art-deco"] .vibe-dot { background: linear-gradient(135deg, #0e1512 50%, #d4af37 50%); }
+  html[data-vibe="conservative"] .vibe-dot { background: linear-gradient(135deg, #faf8f4 50%, #6b1f2a 50%); }
+  html[data-vibe="experimental"] .vibe-dot { background: linear-gradient(135deg, #101013 50%, #c8ff1e 50%); }
+  html[data-vibe="mid-century"] .vibe-dot { background: linear-gradient(135deg, #f5eedf 50%, #c65a1e 50%); }
+  html[data-vibe="minimalist"] .vibe-dot { background: linear-gradient(135deg, #fdfdfb 50%, #141414 50%); }
+  html[data-vibe="neubrutalist"] .vibe-dot { background: linear-gradient(135deg, #fffdf5 50%, #111111 50%); }
+  html[data-vibe="swiss"] .vibe-dot { background: linear-gradient(135deg, #ffffff 50%, #e30613 50%); }
+  html[data-vibe="tech-modern"] .vibe-dot { background: linear-gradient(135deg, #05070a 50%, #22d3ee 50%); }
+
+  .vibe-menu {
+    position: absolute;
+    top: calc(100% + 8px);
+    right: 0;
+    z-index: 200;
+    min-width: 210px;
+    margin: 0;
+    padding: var(--space-xs);
+    list-style: none;
+    background-color: var(--color-card);
+    border: 1px solid var(--color-border);
+    border-radius: var(--radius-md);
+    box-shadow: var(--shadow);
+  }
+
+  .vibe-menu[hidden] { display: none; }
+
+  .vibe-menu button {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+    padding: 8px 10px;
+    border-radius: var(--radius-sm);
+    font-size: 0.95rem;
+    color: var(--color-text);
+    text-align: left;
+    background: none;
+  }
+
+  .vibe-menu button:hover,
+  .vibe-menu button:focus-visible {
+    background-color: var(--color-bg);
+    color: var(--color-heading);
+  }
+
+  .vibe-menu button[aria-checked="true"] {
+    font-weight: 600;
+    color: var(--color-heading);
+  }
+
+  .vibe-menu button[aria-checked="true"]::after {
+    content: "\2713";
+    margin-left: auto;
+    color: var(--color-accent);
+    font-weight: 700;
+  }
+
+  .vibe-swatch {
+    width: 18px;
+    height: 18px;
+    flex: none;
+    border-radius: 50%;
+    border: 1px solid var(--color-border);
+    background: linear-gradient(135deg, var(--swatch-bg) 50%, var(--swatch-accent) 50%);
+  }
+
   .sun-icon { display: none; }
   .moon-icon { display: block; }
 
