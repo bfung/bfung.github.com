@@ -1496,49 +1496,6 @@
   .cve-grid { stroke: var(--color-border); stroke-width: 1; }
   .cve-axis { font-size: 13px; fill: var(--color-text-muted); font-family: 'Inter', system-ui, sans-serif; }
 
-  /* --- California's Money, Past and Future: vanilla SVG two-panel chart --- */
-  .ca-banner {
-    margin: var(--space-md) 0;
-    padding: var(--space-md);
-    border: 1.5px solid var(--color-border);
-    border-radius: 12px;
-    max-width: 720px;
-  }
-  .ca-banner--warning {
-    border-color: light-dark(oklch(60% 0.15 45), oklch(75% 0.12 45));
-    background: light-dark(oklch(97% 0.02 45), oklch(22% 0.03 45));
-  }
-  .ca-core-rule { max-width: 720px; }
-  .ca-notes { margin: var(--space-md) 0; }
-  .ca-notes ul { color: var(--color-text-muted); }
-  .ca-svg { display: block; width: 100%; height: auto; }
-  .ca-grid { stroke: var(--color-border); stroke-width: 1; }
-  .ca-zero { stroke: var(--color-text-muted); stroke-width: 1.5; }
-  .ca-axis { font-size: 13px; fill: var(--color-text-muted); font-family: 'Inter', system-ui, sans-serif; }
-  .ca-panel-title { font-size: 14px; font-weight: 700; fill: var(--color-heading); font-family: 'Inter', system-ui, sans-serif; }
-  .ca-label { font-size: 13px; font-weight: 600; fill: var(--color-heading); font-family: 'Inter', system-ui, sans-serif; }
-  .ca-label-muted { fill: var(--color-text-muted); font-weight: 400; }
-  .ca-rule { stroke: var(--color-text-muted); stroke-width: 1; stroke-dasharray: 4 4; }
-  .ca-rule-label { font-size: 12px; fill: var(--color-text-muted); font-family: 'Inter', system-ui, sans-serif; }
-  .ca-line { stroke-width: 2.5; stroke-linejoin: round; stroke-linecap: round; }
-  .ca-base-rev { stroke: var(--color-accent); opacity: 0.55; }
-  .ca-base-rev-dash { stroke: var(--color-accent); opacity: 0.55; stroke-dasharray: 7 5; }
-  .ca-base-exp { stroke: light-dark(oklch(55% 0.14 30), oklch(76% 0.12 30)); opacity: 0.55; }
-  .ca-base-exp-dash { stroke: light-dark(oklch(55% 0.14 30), oklch(76% 0.12 30)); opacity: 0.55; stroke-dasharray: 7 5; }
-  .ca-scen-rev { stroke: var(--color-accent); }
-  .ca-scen-exp { stroke: light-dark(oklch(50% 0.16 30), oklch(80% 0.14 30)); }
-  .ca-lao { stroke: var(--color-text-muted); stroke-dasharray: 3 4; }
-  .ca-lao-dot { fill: var(--color-text-muted); }
-  .ca-reserve-band { fill: light-dark(oklch(55% 0.13 160), oklch(75% 0.12 160)); opacity: 0.22; }
-  .ca-reserve-central { stroke: light-dark(oklch(48% 0.14 160), oklch(78% 0.13 160)); stroke-dasharray: 10 4 2 4; }
-  .ca-bond-base { stroke: light-dark(oklch(55% 0.15 300), oklch(78% 0.12 300)); opacity: 0.55; stroke-dasharray: 7 5; }
-  .ca-bond-scen { stroke: light-dark(oklch(50% 0.17 300), oklch(82% 0.14 300)); }
-  .ca-anchor { fill: light-dark(oklch(55% 0.14 30), oklch(76% 0.12 30)); }
-  .ca-gap-surplus { fill: var(--color-accent); opacity: 0.10; }
-  .ca-gap-deficit { fill: light-dark(oklch(55% 0.14 30), oklch(76% 0.12 30)); opacity: 0.12; }
-  .ca-gap-mixed { fill: var(--color-text-muted); opacity: 0.08; }
-  .ca-dot { fill: var(--color-card); stroke: var(--color-accent); stroke-width: 2; cursor: pointer; opacity: 0; }
-  .ca-dot:hover, .ca-dot:focus { opacity: 1; outline: none; }
 
 @layer utilities {
   .sr-only {
