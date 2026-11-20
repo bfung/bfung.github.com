@@ -19,8 +19,16 @@
   var lrSection = document.getElementById('fdp-lr-section');
   var countEl = document.getElementById('fdp-count');
   var detailEl = document.getElementById('fdp-detail');
+  var lrDetailEl = document.getElementById('fdp-lr-detail');
   var summaryEl = document.getElementById('fdp-summary');
   var tableBody = document.querySelector('#fdp-table tbody');
+
+  // Mobile tuning (Option 1): below 700px the modebar is hidden, the
+  // colourbar goes horizontal, ticks thin out and type grows; on
+  // coarse-pointer phones the charts also start locked behind a
+  // tap-to-interact overlay so a swipe scrolls the page.
+  function isNarrow() { return window.matchMedia('(max-width: 700px)').matches; }
+  function needsLock() { return isNarrow() && window.matchMedia('(pointer: coarse)').matches; }
 
   var DAY = 24 * 60 * 60 * 1000;
   var EPOCH = Date.UTC(2012, 0, 25); // first vintage, Jan 25 2012
@@ -110,7 +118,7 @@
   }
 
   function buildDotsTrace(rows, medians) {
-    var x = [], y = [], z = [], size = [], hover = [], color = [];
+    var x = [], y = [], z = [], size = [], hover = [], color = [], custom = [];
     rows.forEach(function (d) {
       var days = (parseDate(d.vintage) - EPOCH) / DAY;
       var m = medians[medianKey(d.vintage, d.target_year)];
@@ -118,6 +126,10 @@
       y.push(d.target_year);
       z.push(d.rate);
       color.push(days);
+      // customdata powers tap-to-inspect (plotly_click): [vintage, year,
+      // rate, count, median_derived, median_source].
+      custom.push([d.vintage, d.target_year, d.rate, d.count,
+        m ? m.median_derived : null, m ? m.median_source : null]);
       // Marker size encodes the count: 1 participant -> 7, 19 -> ~39.
       size.push(5 + 1.8 * d.count);
       var med = m ? fmtRate(m.median_derived) : '—';
@@ -140,9 +152,16 @@
       x: x, y: y, z: z,
       text: hover,
       hoverinfo: 'text',
+      customdata: custom,
       marker: {
         size: size,
         color: color,
+        // On narrow screens the Plotly colourbar is hidden and an HTML
+        // gradient legend below the chart takes its place: the horizontal
+        // Plotly colourbar collided with the x-axis title/ticks. Note
+        // this is marker.showscale, not the trace-level flag — for
+        // scatter3d the marker's colourbar obeys the marker setting.
+        showscale: !isNarrow(),
         // Bright-ended custom scale (sky -> indigo -> amber) so the
         // earliest vintages stay visible on the dark theme too; Viridis'
         // dark-purple low end vanished against the dark card.
@@ -194,6 +213,8 @@
         z: rows.map(function (m) { return m.median_derived; }),
         text: hover,
         hoverinfo: 'text',
+        // customdata for tap-to-inspect: [vintage, year, median, source].
+        customdata: rows.map(function (m) { return [m.vintage, m.target_year, m.median_derived, m.median_source]; }),
         line: { color: MEDIAN_COLOR, width: 4 },
         marker: { size: 3, color: MEDIAN_COLOR }
       });
@@ -201,16 +222,29 @@
     return traces;
   }
 
+  function narrowTicks() {
+    // x ticks every 4 years on narrow screens; the yearly ticks crowd
+    // and clip at 356px wide.
+    var years = [2012, 2016, 2020, 2024, 2026];
+    return {
+      vals: years.map(function (y) {
+        return y === 2012 ? 0 : (Date.UTC(y, 0, 1) - EPOCH) / DAY;
+      }),
+      text: years.map(String)
+    };
+  }
+
   function layout3d(t) {
-    var ticks = yearlyTicks();
+    var ticks = isNarrow() ? narrowTicks() : yearlyTicks();
+    var narrow = isNarrow();
     return {
       autosize: true,
-      margin: { l: 0, r: 0, t: 0, b: 0 },
+      margin: { l: narrow ? 16 : 0, r: narrow ? 16 : 0, t: 0, b: narrow ? 20 : 0 },
       paper_bgcolor: 'rgba(0,0,0,0)',
-      font: { color: t.text, family: 'Inter, system-ui, sans-serif' },
+      font: { color: t.text, family: 'Inter, system-ui, sans-serif', size: narrow ? 13 : 12 },
       // Legend top-left: the default top-right spot collides with the
       // colourbar and its title.
-      legend: { x: 0, y: 1, font: { size: 12 }, bgcolor: 'rgba(0,0,0,0)' },
+      legend: { x: 0, y: 1, font: { size: narrow ? 13 : 12 }, bgcolor: 'rgba(0,0,0,0)' },
       scene: {
         bgcolor: 'rgba(0,0,0,0)',
         camera: { eye: { x: 1.6, y: -1.4, z: 1.0 } },
@@ -218,22 +252,24 @@
           title: 'SEP vintage',
           tickvals: ticks.vals, ticktext: ticks.text,
           gridcolor: t.grid, zerolinecolor: t.grid,
-          tickfont: { size: 11 }, titlefont: { size: 12 }
+          tickfont: { size: narrow ? 12 : 11 }, titlefont: { size: narrow ? 13 : 12 }
         },
         yaxis: {
           title: 'Target year',
           range: [2011.5, 2029.5],
-          dtick: 2,
+          dtick: narrow ? 4 : 2,
           gridcolor: t.grid, zerolinecolor: t.grid,
-          tickfont: { size: 11 }, titlefont: { size: 12 }
+          tickfont: { size: narrow ? 12 : 11 }, titlefont: { size: narrow ? 13 : 12 }
         },
         zaxis: {
-          title: 'Federal funds rate (%)',
+          // Short title on narrow screens: the full "Federal funds rate
+          // (%)" clipped at the left edge at 356px wide.
+          title: narrow ? 'Rate (%)' : 'Federal funds rate (%)',
           range: [-0.5, 6.5],
-          dtick: 1,
+          dtick: narrow ? 2 : 1,
           ticksuffix: '%',
           gridcolor: t.grid, zerolinecolor: t.grid,
-          tickfont: { size: 11 }, titlefont: { size: 12 }
+          tickfont: { size: narrow ? 12 : 11 }, titlefont: { size: narrow ? 13 : 12 }
         }
       }
     };
@@ -260,7 +296,10 @@
   }
 
   function plotConfig() {
-    return { responsive: true, displaylogo: false };
+    // The modebar's camera/download icons overlapped the colourbar and
+    // legend at phone width, so it is hidden below 700px; the "Reset 3D
+    // view" button in the controls covers the camera reset instead.
+    return { responsive: true, displaylogo: false, displayModeBar: !isNarrow() };
   }
 
   function renderLr() {
@@ -291,6 +330,12 @@
           '<br>Longer-run median: ' + med + note;
       }),
       hoverinfo: 'text',
+      // customdata for tap-to-inspect: [vintage, rate, count, median, source].
+      customdata: rows.map(function (d) {
+        var m = medMap[d.vintage];
+        return [d.vintage, d.rate, d.count,
+          m ? m.median_derived : null, m ? m.median_source : null];
+      }),
       marker: {
         size: rows.map(function (d) { return 5 + 1.8 * d.count; }),
         color: t.accent,
@@ -312,6 +357,8 @@
           '<br>Longer-run median: ' + fmtRate(m.median_derived) + '<br>' + note;
       }),
       hoverinfo: 'text',
+      // customdata for tap-to-inspect: [vintage, median, source].
+      customdata: meds.map(function (m) { return [m.vintage, m.median_derived, m.median_source]; }),
       line: { color: MEDIAN_COLOR, width: 3 },
       marker: { size: 5, color: MEDIAN_COLOR }
     };
@@ -320,12 +367,13 @@
       margin: { l: 56, r: 16, t: 12, b: 48 },
       paper_bgcolor: 'rgba(0,0,0,0)',
       plot_bgcolor: 'rgba(0,0,0,0)',
-      font: { color: t.text, family: 'Inter, system-ui, sans-serif' },
-      legend: { font: { size: 12 } },
+      font: { color: t.text, family: 'Inter, system-ui, sans-serif', size: isNarrow() ? 13 : 12 },
+      legend: { font: { size: isNarrow() ? 13 : 12 } },
       xaxis: {
         title: 'SEP vintage',
+        nticks: isNarrow() ? 5 : 10,
         gridcolor: t.grid, zerolinecolor: t.grid,
-        tickfont: { size: 11 }
+        tickfont: { size: isNarrow() ? 12 : 11 }
       },
       yaxis: {
         title: 'Federal funds rate (%)',
@@ -333,7 +381,7 @@
         dtick: 0.5,
         ticksuffix: '%',
         gridcolor: t.grid, zerolinecolor: t.grid,
-        tickfont: { size: 11 }
+        tickfont: { size: isNarrow() ? 12 : 11 }
       }
     };
     var p = plottedLr
@@ -347,6 +395,95 @@
     if (!data || !window.Plotly) return;
     render3d();
     renderLr();
+    bindClicks();
+    ensureLocks();
+  }
+
+  // Tap-to-inspect: hover does not exist on a phone, so a tap on a dot
+  // (or a median point) writes its detail into the box below the chart
+  // instead. plotly_click fires for gl3d scenes on touch in Plotly 2.25+.
+  var clickBound = false;
+  function setDetail(html) { detailEl.innerHTML = '<p>' + html + '</p>'; }
+  function setLrDetail(html) { lrDetailEl.innerHTML = '<p>' + html + '</p>'; }
+  function bindClicks() {
+    if (clickBound || !window.Plotly) return;
+    clickBound = true;
+    plotEl.on('plotly_click', function (ev) {
+      var pt = ev.points && ev.points[0];
+      if (!pt || !pt.customdata) return;
+      var cd = pt.customdata;
+      if (pt.curveNumber === 0) {
+        setDetail('<strong>SEP vintage ' + fmtDate(parseDate(cd[0])) +
+          ' · target year ' + cd[1] + '</strong><br>Rate: ' + fmtRate(cd[2]) +
+          ' · ' + cd[3] + (cd[3] === 1 ? ' participant' : ' participants') +
+          ' at this rate<br>Median: ' + fmtRate(cd[4]) +
+          (cd[5] === 'derived' ? ' (derived from dots — not a published Fed value)' : ' (published in Table 1)'));
+      } else {
+        setDetail('<strong>Median path · SEP vintage ' + fmtDate(parseDate(cd[0])) +
+          ' · target year ' + cd[1] + '</strong><br>Median: ' + fmtRate(cd[2]) +
+          (cd[3] === 'derived' ? ' — derived from dots, not a published Fed value' : ' — as published in Table 1'));
+      }
+    });
+    lrEl.on('plotly_click', function (ev) {
+      var pt = ev.points && ev.points[0];
+      if (!pt || !pt.customdata) return;
+      var cd = pt.customdata;
+      if (pt.curveNumber === 0) {
+        setLrDetail('<strong>SEP vintage ' + fmtDate(parseDate(cd[0])) +
+          '</strong><br>Longer-run rate: ' + fmtRate(cd[1]) +
+          ' · ' + cd[2] + (cd[2] === 1 ? ' participant' : ' participants') +
+          ' at this rate<br>Longer-run median: ' + fmtRate(cd[3]) +
+          (cd[4] === 'derived' ? ' (derived from dots)' : ' (published in Table 1)'));
+      } else {
+        setLrDetail('<strong>Longer-run median · SEP vintage ' + fmtDate(parseDate(cd[0])) +
+          '</strong><br>Median: ' + fmtRate(cd[1]) +
+          (cd[2] === 'derived' ? ' — derived from dots, not a published Fed value' : ' — as published in Table 1'));
+      }
+    });
+  }
+
+  // Tap-to-interact lock: on coarse-pointer phones the chart starts
+  // inert (pointer-events: none) behind an overlay button, so a swipe
+  // scrolls the page instead of rotating the chart. Tapping the overlay
+  // unlocks the chart and shows a "Lock chart" chip to get back.
+  var lock3d = null;
+  var lockLr = null;
+  function makeLock(plot, label) {
+    var wrap = plot.parentElement;
+    var overlay = document.createElement('div');
+    overlay.className = 'fdp-lock-overlay';
+    var btn = document.createElement('button');
+    btn.type = 'button';
+    btn.className = 'fdp-lock-btn';
+    btn.textContent = label;
+    overlay.appendChild(btn);
+    var chip = document.createElement('button');
+    chip.type = 'button';
+    chip.className = 'fdp-lock-chip';
+    chip.textContent = 'Lock chart to scroll';
+    chip.style.display = 'none';
+    wrap.appendChild(overlay);
+    // The chip lives below the chart, not overlaid on it: overlaid
+    // top-right it covered the Longer-run legend.
+    wrap.parentNode.insertBefore(chip, wrap.nextSibling);
+    function lock() { overlay.style.display = 'flex'; chip.style.display = 'none'; plot.style.pointerEvents = 'none'; }
+    function unlock() { overlay.style.display = 'none'; chip.style.display = ''; plot.style.pointerEvents = ''; }
+    btn.addEventListener('click', unlock);
+    chip.addEventListener('click', lock);
+    lock();
+    return {
+      remove: function () { overlay.remove(); chip.remove(); plot.style.pointerEvents = ''; }
+    };
+  }
+  function ensureLocks() {
+    if (!data) return;
+    if (needsLock()) {
+      if (!lock3d) lock3d = makeLock(plotEl, 'Tap to explore the 3D chart');
+      if (!lockLr) lockLr = makeLock(lrEl, 'Tap to explore the Longer-run chart');
+    } else {
+      if (lock3d) { lock3d.remove(); lock3d = null; }
+      if (lockLr) { lockLr.remove(); lockLr = null; }
+    }
   }
 
   function renderTable() {
@@ -430,6 +567,28 @@
     yMinInput.value = 2012; yMaxInput.value = 2029;
     medianToggle.checked = true; lrToggle.checked = true;
     render();
+  });
+
+  // The modebar is hidden on narrow screens, so this button covers its
+  // camera-reset job there (and is harmless on desktop).
+  var resetViewBtn = document.getElementById('fdp-reset-view');
+  resetViewBtn.addEventListener('click', function () {
+    if (!window.Plotly || !plotted3d) return;
+    window.Plotly.relayout(plotEl, { 'scene.camera.eye': { x: 1.6, y: -1.4, z: 1.0 } });
+  });
+
+  // Crossing the 700px breakpoint changes the layout (modebar, colourbar,
+  // ticks, fonts) and the lock, so re-render then; Plotly's own
+  // responsive handling covers resizes within a breakpoint.
+  var lastNarrow = isNarrow();
+  var resizeTimer = null;
+  window.addEventListener('resize', function () {
+    clearTimeout(resizeTimer);
+    resizeTimer = setTimeout(function () {
+      ensureLocks();
+      var n = isNarrow();
+      if (n !== lastNarrow) { lastNarrow = n; render(); }
+    }, 200);
   });
 
   // Re-colour the plots when the site theme (or vibe) changes.
