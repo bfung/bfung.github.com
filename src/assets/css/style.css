@@ -1661,7 +1661,7 @@
   .fdp-lock-chip { display: block; margin: 0.5rem 0 0 auto; padding: 0.4rem 0.7rem; font: inherit; font-size: 0.85rem; font-weight: 700; border-radius: 999px; border: 1.5px solid var(--color-border); background: var(--color-card); color: var(--color-text); cursor: pointer; }
   /* Narrow screens get an HTML colour legend instead of Plotly's: the
      horizontal Plotly colourbar collided with the x-axis title and ticks. */
-  .fdp-colorbar { display: none; margin: 0.5rem 0 var(--space-xl); font-size: 0.85rem; color: var(--color-text-muted); }
+  .fdp-colorbar { display: none; margin: 0.5rem 0 var(--space-md); font-size: 0.85rem; color: var(--color-text-muted); }
   .fdp-colorbar-bar { height: 12px; margin-top: 0.3rem; border-radius: 999px; background: linear-gradient(90deg, #38bdf8, #818cf8, #f59e0b); }
   .fdp-colorbar-ticks { position: relative; height: 1.2em; margin-top: 0.2rem; }
   .fdp-colorbar-ticks span { position: absolute; transform: translateX(-50%); }
@@ -1672,10 +1672,15 @@
   }
 
   /* Filters live in a <details>, collapsed by default. */
-  .fdp-filters { margin: var(--space-lg) 0; }
+  /* Tight spacing: the hero already carries the page's top rhythm, so the
+     Fed page keeps its own gaps small and lets the chart lead. */
+  .fdp-hero { padding-bottom: var(--space-md); }
+  .fdp-filters { margin: 0 0 var(--space-md); }
   .fdp-filters summary { cursor: pointer; font-weight: 700; padding: 0.6rem 0.8rem; border: 1.5px solid var(--color-border); border-radius: 12px; background: var(--color-card); }
   .fdp-filters .afm-controls { margin: var(--space-md) 0 0; }
-  .fdp-sources { margin: 0 0 var(--space-xl); padding-left: 1.2rem; color: var(--color-text-muted); font-size: 0.9rem; }
+  #fdp h2 { margin-top: var(--space-md); }
+  #fdp .afm-table-wrap { margin-bottom: var(--space-md); }
+  .fdp-sources { margin: 0 0 var(--space-md); padding-left: 1.2rem; color: var(--color-text-muted); font-size: 0.9rem; }
   .fdp-sources li { margin-bottom: 0.3rem; }
   /* Detail boxes stay hidden until a tap/hover fills them. */
   #fdp-detail:empty, #fdp-lr-detail:empty { display: none; }
