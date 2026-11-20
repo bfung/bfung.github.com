@@ -1595,6 +1595,7 @@
   }
 
   .afm-graph {
+    position: relative;
     border: 1.5px solid var(--color-border);
     border-radius: 12px;
     overflow: hidden;
@@ -1650,6 +1651,25 @@
   /* --- Fed Dot Plots: Plotly 3D scatter + Longer-run panel --- */
   .fdp-plot { display: block; width: 100%; height: clamp(480px, 68vh, 720px); }
   .fdp-lr-plot { display: block; width: 100%; height: clamp(320px, 48vh, 480px); }
+
+  /* Mobile tuning: tap-to-interact lock over each chart (coarse-pointer
+     phones only, added by fed-dot-plots.js) + shorter chart heights. */
+  .fdp-lock-overlay { position: absolute; inset: 0; z-index: 4; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(128, 128, 128, 0.12); }
+  .fdp-lock-btn { min-height: 44px; padding: 0.7rem 1.1rem; font: inherit; font-weight: 700; border-radius: 999px; border: 1.5px solid var(--color-border); background: var(--color-card); color: var(--color-text); cursor: pointer; }
+  /* The re-lock chip sits below the chart, not over it: overlaid top-right
+     it covered the Longer-run legend. */
+  .fdp-lock-chip { display: block; margin: 0.5rem 0 0 auto; padding: 0.4rem 0.7rem; font: inherit; font-size: 0.85rem; font-weight: 700; border-radius: 999px; border: 1.5px solid var(--color-border); background: var(--color-card); color: var(--color-text); cursor: pointer; }
+  /* Narrow screens get an HTML colour legend instead of Plotly's: the
+     horizontal Plotly colourbar collided with the x-axis title and ticks. */
+  .fdp-colorbar { display: none; margin: 0.5rem 0 var(--space-xl); font-size: 0.85rem; color: var(--color-text-muted); }
+  .fdp-colorbar-bar { height: 12px; margin-top: 0.3rem; border-radius: 999px; background: linear-gradient(90deg, #38bdf8, #818cf8, #f59e0b); }
+  .fdp-colorbar-ticks { position: relative; height: 1.2em; margin-top: 0.2rem; }
+  .fdp-colorbar-ticks span { position: absolute; transform: translateX(-50%); }
+  @media (max-width: 700px) {
+    .fdp-plot { height: clamp(420px, 62vh, 640px); }
+    .fdp-lr-plot { height: 360px; }
+    .fdp-colorbar { display: block; }
+  }
 
 
 @layer utilities {

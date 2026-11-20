@@ -81,7 +81,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="/assets/css/style.css?v=cfb40a46">
+    <link rel="stylesheet" href="/assets/css/style.css?v=c3e6167a">
 
     <!-- Vibe theme tokens: unlayered, so they override style.css's
          layered theme tokens whenever data-vibe is set. No effect
@@ -171,7 +171,8 @@
     Every dot from every FOMC Summary of Economic Projections since the
     dot plot began in January 2012. Each point is a participant's view of
     the appropriate federal funds rate for a given year, as of a given
-    meeting — drag to rotate, scroll to zoom, hover a dot for its detail.
+    meeting — drag to rotate, scroll to zoom, hover a dot — or tap it
+    on a phone — for its detail.
   </p>
   <p id="fdp-summary" style="max-width: 680px;">Loading summary…</p>
   <p>
@@ -198,6 +199,7 @@
         <input type="number" id="fdp-year-max" value="2029" min="2012" max="2029" aria-label="Latest target year">
       </label>
       <button type="button" class="ft-reset" id="fdp-reset">Reset</button>
+      <button type="button" class="ft-reset" id="fdp-reset-view">Reset 3D view</button>
     </div>
     <div class="afm-row">
       <label><input type="checkbox" id="fdp-show-median" checked> Show median path</label>
@@ -215,8 +217,20 @@
     <div id="fdp-plot" class="fdp-plot" role="img" aria-label="3D scatter plot of FOMC dot plots: SEP vintage, target year, and federal funds rate"></div>
   </div>
 
+  <div class="fdp-colorbar" aria-hidden="true">
+    <span>Colour = SEP vintage</span>
+    <div class="fdp-colorbar-bar"></div>
+    <div class="fdp-colorbar-ticks">
+      <span style="left: 0%; transform: translateX(0);">2012</span>
+      <span style="left: 26.8%;">2016</span>
+      <span style="left: 54.1%;">2020</span>
+      <span style="left: 81.4%;">2024</span>
+      <span style="left: 94.9%;">2026</span>
+    </div>
+  </div>
+
   <div class="afm-detail" id="fdp-detail">
-    <p>Hover a dot for its vintage, target year, rate, participant count, and the median for that vintage and year. Drag to rotate; scroll to zoom.</p>
+    <p>Hover a dot — or tap it on a phone — for its vintage, target year, rate, participant count, and the median for that vintage and year. Drag to rotate; scroll to zoom. On a phone, tap the chart first to unlock it, then drag to rotate; lock it again to scroll past it.</p>
   </div>
 
   <noscript>
@@ -233,6 +247,9 @@
     </p>
     <div class="afm-graph">
       <div id="fdp-lr-plot" class="fdp-lr-plot" role="img" aria-label="Longer-run dot plots over time: SEP vintage against federal funds rate"></div>
+    </div>
+    <div class="afm-detail" id="fdp-lr-detail">
+      <p>Tap a Longer-run dot for its vintage, rate, participant count, and the Longer-run median.</p>
     </div>
   </div>
 
@@ -287,7 +304,7 @@
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.3/plotly.min.js" charset="utf-8" defer></script>
-<script src="/assets/js/fed-dot-plots.js?v=67a408f2" defer></script>
+<script src="/assets/js/fed-dot-plots.js?v=93b75537" defer></script>
 
     </main>
 
