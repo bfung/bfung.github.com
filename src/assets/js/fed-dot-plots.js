@@ -17,7 +17,6 @@
   var plotEl = document.getElementById('fdp-plot');
   var lrEl = document.getElementById('fdp-lr-plot');
   var lrSection = document.getElementById('fdp-lr-section');
-  var countEl = document.getElementById('fdp-count');
   var detailEl = document.getElementById('fdp-detail');
   var lrDetailEl = document.getElementById('fdp-lr-detail');
   var summaryEl = document.getElementById('fdp-summary');
@@ -281,13 +280,6 @@
     var rows = filteredDots();
     var traces = [buildDotsTrace(rows, medians)];
     if (showMedian) traces = traces.concat(buildMedianTraces(medians));
-    var totalDots = rows.reduce(function (a, d) { return a + d.count; }, 0);
-    var vintages = {};
-    rows.forEach(function (d) { vintages[d.vintage] = true; });
-    countEl.textContent = 'Showing ' + rows.length.toLocaleString('en-US') +
-      ' markers (' + totalDots.toLocaleString('en-US') + ' individual dots) across ' +
-      Object.keys(vintages).length + ' SEP vintages, target years ' +
-      yearMin + '–' + yearMax + '.';
     var p = plotted3d
       ? window.Plotly.react(plotEl, traces, layout3d(t), plotConfig())
       : window.Plotly.newPlot(plotEl, traces, layout3d(t), plotConfig());
@@ -527,7 +519,6 @@
   }
 
   function fail(msg) {
-    countEl.textContent = msg;
     detailEl.innerHTML = '<p>' + msg + ' The underlying data is still available as ' +
       '<a href="/assets/data/fed-dot-plots.json">JSON</a>.</p>';
   }

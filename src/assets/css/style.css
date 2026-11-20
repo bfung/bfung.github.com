@@ -1677,6 +1677,8 @@
   .fdp-filters .afm-controls { margin: var(--space-md) 0 0; }
   .fdp-sources { margin: 0 0 var(--space-xl); padding-left: 1.2rem; color: var(--color-text-muted); font-size: 0.9rem; }
   .fdp-sources li { margin-bottom: 0.3rem; }
+  /* Detail boxes stay hidden until a tap/hover fills them. */
+  #fdp-detail:empty, #fdp-lr-detail:empty { display: none; }
 
 
 @layer utilities {

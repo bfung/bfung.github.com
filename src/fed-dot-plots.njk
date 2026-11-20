@@ -41,12 +41,6 @@ description: Every FOMC dot plot since 2012 as an interactive 3D scatter — 59 
     </div>
     </div>
   </details>
-  <p class="afm-legend">
-    <span><i style="background: var(--color-accent);"></i>One dot (marker size = number of participants at that rate)</span>
-    <span><i style="background: #d97706;"></i>Median path (per vintage × target year)</span>
-  </p>
-
-  <p id="fdp-count" role="status">Loading chart…</p>
 
   <div class="afm-graph">
     <div id="fdp-plot" class="fdp-plot" role="img" aria-label="3D scatter plot of FOMC dot plots: SEP vintage, target year, and federal funds rate"></div>
@@ -64,9 +58,7 @@ description: Every FOMC dot plot since 2012 as an interactive 3D scatter — 59 
     </div>
   </div>
 
-  <div class="afm-detail" id="fdp-detail">
-    <p>Hover or tap a dot for detail.</p>
-  </div>
+  <div class="afm-detail" id="fdp-detail"></div>
 
   <noscript>
     <p>The chart needs JavaScript. The underlying data is still available as <a href="/assets/data/fed-dot-plots.json">JSON</a>, and the table below is the same data in median form.</p>
@@ -77,9 +69,7 @@ description: Every FOMC dot plot since 2012 as an interactive 3D scatter — 59 
     <div class="afm-graph">
       <div id="fdp-lr-plot" class="fdp-lr-plot" role="img" aria-label="Longer-run dot plots over time: SEP vintage against federal funds rate"></div>
     </div>
-    <div class="afm-detail" id="fdp-lr-detail">
-      <p>Hover or tap a dot for detail.</p>
-    </div>
+    <div class="afm-detail" id="fdp-lr-detail"></div>
   </div>
 
   <h2>Latest SEP — September 16, 2026: medians</h2>
