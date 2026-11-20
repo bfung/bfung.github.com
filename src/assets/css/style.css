@@ -1647,6 +1647,10 @@
   .cve-grid { stroke: var(--color-border); stroke-width: 1; }
   .cve-axis { font-size: 13px; fill: var(--color-text-muted); font-family: 'Inter', system-ui, sans-serif; }
 
+  /* --- Fed Dot Plots: Plotly 3D scatter + Longer-run panel --- */
+  .fdp-plot { display: block; width: 100%; height: clamp(480px, 68vh, 720px); }
+  .fdp-lr-plot { display: block; width: 100%; height: clamp(320px, 48vh, 480px); }
+
 
 @layer utilities {
   .sr-only {
