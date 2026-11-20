@@ -19,7 +19,6 @@
   var lrSection = document.getElementById('fdp-lr-section');
   var detailEl = document.getElementById('fdp-detail');
   var lrDetailEl = document.getElementById('fdp-lr-detail');
-  var summaryEl = document.getElementById('fdp-summary');
   var tableBody = document.querySelector('#fdp-table tbody');
 
   // Mobile tuning (Option 1): below 700px the modebar is hidden, the
@@ -506,18 +505,6 @@
     if (lr) addRow('Longer run', lr);
   }
 
-  function renderSummary() {
-    var md = data.metadata;
-    var first = fmtDate(parseDate(md.coverage.first_vintage));
-    var last = fmtDate(parseDate(md.coverage.last_vintage));
-    summaryEl.innerHTML =
-      '<strong>' + md.coverage.n_vintages + ' SEP vintages</strong> · ' +
-      '<strong>' + md.totals.dots.toLocaleString('en-US') + ' dots</strong> ' +
-      '(' + md.totals.dots_calendar_years.toLocaleString('en-US') + ' calendar-year + ' +
-      md.totals.dots_longer_run.toLocaleString('en-US') + ' Longer run) · ' +
-      first + ' – ' + last + '.';
-  }
-
   function fail(msg) {
     detailEl.innerHTML = '<p>' + msg + ' The underlying data is still available as ' +
       '<a href="/assets/data/fed-dot-plots.json">JSON</a>.</p>';
@@ -602,7 +589,6 @@
     return r.json();
   }).then(function (json) {
     data = json;
-    renderSummary();
     renderTable();
     waitForPlotly(25, function (ok) {
       if (!ok) {
