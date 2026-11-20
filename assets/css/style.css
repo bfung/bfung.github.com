@@ -1671,6 +1671,13 @@
     .fdp-colorbar { display: block; }
   }
 
+  /* Filters live in a <details>, collapsed by default. */
+  .fdp-filters { margin: var(--space-lg) 0; }
+  .fdp-filters summary { cursor: pointer; font-weight: 700; padding: 0.6rem 0.8rem; border: 1.5px solid var(--color-border); border-radius: 12px; background: var(--color-card); }
+  .fdp-filters .afm-controls { margin: var(--space-md) 0 0; }
+  .fdp-sources { margin: 0 0 var(--space-xl); padding-left: 1.2rem; color: var(--color-text-muted); font-size: 0.9rem; }
+  .fdp-sources li { margin-bottom: 0.3rem; }
+
 
 @layer utilities {
   .sr-only {

@@ -81,7 +81,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="/assets/css/style.css?v=c3e6167a">
+    <link rel="stylesheet" href="/assets/css/style.css?v=4d400ab8">
 
     <!-- Vibe theme tokens: unlayered, so they override style.css's
          layered theme tokens whenever data-vibe is set. No effect
@@ -168,21 +168,15 @@
   <p class="hero-tagline" style="margin-bottom: 0.5rem;">Fed Dot Plots in 3D</p>
   <h1>Fourteen years of dot plots, in one cloud</h1>
   <p class="hero-sub" style="max-width: 680px;">
-    Every dot from every FOMC Summary of Economic Projections since the
-    dot plot began in January 2012. Each point is a participant's view of
-    the appropriate federal funds rate for a given year, as of a given
-    meeting — drag to rotate, scroll to zoom, hover a dot — or tap it
-    on a phone — for its detail.
+    Every dot from every FOMC Summary of Economic Projections since January 2012.
   </p>
   <p id="fdp-summary" style="max-width: 680px;">Loading summary…</p>
-  <p>
-    <a href="/assets/data/fed-dot-plots.json?v=149edb06">Download the JSON data</a>
-    &middot; Source: <a href="https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm">Federal Reserve — FOMC Summary of Economic Projections</a>, Figure 2 data tables + Table 1 (retrieved Nov. 20, 2026)
-  </p>
 </section>
 
 <section id="fdp" data-json="/assets/data/fed-dot-plots.json?v=149edb06" aria-label="Fed dot plots 3D chart">
-  <div class="afm-controls">
+  <details class="fdp-filters">
+    <summary>Filters</summary>
+    <div class="afm-controls">
     <div class="afm-row">
       <label>SEP vintage from
         <input type="date" id="fdp-vintage-min" value="2012-01-25" min="2012-01-25" max="2026-09-16" aria-label="Earliest SEP vintage">
@@ -205,11 +199,12 @@
       <label><input type="checkbox" id="fdp-show-median" checked> Show median path</label>
       <label><input type="checkbox" id="fdp-show-lr" checked> Show Longer run panel</label>
     </div>
-    <p class="afm-legend">
-      <span><i style="background: var(--color-accent);"></i>One dot (marker size = number of participants at that rate)</span>
-      <span><i style="background: #d97706;"></i>Median path (per vintage × target year)</span>
-    </p>
-  </div>
+    </div>
+  </details>
+  <p class="afm-legend">
+    <span><i style="background: var(--color-accent);"></i>One dot (marker size = number of participants at that rate)</span>
+    <span><i style="background: #d97706;"></i>Median path (per vintage × target year)</span>
+  </p>
 
   <p id="fdp-count" role="status">Loading chart…</p>
 
@@ -230,7 +225,7 @@
   </div>
 
   <div class="afm-detail" id="fdp-detail">
-    <p>Hover a dot — or tap it on a phone — for its vintage, target year, rate, participant count, and the median for that vintage and year. Drag to rotate; scroll to zoom. On a phone, tap the chart first to unlock it, then drag to rotate; lock it again to scroll past it.</p>
+    <p>Hover or tap a dot for detail.</p>
   </div>
 
   <noscript>
@@ -238,23 +233,16 @@
   </noscript>
 
   <div id="fdp-lr-section">
-    <h2>Longer run (neutral rate) — separate panel</h2>
-    <p style="color: var(--color-text-muted);">
-      The longer run has no calendar year, so it is <em>not</em> plotted in
-      the 3D cloud at a fake year like 2030. It lives here, on its own:
-      participants' assessments of the appropriate rate in the longer run.
-      Its median fell from 4.25% in January 2012 to 3.25% in September 2026.
-    </p>
+    <h2>Longer run (neutral rate)</h2>
     <div class="afm-graph">
       <div id="fdp-lr-plot" class="fdp-lr-plot" role="img" aria-label="Longer-run dot plots over time: SEP vintage against federal funds rate"></div>
     </div>
     <div class="afm-detail" id="fdp-lr-detail">
-      <p>Tap a Longer-run dot for its vintage, rate, participant count, and the Longer-run median.</p>
+      <p>Hover or tap a dot for detail.</p>
     </div>
   </div>
 
   <h2>Latest SEP — September 16, 2026: medians</h2>
-  <p style="color: var(--color-text-muted);">Medians for the most recent Summary of Economic Projections, from the same dataset as the chart — not a second source. The derived median is computed from the dots on the 1/8-point grid; the published median is the Fed's Table 1 value, rounded to one decimal place.</p>
   <div class="afm-table-wrap">
     <table class="afm-table" id="fdp-table">
       <thead>
@@ -266,41 +254,12 @@
     </table>
   </div>
 
-  <h2>What to look for</h2>
-  <ul>
-    <li><strong>The 2020–21 shelf.</strong> In every 2020 and 2021 vintage, all dots for the current year sat at 0.125% — the zero lower bound, a flat shelf at the bottom of the cloud.</li>
-    <li><strong>The 2022–23 hiking wall.</strong> From early 2022 the cloud climbs steeply, from near zero to above 5% — the fastest tightening in the sample.</li>
-    <li><strong>The outliers are real.</strong> September 2015 holds the only sub-zero dots in the sample (one at −0.125% for end-2015 and one for end-2016). June and September 2023 each hold one dot at 6.125%, the highest rate in the dataset.</li>
-    <li><strong>The longer-run drift.</strong> The neutral-rate median in the panel above fell from 4.25% in 2012 to 3.25% in September 2026.</li>
+  <h2>Sources</h2>
+  <ul class="fdp-sources">
+    <li><a href="https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm">Federal Reserve — FOMC Summary of Economic Projections</a>, Figure 2 data tables + Table 1 (retrieved Nov. 20, 2026)</li>
+    <li>Next SEP: Dec. 9, 2026 — <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm">Fed meeting calendars</a></li>
+    <li><a href="/assets/data/fed-dot-plots.json?v=149edb06">Download the JSON data</a></li>
   </ul>
-
-  <h2>What this is — and what it isn't</h2>
-  <p style="color: var(--color-text-muted);">
-    A dot is one FOMC participant's view of the <em>appropriate</em>
-    federal funds rate for a given year, under their own economic outlook.
-    It is not a forecast of what the Committee will do, and the dots are
-    anonymous — no dot can be tied to a person, and no person's dots can
-    be followed across vintages. This page shows the distribution moving
-    over time, never an individual's path, and it draws no
-    prediction-accuracy line: that would need a different dataset and a
-    different argument.
-  </p>
-  <p style="color: var(--color-text-muted);">
-    Dots are the Fed's published Figure 2 table values, rounded to the
-    nearest 1/8 percentage point (1/4 point in 2012–2013). Medians before
-    September 2016 are derived from the dots, because Table 1 is not in
-    the accessible HTML for those vintages — they are labelled derived in
-    the chart's hover text, never presented as published Fed values.
-    Participant counts run 14–19 per vintage-year and vary for real
-    reasons (vacant seats); in 2026 only 18 participants submitted, as
-    Chair Warsh did not submit projections. Marker size encodes how many
-    participants sit at one rate — there is no random jitter, so every
-    marker sits exactly on its published coordinate. The next SEP is
-    expected with the December 8–9, 2026 meeting.
-  </p>
-  <p>
-    Source: <a href="https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm">Federal Reserve — FOMC Summary of Economic Projections, projection materials</a> (Figure 2 data tables + Table 1), retrieved Nov. 20, 2026. Next SEP expected Dec. 9, 2026 — see the Fed's <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm">meeting calendars</a>.
-  </p>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.3/plotly.min.js" charset="utf-8" defer></script>
