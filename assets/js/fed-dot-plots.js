@@ -1,0 +1,467 @@
+/* Fed Dot Plots in 3D — Plotly.js.
+ *
+ * Single source: fed-dot-plots.json (fetched via the data-json attribute).
+ * Axes: x = SEP vintage date, y = target year, z = federal funds rate (%).
+ * One marker per (vintage, target_year, rate) count row, sized by count —
+ * no random jitter, so every marker sits exactly on its published
+ * coordinate. The median trace is never jittered either.
+ * Longer run has no calendar year, so it is NOT in the 3D cloud: it gets
+ * its own 2D panel below, labelled "Longer run (neutral rate)".
+ * Medians before Sep 2016 are derived from the dots (median_source ==
+ * "derived"); hover text says so and never presents them as published.
+ */
+(function () {
+  var root = document.getElementById('fdp');
+  if (!root) return;
+  var url = root.getAttribute('data-json');
+  var plotEl = document.getElementById('fdp-plot');
+  var lrEl = document.getElementById('fdp-lr-plot');
+  var lrSection = document.getElementById('fdp-lr-section');
+  var countEl = document.getElementById('fdp-count');
+  var detailEl = document.getElementById('fdp-detail');
+  var summaryEl = document.getElementById('fdp-summary');
+  var tableBody = document.querySelector('#fdp-table tbody');
+
+  var DAY = 24 * 60 * 60 * 1000;
+  var EPOCH = Date.UTC(2012, 0, 25); // first vintage, Jan 25 2012
+  var MEDIAN_COLOR = '#d97706';
+  var data = null;
+  var plotted3d = false;
+  var plottedLr = false;
+
+  var vintageMin = '2012-01-25';
+  var vintageMax = '2026-09-16';
+  var yearMin = 2012;
+  var yearMax = 2029;
+  var showMedian = true;
+  var showLr = true;
+
+  function parseDate(s) {
+    var p = s.split('-');
+    return Date.UTC(+p[0], +p[1] - 1, +p[2]);
+  }
+
+  function fmtDate(ms) {
+    return new Date(ms).toLocaleDateString('en-US', {
+      timeZone: 'UTC', month: 'short', day: 'numeric', year: 'numeric'
+    });
+  }
+
+  function fmtRate(r) {
+    // Rates sit on the 1/8-point grid; trim trailing zeros, keep the sign.
+    var s = (Math.round(r * 1000) / 1000).toFixed(3).replace(/0+$/, '').replace(/\.$/, '');
+    return s + '%';
+  }
+
+  function isDark() {
+    var t = document.documentElement.getAttribute('data-theme');
+    if (t) return t === 'dark';
+    return window.matchMedia && window.matchMedia('(prefers-color-scheme: dark)').matches;
+  }
+
+  // Plotly's 3D (WebGL) path does not reliably parse oklch(), so use plain
+  // hex approximations of the site tokens, per theme. Readable in both.
+  function theme() {
+    if (isDark()) {
+      return { text: '#d6dae2', muted: '#9aa3b2', grid: '#3a4152', accent: '#38bdf8', card: '#232833' };
+    }
+    return { text: '#333a45', muted: '#6b7280', grid: '#e3e6ea', accent: '#4f46e5', card: '#ffffff' };
+  }
+
+  function medianKey(vintage, year) { return vintage + '|' + year; }
+
+  function medianLookup() {
+    var map = {};
+    data.medians.forEach(function (m) { map[medianKey(m.vintage, m.target_year)] = m; });
+    data.longer_run.medians.forEach(function (m) { map[medianKey(m.vintage, 'LR')] = m; });
+    return map;
+  }
+
+  function inVintageRange(vintage) {
+    return vintage >= vintageMin && vintage <= vintageMax;
+  }
+
+  function filteredDots() {
+    return data.dots.filter(function (d) {
+      return inVintageRange(d.vintage) && d.target_year >= yearMin && d.target_year <= yearMax;
+    });
+  }
+
+  function yearlyTicks() {
+    // x tick at Jan 1 of each year, labelled by year.
+    var vals = [], text = [];
+    for (var y = 2012; y <= 2026; y++) {
+      vals.push((Date.UTC(y, 0, 1) - EPOCH) / DAY);
+      text.push(String(y));
+    }
+    return { vals: vals, text: text };
+  }
+
+  function colorbarTicks() {
+    // Colourbar ticks as years, not raw day counts. The 2012 tick sits on
+    // the first vintage (Jan 25, 2012) — Jan 1 would fall off the scale.
+    var years = [2012, 2016, 2020, 2024, 2026];
+    return {
+      vals: years.map(function (y) {
+        return y === 2012 ? 0 : (Date.UTC(y, 0, 1) - EPOCH) / DAY;
+      }),
+      text: years.map(String)
+    };
+  }
+
+  function buildDotsTrace(rows, medians) {
+    var x = [], y = [], z = [], size = [], hover = [], color = [];
+    rows.forEach(function (d) {
+      var days = (parseDate(d.vintage) - EPOCH) / DAY;
+      var m = medians[medianKey(d.vintage, d.target_year)];
+      x.push(days);
+      y.push(d.target_year);
+      z.push(d.rate);
+      color.push(days);
+      // Marker size encodes the count: 1 participant -> 7, 19 -> ~39.
+      size.push(5 + 1.8 * d.count);
+      var med = m ? fmtRate(m.median_derived) : '—';
+      var medNote = m && m.median_source === 'derived'
+        ? ' (derived from dots, not published)'
+        : '';
+      hover.push(
+        'SEP vintage: ' + fmtDate(parseDate(d.vintage)) +
+        '<br>Target year: ' + d.target_year +
+        '<br>Rate: ' + fmtRate(d.rate) +
+        '<br>Participants at this rate: ' + d.count +
+        '<br>Median for this vintage &amp; year: ' + med + medNote
+      );
+    });
+    var cb = colorbarTicks();
+    return {
+      type: 'scatter3d',
+      mode: 'markers',
+      name: 'Dots (one marker per rate, sized by count)',
+      x: x, y: y, z: z,
+      text: hover,
+      hoverinfo: 'text',
+      marker: {
+        size: size,
+        color: color,
+        // Bright-ended custom scale (sky -> indigo -> amber) so the
+        // earliest vintages stay visible on the dark theme too; Viridis'
+        // dark-purple low end vanished against the dark card.
+        colorscale: [[0, '#38bdf8'], [0.5, '#818cf8'], [1, '#f59e0b']],
+        colorbar: {
+          title: 'SEP vintage',
+          tickvals: cb.vals,
+          ticktext: cb.text,
+          len: 0.7,
+          tickfont: { size: 11 }
+        },
+        opacity: 0.85,
+        line: { width: 0.5, color: 'rgba(128,128,128,0.5)' }
+      }
+    };
+  }
+
+  function buildMedianTraces(medians) {
+    // One line per target year across vintages: a single trace sorted by
+    // (vintage, year) would zig-zag through the cloud. All lines share one
+    // legend entry via legendgroup.
+    var byYear = {};
+    data.medians.forEach(function (m) {
+      if (!inVintageRange(m.vintage)) return;
+      if (m.target_year < yearMin || m.target_year > yearMax) return;
+      (byYear[m.target_year] = byYear[m.target_year] || []).push(m);
+    });
+    var traces = [];
+    Object.keys(byYear).sort(function (a, b) { return a - b; }).forEach(function (yr, idx) {
+      var rows = byYear[yr].slice().sort(function (a, b) {
+        return a.vintage < b.vintage ? -1 : 1;
+      });
+      var hover = rows.map(function (m) {
+        var note = m.median_source === 'derived'
+          ? '<br>Median derived from the dots — not a published Fed value'
+          : '<br>Median as published in Table 1';
+        return 'SEP vintage: ' + fmtDate(parseDate(m.vintage)) +
+          '<br>Target year: ' + m.target_year +
+          '<br>Median: ' + fmtRate(m.median_derived) + note;
+      });
+      traces.push({
+        type: 'scatter3d',
+        mode: 'lines+markers',
+        name: 'Median path',
+        legendgroup: 'median',
+        showlegend: idx === 0,
+        x: rows.map(function (m) { return (parseDate(m.vintage) - EPOCH) / DAY; }),
+        y: rows.map(function (m) { return m.target_year; }),
+        z: rows.map(function (m) { return m.median_derived; }),
+        text: hover,
+        hoverinfo: 'text',
+        line: { color: MEDIAN_COLOR, width: 4 },
+        marker: { size: 3, color: MEDIAN_COLOR }
+      });
+    });
+    return traces;
+  }
+
+  function layout3d(t) {
+    var ticks = yearlyTicks();
+    return {
+      autosize: true,
+      margin: { l: 0, r: 0, t: 0, b: 0 },
+      paper_bgcolor: 'rgba(0,0,0,0)',
+      font: { color: t.text, family: 'Inter, system-ui, sans-serif' },
+      // Legend top-left: the default top-right spot collides with the
+      // colourbar and its title.
+      legend: { x: 0, y: 1, font: { size: 12 }, bgcolor: 'rgba(0,0,0,0)' },
+      scene: {
+        bgcolor: 'rgba(0,0,0,0)',
+        camera: { eye: { x: 1.6, y: -1.4, z: 1.0 } },
+        xaxis: {
+          title: 'SEP vintage',
+          tickvals: ticks.vals, ticktext: ticks.text,
+          gridcolor: t.grid, zerolinecolor: t.grid,
+          tickfont: { size: 11 }, titlefont: { size: 12 }
+        },
+        yaxis: {
+          title: 'Target year',
+          range: [2011.5, 2029.5],
+          dtick: 2,
+          gridcolor: t.grid, zerolinecolor: t.grid,
+          tickfont: { size: 11 }, titlefont: { size: 12 }
+        },
+        zaxis: {
+          title: 'Federal funds rate (%)',
+          range: [-0.5, 6.5],
+          dtick: 1,
+          ticksuffix: '%',
+          gridcolor: t.grid, zerolinecolor: t.grid,
+          tickfont: { size: 11 }, titlefont: { size: 12 }
+        }
+      }
+    };
+  }
+
+  function render3d() {
+    var t = theme();
+    var medians = medianLookup();
+    var rows = filteredDots();
+    var traces = [buildDotsTrace(rows, medians)];
+    if (showMedian) traces = traces.concat(buildMedianTraces(medians));
+    var totalDots = rows.reduce(function (a, d) { return a + d.count; }, 0);
+    var vintages = {};
+    rows.forEach(function (d) { vintages[d.vintage] = true; });
+    countEl.textContent = 'Showing ' + rows.length.toLocaleString('en-US') +
+      ' markers (' + totalDots.toLocaleString('en-US') + ' individual dots) across ' +
+      Object.keys(vintages).length + ' SEP vintages, target years ' +
+      yearMin + '–' + yearMax + '.';
+    var p = plotted3d
+      ? window.Plotly.react(plotEl, traces, layout3d(t), plotConfig())
+      : window.Plotly.newPlot(plotEl, traces, layout3d(t), plotConfig());
+    plotted3d = true;
+    return p;
+  }
+
+  function plotConfig() {
+    return { responsive: true, displaylogo: false };
+  }
+
+  function renderLr() {
+    if (!showLr) {
+      lrSection.style.display = 'none';
+      return window.Plotly ? window.Plotly.purge(lrEl) : null;
+    }
+    lrSection.style.display = '';
+    var t = theme();
+    var rows = data.longer_run.dots.filter(function (d) { return inVintageRange(d.vintage); });
+    var meds = data.longer_run.medians.filter(function (m) { return inVintageRange(m.vintage); })
+      .slice().sort(function (a, b) { return a.vintage < b.vintage ? -1 : 1; });
+    var medMap = {};
+    meds.forEach(function (m) { medMap[m.vintage] = m; });
+    var dotsTrace = {
+      type: 'scatter',
+      mode: 'markers',
+      name: 'Longer-run dots',
+      x: rows.map(function (d) { return d.vintage; }),
+      y: rows.map(function (d) { return d.rate; }),
+      text: rows.map(function (d) {
+        var m = medMap[d.vintage];
+        var med = m ? fmtRate(m.median_derived) : '—';
+        var note = m && m.median_source === 'derived' ? ' (derived from dots)' : '';
+        return 'SEP vintage: ' + fmtDate(parseDate(d.vintage)) +
+          '<br>Longer run rate: ' + fmtRate(d.rate) +
+          '<br>Participants at this rate: ' + d.count +
+          '<br>Longer-run median: ' + med + note;
+      }),
+      hoverinfo: 'text',
+      marker: {
+        size: rows.map(function (d) { return 5 + 1.8 * d.count; }),
+        color: t.accent,
+        opacity: 0.75,
+        line: { width: 0.5, color: 'rgba(128,128,128,0.5)' }
+      }
+    };
+    var medianTrace = {
+      type: 'scatter',
+      mode: 'lines+markers',
+      name: 'Longer-run median',
+      x: meds.map(function (m) { return m.vintage; }),
+      y: meds.map(function (m) { return m.median_derived; }),
+      text: meds.map(function (m) {
+        var note = m.median_source === 'derived'
+          ? 'Median derived from the dots — not a published Fed value'
+          : 'Median as published in Table 1';
+        return 'SEP vintage: ' + fmtDate(parseDate(m.vintage)) +
+          '<br>Longer-run median: ' + fmtRate(m.median_derived) + '<br>' + note;
+      }),
+      hoverinfo: 'text',
+      line: { color: MEDIAN_COLOR, width: 3 },
+      marker: { size: 5, color: MEDIAN_COLOR }
+    };
+    var layout = {
+      autosize: true,
+      margin: { l: 56, r: 16, t: 12, b: 48 },
+      paper_bgcolor: 'rgba(0,0,0,0)',
+      plot_bgcolor: 'rgba(0,0,0,0)',
+      font: { color: t.text, family: 'Inter, system-ui, sans-serif' },
+      legend: { font: { size: 12 } },
+      xaxis: {
+        title: 'SEP vintage',
+        gridcolor: t.grid, zerolinecolor: t.grid,
+        tickfont: { size: 11 }
+      },
+      yaxis: {
+        title: 'Federal funds rate (%)',
+        range: [1.5, 5],
+        dtick: 0.5,
+        ticksuffix: '%',
+        gridcolor: t.grid, zerolinecolor: t.grid,
+        tickfont: { size: 11 }
+      }
+    };
+    var p = plottedLr
+      ? window.Plotly.react(lrEl, [dotsTrace, medianTrace], layout, plotConfig())
+      : window.Plotly.newPlot(lrEl, [dotsTrace, medianTrace], layout, plotConfig());
+    plottedLr = true;
+    return p;
+  }
+
+  function render() {
+    if (!data || !window.Plotly) return;
+    render3d();
+    renderLr();
+  }
+
+  function renderTable() {
+    var latest = data.vintages[data.vintages.length - 1].vintage;
+    var rows = data.medians.filter(function (m) { return m.vintage === latest; })
+      .slice().sort(function (a, b) { return a.target_year - b.target_year; });
+    var lr = data.longer_run.medians.filter(function (m) { return m.vintage === latest; })[0];
+    tableBody.innerHTML = '';
+    function addRow(label, m) {
+      var tr = document.createElement('tr');
+      var cells = [
+        label,
+        String(m.n_dots),
+        fmtRate(m.median_derived),
+        m.median_published === null ? '—' : fmtRate(m.median_published),
+        fmtRate(m.range_derived[0]) + ' – ' + fmtRate(m.range_derived[1])
+      ];
+      cells.forEach(function (text, idx) {
+        var el = document.createElement(idx === 0 ? 'th' : 'td');
+        if (idx === 0) el.scope = 'row';
+        el.textContent = text;
+        if (idx > 0) el.style.textAlign = 'right';
+        tr.appendChild(el);
+      });
+      tableBody.appendChild(tr);
+    }
+    rows.forEach(function (m) { addRow(String(m.target_year), m); });
+    if (lr) addRow('Longer run', lr);
+  }
+
+  function renderSummary() {
+    var md = data.metadata;
+    var first = fmtDate(parseDate(md.coverage.first_vintage));
+    var last = fmtDate(parseDate(md.coverage.last_vintage));
+    summaryEl.innerHTML =
+      '<strong>' + md.coverage.n_vintages + ' SEP vintages</strong> · ' +
+      '<strong>' + md.totals.dots.toLocaleString('en-US') + ' dots</strong> ' +
+      '(' + md.totals.dots_calendar_years.toLocaleString('en-US') + ' calendar-year + ' +
+      md.totals.dots_longer_run.toLocaleString('en-US') + ' Longer run) · ' +
+      first + ' – ' + last + '.';
+  }
+
+  function fail(msg) {
+    countEl.textContent = msg;
+    detailEl.innerHTML = '<p>' + msg + ' The underlying data is still available as ' +
+      '<a href="/assets/data/fed-dot-plots.json">JSON</a>.</p>';
+  }
+
+  // Controls
+  var vMinInput = document.getElementById('fdp-vintage-min');
+  var vMaxInput = document.getElementById('fdp-vintage-max');
+  var yMinInput = document.getElementById('fdp-year-min');
+  var yMaxInput = document.getElementById('fdp-year-max');
+  var medianToggle = document.getElementById('fdp-show-median');
+  var lrToggle = document.getElementById('fdp-show-lr');
+  var resetBtn = document.getElementById('fdp-reset');
+
+  function readControls() {
+    if (vMinInput.value) vintageMin = vMinInput.value;
+    if (vMaxInput.value) vintageMax = vMaxInput.value;
+    if (vintageMin > vintageMax) { var t = vintageMin; vintageMin = vintageMax; vintageMax = t; }
+    var a = parseInt(yMinInput.value, 10);
+    var b = parseInt(yMaxInput.value, 10);
+    if (!isNaN(a)) yearMin = Math.max(2012, Math.min(2029, a));
+    if (!isNaN(b)) yearMax = Math.max(2012, Math.min(2029, b));
+    if (yearMin > yearMax) { var u = yearMin; yearMin = yearMax; yearMax = u; }
+    showMedian = medianToggle.checked;
+    showLr = lrToggle.checked;
+    render();
+  }
+  [vMinInput, vMaxInput, yMinInput, yMaxInput].forEach(function (el) {
+    el.addEventListener('change', readControls);
+  });
+  medianToggle.addEventListener('change', readControls);
+  lrToggle.addEventListener('change', readControls);
+  resetBtn.addEventListener('click', function () {
+    vintageMin = '2012-01-25'; vintageMax = '2026-09-16';
+    yearMin = 2012; yearMax = 2029;
+    showMedian = true; showLr = true;
+    vMinInput.value = vintageMin; vMaxInput.value = vintageMax;
+    yMinInput.value = 2012; yMaxInput.value = 2029;
+    medianToggle.checked = true; lrToggle.checked = true;
+    render();
+  });
+
+  // Re-colour the plots when the site theme (or vibe) changes.
+  var themeTimer = null;
+  var observer = new MutationObserver(function () {
+    if (!data || !window.Plotly) return;
+    clearTimeout(themeTimer);
+    themeTimer = setTimeout(function () { render(); }, 150);
+  });
+  observer.observe(document.documentElement, { attributes: true, attributeFilter: ['data-theme', 'data-vibe'] });
+
+  function waitForPlotly(tries, done) {
+    if (window.Plotly) return done(true);
+    if (tries <= 0) return done(false);
+    setTimeout(function () { waitForPlotly(tries - 1, done); }, 200);
+  }
+
+  fetch(url).then(function (r) {
+    if (!r.ok) throw new Error('HTTP ' + r.status);
+    return r.json();
+  }).then(function (json) {
+    data = json;
+    renderSummary();
+    renderTable();
+    waitForPlotly(25, function (ok) {
+      if (!ok) {
+        fail('Plotly.js did not load (jsDelivr CDN). The chart needs it; the table above and the JSON download still work.');
+        return;
+      }
+      render();
+    });
+  }).catch(function () {
+    fail('Could not load the dot-plot data.');
+  });
+})();

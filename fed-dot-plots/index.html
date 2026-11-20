@@ -1,0 +1,304 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+    
+    
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    
+    <!-- SEO Meta Tags -->
+    <title>Fed Dot Plots in 3D | Benson Fung</title>
+    <meta name="description" content="Every FOMC dot plot since 2012 as an interactive 3D scatter — 59 vintages, 4,627 dots — with the median path and the longer-run neutral rate alongside.">
+    <link rel="canonical" href="https://bfung.github.io/fed-dot-plots/">
+    
+    <!-- Favicon -->
+    <link rel="icon" href="/assets/img/favicon.svg" type="image/svg+xml">
+    
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:site_name" content="Benson Fung">
+    <meta property="og:title" content="Fed Dot Plots in 3D | Benson Fung">
+    <meta property="og:description" content="Every FOMC dot plot since 2012 as an interactive 3D scatter — 59 vintages, 4,627 dots — with the median path and the longer-run neutral rate alongside.">
+    <meta property="og:url" content="https://bfung.github.io/fed-dot-plots/">
+    <meta property="og:image" content="https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400">
+    
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary">
+    <meta name="twitter:title" content="Fed Dot Plots in 3D | Benson Fung">
+    <meta name="twitter:description" content="Every FOMC dot plot since 2012 as an interactive 3D scatter — 59 vintages, 4,627 dots — with the median path and the longer-run neutral rate alongside.">
+    <meta name="twitter:image" content="https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400">
+    
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Person",
+      "name": "Benson Fung",
+      "url": "https://bfung.github.io/",
+      "image": "https://www.gravatar.com/avatar/f4057026c971b50fb44fb0b190adccef?s=400",
+      "jobTitle": "Software Systems & People Team Builder",
+      "address": {
+        "@type": "PostalAddress",
+        "addressLocality": "Irvine",
+        "addressRegion": "CA"
+      },
+      "sameAs": [
+        "https://github.com/bfung",
+        "https://www.linkedin.com/in/bensonfung",
+        "https://stackoverflow.com/users/45793/benson",
+        "https://news.ycombinator.com/user?id=bfung",
+        "https://twitter.com/fungbenson"
+      ]
+    }
+    </script>
+
+
+    <!-- Declare supported color schemes for browser rendering and FOUC prevention -->
+    <meta name="color-scheme" content="light dark">
+    
+    <!-- Inline script to apply saved theme preference immediately -->
+    <script>
+      {
+        document.documentElement.classList.add("js");
+        const savedTheme = localStorage.getItem("color-scheme");
+        if (savedTheme) {
+          document.querySelector('meta[name="color-scheme"]').content = savedTheme;
+          document.documentElement.setAttribute('data-theme', savedTheme);
+        }
+      }
+    </script>
+    
+    <!-- Vibe theme: loaded synchronously, before the stylesheets,
+         so vibe.js can set data-vibe before the first paint. See
+         src/assets/js/vibe.js for how the theme is remembered. -->
+    <script src="/assets/js/vibe.js?v=dbb759b1"></script>
+
+    <!-- Premium Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+
+    <!-- Stylesheet -->
+    <link rel="stylesheet" href="/assets/css/style.css?v=cfb40a46">
+
+    <!-- Vibe theme tokens: unlayered, so they override style.css's
+         layered theme tokens whenever data-vibe is set. No effect
+         when no vibe is active. -->
+    <link rel="stylesheet" href="/assets/css/vibes.css?v=62d2ba18">
+
+    <!-- Datadog RUM: page views, resources, and user interactions -->
+    <script src="/assets/js/rum-init.js?v=cbc54720" defer></script>
+  </head>
+  <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+    <header class="site-header">
+      <div class="header-container">
+        <a href="/" class="brand" id="brand-logo">Benson Fung</a>
+        <nav class="site-nav" aria-label="Main Navigation">
+          <button class="nav-toggle" id="nav-toggle" type="button" aria-expanded="false" aria-controls="nav-menu" aria-label="Open menu">
+            <svg class="icon-open" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M4 7h16M4 12h16M4 17h16"></path>
+            </svg>
+            <svg class="icon-close" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" viewBox="0 0 24 24" aria-hidden="true">
+              <path d="M6 6l12 12M18 6L6 18"></path>
+            </svg>
+          </button>
+          <ul class="nav-links" id="nav-menu">
+            <li><a href="/" >Home</a></li>
+            <li><a href="/resume/" >Resume</a></li>
+            <li><a href="/projects/" >Projects</a></li>
+            <li><a href="/guides/" >Guides</a></li>
+          </ul>
+        </nav>
+        <div class="header-actions">
+          <!-- Site-wide theme picker (hybrid): the main button cycles
+               Default -> Art Deco -> ... -> Tech Modern -> Default on
+               each tap; the chevron (or a long press on the main button)
+               opens the full list to jump straight to any theme. The
+               menu order matches ORDER in vibe.js. main.js wires it. -->
+          <div class="vibe-picker" id="vibe-picker">
+            <button id="vibe-cycle" class="vibe-cycle-btn" type="button" aria-label="Theme: Default — tap for next theme">
+              <svg class="vibe-palette-icon" xmlns="http://www.w3.org/2000/svg" width="18" height="18" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M12 22C6.49 22 2 17.51 2 12S6.49 2 12 2s10 4.04 10 9c0 3-2.5 5-5 5H12.5c-1.5 0-2.5 1-2.5 2.5 0 1.5 1 2 2 2.5.5.25 1 .5 1 1 0 .5-.5 1-1 1z"></path>
+                <circle cx="7.5" cy="10.5" r="1.2" fill="currentColor" stroke="none"></circle>
+                <circle cx="12" cy="7.5" r="1.2" fill="currentColor" stroke="none"></circle>
+                <circle cx="16.5" cy="10.5" r="1.2" fill="currentColor" stroke="none"></circle>
+              </svg>
+              <span class="vibe-dot" aria-hidden="true"></span>
+              <span class="sr-only" data-vibe-cycle-name>Default</span>
+            </button>
+            <button id="vibe-menu-btn" class="vibe-menu-btn" type="button" aria-haspopup="menu" aria-expanded="false" aria-controls="vibe-menu" aria-label="Choose theme">
+              <svg xmlns="http://www.w3.org/2000/svg" width="14" height="14" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24" aria-hidden="true">
+                <path d="M6 9l6 6 6-6"></path>
+              </svg>
+            </button>
+            <ul id="vibe-menu" class="vibe-menu" role="menu" aria-label="Site theme" hidden>
+              <li role="none"><button type="button" role="menuitemradio" aria-checked="true" data-vibe=""><span class="vibe-swatch" style="--swatch-bg: #ffffff; --swatch-accent: #4f46e5;" aria-hidden="true"></span>Default</button></li>
+              <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-vibe="art-deco"><span class="vibe-swatch" style="--swatch-bg: #0e1512; --swatch-accent: #d4af37;" aria-hidden="true"></span>Art Deco</button></li>
+              <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-vibe="conservative"><span class="vibe-swatch" style="--swatch-bg: #faf8f4; --swatch-accent: #6b1f2a;" aria-hidden="true"></span>Conservative</button></li>
+              <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-vibe="experimental"><span class="vibe-swatch" style="--swatch-bg: #101013; --swatch-accent: #c8ff1e;" aria-hidden="true"></span>Experimental</button></li>
+              <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-vibe="mid-century"><span class="vibe-swatch" style="--swatch-bg: #f5eedf; --swatch-accent: #c65a1e;" aria-hidden="true"></span>Mid-Century</button></li>
+              <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-vibe="minimalist"><span class="vibe-swatch" style="--swatch-bg: #fdfdfb; --swatch-accent: #141414;" aria-hidden="true"></span>Minimalist</button></li>
+              <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-vibe="neubrutalist"><span class="vibe-swatch" style="--swatch-bg: #fffdf5; --swatch-accent: #111111;" aria-hidden="true"></span>Neubrutalist</button></li>
+              <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-vibe="swiss"><span class="vibe-swatch" style="--swatch-bg: #ffffff; --swatch-accent: #e30613;" aria-hidden="true"></span>Swiss</button></li>
+              <li role="none"><button type="button" role="menuitemradio" aria-checked="false" data-vibe="tech-modern"><span class="vibe-swatch" style="--swatch-bg: #05070a; --swatch-accent: #22d3ee;" aria-hidden="true"></span>Tech Modern</button></li>
+            </ul>
+            <span id="vibe-announce" class="sr-only" aria-live="polite"></span>
+          </div>
+          <button id="theme-toggle" class="theme-toggle-btn" aria-label="Toggle dark/light mode" title="Toggle theme">
+            <!-- SVG for Sun Icon (visible in Dark Mode) -->
+            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <circle cx="12" cy="12" r="4"></circle>
+              <path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M6.34 17.66l-1.41 1.41M19.07 4.93l-1.41 1.41"></path>
+            </svg>
+            <!-- SVG for Moon Icon (visible in Light Mode) -->
+            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" viewBox="0 0 24 24">
+              <path d="M12 3a6 6 0 0 0 9 9 9 9 0 1 1-9-9Z"></path>
+            </svg>
+          </button>
+        </div>
+      </div>
+    </header>
+
+    <main id="main-content" class="content-wrapper">
+      
+<section class="hero-section" style="text-align: left; align-items: flex-start;">
+  <p class="hero-tagline" style="margin-bottom: 0.5rem;">Fed Dot Plots in 3D</p>
+  <h1>Fourteen years of dot plots, in one cloud</h1>
+  <p class="hero-sub" style="max-width: 680px;">
+    Every dot from every FOMC Summary of Economic Projections since the
+    dot plot began in January 2012. Each point is a participant's view of
+    the appropriate federal funds rate for a given year, as of a given
+    meeting — drag to rotate, scroll to zoom, hover a dot for its detail.
+  </p>
+  <p id="fdp-summary" style="max-width: 680px;">Loading summary…</p>
+  <p>
+    <a href="/assets/data/fed-dot-plots.json?v=149edb06">Download the JSON data</a>
+    &middot; Source: <a href="https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm">Federal Reserve — FOMC Summary of Economic Projections</a>, Figure 2 data tables + Table 1 (retrieved Nov. 20, 2026)
+  </p>
+</section>
+
+<section id="fdp" data-json="/assets/data/fed-dot-plots.json?v=149edb06" aria-label="Fed dot plots 3D chart">
+  <div class="afm-controls">
+    <div class="afm-row">
+      <label>SEP vintage from
+        <input type="date" id="fdp-vintage-min" value="2012-01-25" min="2012-01-25" max="2026-09-16" aria-label="Earliest SEP vintage">
+      </label>
+      <label>to
+        <input type="date" id="fdp-vintage-max" value="2026-09-16" min="2012-01-25" max="2026-09-16" aria-label="Latest SEP vintage">
+      </label>
+    </div>
+    <div class="afm-row">
+      <label>Target year from
+        <input type="number" id="fdp-year-min" value="2012" min="2012" max="2029" aria-label="Earliest target year">
+      </label>
+      <label>to
+        <input type="number" id="fdp-year-max" value="2029" min="2012" max="2029" aria-label="Latest target year">
+      </label>
+      <button type="button" class="ft-reset" id="fdp-reset">Reset</button>
+    </div>
+    <div class="afm-row">
+      <label><input type="checkbox" id="fdp-show-median" checked> Show median path</label>
+      <label><input type="checkbox" id="fdp-show-lr" checked> Show Longer run panel</label>
+    </div>
+    <p class="afm-legend">
+      <span><i style="background: var(--color-accent);"></i>One dot (marker size = number of participants at that rate)</span>
+      <span><i style="background: #d97706;"></i>Median path (per vintage × target year)</span>
+    </p>
+  </div>
+
+  <p id="fdp-count" role="status">Loading chart…</p>
+
+  <div class="afm-graph">
+    <div id="fdp-plot" class="fdp-plot" role="img" aria-label="3D scatter plot of FOMC dot plots: SEP vintage, target year, and federal funds rate"></div>
+  </div>
+
+  <div class="afm-detail" id="fdp-detail">
+    <p>Hover a dot for its vintage, target year, rate, participant count, and the median for that vintage and year. Drag to rotate; scroll to zoom.</p>
+  </div>
+
+  <noscript>
+    <p>The chart needs JavaScript. The underlying data is still available as <a href="/assets/data/fed-dot-plots.json">JSON</a>, and the table below is the same data in median form.</p>
+  </noscript>
+
+  <div id="fdp-lr-section">
+    <h2>Longer run (neutral rate) — separate panel</h2>
+    <p style="color: var(--color-text-muted);">
+      The longer run has no calendar year, so it is <em>not</em> plotted in
+      the 3D cloud at a fake year like 2030. It lives here, on its own:
+      participants' assessments of the appropriate rate in the longer run.
+      Its median fell from 4.25% in January 2012 to 3.25% in September 2026.
+    </p>
+    <div class="afm-graph">
+      <div id="fdp-lr-plot" class="fdp-lr-plot" role="img" aria-label="Longer-run dot plots over time: SEP vintage against federal funds rate"></div>
+    </div>
+  </div>
+
+  <h2>Latest SEP — September 16, 2026: medians</h2>
+  <p style="color: var(--color-text-muted);">Medians for the most recent Summary of Economic Projections, from the same dataset as the chart — not a second source. The derived median is computed from the dots on the 1/8-point grid; the published median is the Fed's Table 1 value, rounded to one decimal place.</p>
+  <div class="afm-table-wrap">
+    <table class="afm-table" id="fdp-table">
+      <thead>
+        <tr><th>Target year</th><th style="text-align: right;">Participants</th><th style="text-align: right;">Median (derived)</th><th style="text-align: right;">Median (published, Table 1)</th><th style="text-align: right;">Range (derived)</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="5">Loading table…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>What to look for</h2>
+  <ul>
+    <li><strong>The 2020–21 shelf.</strong> In every 2020 and 2021 vintage, all dots for the current year sat at 0.125% — the zero lower bound, a flat shelf at the bottom of the cloud.</li>
+    <li><strong>The 2022–23 hiking wall.</strong> From early 2022 the cloud climbs steeply, from near zero to above 5% — the fastest tightening in the sample.</li>
+    <li><strong>The outliers are real.</strong> September 2015 holds the only sub-zero dots in the sample (one at −0.125% for end-2015 and one for end-2016). June and September 2023 each hold one dot at 6.125%, the highest rate in the dataset.</li>
+    <li><strong>The longer-run drift.</strong> The neutral-rate median in the panel above fell from 4.25% in 2012 to 3.25% in September 2026.</li>
+  </ul>
+
+  <h2>What this is — and what it isn't</h2>
+  <p style="color: var(--color-text-muted);">
+    A dot is one FOMC participant's view of the <em>appropriate</em>
+    federal funds rate for a given year, under their own economic outlook.
+    It is not a forecast of what the Committee will do, and the dots are
+    anonymous — no dot can be tied to a person, and no person's dots can
+    be followed across vintages. This page shows the distribution moving
+    over time, never an individual's path, and it draws no
+    prediction-accuracy line: that would need a different dataset and a
+    different argument.
+  </p>
+  <p style="color: var(--color-text-muted);">
+    Dots are the Fed's published Figure 2 table values, rounded to the
+    nearest 1/8 percentage point (1/4 point in 2012–2013). Medians before
+    September 2016 are derived from the dots, because Table 1 is not in
+    the accessible HTML for those vintages — they are labelled derived in
+    the chart's hover text, never presented as published Fed values.
+    Participant counts run 14–19 per vintage-year and vary for real
+    reasons (vacant seats); in 2026 only 18 participants submitted, as
+    Chair Warsh did not submit projections. Marker size encodes how many
+    participants sit at one rate — there is no random jitter, so every
+    marker sits exactly on its published coordinate. The next SEP is
+    expected with the December 8–9, 2026 meeting.
+  </p>
+  <p>
+    Source: <a href="https://www.federalreserve.gov/monetarypolicy/fomcprojtabl20260916.htm">Federal Reserve — FOMC Summary of Economic Projections, projection materials</a> (Figure 2 data tables + Table 1), retrieved Nov. 20, 2026. Next SEP expected Dec. 9, 2026 — see the Fed's <a href="https://www.federalreserve.gov/monetarypolicy/fomccalendars.htm">meeting calendars</a>.
+  </p>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.3/plotly.min.js" charset="utf-8" defer></script>
+<script src="/assets/js/fed-dot-plots.js?v=67a408f2" defer></script>
+
+    </main>
+
+    <footer class="site-footer">
+      <div class="footer-container">
+        <p>&copy; 2026 Benson Fung. All rights reserved.</p>
+        <p class="footer-meta">Built with <a href="https://www.11ty.dev/" target="_blank" rel="noopener">Eleventy</a> &bull; Blazing fast, build-time static HTML.</p>
+      </div>
+    </footer>
+
+    <!-- Client-side JS -->
+    <script src="/assets/js/main.js?v=65a0747e" defer></script>
+  </body>
+</html>
