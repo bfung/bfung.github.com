@@ -1,0 +1,698 @@
+{
+  "metadata": {
+    "title": "TFT ranked skill distribution (sampled)",
+    "set": 18,
+    "set_name": "Enchanted Wilds",
+    "patch": "18.7",
+    "region": "NA",
+    "queue": "RANKED_TFT",
+    "snapshot_window": [
+      "2026-11-23"
+    ],
+    "source": "Riot TFT-LEAGUE-V1 (sampled); League of Graphs NA tier shares used only as stratification weights",
+    "source_urls": [
+      "https://www.leagueofgraphs.com/tft/rank-distribution/na"
+    ],
+    "retrieved": "2026-11-24",
+    "method": "5 independent stratified replicates, fresh random pages per replicate; see method note",
+    "population_definition": "NA ranked players with 20+ ranked games in this set",
+    "notes": [
+      "Lead metric is the top-4 rate: league wins / (wins+losses). League `wins` counts top-4 finishes, not 1st places.",
+      "Evidence: pooled median 50.0%, games-weighted mean 50.35% (a 1st-place rate must average 12.5%); spot-check of one sampled Master player (84W/79L) gave a 60.0% top-4 rate vs a 30.0% 1st-place rate over their last 30 ranked matches (spot_check.json). The 2019 DevRel statement that wins = 1st place no longer describes the field.",
+      "1st-place rate and avg placement are not in this file (v2, match data).",
+      "Population is NA ranked players with 20+ games in this set; the 20+ filter skews tiers (Bronze under-sampled, Gold/Platinum over-sampled vs League of Graphs), corrected by the stratification weights. Do not read this as the all-players distribution.",
+      "Replicate spread measures sampling noise only, not frame/filter bias.",
+      "Stratification weights: League of Graphs, NA rank distribution, retrieved 2026-11-23.",
+      "Collected 2026-11-23 PT (2026-11-24 UTC), patch 18.7."
+    ]
+  },
+  "design": {
+    "replicates": 5,
+    "target_n_per_replicate": 4732,
+    "raw_drawn_per_replicate": [
+      7145,
+      7145,
+      7145,
+      7145,
+      7145
+    ],
+    "usable_per_replicate": [
+      4732,
+      4800,
+      4757,
+      4804,
+      4748
+    ],
+    "excluded_lt20_games": {
+      "count": 11884,
+      "pct_of_raw": 33.27
+    },
+    "match_subsample_n_per_replicate": 0,
+    "min_games": 20,
+    "sensitivity": {
+      "min_games_10": {
+        "n": 29922,
+        "median_top4_rate": 0.5,
+        "p90_top4_rate": 0.6063746021109065
+      },
+      "min_games_50": {
+        "n": 14765,
+        "median_top4_rate": 0.5026737967914439,
+        "p90_top4_rate": 0.5643281471004243
+      }
+    },
+    "weights": {
+      "source": "League of Graphs, NA rank distribution, retrieved 2026-11-23",
+      "design_effect": 8382.2286,
+      "effective_n_pooled": 8382.2
+    },
+    "rng_seeds": [
+      20261123,
+      20261124,
+      20261125,
+      20261126,
+      20261127
+    ]
+  },
+  "metrics": {
+    "top4_rate": {
+      "n_pooled": 23841,
+      "n_per_replicate": [
+        4732,
+        4800,
+        4757,
+        4804,
+        4748
+      ],
+      "bins": [
+        {
+          "lo": 0.0,
+          "hi": 0.025,
+          "pct_pooled": 0.0,
+          "pct_by_replicate": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "lo": 0.025,
+          "hi": 0.05,
+          "pct_pooled": 0.281,
+          "pct_by_replicate": [
+            0.353,
+            0.331,
+            0.019,
+            0.349,
+            0.359
+          ]
+        },
+        {
+          "lo": 0.05,
+          "hi": 0.075,
+          "pct_pooled": 0.0,
+          "pct_by_replicate": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "lo": 0.075,
+          "hi": 0.1,
+          "pct_pooled": 0.0,
+          "pct_by_replicate": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.0
+          ]
+        },
+        {
+          "lo": 0.1,
+          "hi": 0.125,
+          "pct_pooled": 0.038,
+          "pct_by_replicate": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.198
+          ]
+        },
+        {
+          "lo": 0.125,
+          "hi": 0.15,
+          "pct_pooled": 0.531,
+          "pct_by_replicate": [
+            0.389,
+            0.311,
+            0.459,
+            1.301,
+            0.198
+          ]
+        },
+        {
+          "lo": 0.15,
+          "hi": 0.175,
+          "pct_pooled": 0.218,
+          "pct_by_replicate": [
+            0.194,
+            0.128,
+            0.57,
+            0.192,
+            0.0
+          ]
+        },
+        {
+          "lo": 0.175,
+          "hi": 0.2,
+          "pct_pooled": 0.522,
+          "pct_by_replicate": [
+            0.273,
+            0.0,
+            1.449,
+            0.608,
+            0.286
+          ]
+        },
+        {
+          "lo": 0.2,
+          "hi": 0.225,
+          "pct_pooled": 1.393,
+          "pct_by_replicate": [
+            1.843,
+            1.518,
+            2.332,
+            0.372,
+            0.871
+          ]
+        },
+        {
+          "lo": 0.225,
+          "hi": 0.25,
+          "pct_pooled": 1.587,
+          "pct_by_replicate": [
+            2.382,
+            3.353,
+            0.902,
+            0.862,
+            0.323
+          ]
+        },
+        {
+          "lo": 0.25,
+          "hi": 0.275,
+          "pct_pooled": 1.747,
+          "pct_by_replicate": [
+            1.247,
+            2.241,
+            1.768,
+            2.378,
+            1.046
+          ]
+        },
+        {
+          "lo": 0.275,
+          "hi": 0.3,
+          "pct_pooled": 2.458,
+          "pct_by_replicate": [
+            2.02,
+            2.782,
+            3.102,
+            1.974,
+            2.381
+          ]
+        },
+        {
+          "lo": 0.3,
+          "hi": 0.325,
+          "pct_pooled": 1.935,
+          "pct_by_replicate": [
+            1.755,
+            2.203,
+            1.493,
+            2.45,
+            1.759
+          ]
+        },
+        {
+          "lo": 0.325,
+          "hi": 0.35,
+          "pct_pooled": 3.143,
+          "pct_by_replicate": [
+            3.217,
+            3.836,
+            2.584,
+            2.811,
+            3.24
+          ]
+        },
+        {
+          "lo": 0.35,
+          "hi": 0.375,
+          "pct_pooled": 2.994,
+          "pct_by_replicate": [
+            2.837,
+            3.166,
+            3.151,
+            2.8,
+            3.002
+          ]
+        },
+        {
+          "lo": 0.375,
+          "hi": 0.4,
+          "pct_pooled": 4.689,
+          "pct_by_replicate": [
+            4.843,
+            4.989,
+            4.922,
+            3.935,
+            4.739
+          ]
+        },
+        {
+          "lo": 0.4,
+          "hi": 0.425,
+          "pct_pooled": 6.738,
+          "pct_by_replicate": [
+            5.537,
+            6.671,
+            7.008,
+            6.555,
+            7.939
+          ]
+        },
+        {
+          "lo": 0.425,
+          "hi": 0.45,
+          "pct_pooled": 8.199,
+          "pct_by_replicate": [
+            8.092,
+            8.311,
+            7.386,
+            8.244,
+            8.989
+          ]
+        },
+        {
+          "lo": 0.45,
+          "hi": 0.475,
+          "pct_pooled": 11.565,
+          "pct_by_replicate": [
+            12.371,
+            10.689,
+            10.767,
+            11.786,
+            12.296
+          ]
+        },
+        {
+          "lo": 0.475,
+          "hi": 0.5,
+          "pct_pooled": 11.59,
+          "pct_by_replicate": [
+            12.07,
+            11.399,
+            11.051,
+            11.792,
+            11.662
+          ]
+        },
+        {
+          "lo": 0.5,
+          "hi": 0.525,
+          "pct_pooled": 15.613,
+          "pct_by_replicate": [
+            16.223,
+            13.897,
+            15.866,
+            16.659,
+            15.509
+          ]
+        },
+        {
+          "lo": 0.525,
+          "hi": 0.55,
+          "pct_pooled": 9.445,
+          "pct_by_replicate": [
+            9.401,
+            9.12,
+            9.594,
+            9.246,
+            9.89
+          ]
+        },
+        {
+          "lo": 0.55,
+          "hi": 0.575,
+          "pct_pooled": 6.166,
+          "pct_by_replicate": [
+            5.874,
+            6.228,
+            6.091,
+            6.509,
+            6.123
+          ]
+        },
+        {
+          "lo": 0.575,
+          "hi": 0.6,
+          "pct_pooled": 3.921,
+          "pct_by_replicate": [
+            3.709,
+            3.813,
+            4.291,
+            3.897,
+            3.891
+          ]
+        },
+        {
+          "lo": 0.6,
+          "hi": 0.625,
+          "pct_pooled": 1.654,
+          "pct_by_replicate": [
+            1.806,
+            1.488,
+            1.663,
+            1.564,
+            1.762
+          ]
+        },
+        {
+          "lo": 0.625,
+          "hi": 0.65,
+          "pct_pooled": 1.157,
+          "pct_by_replicate": [
+            1.339,
+            1.061,
+            1.184,
+            1.221,
+            0.983
+          ]
+        },
+        {
+          "lo": 0.65,
+          "hi": 0.675,
+          "pct_pooled": 0.889,
+          "pct_by_replicate": [
+            0.78,
+            0.923,
+            0.97,
+            0.947,
+            0.818
+          ]
+        },
+        {
+          "lo": 0.675,
+          "hi": 0.7,
+          "pct_pooled": 0.491,
+          "pct_by_replicate": [
+            0.562,
+            0.375,
+            0.399,
+            0.549,
+            0.581
+          ]
+        },
+        {
+          "lo": 0.7,
+          "hi": 0.725,
+          "pct_pooled": 0.277,
+          "pct_by_replicate": [
+            0.253,
+            0.304,
+            0.271,
+            0.313,
+            0.241
+          ]
+        },
+        {
+          "lo": 0.725,
+          "hi": 0.75,
+          "pct_pooled": 0.172,
+          "pct_by_replicate": [
+            0.135,
+            0.192,
+            0.197,
+            0.144,
+            0.193
+          ]
+        },
+        {
+          "lo": 0.75,
+          "hi": 0.775,
+          "pct_pooled": 0.219,
+          "pct_by_replicate": [
+            0.228,
+            0.31,
+            0.188,
+            0.215,
+            0.148
+          ]
+        },
+        {
+          "lo": 0.775,
+          "hi": 0.8,
+          "pct_pooled": 0.105,
+          "pct_by_replicate": [
+            0.087,
+            0.128,
+            0.042,
+            0.128,
+            0.141
+          ]
+        },
+        {
+          "lo": 0.8,
+          "hi": 0.825,
+          "pct_pooled": 0.108,
+          "pct_by_replicate": [
+            0.122,
+            0.097,
+            0.084,
+            0.085,
+            0.153
+          ]
+        },
+        {
+          "lo": 0.825,
+          "hi": 0.85,
+          "pct_pooled": 0.076,
+          "pct_by_replicate": [
+            0.014,
+            0.041,
+            0.125,
+            0.071,
+            0.132
+          ]
+        },
+        {
+          "lo": 0.85,
+          "hi": 0.875,
+          "pct_pooled": 0.037,
+          "pct_by_replicate": [
+            0.014,
+            0.054,
+            0.057,
+            0.0,
+            0.059
+          ]
+        },
+        {
+          "lo": 0.875,
+          "hi": 0.9,
+          "pct_pooled": 0.008,
+          "pct_by_replicate": [
+            0.014,
+            0.0,
+            0.0,
+            0.014,
+            0.015
+          ]
+        },
+        {
+          "lo": 0.9,
+          "hi": 0.925,
+          "pct_pooled": 0.02,
+          "pct_by_replicate": [
+            0.014,
+            0.028,
+            0.0,
+            0.014,
+            0.045
+          ]
+        },
+        {
+          "lo": 0.925,
+          "hi": 0.95,
+          "pct_pooled": 0.009,
+          "pct_by_replicate": [
+            0.0,
+            0.014,
+            0.014,
+            0.0,
+            0.015
+          ]
+        },
+        {
+          "lo": 0.95,
+          "hi": 0.975,
+          "pct_pooled": 0.003,
+          "pct_by_replicate": [
+            0.0,
+            0.0,
+            0.0,
+            0.0,
+            0.015
+          ]
+        },
+        {
+          "lo": 0.975,
+          "hi": 1.0,
+          "pct_pooled": 0.003,
+          "pct_by_replicate": [
+            0.0,
+            0.0,
+            0.0,
+            0.014,
+            0.0
+          ]
+        }
+      ],
+      "summary_pooled": {
+        "median": 0.4782608695652174,
+        "mean": 0.46218485914648244,
+        "iqr": [
+          0.41237113402061853,
+          0.5241935483870968
+        ],
+        "sd": 0.10520708025465837,
+        "p90": 0.5714285714285714,
+        "p95": 0.6052631578947368,
+        "p99": 0.7037037037037037,
+        "share_gt_60pct": 0.05228166775478103,
+        "share_gt_70pct": 0.01037049515975657
+      },
+      "summary_by_replicate": [
+        {
+          "replicate": 1,
+          "n": 4732,
+          "median": 0.4794520547945205,
+          "p90": 0.5714285714285714,
+          "p95": 0.6060606060606061,
+          "ks_vs_pooled": null
+        },
+        {
+          "replicate": 2,
+          "n": 4800,
+          "median": 0.47368421052631576,
+          "p90": 0.5694444444444444,
+          "p95": 0.6021505376344086,
+          "ks_vs_pooled": null
+        },
+        {
+          "replicate": 3,
+          "n": 4757,
+          "median": 0.4782608695652174,
+          "p90": 0.5714285714285714,
+          "p95": 0.6046511627906976,
+          "ks_vs_pooled": null
+        },
+        {
+          "replicate": 4,
+          "n": 4804,
+          "median": 0.4810126582278481,
+          "p90": 0.5714285714285714,
+          "p95": 0.6071428571428571,
+          "ks_vs_pooled": null
+        },
+        {
+          "replicate": 5,
+          "n": 4748,
+          "median": 0.4787234042553192,
+          "p90": 0.5714285714285714,
+          "p95": 0.6060606060606061,
+          "ks_vs_pooled": null
+        }
+      ],
+      "replicate_spread": {
+        "median_range": [
+          0.47368421052631576,
+          0.4810126582278481
+        ],
+        "p90_range": [
+          0.5694444444444444,
+          0.5714285714285714
+        ],
+        "max_pairwise_ks": 0.027575414511266105
+      },
+      "bootstrap_ci_pooled": {
+        "median": [
+          0.5,
+          0.5
+        ],
+        "p90": [
+          0.5846153846153846,
+          0.5882352941176471
+        ],
+        "p95": [
+          0.62,
+          0.6262626262626263
+        ]
+      },
+      "model_fit": [
+        {
+          "name": "normal",
+          "params": {},
+          "aic": null,
+          "chisq": null,
+          "status": "pending modelling step"
+        },
+        {
+          "name": "t",
+          "params": {},
+          "aic": null,
+          "chisq": null,
+          "status": "pending modelling step"
+        },
+        {
+          "name": "log-normal",
+          "params": {},
+          "aic": null,
+          "chisq": null,
+          "status": "pending modelling step"
+        },
+        {
+          "name": "skew-normal",
+          "params": {},
+          "aic": null,
+          "chisq": null,
+          "status": "pending modelling step"
+        }
+      ]
+    },
+    "avg_placement": {
+      "n_pooled": 0,
+      "bins": [],
+      "summary_pooled": {},
+      "summary_by_replicate": [],
+      "replicate_spread": {},
+      "bootstrap_ci_pooled": {},
+      "model_fit": [],
+      "note": "v2, match data \u2014 not collected in this run"
+    }
+  },
+  "convergence": {
+    "max_pairwise_ks": 0.027575414511266105,
+    "median_range": 0.0023255813953488857,
+    "stable": true,
+    "rule": "max pairwise KS D < 0.03 and replicate median range < 1pp (0.01)"
+  }
+}
