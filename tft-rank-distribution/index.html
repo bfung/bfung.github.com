@@ -81,7 +81,7 @@
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Outfit:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
     <!-- Stylesheet -->
-    <link rel="stylesheet" href="/assets/css/style.css?v=edf87d7b">
+    <link rel="stylesheet" href="/assets/css/style.css?v=57166ed4">
 
     <!-- Vibe theme tokens: unlayered, so they override style.css's
          layered theme tokens whenever data-vibe is set. No effect
@@ -173,11 +173,16 @@
   <p class="tft-summary" id="tft-summary">Loading summary…</p>
 </section>
 
-<section id="tft" data-json="/assets/data/tft-rank-distribution-sampled-set18-2026-11.json?v=3c2ea908" data-tiers="/assets/data/tft-rank-distribution-tiers.json?v=1101b63c" aria-label="TFT top-4 rate distribution chart">
+<section id="tft" data-json="/assets/data/tft-rank-distribution-sampled-set18-2026-11.json?v=3c2ea908" data-tiers="/assets/data/tft-rank-distribution-tiers.json?v=8c073604" aria-label="TFT top-4 rate distribution chart">
 
   <div class="afm-graph">
     <div id="tft-plot" class="tft-plot" role="img" aria-label="Histogram of top-4 rates among sampled NA TFT players in Set 18, stacked by tier"></div>
   </div>
+  <!-- Custom legend, built by the JS from the tiers JSON: two columns of
+       five, reading Iron → Platinum down the left, Emerald → Challenger
+       down the right. Plotly's built-in legend lays items out row-major
+       and cannot produce this order, so it is hidden. -->
+  <div class="tft-legend" id="tft-legend" role="group" aria-label="Toggle tiers in the chart"></div>
   <div class="afm-detail" id="tft-detail"></div>
 
   <noscript>
@@ -198,12 +203,12 @@
     </div>
   </details>
 
-  <p class="tft-footer">Sources: Riot Games TFT-LEAGUE-V1, NA, sampled Nov. 23, 2026 (patch 18.7) — <a href="/assets/data/tft-rank-distribution-sampled-set18-2026-11.json?v=3c2ea908">download the JSON data</a> · <a href="https://www.leagueofgraphs.com/tft/rank-distribution/na">League of Graphs — TFT rank distribution, NA</a>, retrieved Nov. 23, 2026 — <a href="/assets/data/tft-rank-distribution-tiers.json?v=1101b63c">download the JSON data</a></p>
+  <p class="tft-footer">Sources: Riot Games TFT-LEAGUE-V1, NA, sampled Nov. 23, 2026 (patch 18.7) — <a href="/assets/data/tft-rank-distribution-sampled-set18-2026-11.json?v=3c2ea908">download the JSON data</a> · <a href="https://www.leagueofgraphs.com/tft/rank-distribution/na">League of Graphs — TFT rank distribution, NA</a>, retrieved Nov. 23, 2026 — <a href="/assets/data/tft-rank-distribution-tiers.json?v=8c073604">download the JSON data</a></p>
   <p class="tft-boilerplate">TFT Rank Distribution isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p>
 </section>
 
 <script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.3/plotly.min.js" charset="utf-8" defer></script>
-<script src="/assets/js/tft-rank-distribution.js?v=c06abf6f" defer></script>
+<script src="/assets/js/tft-rank-distribution.js?v=cba3ce18" defer></script>
 
     </main>
 
