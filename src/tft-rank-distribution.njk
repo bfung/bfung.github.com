@@ -1,0 +1,116 @@
+---
+layout: base.njk
+title: TFT Rank Distribution | Benson Fung
+description: How good is a given top-4 rate in TFT ranked? A sampled distribution of NA players in Set 18, with the tier distribution alongside.
+---
+
+<section class="hero-section tft-hero" style="text-align: left; align-items: flex-start;">
+  <p class="hero-tagline" style="margin-bottom: 0.5rem;">TFT Rank Distribution</p>
+  <h1>How good is your top-4 rate?</h1>
+  <p class="hero-sub" style="max-width: 680px;">
+    The distribution of top-4 rates among sampled NA ranked players in TFT Set 18, Enchanted Wilds.
+  </p>
+  <p class="tft-summary" id="tft-summary">Loading summary…</p>
+</section>
+
+<section id="tft" data-json="{{ '/assets/data/tft-rank-distribution-sampled-set18-2026-11.json' | cacheBust }}" data-tiers="{{ '/assets/data/tft-rank-distribution-tiers.json' | cacheBust }}" aria-label="TFT rank distribution charts">
+
+  <h2>Top-4 rate distribution</h2>
+  <div class="afm-graph">
+    <div id="tft-plot" class="tft-plot" role="img" aria-label="Histogram of top-4 rates among sampled NA TFT players in Set 18"></div>
+  </div>
+  <div class="afm-detail" id="tft-detail"></div>
+
+  <div class="afm-controls tft-lookup">
+    <div class="afm-row">
+      <label>Your top-4 rate (%)
+        <input type="number" id="tft-lookup-input" min="0" max="100" step="0.1" value="50" aria-label="Your top-4 rate in percent">
+      </label>
+      <button type="button" class="ft-reset" id="tft-lookup-btn">Where does this rank?</button>
+    </div>
+    <p class="tft-lookup-result" id="tft-lookup-result" aria-live="polite"></p>
+  </div>
+
+  <noscript>
+    <p>The charts need JavaScript. The underlying data is still available as <a href="/assets/data/tft-rank-distribution-sampled-set18-2026-11.json">JSON (top-4 rate sample)</a> and <a href="/assets/data/tft-rank-distribution-tiers.json">JSON (tier shares)</a>, and the tables below are the same data.</p>
+  </noscript>
+
+  <h2>Thresholds</h2>
+  <div class="afm-table-wrap">
+    <table class="afm-table" id="tft-thresholds-table">
+      <thead>
+        <tr><th>Top-4 rate</th><th style="text-align: right;">Share of sampled players above it</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="2">Loading table…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Full distribution</h2>
+  <div class="afm-table-wrap">
+    <table class="afm-table" id="tft-bins-table">
+      <thead>
+        <tr><th>Top-4 rate</th><th style="text-align: right;">Share of sampled players</th><th style="text-align: right;">Across the 5 replicates</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="3">Loading table…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Tier distribution</h2>
+  <p class="tft-tier-note">Share of NA players in each tier and division, League of Graphs snapshot, Nov. 23, 2026. Tracker-derived shares, not Riot-published counts.</p>
+  <div class="afm-controls">
+    <div class="afm-row">
+      <label><input type="checkbox" id="tft-tier-log"> Log scale</label>
+      <label><input type="checkbox" id="tft-tier-cum" checked> Show cumulative share</label>
+    </div>
+  </div>
+  <div class="afm-graph">
+    <div id="tft-tier-plot" class="tft-tier-plot" role="img" aria-label="Bar chart of NA TFT players by tier and division, Set 18"></div>
+  </div>
+  <div class="afm-detail" id="tft-tier-detail"></div>
+
+  <h2>What counts as good?</h2>
+  <div class="afm-table-wrap">
+    <table class="afm-table" id="tft-good-table">
+      <thead>
+        <tr><th>Top share of players</th><th>Starts at</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="2">Loading table…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>Full tier table</h2>
+  <div class="afm-table-wrap">
+    <table class="afm-table" id="tft-tiers-table">
+      <thead>
+        <tr><th>Tier</th><th style="text-align: right;">Share of players</th><th style="text-align: right;">Cumulative from the top</th></tr>
+      </thead>
+      <tbody>
+        <tr><td colspan="3">Loading table…</td></tr>
+      </tbody>
+    </table>
+  </div>
+
+  <h2>What this is — and what it isn't</h2>
+  <ul class="tft-caveats">
+    <li>A sample, not a census: 5 independent stratified replicates of NA ranked players with 20+ ranked games in Set 18. It is not all ranked players.</li>
+    <li>The 20+ games filter skews tiers — Bronze is under-sampled, Gold and Platinum over-sampled against League of Graphs — corrected by stratification weights. The error bars on the chart are the spread across the 5 replicates (sampling noise only).</li>
+    <li>The field behind this chart counts top-4 finishes, not 1st-place finishes: the unweighted pooled median is 50.0% and the games-weighted mean is 50.35%, where 1st-place finishes would average 12.5%. A spot-check of one sampled Master player gave a 60.0% top-4 rate against a 30.0% 1st-place rate over their last 30 ranked matches.</li>
+    <li>Snapshot dated Nov. 23, 2026, patch 18.7, Set 18 only. Never averaged across sets.</li>
+  </ul>
+
+  <h2>Sources</h2>
+  <ul class="tft-sources">
+    <li>Riot Games TFT-LEAGUE-V1, NA, sampled Nov. 23, 2026 (patch 18.7) — <a href="{{ '/assets/data/tft-rank-distribution-sampled-set18-2026-11.json' | cacheBust }}">download the JSON data</a></li>
+    <li><a href="https://www.leagueofgraphs.com/tft/rank-distribution/na">League of Graphs — TFT rank distribution, NA</a>, retrieved Nov. 23, 2026 — <a href="{{ '/assets/data/tft-rank-distribution-tiers.json' | cacheBust }}">download the JSON data</a></li>
+  </ul>
+  <p class="tft-boilerplate">TFT Rank Distribution isn't endorsed by Riot Games and doesn't reflect the views or opinions of Riot Games or anyone officially involved in producing or managing Riot Games properties. Riot Games, and all associated properties are trademarks or registered trademarks of Riot Games, Inc.</p>
+</section>
+
+<script src="https://cdn.jsdelivr.net/npm/plotly.js-dist-min@2.35.3/plotly.min.js" charset="utf-8" defer></script>
+<script src="{{ '/assets/js/tft-rank-distribution.js' | cacheBust }}" defer></script>
