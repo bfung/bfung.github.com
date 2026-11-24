@@ -1685,11 +1685,10 @@
   /* Detail boxes stay hidden until a tap/hover fills them. */
   #fdp-detail:empty, #fdp-lr-detail:empty { display: none; }
 
-  /* --- TFT Rank Distribution: sampled top-4 rate histogram + tier panel --- */
+  /* --- TFT Rank Distribution: top-4 rate histogram, stacked by tier --- */
   .tft-plot { display: block; width: 100%; height: clamp(420px, 60vh, 560px); }
-  .tft-tier-plot { display: block; width: 100%; height: clamp(360px, 52vh, 480px); }
 
-  /* Mobile tuning: tap-to-interact lock over each chart (coarse-pointer
+  /* Mobile tuning: tap-to-interact lock over the chart (coarse-pointer
      phones only, added by tft-rank-distribution.js) + shorter heights. */
   .tft-lock-overlay { position: absolute; inset: 0; z-index: 4; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(128, 128, 128, 0.12); }
   .tft-lock-btn { min-height: 44px; padding: 0.7rem 1.1rem; font: inherit; font-weight: 700; border-radius: 999px; border: 1.5px solid var(--color-border); background: var(--color-card); color: var(--color-text); cursor: pointer; }
@@ -1698,25 +1697,19 @@
   .tft-lock-chip { display: block; margin: 0.5rem 0 0 auto; padding: 0.4rem 0.7rem; font: inherit; font-size: 0.85rem; font-weight: 700; border-radius: 999px; border: 1.5px solid var(--color-border); background: var(--color-card); color: var(--color-text); cursor: pointer; }
   @media (max-width: 700px) {
     .tft-plot { height: clamp(380px, 56vh, 500px); }
-    .tft-tier-plot { height: 340px; }
   }
 
   /* Tight spacing: the hero already carries the page's top rhythm, so the
      TFT page keeps its own gaps small and lets the chart lead. */
   .tft-hero { padding-bottom: var(--space-md); }
   .tft-summary { font-size: 0.95rem; color: var(--color-text-muted); margin-top: 0.5rem; }
-  .tft-lookup { margin: var(--space-md) 0; }
-  .tft-lookup-result { font-weight: 600; margin-top: 0.5rem; }
-  .tft-tier-note { font-size: 0.9rem; color: var(--color-text-muted); }
-  .tft-caveats { margin: 0 0 var(--space-md); padding-left: 1.2rem; }
-  .tft-caveats li { margin-bottom: 0.4rem; }
-  #tft h2 { margin-top: var(--space-md); }
+  .tft-details { margin: var(--space-md) 0; }
+  .tft-details summary { cursor: pointer; font-weight: 700; }
   #tft .afm-table-wrap { margin-bottom: var(--space-md); }
-  .tft-sources { margin: 0 0 var(--space-md); padding-left: 1.2rem; color: var(--color-text-muted); font-size: 0.9rem; }
-  .tft-sources li { margin-bottom: 0.3rem; }
+  .tft-footer { margin: 0 0 var(--space-md); color: var(--color-text-muted); font-size: 0.9rem; }
   .tft-boilerplate { font-size: 0.85rem; color: var(--color-text-muted); }
   /* Detail boxes stay hidden until a tap fills them. */
-  #tft-detail:empty, #tft-tier-detail:empty { display: none; }
+  #tft-detail:empty { display: none; }
 
 
 @layer utilities {

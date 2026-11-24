@@ -63,8 +63,8 @@
     },
     "weights": {
       "source": "League of Graphs, NA rank distribution, retrieved 2026-11-23",
-      "design_effect": 8382.2286,
-      "effective_n_pooled": 8382.2
+      "design_effect": 2.8776,
+      "effective_n_pooled": 8285.0
     },
     "rng_seeds": [
       20261123,
@@ -100,13 +100,13 @@
         {
           "lo": 0.025,
           "hi": 0.05,
-          "pct_pooled": 0.281,
+          "pct_pooled": 0.284,
           "pct_by_replicate": [
-            0.353,
-            0.331,
+            0.356,
+            0.334,
             0.019,
-            0.349,
-            0.359
+            0.352,
+            0.362
           ]
         },
         {
@@ -136,301 +136,301 @@
         {
           "lo": 0.1,
           "hi": 0.125,
-          "pct_pooled": 0.038,
+          "pct_pooled": 0.039,
           "pct_by_replicate": [
             0.0,
             0.0,
             0.0,
             0.0,
-            0.198
+            0.2
           ]
         },
         {
           "lo": 0.125,
           "hi": 0.15,
-          "pct_pooled": 0.531,
+          "pct_pooled": 0.535,
           "pct_by_replicate": [
-            0.389,
-            0.311,
-            0.459,
-            1.301,
-            0.198
+            0.392,
+            0.313,
+            0.463,
+            1.312,
+            0.2
           ]
         },
         {
           "lo": 0.15,
           "hi": 0.175,
-          "pct_pooled": 0.218,
+          "pct_pooled": 0.22,
           "pct_by_replicate": [
+            0.196,
+            0.129,
+            0.574,
             0.194,
-            0.128,
-            0.57,
-            0.192,
             0.0
           ]
         },
         {
           "lo": 0.175,
           "hi": 0.2,
-          "pct_pooled": 0.522,
+          "pct_pooled": 0.526,
           "pct_by_replicate": [
-            0.273,
+            0.275,
             0.0,
-            1.449,
-            0.608,
-            0.286
+            1.461,
+            0.613,
+            0.289
           ]
         },
         {
           "lo": 0.2,
           "hi": 0.225,
-          "pct_pooled": 1.393,
+          "pct_pooled": 1.404,
           "pct_by_replicate": [
-            1.843,
-            1.518,
-            2.332,
-            0.372,
-            0.871
+            1.859,
+            1.529,
+            2.351,
+            0.375,
+            0.879
           ]
         },
         {
           "lo": 0.225,
           "hi": 0.25,
-          "pct_pooled": 1.587,
+          "pct_pooled": 1.6,
           "pct_by_replicate": [
-            2.382,
-            3.353,
-            0.902,
-            0.862,
-            0.323
+            2.402,
+            3.38,
+            0.909,
+            0.869,
+            0.326
           ]
         },
         {
           "lo": 0.25,
           "hi": 0.275,
-          "pct_pooled": 1.747,
+          "pct_pooled": 1.761,
           "pct_by_replicate": [
-            1.247,
-            2.241,
-            1.768,
-            2.378,
-            1.046
+            1.257,
+            2.259,
+            1.783,
+            2.398,
+            1.055
           ]
         },
         {
           "lo": 0.275,
           "hi": 0.3,
-          "pct_pooled": 2.458,
+          "pct_pooled": 2.479,
           "pct_by_replicate": [
-            2.02,
-            2.782,
-            3.102,
-            1.974,
-            2.381
+            2.037,
+            2.804,
+            3.128,
+            1.991,
+            2.401
           ]
         },
         {
           "lo": 0.3,
           "hi": 0.325,
-          "pct_pooled": 1.935,
+          "pct_pooled": 1.951,
           "pct_by_replicate": [
-            1.755,
-            2.203,
-            1.493,
-            2.45,
-            1.759
+            1.77,
+            2.22,
+            1.505,
+            2.47,
+            1.774
           ]
         },
         {
           "lo": 0.325,
           "hi": 0.35,
-          "pct_pooled": 3.143,
+          "pct_pooled": 3.169,
           "pct_by_replicate": [
-            3.217,
-            3.836,
-            2.584,
-            2.811,
-            3.24
+            3.244,
+            3.866,
+            2.605,
+            2.834,
+            3.268
           ]
         },
         {
           "lo": 0.35,
           "hi": 0.375,
-          "pct_pooled": 2.994,
+          "pct_pooled": 3.019,
           "pct_by_replicate": [
-            2.837,
-            3.166,
-            3.151,
-            2.8,
-            3.002
+            2.861,
+            3.191,
+            3.177,
+            2.823,
+            3.028
           ]
         },
         {
           "lo": 0.375,
           "hi": 0.4,
-          "pct_pooled": 4.689,
+          "pct_pooled": 4.728,
           "pct_by_replicate": [
-            4.843,
-            4.989,
-            4.922,
-            3.935,
-            4.739
+            4.884,
+            5.028,
+            4.962,
+            3.968,
+            4.78
           ]
         },
         {
           "lo": 0.4,
           "hi": 0.425,
-          "pct_pooled": 6.738,
+          "pct_pooled": 6.793,
           "pct_by_replicate": [
-            5.537,
-            6.671,
-            7.008,
-            6.555,
-            7.939
+            5.583,
+            6.723,
+            7.065,
+            6.61,
+            8.007
           ]
         },
         {
           "lo": 0.425,
           "hi": 0.45,
-          "pct_pooled": 8.199,
+          "pct_pooled": 8.267,
           "pct_by_replicate": [
-            8.092,
-            8.311,
-            7.386,
-            8.244,
-            8.989
+            8.16,
+            8.376,
+            7.447,
+            8.313,
+            9.066
           ]
         },
         {
           "lo": 0.45,
           "hi": 0.475,
-          "pct_pooled": 11.565,
+          "pct_pooled": 11.659,
           "pct_by_replicate": [
-            12.371,
-            10.689,
-            10.767,
-            11.786,
-            12.296
+            12.475,
+            10.766,
+            10.856,
+            11.884,
+            12.401
           ]
         },
         {
           "lo": 0.475,
           "hi": 0.5,
-          "pct_pooled": 11.59,
+          "pct_pooled": 11.654,
           "pct_by_replicate": [
-            12.07,
-            11.399,
-            11.051,
-            11.792,
-            11.662
+            12.143,
+            11.449,
+            11.114,
+            11.848,
+            11.74
           ]
         },
         {
           "lo": 0.5,
           "hi": 0.525,
-          "pct_pooled": 15.613,
+          "pct_pooled": 15.568,
           "pct_by_replicate": [
-            16.223,
-            13.897,
-            15.866,
-            16.659,
-            15.509
+            16.134,
+            13.88,
+            15.831,
+            16.616,
+            15.47
           ]
         },
         {
           "lo": 0.525,
           "hi": 0.55,
-          "pct_pooled": 9.445,
+          "pct_pooled": 9.259,
           "pct_by_replicate": [
-            9.401,
-            9.12,
-            9.594,
-            9.246,
-            9.89
+            9.212,
+            8.941,
+            9.404,
+            9.064,
+            9.701
           ]
         },
         {
           "lo": 0.55,
           "hi": 0.575,
-          "pct_pooled": 6.166,
+          "pct_pooled": 6.06,
           "pct_by_replicate": [
-            5.874,
-            6.228,
-            6.091,
-            6.509,
-            6.123
+            5.783,
+            6.144,
+            6.003,
+            6.374,
+            5.988
           ]
         },
         {
           "lo": 0.575,
           "hi": 0.6,
-          "pct_pooled": 3.921,
+          "pct_pooled": 3.839,
           "pct_by_replicate": [
-            3.709,
-            3.813,
-            4.291,
-            3.897,
-            3.891
+            3.677,
+            3.684,
+            4.188,
+            3.825,
+            3.824
           ]
         },
         {
           "lo": 0.6,
           "hi": 0.625,
-          "pct_pooled": 1.654,
+          "pct_pooled": 1.637,
           "pct_by_replicate": [
-            1.806,
-            1.488,
-            1.663,
-            1.564,
-            1.762
+            1.786,
+            1.48,
+            1.629,
+            1.556,
+            1.748
           ]
         },
         {
           "lo": 0.625,
           "hi": 0.65,
-          "pct_pooled": 1.157,
+          "pct_pooled": 1.15,
           "pct_by_replicate": [
-            1.339,
-            1.061,
-            1.184,
-            1.221,
-            0.983
+            1.322,
+            1.056,
+            1.166,
+            1.224,
+            0.984
           ]
         },
         {
           "lo": 0.65,
           "hi": 0.675,
-          "pct_pooled": 0.889,
+          "pct_pooled": 0.884,
           "pct_by_replicate": [
-            0.78,
-            0.923,
-            0.97,
-            0.947,
-            0.818
+            0.787,
+            0.91,
+            0.978,
+            0.934,
+            0.804
           ]
         },
         {
           "lo": 0.675,
           "hi": 0.7,
-          "pct_pooled": 0.491,
+          "pct_pooled": 0.487,
           "pct_by_replicate": [
-            0.562,
-            0.375,
-            0.399,
-            0.549,
-            0.581
+            0.552,
+            0.372,
+            0.395,
+            0.553,
+            0.571
           ]
         },
         {
           "lo": 0.7,
           "hi": 0.725,
-          "pct_pooled": 0.277,
+          "pct_pooled": 0.273,
           "pct_by_replicate": [
-            0.253,
-            0.304,
-            0.271,
-            0.313,
-            0.241
+            0.248,
+            0.3,
+            0.274,
+            0.309,
+            0.229
           ]
         },
         {
@@ -438,59 +438,59 @@
           "hi": 0.75,
           "pct_pooled": 0.172,
           "pct_by_replicate": [
-            0.135,
-            0.192,
-            0.197,
-            0.144,
-            0.193
+            0.129,
+            0.194,
+            0.198,
+            0.145,
+            0.194
           ]
         },
         {
           "lo": 0.75,
           "hi": 0.775,
-          "pct_pooled": 0.219,
+          "pct_pooled": 0.218,
           "pct_by_replicate": [
-            0.228,
-            0.31,
-            0.188,
-            0.215,
-            0.148
+            0.216,
+            0.312,
+            0.19,
+            0.217,
+            0.149
           ]
         },
         {
           "lo": 0.775,
           "hi": 0.8,
-          "pct_pooled": 0.105,
+          "pct_pooled": 0.103,
           "pct_by_replicate": [
             0.087,
-            0.128,
+            0.123,
             0.042,
-            0.128,
-            0.141
+            0.129,
+            0.135
           ]
         },
         {
           "lo": 0.8,
           "hi": 0.825,
-          "pct_pooled": 0.108,
+          "pct_pooled": 0.106,
           "pct_by_replicate": [
-            0.122,
+            0.116,
             0.097,
             0.084,
-            0.085,
-            0.153
+            0.086,
+            0.147
           ]
         },
         {
           "lo": 0.825,
           "hi": 0.85,
-          "pct_pooled": 0.076,
+          "pct_pooled": 0.077,
           "pct_by_replicate": [
             0.014,
             0.041,
-            0.125,
-            0.071,
-            0.132
+            0.126,
+            0.072,
+            0.133
           ]
         },
         {
@@ -500,7 +500,7 @@
           "pct_by_replicate": [
             0.014,
             0.054,
-            0.057,
+            0.058,
             0.0,
             0.059
           ]
@@ -566,69 +566,711 @@
           ]
         }
       ],
+      "stacked_by_tier": [
+        {
+          "lo": 0.0,
+          "hi": 0.025,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.0,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.025,
+          "hi": 0.05,
+          "tiers": {
+            "IRON": 0.284,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.0,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.05,
+          "hi": 0.075,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.0,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.075,
+          "hi": 0.1,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.0,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.1,
+          "hi": 0.125,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.039,
+            "SILVER": 0.0,
+            "GOLD": 0.0,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.125,
+          "hi": 0.15,
+          "tiers": {
+            "IRON": 0.25,
+            "BRONZE": 0.285,
+            "SILVER": 0.0,
+            "GOLD": 0.0,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.15,
+          "hi": 0.175,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.22,
+            "SILVER": 0.0,
+            "GOLD": 0.0,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.175,
+          "hi": 0.2,
+          "tiers": {
+            "IRON": 0.217,
+            "BRONZE": 0.302,
+            "SILVER": 0.007,
+            "GOLD": 0.0,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.2,
+          "hi": 0.225,
+          "tiers": {
+            "IRON": 0.802,
+            "BRONZE": 0.577,
+            "SILVER": 0.022,
+            "GOLD": 0.003,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.225,
+          "hi": 0.25,
+          "tiers": {
+            "IRON": 0.802,
+            "BRONZE": 0.737,
+            "SILVER": 0.058,
+            "GOLD": 0.003,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.25,
+          "hi": 0.275,
+          "tiers": {
+            "IRON": 0.184,
+            "BRONZE": 1.421,
+            "SILVER": 0.157,
+            "GOLD": 0.0,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.275,
+          "hi": 0.3,
+          "tiers": {
+            "IRON": 0.217,
+            "BRONZE": 2.01,
+            "SILVER": 0.248,
+            "GOLD": 0.003,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.3,
+          "hi": 0.325,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 1.353,
+            "SILVER": 0.588,
+            "GOLD": 0.01,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.325,
+          "hi": 0.35,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 1.88,
+            "SILVER": 1.271,
+            "GOLD": 0.013,
+            "PLATINUM": 0.006,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.35,
+          "hi": 0.375,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 1.531,
+            "SILVER": 1.41,
+            "GOLD": 0.078,
+            "PLATINUM": 0.0,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.375,
+          "hi": 0.4,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 1.953,
+            "SILVER": 2.515,
+            "GOLD": 0.252,
+            "PLATINUM": 0.009,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.4,
+          "hi": 0.425,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 1.341,
+            "SILVER": 4.475,
+            "GOLD": 0.907,
+            "PLATINUM": 0.062,
+            "EMERALD": 0.008,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.425,
+          "hi": 0.45,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.97,
+            "SILVER": 4.669,
+            "GOLD": 2.272,
+            "PLATINUM": 0.331,
+            "EMERALD": 0.02,
+            "DIAMOND": 0.006,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.45,
+          "hi": 0.475,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.646,
+            "SILVER": 4.841,
+            "GOLD": 4.538,
+            "PLATINUM": 1.367,
+            "EMERALD": 0.227,
+            "DIAMOND": 0.036,
+            "MASTER": 0.003,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.475,
+          "hi": 0.5,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.141,
+            "SILVER": 2.731,
+            "GOLD": 4.537,
+            "PLATINUM": 3.018,
+            "EMERALD": 0.967,
+            "DIAMOND": 0.195,
+            "MASTER": 0.065,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.5,
+          "hi": 0.525,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.18,
+            "SILVER": 3.338,
+            "GOLD": 4.876,
+            "PLATINUM": 3.956,
+            "EMERALD": 2.148,
+            "DIAMOND": 0.719,
+            "MASTER": 0.323,
+            "GRANDMASTER": 0.028,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.525,
+          "hi": 0.55,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 1.103,
+            "GOLD": 2.733,
+            "PLATINUM": 2.68,
+            "EMERALD": 1.495,
+            "DIAMOND": 0.715,
+            "MASTER": 0.472,
+            "GRANDMASTER": 0.033,
+            "CHALLENGER": 0.028
+          }
+        },
+        {
+          "lo": 0.55,
+          "hi": 0.575,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.039,
+            "SILVER": 0.918,
+            "GOLD": 1.833,
+            "PLATINUM": 1.509,
+            "EMERALD": 0.974,
+            "DIAMOND": 0.468,
+            "MASTER": 0.273,
+            "GRANDMASTER": 0.03,
+            "CHALLENGER": 0.014
+          }
+        },
+        {
+          "lo": 0.575,
+          "hi": 0.6,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.018,
+            "SILVER": 0.611,
+            "GOLD": 1.203,
+            "PLATINUM": 0.987,
+            "EMERALD": 0.548,
+            "DIAMOND": 0.243,
+            "MASTER": 0.205,
+            "GRANDMASTER": 0.017,
+            "CHALLENGER": 0.008
+          }
+        },
+        {
+          "lo": 0.6,
+          "hi": 0.625,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.165,
+            "GOLD": 0.563,
+            "PLATINUM": 0.489,
+            "EMERALD": 0.243,
+            "DIAMOND": 0.115,
+            "MASTER": 0.053,
+            "GRANDMASTER": 0.003,
+            "CHALLENGER": 0.006
+          }
+        },
+        {
+          "lo": 0.625,
+          "hi": 0.65,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.103,
+            "GOLD": 0.445,
+            "PLATINUM": 0.37,
+            "EMERALD": 0.157,
+            "DIAMOND": 0.042,
+            "MASTER": 0.034,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.65,
+          "hi": 0.675,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.1,
+            "GOLD": 0.356,
+            "PLATINUM": 0.243,
+            "EMERALD": 0.101,
+            "DIAMOND": 0.059,
+            "MASTER": 0.025,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.675,
+          "hi": 0.7,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.019,
+            "GOLD": 0.22,
+            "PLATINUM": 0.175,
+            "EMERALD": 0.05,
+            "DIAMOND": 0.006,
+            "MASTER": 0.017,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.7,
+          "hi": 0.725,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.013,
+            "GOLD": 0.087,
+            "PLATINUM": 0.105,
+            "EMERALD": 0.042,
+            "DIAMOND": 0.011,
+            "MASTER": 0.014,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.725,
+          "hi": 0.75,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.051,
+            "PLATINUM": 0.079,
+            "EMERALD": 0.034,
+            "DIAMOND": 0.006,
+            "MASTER": 0.003,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.75,
+          "hi": 0.775,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.018,
+            "GOLD": 0.082,
+            "PLATINUM": 0.093,
+            "EMERALD": 0.011,
+            "DIAMOND": 0.008,
+            "MASTER": 0.006,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.775,
+          "hi": 0.8,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.036,
+            "PLATINUM": 0.028,
+            "EMERALD": 0.031,
+            "DIAMOND": 0.003,
+            "MASTER": 0.006,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.8,
+          "hi": 0.825,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.03,
+            "PLATINUM": 0.045,
+            "EMERALD": 0.025,
+            "DIAMOND": 0.0,
+            "MASTER": 0.006,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.825,
+          "hi": 0.85,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.012,
+            "PLATINUM": 0.042,
+            "EMERALD": 0.017,
+            "DIAMOND": 0.006,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.85,
+          "hi": 0.875,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.012,
+            "PLATINUM": 0.017,
+            "EMERALD": 0.008,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.875,
+          "hi": 0.9,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.0,
+            "PLATINUM": 0.006,
+            "EMERALD": 0.003,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.9,
+          "hi": 0.925,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.009,
+            "PLATINUM": 0.011,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.925,
+          "hi": 0.95,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.003,
+            "PLATINUM": 0.006,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.95,
+          "hi": 0.975,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.0,
+            "PLATINUM": 0.003,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        },
+        {
+          "lo": 0.975,
+          "hi": 1.0,
+          "tiers": {
+            "IRON": 0.0,
+            "BRONZE": 0.0,
+            "SILVER": 0.0,
+            "GOLD": 0.0,
+            "PLATINUM": 0.003,
+            "EMERALD": 0.0,
+            "DIAMOND": 0.0,
+            "MASTER": 0.0,
+            "GRANDMASTER": 0.0,
+            "CHALLENGER": 0.0
+          }
+        }
+      ],
       "summary_pooled": {
-        "median": 0.4782608695652174,
-        "mean": 0.46218485914648244,
+        "median": 0.47767857142857145,
+        "mean": 0.46142555168854915,
         "iqr": [
-          0.41237113402061853,
-          0.5241935483870968
+          0.411214953271028,
+          0.5238095238095238
         ],
-        "sd": 0.10520708025465837,
+        "sd": 0.10522201733605649,
         "p90": 0.5714285714285714,
-        "p95": 0.6052631578947368,
+        "p95": 0.6049382716049383,
         "p99": 0.7037037037037037,
-        "share_gt_60pct": 0.05228166775478103,
-        "share_gt_70pct": 0.01037049515975657
+        "share_gt_60pct": 0.05186872816878684,
+        "share_gt_70pct": 0.010290088129724814
       },
       "summary_by_replicate": [
         {
           "replicate": 1,
           "n": 4732,
-          "median": 0.4794520547945205,
-          "p90": 0.5714285714285714,
-          "p95": 0.6060606060606061,
+          "median": 0.478494623655914,
+          "p90": 0.571072319201995,
+          "p95": 0.6056338028169014,
           "ks_vs_pooled": null
         },
         {
           "replicate": 2,
           "n": 4800,
-          "median": 0.47368421052631576,
-          "p90": 0.5694444444444444,
-          "p95": 0.6021505376344086,
+          "median": 0.47266881028938906,
+          "p90": 0.5683890577507599,
+          "p95": 0.6,
           "ks_vs_pooled": null
         },
         {
           "replicate": 3,
           "n": 4757,
-          "median": 0.4782608695652174,
+          "median": 0.4778761061946903,
           "p90": 0.5714285714285714,
-          "p95": 0.6046511627906976,
+          "p95": 0.60431654676259,
           "ks_vs_pooled": null
         },
         {
           "replicate": 4,
           "n": 4804,
-          "median": 0.4810126582278481,
-          "p90": 0.5714285714285714,
+          "median": 0.48,
+          "p90": 0.5697674418604651,
           "p95": 0.6071428571428571,
           "ks_vs_pooled": null
         },
         {
           "replicate": 5,
           "n": 4748,
-          "median": 0.4787234042553192,
+          "median": 0.4782608695652174,
           "p90": 0.5714285714285714,
-          "p95": 0.6060606060606061,
+          "p95": 0.6052631578947368,
           "ks_vs_pooled": null
         }
       ],
       "replicate_spread": {
         "median_range": [
-          0.47368421052631576,
-          0.4810126582278481
+          0.47266881028938906,
+          0.48
         ],
         "p90_range": [
-          0.5694444444444444,
+          0.5683890577507599,
           0.5714285714285714
         ],
         "max_pairwise_ks": 0.027575414511266105
