@@ -14,6 +14,15 @@
  * empirical, computed from the pooled bins — no model is fitted (the
  * JSON's model_fit entries are placeholders) and nothing is averaged
  * across sets.
+ *
+ * Legend: Plotly's built-in legend is hidden (showlegend: false) —
+ * it lays items out row-major and cannot read lowest-to-highest down
+ * two columns. A custom HTML legend below the chart lists the tiers
+ * Iron → Challenger in two columns of five, column-major, built from
+ * the tiers JSON so colours stay single-sourced. Clicking a legend
+ * item hides/shows that tier's trace and dims the item. Traces are
+ * ordered Iron → Challenger so the stack reads bottom-to-top in the
+ * same order as the legend.
  */
 (function () {
   var root = document.getElementById('tft');
@@ -23,6 +32,13 @@
   var plotEl = document.getElementById('tft-plot');
   var detailEl = document.getElementById('tft-detail');
   var summaryEl = document.getElementById('tft-summary');
+  var legendEl = document.getElementById('tft-legend');
+
+  // Tiers the user has hidden via the legend; kept across re-renders
+  // (theme/vibe change, breakpoint cross) so a hidden tier stays hidden.
+  var hiddenTiers = {};
+  // Tier -> index in the traces array, rebuilt on every renderHist.
+  var traceIndexByTier = {};
 
   // Mobile tuning (Fed pattern): below 700px the modebar is hidden;
   // on coarse-pointer phones the chart starts locked behind a
@@ -86,6 +102,7 @@
     var m = sample.metrics.top4_rate;
     var x = binCenters();
     var stacked = m.stacked_by_tier;
+    traceIndexByTier = {};
     var traces = TIER_ORDER.map(function (tier) {
       var y = stacked.map(function (b) { return b.tiers[tier] || 0; });
       // Skip a tier with no players anywhere; it would add a dead
@@ -96,6 +113,10 @@
         name: titleCase(tier),
         x: x,
         y: y,
+        // Traces are ordered Iron -> Challenger, so Iron stacks at the
+        // bottom and Challenger at the top, matching the legend order.
+        // Hidden-by-legend tiers stay hidden across re-renders.
+        visible: hiddenTiers[tier] ? false : true,
         text: stacked.map(function (b, i) {
           var seg = b.tiers[tier] || 0;
           var total = m.bins[i].pct_pooled;
@@ -115,14 +136,19 @@
         marker: { color: tierColor(tier) }
       };
     }).filter(function (tr) { return tr !== null; });
+    // Trace indices after filtering, for the custom legend's toggles.
+    traces.forEach(function (tr, i) {
+      traceIndexByTier[tr.name.toUpperCase()] = i;
+    });
     var layout = {
       autosize: true,
-      margin: { l: 56, r: 16, t: 12, b: isNarrow() ? 118 : 104 },
+      // No room for Plotly's legend below the axes any more: the custom
+      // HTML legend lives under the chart instead.
+      margin: { l: 56, r: 16, t: 12, b: isNarrow() ? 64 : 56 },
       paper_bgcolor: 'rgba(0,0,0,0)',
       plot_bgcolor: 'rgba(0,0,0,0)',
       font: { color: t.text, family: 'Inter, system-ui, sans-serif', size: isNarrow() ? 13 : 12 },
-      showlegend: true,
-      legend: { orientation: 'h', y: -0.24, x: 0.5, xanchor: 'center' },
+      showlegend: false,
       barmode: 'stack',
       bargap: 0.05,
       xaxis: {
@@ -142,6 +168,48 @@
       : window.Plotly.newPlot(plotEl, traces, layout, plotConfig());
     plotted = true;
     return p;
+  }
+
+  /* --- Custom legend: two columns of five, column-major ---
+   * Plotly's built-in legend lays items out row-major, which cannot
+   * read lowest-to-highest down two columns, so this HTML legend
+   * replaces it. DOM order is Iron -> Challenger; the CSS grid flows
+   * column-first (grid-auto-flow: column, 5 rows), so column 1 reads
+   * Iron, Bronze, Silver, Gold, Platinum and column 2 reads Emerald,
+   * Diamond, Master, Grandmaster, Challenger. Clicking an item
+   * hides/shows that tier's trace (Plotly.restyle) and dims the item.
+   * Built once; colours come from the tiers JSON, never hard-coded. */
+
+  var legendBuilt = false;
+  function renderLegend() {
+    if (legendBuilt || !legendEl) return;
+    legendBuilt = true;
+    TIER_ORDER.forEach(function (tier) {
+      var item = document.createElement('button');
+      item.type = 'button';
+      item.className = 'tft-legend-item';
+      item.setAttribute('aria-pressed', 'true');
+      item.setAttribute('aria-label', 'Toggle ' + titleCase(tier) + ' in the chart');
+      var swatch = document.createElement('span');
+      swatch.className = 'tft-legend-swatch';
+      swatch.style.backgroundColor = tierColor(tier);
+      swatch.setAttribute('aria-hidden', 'true');
+      var label = document.createElement('span');
+      label.className = 'tft-legend-label';
+      label.textContent = titleCase(tier);
+      item.appendChild(swatch);
+      item.appendChild(label);
+      item.addEventListener('click', function () {
+        var idx = traceIndexByTier[tier];
+        if (idx === undefined || !window.Plotly) return;
+        var hiding = !hiddenTiers[tier];
+        hiddenTiers[tier] = hiding;
+        window.Plotly.restyle(plotEl, { visible: !hiding }, [idx]);
+        item.classList.toggle('tft-legend-hidden', hiding);
+        item.setAttribute('aria-pressed', String(!hiding));
+      });
+      legendEl.appendChild(item);
+    });
   }
 
   /* --- Summary + bins table (every chart value, in text form) --- */
@@ -180,6 +248,7 @@
   function render() {
     if (!sample || !tiers || !window.Plotly) return;
     renderHist();
+    renderLegend();
     bindClicks();
     ensureLocks();
   }

@@ -1688,6 +1688,43 @@
   /* --- TFT Rank Distribution: top-4 rate histogram, stacked by tier --- */
   .tft-plot { display: block; width: 100%; height: clamp(420px, 60vh, 560px); }
 
+  /* Custom legend (replaces Plotly's built-in one): two columns of
+     five, reading Iron -> Platinum down the left, Emerald -> Challenger
+     down the right. DOM order is Iron -> Challenger; grid-auto-flow:
+     column with 5 rows puts the first five items in column 1 and the
+     rest in column 2. One row on narrow screens would cramp the names,
+     so the two columns hold down to small widths. */
+  .tft-legend {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-rows: repeat(5, auto);
+    grid-auto-flow: column;
+    gap: 0.35rem 1.5rem;
+    max-width: 560px;
+    margin: 0.75rem auto 0;
+  }
+  .tft-legend-item {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    min-width: 0;
+    padding: 0.15rem 0.25rem;
+    border: 0;
+    border-radius: 0.35rem;
+    background: none;
+    font: inherit;
+    font-size: 0.9rem;
+    color: var(--color-text);
+    text-align: left;
+    cursor: pointer;
+  }
+  .tft-legend-item:hover { background: var(--color-card); }
+  .tft-legend-item:focus-visible { outline: 2px solid var(--color-accent); outline-offset: 2px; }
+  .tft-legend-swatch { flex: none; width: 0.85rem; height: 0.85rem; border-radius: 0.2rem; }
+  .tft-legend-label { overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+  .tft-legend-hidden { opacity: 0.45; }
+  .tft-legend:empty { display: none; }
+
   /* Mobile tuning: tap-to-interact lock over the chart (coarse-pointer
      phones only, added by tft-rank-distribution.js) + shorter heights. */
   .tft-lock-overlay { position: absolute; inset: 0; z-index: 4; display: flex; align-items: center; justify-content: center; padding: 1rem; background: rgba(128, 128, 128, 0.12); }
